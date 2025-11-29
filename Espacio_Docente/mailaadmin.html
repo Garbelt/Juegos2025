@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SRAD - Mensajería Interna</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+.container {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 95%;
+  max-width: 1000px;
+  margin-top: 20px;
+  background: white;
+  box-sizing: border-box;
+  display: none;
+  flex-direction: column;
+}
+h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 20px;
+}
+.subtitulo {
+  margin: 0;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+.mensaje {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  background: #f7f7f7;
+}
+.mensaje p { margin: 4px 0; }
+button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+.enviar-btn { background-color: #2980b9; }
+.enviar-btn:hover { background-color: #3498db; }
+.marcar-btn { background-color: #90ee90; color: black; }
+.eliminar-btn { background-color: #ff7f7f; color: black; }
+.logout-button {
+  width: 150px;
+  padding: 8px 0;
+  font-size: 13px;
+  border-radius: 5px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+.logout-button:hover { background-color: #3498db; }
+#backBtn { background-color: #ddd; color: black; }
+#backBtn:hover { background-color: #bbb; }
+.message {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffcc00;
+  color: #000;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+  z-index: 9999;
+  text-align: center;
+  width: 80%;
+  max-width: 300px;
+}
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+<div class="container">
+  <h2>SRAD - Mensajería Interna</h2>
+  <div class="subtitulo">
+    Usuario: <span id="usuarioEmail"></span> / Rol: <span id="rolUsuario"></span>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+    <button id="backBtn" class="logout-button">⬅ Volver al menú</button>
+    <button class="logout-button" onclick="logout()">🚪 Cerrar sesión</button>
+  </div>
+
+  <div id="docenteForm">
+    <h3>Enviar mensaje al administrador</h3>
+    <label>Asunto:</label><br>
+    <input type="text" id="asunto" style="width:100%; padding:5px;"><br><br>
+    <label>Mensaje:</label><br>
+    <textarea id="mensaje" rows="5" style="width:100%; padding:5px;"></textarea><br><br>
+    <button class="enviar-btn" id="enviarMensaje">Enviar mensaje</button>
+  </div>
+
+  <div id="adminPanel" style="display:none;">
+    <h3>Mensajes recibidos</h3>
+    <div id="mensajesContainer">Cargando mensajes...</div>
+  </div>
+</div>
+
+<div class="message" id="messageEl"></div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
+  authDomain: "juego001-469b6.firebaseapp.com",
+  databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
+  projectId: "juego001-469b6",
+  storageBucket: "juego001-469b6.appspot.com",
+  messagingSenderId: "528847999661",
+  appId: "1:528847999661:web:6085a104fe64262a042c24"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const auth = firebase.auth();
+
+// === Inicialización de llaves ===
+if (!localStorage.getItem("entrarA")) localStorage.setItem("entrarA", Math.floor(1000 + Math.random() * 9000));
+if (!localStorage.getItem("entrarB")) localStorage.setItem("entrarB", "NO");
+let entrarA = localStorage.getItem("entrarA");
+let entrarB = localStorage.getItem("entrarB");
+
+// === Mensaje visual + sonido (solo se muestra después del primer clic) ===
+let mensajePendiente = null;
+let mensajeSecundario = null;
+let audioPrimero = null;
+let audioSegundo = null;
+
+// ===== Mensajes secuenciales con audio =====
+const mensajeSecuencial = {
+  msg1: null,
+  msg2: null,
+  audio1: null,
+  audio2: null,
+  redirigir: true,
+  activo: false
+};
+
+function mostrarMensajesSecuenciales(msg1, msg2, audio1, audio2, redirigir = true) {
+  mensajeSecuencial.msg1 = msg1;
+  mensajeSecuencial.msg2 = msg2;
+  mensajeSecuencial.audio1 = audio1;
+  mensajeSecuencial.audio2 = audio2;
+  mensajeSecuencial.redirigir = redirigir;
+  mensajeSecuencial.activo = true;
+}
+
+// Listener de click global
+window.addEventListener("click", () => {
+  if (!mensajeSecuencial.activo) return;
+
+  const { msg1, msg2, audio1, audio2, redirigir } = mensajeSecuencial;
+  const messageEl = document.getElementById("messageEl");
+  mensajeSecuencial.activo = false; // desactivar para que no se repita
+
+  messageEl.textContent = msg1;
+  messageEl.style.display = "block";
+
+  const a1 = new Audio(audio1);
+  a1.play().catch(e => console.warn("Audio 1:", e));
+
+  a1.onended = () => {
+    messageEl.textContent = msg2;
+    const a2 = new Audio(audio2);
+    a2.play().catch(e => console.warn("Audio 2:", e));
+
+    a2.onended = () => {
+      if (redirigir) window.location.href = "../index.html";
+    };
+  };
+});
+
+// === Control de acceso: solo docentes + llaves ===
+auth.onAuthStateChanged(async user => {
+  if (!user) {
+    accesoDenegado();
+    return;
+  }
+
+  const rolSnap = await db.ref("usuarios/" + user.uid + "/rol").once("value");
+  const rol = rolSnap.val() || "desconocido";
+
+  if (rol !== "docente" || entrarA !== entrarB) {
+    accesoDenegado();
+    return;
+  }
+
+  // acceso correcto → reset llaves
+  localStorage.setItem("entrarB", "NO");
+  entrarB = "NO";
+  entrarA = Math.floor(1000 + Math.random() * 9000);
+  localStorage.setItem("entrarA", entrarA);
+
+  document.getElementById("usuarioEmail").textContent = user.email;
+  document.getElementById("rolUsuario").textContent = "DOCENTE";
+  document.querySelector(".container").style.display = "flex";
+});
+
+// === Acceso denegado ===
+function accesoDenegado() {
+  document.querySelector(".container").style.display = "none";
+  mostrarMensajesSecuenciales(
+    "ACCESO DENEGADO",
+    "SE TE REDIRIGIRÁ AL INICIO.",
+    "sound/fx/denegado.mp3",
+    "sound/fx/redireccionando.mp3"
+  );
+}
+
+// === Logout ===
+async function logout() { 
+  localStorage.removeItem('uid');
+  localStorage.removeItem('ActualUs');
+  localStorage.removeItem('correo');
+  localStorage.removeItem('password');
+  localStorage.removeItem('adminEmail');
+  localStorage.removeItem('adminPassword');
+  localStorage.removeItem('entrarA');
+  localStorage.removeItem('entrarB');
+  const auth = getAuth();
+  await signOut(auth);
+  window.location.href = "index.html";
+}
+
+
+// === Botón volver ===
+document.getElementById("backBtn").addEventListener("click", () => {
+  localStorage.setItem("entrarB", localStorage.getItem("entrarA"));
+  window.location.href = "ActDocente.html";
+});
+
+// === Envío de mensaje del docente ===
+document.getElementById("enviarMensaje").addEventListener("click", async () => {
+  const asunto = document.getElementById("asunto").value.trim();
+  const mensaje = document.getElementById("mensaje").value.trim();
+  const user = auth.currentUser;
+
+  if (!asunto || !mensaje) {
+    alert("Debe completar asunto y mensaje.");
+    return;
+  }
+  if (!user) return;
+
+  const nuevoMensaje = {
+    remitente: user.email,
+    asunto,
+    mensaje,
+    fecha: new Date().toISOString(),
+    leido: false
+  };
+
+  try {
+    await db.ref("mensajes").push(nuevoMensaje);
+    alert("Mensaje enviado correctamente al administrador.");
+    document.getElementById("asunto").value = "";
+    document.getElementById("mensaje").value = "";
+  } catch (e) {
+    console.error(e);
+    alert("Error al enviar mensaje.");
+  }
+});
+
+// === Panel administrador (visualización de mensajes) ===
+function cargarMensajes() {
+  const contenedor = document.getElementById("mensajesContainer");
+  const mensajesRef = db.ref("mensajes");
+
+  mensajesRef.on("value", snapshot => {
+    contenedor.innerHTML = "";
+    if (!snapshot.exists()) {
+      contenedor.innerHTML = "<p>No hay mensajes nuevos.</p>";
+      return;
+    }
+    const mensajes = Object.entries(snapshot.val()).reverse();
+    mensajes.forEach(([id, msg]) => {
+      const div = document.createElement("div");
+      div.className = "mensaje";
+      div.innerHTML = `
+        <p><b>De:</b> ${msg.remitente}</p>
+        <p><b>Asunto:</b> ${msg.asunto}</p>
+        <p><b>Mensaje:</b> ${msg.mensaje}</p>
+        <p><b>Fecha:</b> ${new Date(msg.fecha).toLocaleString()}</p>
+        <p><b>Estado:</b> ${msg.leido ? "✅ Leído" : "🟡 No leído"}</p>
+        <button class="marcar-btn">Marcar como leído</button>
+        <button class="eliminar-btn">Eliminar</button>
+      `;
+      div.querySelector(".marcar-btn").addEventListener("click", () => {
+        db.ref("mensajes/" + id).update({ leido: true });
+      });
+      div.querySelector(".eliminar-btn").addEventListener("click", () => {
+        if (confirm("¿Eliminar este mensaje?")) db.ref("mensajes/" + id).remove();
+      });
+      contenedor.appendChild(div);
+    });
+  });
+}
+</script>
+</body>
+</html>

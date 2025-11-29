@@ -1,0 +1,366 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Habilitaciones - SRAD</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+.container {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 95%;
+  max-width: 1000px;
+  margin-top: 20px;
+  background: white;
+  box-sizing: border-box;
+  display: none; /* <-- ocultamos todo al cargar la página */
+  flex-direction: column;
+}
+h2 { text-align: center; margin: 0; font-size: 20px; }
+.subtitulo { margin: 0; text-align: center; font-weight: normal; margin-bottom: 10px; }
+hr { border: 0; border-top: 2px solid #004080; margin: 10px 0; }
+.filters { display: flex; justify-content: center; align-items: center; margin-bottom: 10px; gap: 20px; flex-wrap: wrap; }
+.table-wrapper { width: 100%; overflow-x: auto; max-height: 70vh; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 800px; }
+thead th { border: 1px solid #ddd; padding: 6px; text-align: center; }
+th, td { border: 1px solid #ddd; padding: 5px; text-align: center; }
+thead tr:first-child th { position: sticky; top: 0; background-color: #004080; color: white; z-index: 2; }
+thead tr:nth-child(2) th { position: sticky; top: 28px; background-color: #004080; color: white; z-index: 1; }
+tbody tr:nth-child(even) { background-color: #f2f2f2; }
+tbody tr:hover { background-color: #e0f0ff; }
+.logout-button { width: 150px; padding: 8px 0; font-size: 13px; border-radius: 5px; background-color: #2980b9; color: white; border: none; cursor: pointer; text-align: center; }
+.logout-button:hover { background-color: #3498db; }
+#backBtn { background-color: #ddd; color: black; }
+#backBtn:hover { background-color: #bbb; }
+tr.inactive td { background-color: #f9d6d5; color: #aa0000; text-decoration: line-through; }
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>HABILITACIONES</h2>
+  <div class="subtitulo">Docente: <span id="docenteNombre"></span> / Escuela: <span id="escuelaNombre"></span></div>
+  <hr>
+  <div class="subtitulo">Juego/Rutina: <span id="nombreJuegoRutina"></span></div>
+
+  <div class="filters">
+    <label>Curso:
+      <select id="filterCurso"><option value="">Todos</option></select>
+    </label>
+    <label style="margin-left:20px;">
+      <input type="checkbox" id="showInactive" checked> Mostrar usuarios inactivos
+    </label>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+    <button id="backBtn" class="logout-button" onclick="goBack()">⬅ Volver al menú</button>
+    <button class="logout-button" onclick="logout()">🚪 Cerrar sesión</button>
+  </div>
+
+  <div class="table-wrapper">
+  <table>
+  <thead>
+    <tr style="position: sticky; top: 0; z-index: 2;">
+      <th rowspan="2">#</th>
+      <th rowspan="2">Nombre y Apellido</th>
+      <th rowspan="2">Usuario</th>
+      <th rowspan="2">Escuela</th>
+      <th rowspan="2">Curso</th>
+      <th rowspan="2">Habilitar</th>
+      <th colspan="3">Permisos</th>
+      <th rowspan="2">Oculto</th>
+    </tr>
+    <tr>
+      <th>Propio</th>
+      <th>Curso</th>
+      <th>Escuela</th>
+    </tr>
+    <th colspan="10" style="height: 1px; background: white; border: none; padding: 0;"></th>
+  </thead>
+  <tbody id="usersList">
+    <tr><td colspan="10">Cargando usuarios...</td></tr>
+  </tbody>
+  </table>
+  </div>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
+  authDomain: "juego001-469b6.firebaseapp.com",
+  databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
+  projectId: "juego001-469b6",
+  storageBucket: "juego001-469b6.appspot.com",
+  messagingSenderId: "528847999661",
+  appId: "1:528847999661:web:6085a104fe64262a042c24"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const auth = firebase.auth();
+
+const ADMIN_UID = "SOqnLrm62vMx2F3cLvE6icvavRy1";
+const container = document.querySelector(".container");
+container.style.display = "none";
+
+// Elemento de mensaje
+const messageEl = document.createElement("div");
+Object.assign(messageEl.style, {
+  display: "none",
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  backgroundColor: "#ffcc00",
+  color: "#000",
+  padding: "20px",
+  border: "2px solid #333",
+  borderRadius: "10px",
+  fontSize: "20px",
+  textTransform: "uppercase",
+  zIndex: "9999",
+  textAlign: "center",
+  width: "80%",
+  maxWidth: "300px"
+});
+document.body.appendChild(messageEl);
+
+let mensajePendiente = null;
+let mensajeSecundario = null;
+let audioPrimero = null;
+let audioSegundo = null;
+
+function setMensajesPendientes(msg1, msg2, aud1, aud2) {
+  mensajePendiente = msg1;
+  mensajeSecundario = msg2;
+  audioPrimero = aud1;
+  audioSegundo = aud2;
+}
+
+function mostrarMensajesSecuenciales(msg1, msg2, audio1, audio2) {
+  messageEl.textContent = msg1;
+  messageEl.style.display = "block";
+  const a1 = new Audio(audio1);
+  a1.play().catch(()=>{});
+  a1.onended = () => {
+    messageEl.textContent = msg2;
+    const a2 = new Audio(audio2);
+    a2.play().catch(()=>{});
+    a2.onended = () => window.location.href = "../index.html";
+  };
+}
+
+window.addEventListener("click", () => {
+  if(mensajePendiente && mensajeSecundario) {
+    mostrarMensajesSecuenciales(mensajePendiente, mensajeSecundario, audioPrimero, audioSegundo);
+    mensajePendiente = null;
+    mensajeSecundario = null;
+  }
+});
+
+// ===== Inicialización de entrarA y entrarB =====
+if (!localStorage.getItem("entrarA")) {
+    localStorage.setItem("entrarA", Math.floor(1000 + Math.random() * 9000));
+}
+if (!localStorage.getItem("entrarB")) {
+    localStorage.setItem("entrarB", "NO");
+}
+
+// ===== Verificación de acceso =====
+auth.onAuthStateChanged(async user => {
+    const entrarA = localStorage.getItem("entrarA");
+    const entrarB = localStorage.getItem("entrarB");
+
+    if(!user || entrarA !== entrarB) { accesoDenegado(); return; }
+
+    try {
+        const rolSnap = await db.ref("usuarios/" + user.uid + "/rol").once("value");
+        const rol = rolSnap.val();
+
+        if(user.uid === ADMIN_UID || rol === "docente" || rol === "admin") {
+            // Desigualamos entrarB para proteger la página
+            localStorage.setItem("entrarB", "NO");
+            inicializarPagina();
+        } else accesoDenegado();
+    } catch(err) {
+        console.error("Error al verificar rol:", err);
+        accesoDenegado();
+    }
+});
+
+// ===== Funciones de navegación =====
+function goBack() {
+    const nuevoValor = Math.floor(1000 + Math.random() * 9000);
+    localStorage.setItem("entrarA", nuevoValor);
+    localStorage.setItem("entrarB", nuevoValor);
+    window.location.href = "Edit_PermyHabil.html";
+}
+
+async function logout() {
+  localStorage.removeItem('uid');
+  localStorage.removeItem('ActualUs');
+  localStorage.removeItem('correo');
+  localStorage.removeItem('password');
+  localStorage.removeItem('adminEmail');
+  localStorage.removeItem('adminPassword');
+  localStorage.removeItem('entrarA');
+  localStorage.removeItem('entrarB');
+  const auth = getAuth();
+  await signOut(auth);
+  window.location.href = "index.html";
+}
+
+// ===== Funciones de acceso denegado =====
+function accesoDenegado() {
+    container.style.display = "none";
+    setMensajesPendientes(
+        "ACCESO DENEGADO.",
+        "SE TE REDIRIGIRÁ AL INICIO.",
+        "sound/fx/denegado.mp3",
+        "sound/fx/redireccionando.mp3"
+    );
+}
+
+// ===== Inicialización de la página =====
+function inicializarPagina() {
+    container.style.display = "flex";
+    const docenteNombre = (localStorage.getItem('nombreApellido')||'').toUpperCase();
+    const escuelaNombre = localStorage.getItem('tipoEscuela')||'';
+    document.getElementById('docenteNombre').textContent = docenteNombre;
+    document.getElementById('escuelaNombre').textContent = escuelaNombre;
+    loadUsers();
+}
+
+// ===== Funciones para carga de usuarios y filtros =====
+const allUsers = [];
+const escuelaActual = localStorage.getItem('tipoEscuela')||'';
+const codigoJuegoRutina = localStorage.getItem('codigoSeleccionado')||'';
+const tipoSeleccionado = localStorage.getItem('tipoSeleccionado')||'juegos';
+
+function getRutaBase() { return tipoSeleccionado==='juegos' ? 'listadejuegos' : 'rutinas'; }
+
+async function loadJuegoTitulo() {
+  const snapshot = await db.ref(`${getRutaBase()}/${codigoJuegoRutina}`).once("value");
+  const item = snapshot.val();
+  const nombre = tipoSeleccionado==='juegos' ? item?.title||codigoJuegoRutina : item?.name||codigoJuegoRutina;
+  document.getElementById('nombreJuegoRutina').textContent = `${nombre} [${codigoJuegoRutina}]`;
+}
+
+async function loadUsers() {
+  await loadJuegoTitulo();
+
+  const snapshot = await db.ref("usuarios").once("value");
+  const data = snapshot.val()||{};
+  const habilSnapshot = await db.ref(`${getRutaBase()}/${codigoJuegoRutina}/alumnosHabilitados`).once("value");
+  const habilitados = habilSnapshot.val()||{};
+
+  allUsers.length = 0;
+  Object.entries(data).forEach(([uid,u])=>{
+    const rol = u.rol||"alumno";
+    const permisosObj = u.permisos||{};
+    const ocultoObj = u.oculto||{};
+    const habilitado = !!habilitados[uid];
+    if(u.tipoEscuela!==escuelaActual) return;
+    allUsers.push({
+      userKey: uid,
+      nombreApellido: u.nombreApellido||"",
+      usuario: u.usuario||uid,
+      tipoEscuela: u.tipoEscuela||"",
+      curso: u.curso||"",
+      rol,
+      permisos: permisosObj,
+      oculto: ocultoObj,
+      habilitado,
+      activo: u.activo!==false
+    });
+  });
+
+  populateFilters();
+  applyFilters();
+}
+
+function populateFilters() {
+  const select = document.getElementById('filterCurso');
+  const cursos = [...new Set(allUsers.map(u=>u.curso).filter(c=>c))].sort();
+  select.innerHTML = '<option value="">Todos</option>' + cursos.map(c=>`<option value="${c}">${c}</option>`).join('');
+  select.addEventListener("change", applyFilters);
+}
+
+function applyFilters() {
+  const curso = document.getElementById('filterCurso').value;
+  const showInactive = document.getElementById('showInactive').checked;
+  let filtered = allUsers.filter(u => showInactive || u.activo);
+  if(curso) filtered = filtered.filter(u => u.curso === curso);
+  renderUsers(filtered);
+}
+
+function renderUsers(users) {
+  const tbody = document.getElementById("usersList");
+  tbody.innerHTML = "";
+  if(!users.length) { tbody.innerHTML=`<tr><td colspan="10">No hay usuarios que coincidan.</td></tr>`; return; }
+
+  users.forEach((user,index)=>{
+    const tr = document.createElement("tr");
+    if(!user.activo) tr.classList.add("inactive");
+
+    const permisoActual = user.permisos[codigoJuegoRutina] || (user.rol==='docente'?'escuela':'propio');
+    const ocultoActual = user.oculto[codigoJuegoRutina] ?? (user.rol==='docente'?true:false);
+
+    tr.innerHTML = `
+      <td>${index+1}</td>
+      <td>${user.nombreApellido}</td>
+      <td>${user.usuario}</td>
+      <td>${user.tipoEscuela}</td>
+      <td>${user.curso}</td>
+      <td><input type="checkbox" ${user.habilitado?'checked':''}></td>
+      <td><input type="radio" name="perm-${user.userKey}" value="propio" ${permisoActual==='propio'?'checked':''}></td>
+      <td><input type="radio" name="perm-${user.userKey}" value="curso" ${permisoActual==='curso'?'checked':''}></td>
+      <td><input type="radio" name="perm-${user.userKey}" value="escuela" ${permisoActual==='escuela'?'checked':''}></td>
+      <td><input type="checkbox" ${ocultoActual?'checked':''}></td>
+    `;
+
+    // Habilitar
+    const habilitarCheckbox = tr.querySelector('td:nth-child(6) input');
+    habilitarCheckbox.addEventListener('change', async () => {
+      const nuevoValor = habilitarCheckbox.checked;
+      await db.ref(`${getRutaBase()}/${codigoJuegoRutina}/alumnosHabilitados/${user.userKey}`).set(nuevoValor);
+      user.habilitado = nuevoValor;
+    });
+
+    // Permisos
+    tr.querySelectorAll(`input[type=radio][name=perm-${user.userKey}]`).forEach(r => {
+      r.addEventListener('change', async ()=>{
+        const nuevoPermiso = r.value;
+        user.permisos = {...user.permisos,[codigoJuegoRutina]:nuevoPermiso};
+        await db.ref(`usuarios/${user.userKey}/permisos/${codigoJuegoRutina}`).set(nuevoPermiso);
+      });
+    });
+
+    // Oculto
+    const ocultoCheckbox = tr.querySelector('td:nth-child(10) input');
+    ocultoCheckbox.addEventListener('change', async ()=>{
+      const nuevoOculto = ocultoCheckbox.checked;
+      user.oculto = {...user.oculto,[codigoJuegoRutina]:nuevoOculto};
+      await db.ref(`usuarios/${user.userKey}/oculto/${codigoJuegoRutina}`).set(nuevoOculto);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+document.getElementById("showInactive").addEventListener("change", applyFilters);
+</script>
+</body>
+</html>

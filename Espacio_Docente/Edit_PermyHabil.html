@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espacio Docente</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  .container {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 95%;
+    max-width: 1000px;
+    min-width: 800px;
+    margin-top: 20px;
+    background: white;
+    box-sizing: border-box;
+    display: none; /* <-- ocultamos todo al cargar la página */
+    flex-direction: column;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .subtitulo {
+    margin: 0;
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    max-height: 70vh;
+    overflow-y: auto;
+    margin-top: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 800px;
+  }
+
+  thead th {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: center;
+    background-color: #004080;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  tbody td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tbody tr:hover {
+    background-color: #e0f0ff;
+  }
+
+  .logout-button {
+    width: 150px;
+    padding: 8px 0;
+    font-size: 13px;
+    border-radius: 5px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  .logout-button:hover {
+      background-color: #3498db;
+  }
+
+  #backBtn {
+      background-color: #ddd;
+      color: black;
+  }
+  #backBtn:hover {
+      background-color: #bbb;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>ESPACIO DOCENTE</h2>
+  <div class="subtitulo">
+    Docente: <span id="docenteNombre"></span> / Escuela: <span id="escuelaNombre"></span>
+  </div>
+
+  <div class="filters">
+    <label>Ver listado:
+      <select id="tipoListado">
+        <option value="juegos">Juegos</option>
+        <option value="rutinas">Rutinas</option>
+      </select>
+    </label>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+    <button id="backBtn" class="logout-button" onclick="goBack()">⬅ Volver al menú</button>
+    <button class="logout-button" onclick="logout()">🚪 Cerrar sesión</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table id="tablaJuegosRutinas">
+      <thead>
+        <tr>
+          <th>Juego / Rutina</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-juegosRutinas"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
+  authDomain: "juego001-469b6.firebaseapp.com",
+  databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
+  projectId: "juego001-469b6",
+  storageBucket: "juego001-469b6.appspot.com",
+  messagingSenderId: "528847999661",
+  appId: "1:528847999661:web:6085a104fe64262a042c24"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const auth = firebase.auth();
+
+const ADMIN_UID = "SOqnLrm62vMx2F3cLvE6icvavRy1";
+let tipoListado = "juegos";
+
+// ==== Contenedor y mensaje central ====
+const container = document.querySelector(".container");
+container.style.display = "none";
+
+const messageEl = document.createElement("div");
+messageEl.className = "message inhabilitado";
+Object.assign(messageEl.style, {
+  display: "none",
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  backgroundColor: "#ffcc00",
+  color: "#000",
+  padding: "20px",
+  border: "2px solid #333",
+  borderRadius: "10px",
+  fontSize: "20px",
+  textTransform: "uppercase",
+  zIndex: "9999",
+  textAlign: "center",
+  width: "80%",
+  maxWidth: "300px"
+});
+document.body.appendChild(messageEl);
+
+let mensajePendiente = null;
+let mensajeSecundario = null;
+let audioPrimero = null;
+let audioSegundo = null;
+
+// ==== Funciones de mensajes sonoros ====
+function setMensajesPendientes(msg1, msg2, aud1, aud2) {
+  mensajePendiente = msg1;
+  mensajeSecundario = msg2;
+  audioPrimero = aud1;
+  audioSegundo = aud2;
+}
+
+function mostrarMensajesSecuenciales(msg1, msg2, audio1, audio2) {
+  messageEl.textContent = msg1;
+  messageEl.style.display = "block";
+
+  const a1 = new Audio(audio1);
+  a1.play().catch(() => {});
+  a1.onended = () => {
+    messageEl.textContent = msg2;
+    const a2 = new Audio(audio2);
+    a2.play().catch(() => {});
+    a2.onended = () => {
+      window.location.href = "../index.html";
+    };
+  };
+}
+
+window.addEventListener("click", () => {
+  if (mensajePendiente && mensajeSecundario) {
+    mostrarMensajesSecuenciales(mensajePendiente, mensajeSecundario, audioPrimero, audioSegundo);
+    mensajePendiente = null;
+    mensajeSecundario = null;
+  }
+});
+
+// ==== Inicialización de entrarA y entrarB ====
+if (!localStorage.getItem("entrarA")) {
+  localStorage.setItem("entrarA", Math.floor(1000 + Math.random() * 9000));
+}
+if (!localStorage.getItem("entrarB")) {
+  localStorage.setItem("entrarB", "NO");
+}
+
+// ==== Control de acceso principal ====
+auth.onAuthStateChanged(async user => {
+  const entrarA = localStorage.getItem("entrarA");
+  const entrarB = localStorage.getItem("entrarB");
+
+  if (entrarA !== entrarB || !user) {
+    accesoDenegado();
+    return;
+  }
+
+  try {
+    const rolSnap = await db.ref("usuarios/" + user.uid + "/rol").once("value");
+    const rol = rolSnap.val();
+
+    if (user.uid === ADMIN_UID || rol === "docente" || rol === "admin") {
+      // acceso permitido, desigualar para proteger navegación
+      localStorage.setItem("entrarB", Math.floor(1000 + Math.random() * 9000));
+      inicializarPagina();
+    } else {
+      accesoDenegado();
+    }
+  } catch (err) {
+    console.error("Error al verificar rol:", err);
+    accesoDenegado();
+  }
+});
+
+function accesoDenegado() {
+  container.style.display = "none";
+  setMensajesPendientes(
+    "ACCESO DENEGADO.",
+    "SE TE REDIRIGIRÁ AL INICIO.",
+    "sound/fx/denegado.mp3",
+    "sound/fx/redireccionando.mp3"
+  );
+}
+
+// ==== Inicializar la página ====
+function inicializarPagina() {
+  container.style.display = "flex";
+
+  const docenteNombre = (localStorage.getItem("nombreApellido") || "").toUpperCase();
+  const escuelaNombre = localStorage.getItem("tipoEscuela") || "";
+  document.getElementById("docenteNombre").textContent = docenteNombre;
+  document.getElementById("escuelaNombre").textContent = escuelaNombre;
+
+  cargarJuegosRutinasDocente();
+  document.getElementById("tipoListado").addEventListener("change", () => {
+    tipoListado = document.getElementById("tipoListado").value;
+    cargarJuegosRutinasDocente();
+  });
+}
+
+// ==== Navegación segura ====
+async function logout() { 
+  localStorage.removeItem('uid');
+  localStorage.removeItem('ActualUs');
+  localStorage.removeItem('correo');
+  localStorage.removeItem('password');
+  localStorage.removeItem('adminEmail');
+  localStorage.removeItem('adminPassword');
+  localStorage.removeItem('entrarA');
+  localStorage.removeItem('entrarB');
+  const auth = getAuth();
+  await signOut(auth);
+  window.location.href = "index.html";
+}
+
+function goBack() {
+  // Reigualar valores de entrarA/B con número de 4 cifras antes de redirigir
+  const newCode = Math.floor(1000 + Math.random() * 9000);
+  localStorage.setItem("entrarA", newCode);
+  localStorage.setItem("entrarB", newCode);
+  window.location.href = "ActDocente.html";
+}
+
+// ==== Cargar lista de juegos/rutinas ====
+async function cargarJuegosRutinasDocente() {
+  try {
+    const refPath = tipoListado === "juegos" ? "listadejuegos" : "rutinas";
+    const snap = await db.ref(refPath).once("value");
+    const lista = Object.entries(snap.val() || {}).map(([code, item]) => ({
+      code,
+      titulo: tipoListado === "juegos" ? (item.title || code) : (item.name || code)
+    }));
+
+    const tbody = document.getElementById("tbody-juegosRutinas");
+    tbody.innerHTML = "";
+
+    if (!lista.length) {
+      tbody.innerHTML = `<tr><td colspan="2">No hay ${tipoListado} disponibles.</td></tr>`;
+      return;
+    }
+
+    lista.forEach(item => {
+      const tr = document.createElement("tr");
+
+      const tdNombre = document.createElement("td");
+      tdNombre.textContent = item.titulo;
+      tr.appendChild(tdNombre);
+
+      const tdAcciones = document.createElement("td");
+
+      const btnHabilitar = document.createElement("button");
+      btnHabilitar.textContent = "Permisos y Habilitaciones";
+      btnHabilitar.onclick = () => {
+        localStorage.setItem("codigoSeleccionado", item.code);
+        localStorage.setItem("tipoSeleccionado", tipoListado);
+
+        // Reigualar antes de ir a la página siguiente
+        const newCode = Math.floor(1000 + Math.random() * 9000);
+        localStorage.setItem("entrarA", newCode);
+        localStorage.setItem("entrarB", newCode);
+
+        window.location.href = "PermyHabilAlum.html";
+      };
+
+      tdAcciones.appendChild(btnHabilitar);
+      tr.appendChild(tdAcciones);
+      tbody.appendChild(tr);
+    });
+  } catch (err) {
+    console.error("Error al cargar los juegos/rutinas:", err);
+    const tbody = document.getElementById("tbody-juegosRutinas");
+    tbody.innerHTML = `<tr><td colspan="2">Error al cargar los datos.</td></tr>`;
+  }
+}
+</script>
+</body>
+</html>
