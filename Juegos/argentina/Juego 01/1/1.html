@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Identificar en la imagen</title>
+<link rel="stylesheet" href="mensajesdiferente.css" />
+<link rel="stylesheet" href="estilos.css" />
+<style>
+  #puzzle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: auto;
+  }
+
+</style>
+</head>
+<body>
+<div id="start-button-container">
+<button id="start-button" class="disable-clicks">COMENZAR EL JUEGO</button>
+</div>
+
+<div class="container" style="display:none;">
+<table>
+<tr>
+  <th colspan="2" class="title-cell" style="text-align: center;">
+    <span class="titulo-principal">SEÑALAR EN LA IMAGEN</span><br>
+    <span class="titulo-secundario">LAS PROVINCIAS ARGENTINAS</span>
+  </th>
+</tr>
+<tr>
+<td id="align-center-center">
+<div id="puzzle">
+<img src="Image/Imagen.jpg" usemap="#ProvinciasArgentinas" width="320" height="320" />
+<map name="ProvinciasArgentinas">
+<area shape="poly" coords="158,34,159,21,164,28,170,31,176,34,183,38,190,41,198,45,193,51,190,58,181,51,172,42,164,37" 
+alt="formosa" class="quadrant formosa" />
+<area shape="poly" 
+coords="154,49,162,35,169,40,176,46,183,53,187,56,192,59,188,67,167,67,167,48" 
+alt="chaco" class="quadrant chaco" />
+<area shape="poly" 
+coords="159,21,159,34,158,40,151,47,144,52,136,53,130,55,129,47,113,46,115,40,121,37,127,37,130,31,134,36,140,39,146,39,146,32,138,27,138,20,144,22,147,17,152,18" 
+alt="salta" class="quadrant salta" />
+<area shape="poly" 
+coords="123,33,122,26,130,17,138,20,137,26,141,31,145,37,136,37,129,31,128,38" 
+alt="jujuy" class="quadrant jujuy" />
+<area shape="poly" 
+coords="113,47,115,54,117,61,111,67,119,70,127,72,133,76,139,82,141,76,140,70,134,66,132,58,126,52,127,46" 
+alt="catamarca" class="quadrant catamarca" />
+<area shape="poly" 
+coords="145,49,151,48,165,47,165,70,162,82,149,79,143,79,139,72,142,62"
+alt="santiago_del_estero" class="quadrant santiago_del_estero" />
+<area shape="poly" 
+coords="130,55,137,52,143,53,141,62,139,68,132,64" 
+alt="tucuman" class="quadrant tucuman" />
+<area shape="poly" 
+coords="165,66,185,66,184,75,181,81,177,88,176,94,172,103,178,110,171,112,168,118,159,117,165,106,162,99,165,89,163,81" 
+alt="santa_fe" class="quadrant santa_fe" />
+<area shape="poly" 
+coords="208,62,218,54,219,48,225,48,225,59,220,64,210,70" 
+alt="misiones" class="quadrant misiones" />
+<area shape="poly" 
+coords="207,62,210,69,194,88,188,84,181,85,180,79,185,74,187,61,198,62" 
+alt="corrientes" class="quadrant corrientes" />
+<area shape="poly" 
+coords="180,86,189,85,194,90,191,102,191,108,188,118,175,109,171,102,176,93" 
+alt="entre_rios" class="quadrant entre_rios" />
+<area shape="poly" 
+coords="177,110,170,114,169,120,155,120,155,172,164,172,165,163,162,156,186,154,194,148,199,141,195,134,197,128,183,116" 
+alt="buenos_aires" class="quadrant buenos_aires" />
+<area shape="poly" 
+coords="143,123,155,125,155,121,159,120,165,108,162,99,165,90,163,83,152,80,142,81,139,89,137,98,143,104,143,110,141,116" 
+alt="cordoba" class="quadrant cordoba" />
+<area shape="poly" 
+coords="156,124,143,125,142,134,130,135,123,136,123,146,127,151,134,155,142,157,151,158,155,161,155,140" 
+alt="la_pampa" class="quadrant la_pampa" />
+<area shape="poly" 
+coords="141,134,142,122,143,108,142,102,135,100,126,101,127,110,132,118,133,126,132,134" 
+alt="san_luis" class="quadrant san_luis" />
+<area shape="poly"
+coords="109,68,116,68,123,72,130,71,135,78,139,85,136,93,137,100,129,98,125,90,113,82,111,74" 
+alt="la_rioja" class="quadrant la_rioja" />
+<area shape="poly" 
+coords="107,74,113,78,113,83,121,86,125,93,131,99,124,102,116,103,109,106,103,100,105,90,105,80" 
+alt="san_juan" class="quadrant san_juan" />
+<area shape="poly" 
+coords="107,109,111,103,115,106,120,104,125,105,129,115,132,122,133,133,123,135,122,147,110,144,107,137,108,126,109,116" 
+alt="mendoza" class="quadrant mendoza" />
+<area shape="poly" 
+coords="107,138,113,145,123,148,125,160,116,166,110,174,104,178,105,163,109,159,104,153" 
+alt="neuquen" class="quadrant neuquen" />
+<area shape="poly" 
+coords="123,151,128,152,137,156,150,157,157,160,154,176,161,174,146,173,146,183,104,186,103,178,113,172,125,159,123,151" 
+alt="rio_negro" class="quadrant rio_negro" />
+<area shape="poly" 
+coords="106,188,146,182,149,186,155,184,157,190,147,194,147,202,142,209,135,217,110,220,112,212,107,205,104,194" 
+alt="chubut" class="quadrant chubut" />
+<area shape="poly" 
+coords="110,221,133,218,139,224,146,228,144,235,136,241,137,249,131,255,129,261,135,269,126,268,115,268,112,259,106,250,109,243,109,232,111,226" 
+alt="santa_cruz" class="quadrant santa_cruz" />
+<area shape="poly" 
+coords="134,272,137,290,143,290,150,292,160,288,146,285,140,279" 
+alt="tierra_del_fuego" class="quadrant tierra_del_fuego" />
+<area shape="poly" 
+coords="172,265,173,259,183,260,191,261,188,267,180,269" 
+alt="islas_malvinas" class="quadrant islas_malvinas" />
+<area shape="poly" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+</div>
+</td>
+
+
+<td id="align-left-top" class="celda-panel">
+        <div id="panel">
+            <div>
+                <div id="actualUsername"></div>
+                <br>
+                <div id="reloj">Tiempo: 00:00</div>
+                <div id="intentos"></div>
+                <div id="puntaje">Puntaje: 100</div>
+            </div>
+<br><br><br>
+<div id="titulo-instruccion" style="text-align: center;"><b>SEÑALAR</b></div>
+<div id="indicacion" style="font-size: 24px; font-weight: bold; text-align: center;"></div>
+        </div>
+</td>
+</tr>
+</table>
+</div>
+
+<div class="found-message" id="message"></div>
+
+<audio id="audio-tiempo-agotado" src="sounds/finportiempo.mp3"></audio>
+<audio id="audio-error" src="sounds/finporintentos.mp3"></audio>
+<audio id="audio-correcto" src="sounds/finporcompletar.mp3"></audio>
+<audio id="background-music" loop>
+<source src="sounds/El gran Puzzle [1].mp3" type="audio/mpeg" />
+Tu navegador no soporta la reproducción de audio.
+</audio>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
+        authDomain: "juego001-469b6.firebaseapp.com",
+        databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
+        projectId: "juego001-469b6",
+        storageBucket: "juego001-469b6.appspot.com",
+        messagingSenderId: "528847999661",
+        appId: "1:528847999661:web:6085a104fe64262a042c24"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Archivo JS externo -->
+<script src="verificacionesjuegos.js"></script>
+<script src="script.js"></script>
+
+<script>
+        window.addEventListener("load", function() {
+            const actualUsername = localStorage.getItem("ActualUs");
+            document.getElementById("actualUsername").textContent = `Usuario:  ${actualUsername}`;
+        });
+
+document.addEventListener("DOMContentLoaded", () => {
+const tituloDiv = document.getElementById("titulo-instruccion");
+const indicacionDiv = document.getElementById("indicacion");
+
+indicacionDiv.addEventListener("mouseenter", () => {
+const texto = indicacionDiv.textContent.trim();
+if (!texto) return;
+
+const audioPath = `sounds/${texto}.mp3`;
+const audio = new Audio(audioPath);
+audio.play().catch((err) => {
+console.error("No se pudo reproducir el audio:", err);
+});
+});
+});
+</script>
+</body>
+</html>
