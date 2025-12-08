@@ -209,7 +209,7 @@ function showFoundMessage() {
   document.getElementById("puntaje").textContent = `Puntaje: ${score}`;
 
   // 2️⃣ Mostrar mensaje
-  showGameMessage("PALABRA ENCONTRADA", 3000, "sound/palabraencontrada.mp3", () => {
+  showGameMessage("PALABRA ENCONTRADA", 3000, "sound/PalabraEncontrada.mp3", () => {
     if (gameEnded) return;
     // 3️⃣ Solo verificar bonus y crear nueva palabra
     checkForBonus();
@@ -414,5 +414,6 @@ document.addEventListener("click", function(event) {
     setTimeout(checkCorrectCellsSelected, 0);
   }
 });
+
 
 fillEmptyCells();
