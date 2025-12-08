@@ -11,7 +11,7 @@ const DIREC = [];
 const CORSEL = [];
 const INCORSEL = [];
 let timerInterval;
-let totalTimeInSeconds = 90;
+let totalTimeInSeconds = 120;
 let score = 0;
 let messageShown = false;
 let gameSaved = false;
@@ -417,4 +417,5 @@ document.addEventListener("click", function(event) {
 
 
 fillEmptyCells();
+
 
