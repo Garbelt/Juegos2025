@@ -233,7 +233,7 @@ function startTimer() {
     updateTimerDisplay(totalTimeInSeconds);
 
     timerInterval = setInterval(() => {
-        totalTimeInSeconds--;
+        totalTimeInSeconds = Math.max(0, totalTimeInSeconds - 1); // Nunca negativo
         updateTimerDisplay(totalTimeInSeconds);
 
         if (totalTimeInSeconds <= 0 || errors >= 5) {
@@ -271,7 +271,7 @@ function checkAnswer(selectedType) {
         totalTimeInSeconds += 10;
     } else {
         showMessage('ERROR', 'error');
-        totalTimeInSeconds -= 15;
+        totalTimeInSeconds = Math.max(0, totalTimeInSeconds - 15); // Evita tiempo negativo
         errors++;
         updateErrorsDisplay();
     }
@@ -290,4 +290,5 @@ document.getElementById("start-button").addEventListener("click", function() {
     startGame();
     showNextInstrument(); // 👈 AHORA se muestra el primer instrumento al comenzar
 });
+
 
