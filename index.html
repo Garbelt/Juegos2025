@@ -92,67 +92,83 @@ document.getElementById("btnText").textContent = "Verificando...";
         const tempPassword = "123456";
         let userCredential;
         
+// 🔹 Intentamos login con contraseña temporal
+let esPrimerIngreso = false;
+
+try {
+    userCredential = await auth.signInWithEmailAndPassword(correo, tempPassword);
+    esPrimerIngreso = true;
+} catch (error) {
+    esPrimerIngreso = false;
+}
+
+if (esPrimerIngreso) {
+
+    // ===== PRIMER INGRESO =====
+
+    let newPassword = prompt("Primer ingreso: crea tu nueva contraseña (no puede ser 123456):");
+
+    if (newPassword === null) {
+        await auth.signOut();
+        return;
+    }
+
+    if (!newPassword || newPassword === tempPassword) {
+        alert("Contraseña inválida.");
+        await auth.signOut();
+        return;
+    }
+
+    await userCredential.user.updatePassword(newPassword);
+
+    await database.ref(`adminUsuarios/${uid}/password`).set(newPassword);
+
+    localStorage.setItem('uid', uid);
+    localStorage.setItem('ActualUs', username);
+    localStorage.setItem('correo', correo);
+    localStorage.setItem('password', newPassword);
+    localStorage.setItem('tipoEscuela', foundUser.tipoEscuela || '');
+    localStorage.setItem('nombreApellido', foundUser.nombreApellido || '');
+
+    alert("✅ Contraseña creada correctamente. Bienvenido " + username + "!");
+
+} else {
+
+    // ===== LOGIN NORMAL =====
+
+    let loggedIn = false;
+
+    while (!loggedIn) {
+
+        const inputPassword = prompt("Ingresa tu contraseña:");
+
+        if (inputPassword === null) {
+            return;
+        }
+
+        if (!inputPassword) {
+            alert("Debes ingresar una contraseña.");
+            continue;
+        }
+
         try {
-userCredential = await auth.signInWithEmailAndPassword(correo, tempPassword);
+            userCredential = await auth.signInWithEmailAndPassword(correo, inputPassword);
+            loggedIn = true;
 
-let newPassword = prompt("Primer ingreso: crea tu nueva contraseña (no puede ser 123456):");
-
-if (newPassword === null) {
-    await auth.signOut();
-    return;
-}
-
-if (!newPassword || newPassword === tempPassword) {
-    alert("Contraseña inválida.");
-    await auth.signOut();
-    return;
-}
-
-await userCredential.user.updatePassword(newPassword);
-
-// 🔐 volvemos a iniciar sesión con la nueva contraseña
-await auth.signOut();
-userCredential = await auth.signInWithEmailAndPassword(correo, newPassword);
-
-// ahora sí guardamos en la base
-await database.ref(`adminUsuarios/${uid}/password`).set(newPassword);
-
-            loginExitoso = true;
+            await database.ref(`adminUsuarios/${uid}/password`).set(inputPassword);
 
             localStorage.setItem('uid', uid);
             localStorage.setItem('ActualUs', username);
             localStorage.setItem('correo', correo);
-            localStorage.setItem('password', newPassword);
+            localStorage.setItem('password', inputPassword);
             localStorage.setItem('tipoEscuela', foundUser.tipoEscuela || '');
             localStorage.setItem('nombreApellido', foundUser.nombreApellido || '');
 
-            alert("✅ Contraseña creada correctamente. Bienvenido " + username + "!");
         } catch {
-
-            let loggedIn = false;
-            while (!loggedIn) {
-                const inputPassword = prompt("Ingresa tu contraseña:");
-                if (inputPassword === null) break;
-                    if (!inputPassword) continue;
-
-                try {
-                    userCredential = await auth.signInWithEmailAndPassword(correo, inputPassword);
-                    loggedIn = true;
-                    loginExitoso = true;
-       
-                    await database.ref(`adminUsuarios/${uid}/password`).set(inputPassword);
-
-                    localStorage.setItem('uid', uid);
-                    localStorage.setItem('ActualUs', username);
-                    localStorage.setItem('correo', correo);
-                    localStorage.setItem('password', inputPassword);
-                    localStorage.setItem('tipoEscuela', foundUser.tipoEscuela || '');
-                    localStorage.setItem('nombreApellido', foundUser.nombreApellido || '');
-                } catch {
-                    alert("Contraseña incorrecta. Intenta nuevamente o cancela.");
-                }
-            }
+            alert("Contraseña incorrecta. Intenta nuevamente o cancela.");
         }
+    }
+}
 
         if (loginExitoso) {
             // 🔑 confirmamos la salida de index
