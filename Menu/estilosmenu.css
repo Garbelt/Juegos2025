@@ -98,10 +98,10 @@ body {
     z-index: 9999;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) and (min-height: 600px) {
     .message.inhabilitado {
         width: 90%;
-        border: 3px solid #000;   /* m·s visible */
+        border: 3px solid #000;   /* m√°s visible */
         box-shadow: 0 0 15px rgba(0,0,0,0.4); /* separa del fondo */
 } }
 
@@ -140,5 +140,6 @@ body {
         justify-content: center;
         margin-top: 20px;
     }
+
 
 }
