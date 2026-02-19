@@ -98,16 +98,9 @@ body {
     z-index: 9999;
 }
 
-@media (min-width: 1024px) {
-    .message.inhabilitado {
-        width: 90%;
-        border: 3px solid #000;   /* más visible */
-        box-shadow: 0 0 15px rgba(0,0,0,0.4); /* separa del fondo */
-} }
-
 /* ===== FORMATO ESCRITORIO ===== */
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
 
     body {
         height: 100vh;
@@ -127,6 +120,7 @@ body {
     }
 
     #menuButtons {
+        flex: 1;
         overflow-y: auto;
     }
 
@@ -140,7 +134,9 @@ body {
         margin-top: 20px;
     }
 
+    .message.inhabilitado {
+        width: 90%;
+        border: 3px solid #000;   /* más visible */
+    }
 
 }
-
-
