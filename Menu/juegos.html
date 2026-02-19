@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== BASE MOBILE ===== */
+/* ===== BASE ===== */
 
 body {
     margin: 0;
@@ -20,13 +20,11 @@ body {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    padding-bottom: 70px; /* ← espacio real abajo */
+    padding-bottom: 40px; /* aire real abajo */
     box-sizing: border-box;
-
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
+
+/* ===== HEADER ===== */
 
 .header {
     text-align: center;
@@ -38,11 +36,12 @@ body {
     font-size: 20px;
 }
 
+/* ===== MENÚ ===== */
+
 #menuButtons {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex: 1;
 }
 
 .themeButton {
@@ -57,11 +56,13 @@ body {
     cursor: pointer;
 }
 
-.buttonContainer {
-    margin-top: 40px;
-    margin-bottom: 40px; /* ← aire real abajo */
-}
+/* ===== BOTÓN VOLVER ===== */
 
+.buttonContainer {
+    margin-top: 30px;
+    margin-bottom: 30px; /* separación visual inferior */
+    text-align: center;
+}
 
 #backtoareaButton {
     width: 100%;
@@ -107,21 +108,8 @@ body {
 
     .container {
         width: 700px;
-        min-height: 400px;
-        max-height: 80vh;
         border: 1px solid #ccc;
         border-radius: 5px;
-        padding: 20px;
-    }
-
-    #menuButtons {
-        overflow-y: auto;
-    }
-
-    .buttonContainer {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
     }
 
     #backtoareaButton {
@@ -130,7 +118,6 @@ body {
 }
 
 </style>
-
 
 </head>
 
@@ -301,6 +288,7 @@ window.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
