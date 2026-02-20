@@ -8,7 +8,9 @@
 
 <style>
 
-/* ===== Estilos generales (BASE MOBILE FIRST) ===== */
+/* ============================= */
+/* ===== BASE (Mobile First) ==== */
+/* ============================= */
 
 body, html {
   min-height: 100vh;
@@ -52,10 +54,10 @@ body, html {
 }
 
 .cell {
-  flex: 0 0 100%;
+  flex: 0 0 100%; /* 1 item por vista en móvil vertical */
   text-align: center;
   box-sizing: border-box;
-  padding: 8px;
+  padding: 10px;
 }
 
 /* ===== Enlace completo ===== */
@@ -67,8 +69,8 @@ body, html {
 }
 
 .cell img {
-  width: 60%;
-  max-width: 220px;
+  width: 75%;
+  max-width: 260px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -82,7 +84,7 @@ body, html {
 .titulo-juego {
   display: block;
   margin-top: 14px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #2980b9;
 }
@@ -131,47 +133,49 @@ body, html {
 #homeButton { background-color: #ddd; color: black; }
 #homeButton:hover { background-color: #bbb; }
 
-/* ===== Móvil horizontal (compacto real) ===== */
+/* ======================================== */
+/* ===== MÓVIL HORIZONTAL (<1024px) ====== */
+/* ======================================== */
 
 @media (max-width: 1023px) and (orientation: landscape) {
 
   .container {
-    max-width: 650px;
-    width: 90%;
+    max-width: 750px;
+    width: 95%;
     margin: 0 auto;
-    min-height: auto;
     padding: 15px;
   }
 
+  .cell {
+    flex: 0 0 50%; /* 2 items por vista */
+  }
+
   .cell img {
-    width: 45%;
-    max-width: 160px;
+    width: 70%;
+    max-width: 200px;
   }
 
   .titulo-juego {
-    font-size: 16px;
-    margin-top: 8px;
-  }
-
-  .cell {
-    padding: 4px;
+    font-size: 18px;
   }
 }
 
-/* ===== Escritorio ===== */
+/* =============================== */
+/* ===== ESCRITORIO (≥1024) ===== */
+/* =============================== */
 
 @media (min-width: 1024px) {
 
   .container {
     border: 1px solid #ccc;
     border-radius: 5px;
-    max-width: 750px;
+    max-width: 800px;
     width: 95%;
     padding: 25px;
   }
 
   .cell {
-    flex: 0 0 50%;
+    flex: 0 0 50%; /* 2 items por vista */
   }
 
   .cell img {
@@ -184,7 +188,9 @@ body, html {
   }
 }
 
-/* ===== Mensaje acceso denegado ===== */
+/* ============================= */
+/* ===== Mensaje inhabilitado === */
+/* ============================= */
 
 .message.inhabilitado {
   position: fixed;
@@ -379,4 +385,5 @@ function scrollTable(direction) {
 </script>
 
 </body>
+
 </html>
