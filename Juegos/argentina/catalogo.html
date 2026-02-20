@@ -31,7 +31,7 @@ body, html {
   padding: 20px;
 }
 
-/* SOLO escritorio mantiene marco visible y más ancho */
+/* ===== Escritorio ===== */
 @media (min-width: 1024px) {
 
   .container {
@@ -41,9 +41,35 @@ body, html {
     width: 95%;
     padding: 20px;
   }
+
+  .cell {
+    flex: 0 0 50%;
+  }
+
 }
 
+/* ===== Móvil (todo lo menor a 1024px) ===== */
+@media (max-width: 1023px) {
+
+  .cell {
+    padding: 5px;
+  }
+
+  .cell img {
+    width: 55%;
+    max-width: 200px;
+  }
+
+  .titulo-juego {
+    font-size: 18px;
+    margin-top: 12px;
+  }
+
+}
+
+/* ===== Móvil horizontal ===== */
 @media (max-width: 1023px) and (orientation: landscape) {
+
   .container {
     max-width: 650px;
     width: 90%;
@@ -51,6 +77,7 @@ body, html {
     min-height: auto;
     padding: 15px;
   }
+
 }
 
 /* ===== Catálogo tipo página ===== */
@@ -76,18 +103,10 @@ body, html {
 .cell {
   flex: 0 0 100%;
   text-align: center;
-  padding: 10px;
   box-sizing: border-box;
 }
 
-/* Escritorio: 2 juegos por vista */
-@media (min-width: 1024px) {
-  .cell {
-    flex: 0 0 50%;
-  }
-}
-
-/* ===== Enlace completo (imagen + título) ===== */
+/* ===== Enlace completo ===== */
 
 .cell a {
   display: block;
@@ -114,26 +133,6 @@ body, html {
   font-size: 22px;
   font-weight: bold;
   color: #2980b9;
-}
-
-/* ===== Ajuste fino para móvil ===== */
-
-@media (max-width: 768px) {
-
-  .cell {
-    padding: 5px;
-  }
-
-  .cell img {
-    width: 55%;
-    max-width: 200px;
-  }
-
-  .titulo-juego {
-    font-size: 18px;
-    margin-top: 12px;
-  }
-
 }
 
 /* ===== Flechas ===== */
@@ -375,4 +374,5 @@ function scrollTable(direction) {
 </script>
 
 </body>
+
 </html>
