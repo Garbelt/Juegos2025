@@ -70,7 +70,7 @@ body {
 
 /* Contenedor del botón volver */
 .buttonContainer {
-    margin-top: 6px;
+    margin-top: 30px;
 }
 
 /* Botón volver */
@@ -145,4 +145,5 @@ body {
     }
 
 }
+
 
