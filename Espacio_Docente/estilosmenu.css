@@ -13,11 +13,6 @@ body {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-
-    /* Estructura vertical consistente */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Header genérico */
@@ -54,9 +49,6 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-
-    /* Hace que el menú crezca y empuje el botón hacia abajo */
-    flex: 1;
 }
 
 /* Botones principales */
@@ -78,8 +70,9 @@ body {
 }
 
 /* Contenedor del botón volver */
+/* 12px del último botón + 6px extra = 18px total */
 .buttonContainer {
-    margin-top: 30px;
+    margin-top: 6px;
 }
 
 /* Botón volver */
@@ -129,9 +122,12 @@ body {
         max-height: 80vh;
         border: 1px solid #ccc;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
     }
 
     #menuButtons {
+        flex: 1;
         overflow-y: auto;
     }
 
@@ -142,12 +138,11 @@ body {
     .buttonContainer {
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .message.inhabilitado {
         width: 90%;
         border: 3px solid #000;
     }
-
 }
