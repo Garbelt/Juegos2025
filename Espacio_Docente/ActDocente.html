@@ -19,12 +19,20 @@ body {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    display: flex;            /* SIEMPRE flex */
-    flex-direction: column;   /* SIEMPRE columna */
-    visibility: hidden;       /* en vez de display:none */
+
+    display: flex;
+    flex-direction: column;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
-
-
+    
+.container.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+    
 .header {
     display: flex;
     justify-content: space-between;
@@ -313,6 +321,7 @@ verificarAcceso();
 </script>
 </body>
 </html>
+
 
 
 
