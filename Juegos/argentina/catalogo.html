@@ -33,7 +33,13 @@ body, html {
   padding: 20px;
 }
 
-/* ===== Catálogo tipo página ===== */
+.container h2 {
+  margin-top: 10px;
+}
+
+/* ============================= */
+/* ===== Catálogo tipo página === */
+/* ============================= */
 
 .table-wrapper-horizontal {
   position: relative;
@@ -59,8 +65,6 @@ body, html {
   box-sizing: border-box;
   padding: 10px;
 }
-
-/* ===== Enlace completo ===== */
 
 .cell a {
   display: block;
@@ -89,7 +93,9 @@ body, html {
   color: #2980b9;
 }
 
-/* ===== Flechas ===== */
+/* ============================= */
+/* ===== Flechas =============== */
+/* ============================= */
 
 .scroll-btn {
   position: absolute;
@@ -113,9 +119,19 @@ body, html {
   background-color: rgba(0,0,0,0.8);
 }
 
+/* ============================= */
 /* ===== Botones navegación ===== */
+/* ============================= */
 
-#backButton, #homeButton {
+.nav-buttons {
+  display: flex;
+  flex-direction: column; /* Vertical por defecto */
+  align-items: center;
+  margin-top: 10px;
+}
+
+#backButton, 
+#homeButton {
   width: 90%;
   max-width: 450px;
   padding: 12px 20px;
@@ -147,7 +163,12 @@ body, html {
   }
 
   .container h2 {
-  margin-top: 0;
+    margin-top: 0;
+  }
+
+  /* Reduce espacio debajo del carrusel */
+  .table-wrapper-horizontal {
+    margin: 15px 0 5px 0;
   }
 
   .cell {
@@ -162,10 +183,24 @@ body, html {
   .titulo-juego {
     font-size: 18px;
   }
+
+  /* Botones en línea */
+  .nav-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px; /* espacio entre botones */
+  }
+
+  #backButton,
+  #homeButton {
+    width: 50%;
+    max-width: none;
+    margin: 0;
+  }
 }
 
 /* =============================== */
-/* ===== ESCRITORIO (≥1024) ===== */
+/* ===== ESCRITORIO (≥1024px) ==== */
 /* =============================== */
 
 @media (min-width: 1024px) {
@@ -190,6 +225,19 @@ body, html {
   .titulo-juego {
     font-size: 22px;
   }
+
+  .nav-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  #backButton,
+  #homeButton {
+    width: 50%;
+    max-width: none;
+    margin: 0;
+  }
 }
 
 /* ============================= */
@@ -213,37 +261,6 @@ body, html {
   width: 80%;
   max-width: 300px;
   display: none;
-}
-
-/* ===== Botones en línea (horizontal y escritorio) ===== */
-
-.nav-buttons {
-  display: flex;
-  flex-direction: column; /* móvil vertical */
-  align-items: center;
-}
-
-/* Horizontal móvil */
-@media (max-width: 1023px) and (orientation: landscape) {
-  .nav-buttons {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  #backButton, #homeButton {
-    width: 50%;
-    max-width: none;
-  }
-}
-
-  /* Ajuste solo para móvil vertical */
-@media (max-width: 1023px) and (orientation: portrait) {
-
-
-  #backButton,
-  #homeButton {
-    margin: 6px auto; /* reduce espacio vertical */
-  }
 }
 
 </style>
@@ -435,4 +452,5 @@ window.addEventListener("resize", () => {
 </body>
 
 </html>
+
 
