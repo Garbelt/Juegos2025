@@ -6,8 +6,10 @@ body {
     background-color: #f4f6f9;
 }
 
-/* Contenedor principal */
+/* Oculto hasta validar acceso */
 .container {
+    display: none;
+
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -15,25 +17,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Header genérico */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    margin: 0;
-    font-size: 20px;
-}
-
-.header select {
-    font-size: 14px;
-    padding: 4px 6px;
-}
-
-/* Header centrado reutilizable */
+/* Header centrado */
 .headerCenter {
     text-align: center;
     margin-bottom: 20px;
@@ -44,14 +28,14 @@ body {
     font-size: 20px;
 }
 
-/* Lista del menú */
+/* Lista */
 #menuButtons {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Botones principales */
+/* Botones menú */
 .themeButton {
     width: 100%;
     padding: 14px;
@@ -62,15 +46,9 @@ body {
     background-color: #2980b9;
     color: #fff;
     cursor: pointer;
-    transition: transform 0.1s ease;
 }
 
-.themeButton:active {
-    transform: scale(0.98);
-}
-
-/* Contenedor del botón volver */
-/* 12px del último botón + 6px extra = 18px total */
+/* 12px + 6px = 18px separación total */
 .buttonContainer {
     margin-top: 6px;
 }
@@ -86,7 +64,7 @@ body {
     cursor: pointer;
 }
 
-/* Mensaje modal */
+/* Modal */
 .message.inhabilitado {
     position: fixed;
     top: 50%;
@@ -105,7 +83,7 @@ body {
     z-index: 9999;
 }
 
-/* ===== FORMATO ESCRITORIO ===== */
+/* ===== ESCRITORIO ===== */
 
 @media (min-width: 1024px) {
 
@@ -122,6 +100,7 @@ body {
         max-height: 80vh;
         border: 1px solid #ccc;
         border-radius: 5px;
+
         display: flex;
         flex-direction: column;
     }
@@ -139,10 +118,5 @@ body {
         display: flex;
         justify-content: center;
         margin-top: 10px;
-    }
-
-    .message.inhabilitado {
-        width: 90%;
-        border: 3px solid #000;
     }
 }
