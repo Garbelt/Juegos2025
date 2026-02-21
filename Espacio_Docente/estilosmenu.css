@@ -6,21 +6,15 @@ body {
     background-color: #f4f6f9;
 }
 
-/* Contenedor principal */
 .container {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-
-    /* Estructura vertical consistente */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
-/* Header genérico */
+/* Header genÃ©rico */
 .header {
     display: flex;
     justify-content: space-between;
@@ -49,14 +43,11 @@ body {
     font-size: 20px;
 }
 
-/* Lista del menú */
+/* Lista del menÃº */
 #menuButtons {
     list-style: none;
     padding: 0;
     margin: 0;
-
-    /* Hace que el menú crezca y empuje el botón hacia abajo */
-    flex: 1;
 }
 
 /* Botones principales */
@@ -77,12 +68,12 @@ body {
     transform: scale(0.98);
 }
 
-/* Contenedor del botón volver */
+/* Contenedor del botÃ³n volver */
 .buttonContainer {
     margin-top: 30px;
 }
 
-/* Botón volver */
+/* BotÃ³n volver */
 #backtoareaButton {
     width: 100%;
     padding: 12px;
@@ -129,9 +120,12 @@ body {
         max-height: 80vh;
         border: 1px solid #ccc;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
     }
 
     #menuButtons {
+        flex: 1;
         overflow-y: auto;
     }
 
