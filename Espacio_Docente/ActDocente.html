@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Espacio del Docente - AFINANDO CONOCIMIENTOS</title>
 
-<link rel="stylesheet" href="../Menu/estilosmenu.css" />
+<link rel="stylesheet" href="../Menu/estilosmenu.css?v=1" />
 </head>
 <body>
 
@@ -31,33 +31,34 @@
 <script>
 // ===== Configuración de Firebase =====
 const firebaseConfig = {
-    apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
-    authDomain: "juego001-469b6.firebaseapp.com",
-    databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
-    projectId: "juego001-469b6",
-    storageBucket: "juego001-469b6.appspot.com",
-    messagingSenderId: "528847999661",
-    appId: "1:528847999661:web:6085a104fe64262a042c24"
+    apiKey: "TU_API_KEY",
+    authDomain: "TU_AUTH_DOMAIN",
+    databaseURL: "TU_DATABASE_URL",
+    projectId: "TU_PROJECT_ID",
+    storageBucket: "TU_STORAGE_BUCKET",
+    messagingSenderId: "TU_MESSAGING_ID",
+    appId: "TU_APP_ID"
 };
+
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const database = firebase.database();
 
-// ===== Variables para mensajes =====
+// ===== Variables =====
 let mensajePendiente = null;
 let mensajeSecundario = null;
 let audioPrimero = null;
 let audioSegundo = null;
 
-// ===== Datos de los temas =====
+// ===== Datos del menú =====
 const menuData = [
-  { title: "EDITAR PERMISOS Y HABILITAR ALUMNOS PARA JUGAR", key: "Edit_PermyHabil", url: "Edit_PermyHabil.html" },
-  { title: "CONSULTAR LA ACTIVIDAD DE TUS ALUMNOS", key: "srad", url: "srad.html" },
-  { title: "IR AL ESPACIO DE JUEGOS", key: "juegos", url: "../Menu/juegos.html" },
-  { title: "CONTACTAR AL ADMINISTRADOR", key: "mailaadmin", url: "mailaadmin.html" },
+  { title: "EDITAR PERMISOS Y HABILITAR ALUMNOS PARA JUGAR", url: "Edit_PermyHabil.html" },
+  { title: "CONSULTAR LA ACTIVIDAD DE TUS ALUMNOS", url: "srad.html" },
+  { title: "IR AL ESPACIO DE JUEGOS", url: "../Menu/juegos.html" },
+  { title: "CONTACTAR AL ADMINISTRADOR", url: "mailaadmin.html" },
 ];
 
-// ===== Inicialización de entrarA y entrarB =====
+// ===== Inicialización seguridad =====
 if (!localStorage.getItem("entrarA")) {
     localStorage.setItem("entrarA", Math.floor(1000 + Math.random() * 9000));
 }
@@ -67,10 +68,11 @@ if (!localStorage.getItem("entrarB")) {
 
 let entrarA = localStorage.getItem("entrarA");
 let entrarB = localStorage.getItem("entrarB");
-const uid = localStorage.getItem("uid"); // uid guardado en login
+const uid = localStorage.getItem("uid");
 
-// ===== Función de verificación de acceso =====
+// ===== Verificación acceso =====
 function verificarAcceso() {
+
     if (!uid) {
         accesoDenegado("ACCESO DENEGADO.");
         return;
@@ -78,45 +80,49 @@ function verificarAcceso() {
 
     database.ref("usuarios/" + uid + "/rol").get().then(snapshot => {
         const rol = snapshot.val();
+
         if (entrarA === entrarB && rol === "docente") {
-            // Acceso permitido
-            document.querySelector(".container").style.display = "flex"; // <-- mostrar
-            localStorage.setItem("entrarB", "NO"); // desigualado
-            generateMenu("menuButtons");
+
+            document.querySelector(".container").style.display = "block"; // 🔥 CORRECTO
+            localStorage.setItem("entrarB", "NO");
+            generateMenu();
+
         } else {
             accesoDenegado("ACCESO DENEGADO.");
         }
-    }).catch(err => {
-        console.error("Error al leer rol:", err);
+
+    }).catch(() => {
         accesoDenegado("ERROR DE CONEXIÓN.");
     });
 }
 
-// ===== Función para generar menú =====
-function generateMenu(containerId) {
-    const container = document.getElementById(containerId);
+// ===== Generar menú =====
+function generateMenu() {
+    const container = document.getElementById("menuButtons");
     container.innerHTML = "";
+
     menuData.forEach(item => {
         const li = document.createElement("li");
         const btn = document.createElement("button");
+
         btn.classList.add("themeButton");
         btn.textContent = item.title;
-        btn.addEventListener("click", () => {
-            localStorage.setItem("submenu", "juegos");
 
-            // 🔹 Sincronización segura antes de navegar
+        btn.addEventListener("click", () => {
+
             const nuevoValor = Math.floor(1000 + Math.random() * 9000);
             localStorage.setItem("entrarA", nuevoValor);
             localStorage.setItem("entrarB", nuevoValor);
 
             window.location.href = item.url;
         });
+
         li.appendChild(btn);
         container.appendChild(li);
     });
 }
 
-// ===== Función para volver al índice =====
+// ===== Volver =====
 function volverAlIndice() {
     const nuevoValor = Math.floor(1000 + Math.random() * 9000);
     localStorage.setItem("entrarA", nuevoValor);
@@ -124,51 +130,20 @@ function volverAlIndice() {
     window.location.href = "../index.html";
 }
 
-// ===== Funciones de mensajes =====
+// ===== Denegado =====
 function accesoDenegado(msg) {
     document.getElementById("menuButtons").style.display = "none";
     document.getElementById("backtoareaButton").style.display = "none";
-    setMensajesPendientes(msg, "SE TE REDIRIGIRÁ AL INICIO.", "sound/fx/denegado.mp3", "sound/fx/redireccionando.mp3");
-}
+    document.querySelector(".container").style.display = "block";
 
-function setMensajesPendientes(msg1, msg2, aud1, aud2) {
-    mensajePendiente = msg1;
-    mensajeSecundario = msg2;
-    audioPrimero = aud1;
-    audioSegundo = aud2;
-}
-
-function mostrarMensajesSecuenciales(msg1, msg2, audio1, audio2) {
     const messageEl = document.getElementById("message");
-    messageEl.textContent = msg1;
+    messageEl.textContent = msg;
     messageEl.style.display = "block";
-
-    const a1 = new Audio(audio1);
-    a1.play().catch(e => console.warn("Error primer audio:", e));
-
-    a1.onended = () => {
-        messageEl.textContent = msg2;
-        const a2 = new Audio(audio2);
-        a2.play().catch(e => console.warn("Error segundo audio:", e));
-
-        a2.onended = () => {
-            window.location.href = "../index.html";
-        };
-    };
 }
 
-// ===== Primer clic para disparar mensajes =====
-window.addEventListener("click", () => {
-    if (mensajePendiente && mensajeSecundario) {
-        mostrarMensajesSecuenciales(mensajePendiente, mensajeSecundario, audioPrimero, audioSegundo);
-        mensajePendiente = null;
-        mensajeSecundario = null;
-    }
-});
-
-// ===== Ejecutar verificación al cargar =====
+// ===== Ejecutar =====
 verificarAcceso();
+
 </script>
 </body>
 </html>
-
