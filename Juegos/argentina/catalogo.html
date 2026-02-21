@@ -233,6 +233,19 @@ body, html {
   }
 }
 
+  /* Ajuste solo para móvil vertical */
+@media (max-width: 1023px) and (orientation: portrait) {
+
+  .nav-buttons {
+    gap: 6px; /* antes 12px */
+  }
+
+  #backButton,
+  #homeButton {
+    margin: 6px auto; /* reduce espacio vertical */
+  }
+}
+
 </style>
 </head>
 
@@ -423,4 +436,5 @@ window.addEventListener("resize", () => {
 </body>
 
 </html>
+
 
