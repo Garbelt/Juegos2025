@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menú del Docente - AfinCon</title>
 <style>
-
 /* ===== BASE MOBILE ===== */
 
 body {
@@ -14,24 +13,39 @@ body {
     background-color: #f4f6f9;
 }
 
-..container {
+.container {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    display: none;
-    flex-direction: column;
 }
-    
+
+
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
 .header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.header select {
+    font-size: 14px;
+    padding: 4px 6px;
+}
+
+/* Variante header centrado */
+.headerAREA {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.headerAREA h2 {
     margin: 0;
     font-size: 20px;
 }
@@ -129,16 +143,15 @@ body {
 
     .message.inhabilitado {
         width: 90%;
-        border: 3px solid #000;
+        border: 3px solid #000;   /* más visible */
     }
 
 }
-
 </style>
 </head>
 <body>
 <div class="container">
-    <div class="header">
+    <div class="headerAREA">
         <h2>ESPACIO DEL DOCENTE</h2>
     </div>
     <ul id="menuButtons"></ul>
@@ -297,4 +310,5 @@ verificarAcceso();
 </script>
 </body>
 </html>
+
 
