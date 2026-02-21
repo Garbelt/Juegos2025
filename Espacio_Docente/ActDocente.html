@@ -230,7 +230,7 @@ function verificarAcceso() {
         const rol = snapshot.val();
         if (entrarA === entrarB && rol === "docente") {
             // Acceso permitido
-            document.querySelector(".container").style.visibility = "visible";
+            document.querySelector(".container").classList.add("visible");
             localStorage.setItem("entrarB", "NO"); // desigualado
             generateMenu("menuButtons");
         } else {
@@ -321,6 +321,7 @@ verificarAcceso();
 </script>
 </body>
 </html>
+
 
 
 
