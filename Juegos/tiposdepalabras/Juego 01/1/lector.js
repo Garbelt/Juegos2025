@@ -32,7 +32,7 @@ utterance.onstart = () => {
             opciones.onStart();
         }
 
-    }, 100); // puedes probar 80–120 ms
+    }, 80); // puedes probar 80–120 ms
 };
 
     // ✅ Cuando termina
@@ -158,4 +158,5 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
         crearBotonLector();
     }
+
 });
