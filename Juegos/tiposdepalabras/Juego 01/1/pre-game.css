@@ -122,3 +122,50 @@
     transition: color 0.3s ease;
 }
 
+/* ============================= */
+/* 📱 SOLO MÓVIL – SIN SCROLL */
+/* ============================= */
+@media (max-width: 768px) {
+
+    html, body {
+        height: 100%;
+        overflow: hidden; /* elimina scroll */
+    }
+
+    #pre-game-screen {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        padding: 15px;
+    }
+
+    #pre-game-container {
+        width: 95%;
+        height: 90vh;          /* ocupa casi toda la altura */
+        aspect-ratio: auto;    /* quitamos el 7/4 en móvil */
+        justify-content: space-evenly;
+    }
+
+    .pre-game-title {
+        font-size: clamp(20px, 6vw, 28px);
+    }
+
+    .pre-game-description {
+        font-size: clamp(14px, 4vw, 18px);
+    }
+
+    #pre-game-buttons {
+        flex-direction: column;   /* botones uno debajo del otro */
+        gap: 12px;
+    }
+
+    #pre-game-buttons button {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+
+    .btn-continue {
+        font-size: 18px;
+        padding: 10px 0;
+    }
+}
