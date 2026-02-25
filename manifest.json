@@ -1,0 +1,23 @@
+{
+  "name": "Afincon",
+  "short_name": "Afincon",
+  "id": "/Juegos2025/",
+  "start_url": "/Juegos2025/",
+  "scope": "/Juegos2025/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2b2b2b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/Juegos2025/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Juegos2025/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
