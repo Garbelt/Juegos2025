@@ -253,6 +253,16 @@ document.getElementById('username')
 
 document.getElementById('username').focus();
 </script>
-
+	
+<!-- Registro del Service Worker -->
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/Juegos2025/sw.js")
+    .then(() => console.log("Service Worker registrado"))
+    .catch(error => console.log("Error registrando SW:", error));
+}
+</script>
+	
 </body>
 </html>
+
