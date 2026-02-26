@@ -7,7 +7,7 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2b2b2b",
-  "orientation": "any",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/Juegos2025/icon-192.png",
@@ -22,3 +22,4 @@
   ]
 
 }
+
