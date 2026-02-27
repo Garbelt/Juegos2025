@@ -35,8 +35,8 @@ body {
   width: 100%;
   background: #f0f0f0;
   box-sizing: border-box;
-  min-height: 100vh;      /* fallback */
-  min-height: 100dvh;     /* viewport dinámico real en móvil */
+  min-height: 100vh;   /* fallback */
+  min-height: 100dvh;  /* viewport dinámico real */
   position: relative;
   padding: 20px;
 }
@@ -164,7 +164,7 @@ body {
 @media (max-width: 1023px) and (orientation: landscape) {
 
   html, body {
-    overflow-y: auto; /* permite scroll si el alto es menor */
+    overflow-y: auto;
   }
 
   .container {
@@ -174,7 +174,6 @@ body {
     padding: 10px 5px;
     min-height: 100vh;
     min-height: 100dvh;
-    justify-content: center;
   }
 
   .container h2 {
@@ -218,10 +217,6 @@ body {
 
 @media (min-width: 1024px) {
 
-  html, body {
-    overflow: auto; /* escritorio vuelve a comportamiento normal */
-  }
-
   .container {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -231,7 +226,7 @@ body {
   }
 
   .cell {
-    flex: 0 0 50%;
+    flex: 0 0 50%; /* 2 items por vista */
   }
 
   .cell img {
@@ -469,4 +464,5 @@ window.addEventListener("resize", () => {
 </body>
 
 </html>
+
 
