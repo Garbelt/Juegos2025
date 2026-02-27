@@ -121,31 +121,3 @@
     color: #e6e6e6 !important; /* gris muy claro */
     transition: color 0.3s ease;
 }
-
-/* ======================================== */
-/* ===== MÓVIL HORIZONTAL (<1024px) ====== */
-/* ======================================== */
-
-@media (max-width: 1023px) and (orientation: landscape) {
-
-    #pre-game-screen {
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-    }
-
-    #pre-game-container {
-        width: 90%;
-        max-width: 900px;
-
-        /* 👇 Clave para que no se "pegue arriba" */
-        max-height: 90vh;
-        aspect-ratio: auto;
-        overflow: hidden;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-}
