@@ -35,8 +35,7 @@ body {
   width: 100%;
   background: #f0f0f0;
   box-sizing: border-box;
-  min-height: 100vh;   /* fallback */
-  min-height: 100dvh;  /* viewport dinámico real */
+  min-height: 420px;
   position: relative;
   padding: 20px;
 }
@@ -163,17 +162,11 @@ body {
 
 @media (max-width: 1023px) and (orientation: landscape) {
 
-  html, body {
-    overflow-y: auto;
-  }
-
   .container {
     max-width: 750px;
     width: 95%;
     margin: 0 auto;
-    padding: 10px 5px;
-    min-height: 100vh;
-    min-height: 100dvh;
+    padding: 5px;
   }
 
   .container h2 {
@@ -217,6 +210,10 @@ body {
 
 @media (min-width: 1024px) {
 
+  html, body {
+    overflow: auto; /* escritorio vuelve a comportamiento normal */
+  }
+
   .container {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -226,7 +223,7 @@ body {
   }
 
   .cell {
-    flex: 0 0 50%; /* 2 items por vista */
+    flex: 0 0 50%;
   }
 
   .cell img {
@@ -464,5 +461,6 @@ window.addEventListener("resize", () => {
 </body>
 
 </html>
+
 
 
