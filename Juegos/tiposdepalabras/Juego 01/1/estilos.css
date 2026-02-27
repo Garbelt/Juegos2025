@@ -6,9 +6,12 @@
 
 body {
     font-family: Arial, sans-serif;
-    min-height: 100dvh; /* 👈 viewport dinámico real */
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
 }
 
     .container {
@@ -83,4 +86,5 @@ body {
 
     .disable-clicks {
         pointer-events: none;
+
     }
