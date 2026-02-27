@@ -1,17 +1,17 @@
-﻿html, body {
-    height: 100%;
+html, body {
     margin: 0;
+    padding: 0;
+    height: 100%;
     overflow-x: hidden;
 }
 
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    overflow: hidden;
+    min-height: 100vh;        /* fallback */
+    min-height: 100dvh;       /* dinámico real */
+    display: grid;
+    place-items: center;
+    overflow: hidden;         /* 👈 clave */
 }
 
     .container {
@@ -88,3 +88,4 @@ body {
         pointer-events: none;
 
     }
+
