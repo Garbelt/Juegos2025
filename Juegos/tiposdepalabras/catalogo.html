@@ -35,7 +35,8 @@ body {
   width: 100%;
   background: #f0f0f0;
   box-sizing: border-box;
-  min-height: 420px;
+  min-height: 100vh;      /* fallback */
+  min-height: 100dvh;     /* viewport dinámico real en móvil */
   position: relative;
   padding: 20px;
 }
@@ -162,11 +163,18 @@ body {
 
 @media (max-width: 1023px) and (orientation: landscape) {
 
+  html, body {
+    overflow-y: auto; /* permite scroll si el alto es menor */
+  }
+
   .container {
     max-width: 750px;
     width: 95%;
     margin: 0 auto;
-    padding: 5px;
+    padding: 10px 5px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    justify-content: center;
   }
 
   .container h2 {
@@ -461,3 +469,4 @@ window.addEventListener("resize", () => {
 </body>
 
 </html>
+
