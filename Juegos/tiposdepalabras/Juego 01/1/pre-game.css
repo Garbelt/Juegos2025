@@ -1,13 +1,10 @@
 ﻿/* Pantalla previa del juego */
 #pre-game-screen {
-    display: none; /* ÚNICO display */
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-color: #f4f6f9;
     z-index: 10000;
+    display: none;
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -120,5 +117,6 @@
     color: #e6e6e6 !important; /* gris muy claro */
     transition: color 0.3s ease;
 }
+
 
 
