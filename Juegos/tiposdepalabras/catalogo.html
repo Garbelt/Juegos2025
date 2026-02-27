@@ -162,11 +162,18 @@ body {
 
 @media (max-width: 1023px) and (orientation: landscape) {
 
+  body {
+    align-items: center; /* asegura centrado vertical */
+  }
+
   .container {
     max-width: 750px;
     width: 95%;
     margin: 0 auto;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .container h2 {
@@ -461,6 +468,7 @@ window.addEventListener("resize", () => {
 </body>
 
 </html>
+
 
 
 
