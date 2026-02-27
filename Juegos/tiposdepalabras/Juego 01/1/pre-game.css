@@ -121,25 +121,3 @@
     color: #e6e6e6 !important; /* gris muy claro */
     transition: color 0.3s ease;
 }
-
-/* ======================================== */
-/* ===== MÓVIL HORIZONTAL (<1024px) ====== */
-/* ======================================== */
-
-@media (max-width: 1023px) and (orientation: landscape) {
-
-    #pre-game-container {
-        width: 80%;
-        max-width: 900px;
-        aspect-ratio: 7 / 4; /* mantenemos proporción */
-    }
-
-    .pre-game-title {
-        font-size: 28px;
-    }
-
-    .pre-game-description {
-        font-size: 18px;
-    }
-
-}
