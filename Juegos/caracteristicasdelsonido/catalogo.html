@@ -11,15 +11,23 @@
 /* ===== BASE (Mobile First) ==== */
 /* ============================= */
 
-body, html {
-  min-height: 100vh;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+
+  /* 🔒 Bloqueo de movimientos indeseados en móvil */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior: none;
+}
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
 }
 
 .container {
@@ -59,7 +67,7 @@ body, html {
 }
 
 .cell {
-  flex: 0 0 100%; /* 1 item por vista en móvil vertical */
+  flex: 0 0 100%;
   text-align: center;
   box-sizing: border-box;
   padding: 10px;
@@ -124,7 +132,7 @@ body, html {
 
 .nav-buttons {
   display: flex;
-  flex-direction: column; /* Vertical por defecto */
+  flex-direction: column;
   align-items: center;
   margin-top: 10px;
 }
@@ -154,24 +162,30 @@ body, html {
 
 @media (max-width: 1023px) and (orientation: landscape) {
 
+  body {
+    align-items: center; /* asegura centrado vertical */
+  }
+
   .container {
     max-width: 750px;
     width: 95%;
     margin: 0 auto;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .container h2 {
     margin-top: 0;
   }
 
-  /* Reduce espacio debajo del carrusel */
   .table-wrapper-horizontal {
     margin: 5px 0 0px 0;
   }
 
   .cell {
-    flex: 0 0 33.333%; /* 3 items por vista */
+    flex: 0 0 33.333%;
   }
 
   .cell img {
@@ -183,11 +197,10 @@ body, html {
     font-size: 18px;
   }
 
-  /* Botones en línea */
   .nav-buttons {
     flex-direction: row;
     justify-content: center;
-    gap: 12px; /* espacio entre botones */
+    gap: 12px;
   }
 
   #backButton,
@@ -204,6 +217,10 @@ body, html {
 
 @media (min-width: 1024px) {
 
+  html, body {
+    overflow: auto; /* escritorio vuelve a comportamiento normal */
+  }
+
   .container {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -213,7 +230,7 @@ body, html {
   }
 
   .cell {
-    flex: 0 0 50%; /* 2 items por vista */
+    flex: 0 0 50%;
   }
 
   .cell img {
@@ -449,4 +466,5 @@ window.addEventListener("resize", () => {
 
 </script>
 </body>
+
 </html>
