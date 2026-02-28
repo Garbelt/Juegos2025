@@ -157,9 +157,9 @@
 }
 
 
-/* ================= PANEL DEBAJO (solo móvil vertical) ================= */
+/* ================= PANEL DEBAJO (solo vertical real) ================= */
 
-@media screen and (max-width: 1023px) and (orientation: portrait) {
+@media (orientation: portrait) {
 
   body.panel-adaptativo.panel-below .container table tr:nth-child(2) {
     display: flex;
