@@ -8,10 +8,13 @@ function evaluarLayoutAdaptativo() {
 
   const anchoReal = contenedor.offsetWidth;
 
+  // Detectar orientación real
+  const esVertical = window.innerHeight > window.innerWidth;
+
   // Umbral ajustable
   const anchoCritico = 850;
 
-  if (anchoReal < anchoCritico) {
+  if (esVertical && anchoReal < anchoCritico) {
     document.body.classList.add("panel-below");
   } else {
     document.body.classList.remove("panel-below");
@@ -21,3 +24,4 @@ function evaluarLayoutAdaptativo() {
 
 window.addEventListener("load", evaluarLayoutAdaptativo);
 window.addEventListener("resize", evaluarLayoutAdaptativo);
+window.addEventListener("orientationchange", evaluarLayoutAdaptativo);
