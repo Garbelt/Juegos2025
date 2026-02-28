@@ -159,15 +159,20 @@
 
 /* ================= PANEL DEBAJO (modo dinámico limpio) ================= */
 
-body.panel-below .container table tr:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-}
+@media screen and (max-width: 1023px) {
 
-body.panel-below .container table tr:nth-child(2) td {
-  width: 100%;
-}
+  body.panel-adaptativo.panel-below .container table tr:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+  }
 
-body.panel-below .celda-panel {
-  margin-top: 20px;
+  body.panel-adaptativo.panel-below .container table tr:nth-child(2) td {
+    width: 100%;
+  }
+
+  body.panel-adaptativo.panel-below .celda-panel {
+    width: 100% !important;
+    margin-top: 20px;
+  }
+
 }
