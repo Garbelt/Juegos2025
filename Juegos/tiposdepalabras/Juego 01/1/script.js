@@ -1,4 +1,4 @@
-﻿
+document.body.classList.remove("game-started");﻿
 
 let endGameExecuted = false; // Variable para asegurar que endGame() solo se ejecute una vez
 let clicksEnabled = true; // Variable para habilitar/deshabilitar clics
@@ -281,4 +281,5 @@ function checkAnswer(selectedType) {
 window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
     document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
+
 });
