@@ -157,21 +157,15 @@
 }
 
 
-/* ================= PANEL DEBAJO (modo dinámico) ================= */
+/* ================= PANEL DEBAJO (modo dinámico limpio) ================= */
 
-body.panel-below .container table {
+body.panel-below .container table tr:nth-child(2) {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
-body.panel-below .container tr {
-  display: contents;
-}
-
-body.panel-below .container td {
+body.panel-below .container table tr:nth-child(2) td {
   width: 100%;
-  display: block;
 }
 
 body.panel-below .celda-panel {
