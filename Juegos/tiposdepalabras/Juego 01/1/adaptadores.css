@@ -157,48 +157,59 @@
 }
 
 
-/* ================= PANEL DEBAJO (vertical optimizado) ================= */
+/* ================= PANEL DEBAJO (vertical definitivo optimizado) ================= */
 
 @media (orientation: portrait) {
 
-  /* La container ocupa toda la pantalla */
+  /* Forzar eliminación de cualquier aspect-ratio heredado */
+  body.panel-adaptativo.panel-below .container,
+  body.panel-adaptativo.panel-below .container table {
+    aspect-ratio: auto !important;
+  }
+
+  /* Container ocupa toda la altura real del viewport */
   body.panel-adaptativo.panel-below .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100dvh; /* dvh evita problemas con barras móviles */
+    width: 100%;
   }
 
-  /* La tabla pasa a ser layout vertical controlado */
+  /* Tabla se convierte en layout vertical */
   body.panel-adaptativo.panel-below .container table {
     display: flex;
     flex-direction: column;
     flex: 1;
     width: 100%;
+    height: 100%;
   }
 
-  /* Header mantiene tamaño natural */
+  /* Header conserva tamaño natural */
   body.panel-adaptativo.panel-below .container table tr:first-child {
     flex: 0 0 auto;
   }
 
-  /* Fila juego + panel ocupa el resto del alto */
+  /* Fila juego + panel ocupa todo el espacio restante */
   body.panel-adaptativo.panel-below .container table tr:nth-child(2) {
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-height: 0; /* evita desbordes flex */
   }
 
-  /* Juego crece y aprovecha la altura */
-  body.panel-adaptativo.panel-below .container table tr:nth-child(2) td:first-child {
+  /* Juego crece realmente */
+  body.panel-adaptativo.panel-below 
+  .container table tr:nth-child(2) td:first-child {
     flex: 1;
     width: 100%;
+    min-height: 0;
   }
 
   /* Panel debajo, compacto */
   body.panel-adaptativo.panel-below .celda-panel {
     flex: 0 0 auto;
     width: 100% !important;
-    margin-top: 15px;
+    margin-top: 12px;
   }
 
 }
