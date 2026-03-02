@@ -11,8 +11,8 @@
     align-items: center;
     justify-content: center;
 
-    min-width: 140px;
-    padding: 10px 20px;
+    width: 200px;            /* 👈 ancho fijo uniforme */
+    height: 48px;            /* 👈 altura uniforme */
 
     font-size: clamp(12px, 2vw, 18px);
     font-weight: 600;
@@ -28,7 +28,6 @@
 
     box-sizing: border-box;
     white-space: nowrap;
-    text-align: center;
 }
 
 /* Hover */
@@ -111,5 +110,6 @@
         max-width: 400px;
         font-size: 1.1rem;
     }
+
 
 }
