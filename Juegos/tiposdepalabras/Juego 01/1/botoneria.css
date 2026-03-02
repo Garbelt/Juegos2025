@@ -1,0 +1,115 @@
+﻿/* =====================================================
+   SISTEMA DE BOTONES - JUEGO
+   ===================================================== */
+
+/* -------------------------------
+   BOTÓN BASE
+--------------------------------- */
+
+.btn-corregir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 140px;
+    padding: 10px 20px;
+
+    font-size: clamp(12px, 2vw, 18px);
+    font-weight: 600;
+
+    cursor: pointer;
+    border: 1px solid #444;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+
+    transition: background-color 0.2s ease,
+                transform 0.2s ease,
+                opacity 0.2s ease;
+
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Hover */
+.btn-corregir:hover:not(:disabled) {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+/* Disabled */
+.btn-corregir:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* -------------------------------
+   VARIANTE BOTÓN PEQUEÑO
+   (usar junto con class="btn-corregir")
+--------------------------------- */
+
+#btn-maschico {
+    padding: 4px 10px;
+    font-size: clamp(10px, 2vw, 16px);
+}
+
+
+/* -------------------------------
+   BOTÓN LECTOR
+--------------------------------- */
+
+#lectorButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 160px;
+    padding: 6px 14px;
+
+    font-size: clamp(11px, 1.3vw, 15px);
+    font-weight: bold;
+
+    cursor: pointer;
+    border: 1px solid #888;
+    background-color: #A0B4BA;
+    color: #333;
+    border-radius: 6px;
+
+    opacity: 0.9;
+
+    transition: background-color 0.3s ease,
+                transform 0.2s ease,
+                opacity 0.2s ease;
+
+    text-align: center;
+    white-space: nowrap;
+
+    /* Posicionamiento centrado inferior */
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Hover lector */
+#lectorButton:hover {
+    transform: translateX(-50%) scale(1.05);
+    background-color: #B8C9CF;
+    opacity: 1;
+}
+
+
+/* =====================================================
+   ADAPTACIÓN MÓVIL VERTICAL
+   ===================================================== */
+
+@media screen and (max-width: 1023px) and (orientation: portrait) {
+
+    .btn-corregir {
+        width: 85%;
+        max-width: 400px;
+        font-size: 1.1rem;
+    }
+
+}
