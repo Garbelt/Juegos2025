@@ -198,6 +198,7 @@ function startGame() {
     document.getElementById("reloj").textContent = `00:30`;
     updateErrorsDisplay();
     shuffleInstruments();
+    showNextInstrument();
     startTimer();
 }
 
@@ -281,4 +282,5 @@ function checkAnswer(selectedType) {
 window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
     document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
+
 });
