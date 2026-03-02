@@ -1,0 +1,75 @@
+﻿        .btn-corregir {
+            margin-top: 10px;
+            width: 25%;
+            padding: 10px 20px;
+            font-size: clamp(12px, 2vw, 18px);
+            cursor: pointer;
+            border: 1px solid #444;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+            transition: background-color 0.2s, transform 0.2s;
+            justify-content: center;
+            vertical-align: middle;
+        }
+
+        .btn-corregir:hover:not(:disabled) {
+            background-color: #ddd;
+            transform: scale(1.05);
+        }
+
+        .btn-corregir:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #btn-maschico {
+            margin-top: 5px;
+            padding: 3px 7px;
+            font-size: clamp(10px, 2vw, 16px);
+            cursor: pointer;
+            border: 1px solid #444;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        #btn-maschico:hover:not(:disabled) {
+            background-color: #ddd;
+            transform: scale(1.05);
+        }
+
+        #btn-maschico:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+
+/* Estilo existente del botón lector */
+#lectorButton {
+  min-width: 160px;
+  padding: 6px 14px;
+  font-size: clamp(11px, 1.3vw, 15px);
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #888;
+  background-color: #A0B4BA;
+  color: #333;
+  border-radius: 6px;
+  opacity: 0.9;
+  transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.2s;
+  text-align: center;
+  white-space: nowrap;
+
+  /* 🔽 Estas son las nuevas líneas que hacen que se ubique abajo centrado */
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#lectorButton:hover {
+  transform: translateX(-50%) scale(1.05); /* mantiene centrado al escalar */
+  background-color: #B8C9CF;
+  opacity: 1;
+}
+
