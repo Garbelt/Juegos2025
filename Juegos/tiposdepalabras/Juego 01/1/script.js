@@ -212,16 +212,18 @@ function shuffleInstruments() {
 function showNextInstrument() {
     if (instruments.length > 0) {
         currentInstrument = instruments.pop();
-        const instrumentElement = document.getElementById("instrument");
+
+        const instrumentElement =
+            document.getElementById("instrument-vertical") ||
+            document.getElementById("instrument");
+
+        if (!instrumentElement) return;
+
         instrumentElement.innerHTML = "";
 
-        // 👇 Aquí mostramos el nombre en texto
         const textElement = document.createElement("div");
         textElement.textContent = currentInstrument.name.toUpperCase();
-        textElement.style.fontSize = "28px";
-        textElement.style.fontWeight = "bold";
-        textElement.style.color = "#333";
-        textElement.style.textTransform = "capitalize";
+
         instrumentElement.appendChild(textElement);
     } else {
         endGame();
@@ -284,3 +286,4 @@ window.addEventListener("load", function() {
     document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
 
 });
+
