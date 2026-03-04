@@ -1,5 +1,5 @@
 /* =============================
-   Adaptadores de diseño
+   ADAPTADORES DE DISEÑO
    ============================= */
 
 
@@ -19,9 +19,9 @@
 
 @media screen and (max-width: 1023px) {
 
-  /* Quitar aspect-ratio */
+  /* Quitar cualquier aspect-ratio heredado */
   table {
-    aspect-ratio: auto;
+    aspect-ratio: auto !important;
   }
 
   /* Ocultar botón lector original en móvil */
@@ -38,7 +38,7 @@
      Estados del juego
      ============================= */
 
-  /* 👇 SOLO aparece cuando el juego comenzó */
+  /* 👇 Solo visible cuando el juego comenzó */
   body.game-started .mobile-controls {
     display: flex;
   }
@@ -48,12 +48,7 @@
   }
 
   body.panel-mini .celda-panel {
-    width: 15%;
     font-size: 12px;
-  }
-
-  body.panel-full .celda-panel {
-    width: 25%;
   }
 
 }
@@ -65,15 +60,19 @@
 
 @media screen and (max-width: 1023px) and (orientation: landscape) {
 
+  body.game-started {
+    height: 100vh;
+  }
+
   .container {
     width: 100vw;
     height: 100vh;
     max-width: 100vw;
-    margin: auto;
+    margin: 0;
     border: none;
   }
 
-  table {
+  .container table {
     width: 100%;
     height: 100%;
   }
@@ -109,7 +108,7 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.3);
   }
 
-  /* Contenedor opciones (cerrado por defecto) */
+  /* Opciones (cerrado por defecto) */
   .fab-options {
     display: flex;
     flex-direction: column;
@@ -143,17 +142,13 @@
 
 
 /* =========================================
-   MÓVIL VERTICAL - AJUSTE PARA 3 FILAS
+   MÓVIL VERTICAL – TABLA DE 3 FILAS
+   (Título / Juego / Panel)
    ========================================= */
 
 @media screen and (max-width: 1023px) and (orientation: portrait) {
 
   body.game-started {
-    display: block !important;
-    height: 100vh;
-  }
-
-  body.game-started .container {
     height: 100dvh;
   }
 
@@ -168,27 +163,32 @@
   .container table {
     width: 100%;
     height: 100%;
-    aspect-ratio: auto !important;
+    border-collapse: collapse;
   }
 
-  /* Fila 1 – Título */
+  /* =============================
+     Fila 1 – TÍTULO
+     ============================= */
   .container table tr:nth-child(1) {
     height: 15%;
   }
 
-  /* Fila 2 – Juego */
+  /* =============================
+     Fila 2 – JUEGO
+     ============================= */
   .container table tr:nth-child(2) {
     height: 60%;
   }
 
-  /* Fila 3 – Panel */
-  .container table tr:nth-child(3) {
-    height: 25%;
-  }
-
-  /* Ajustes visuales */
   .container table tr:nth-child(2) td {
     border-right: none;
+  }
+
+  /* =============================
+     Fila 3 – PANEL
+     ============================= */
+  .container table tr:nth-child(3) {
+    height: 25%;
   }
 
   .container table tr:nth-child(3) td {
@@ -196,7 +196,10 @@
     border-top: 1px solid black;
   }
 
-  /* Instrumento */
+  /* =============================
+     Ajustes del instrumento
+     ============================= */
+
   #instrument {
     width: 90%;
     height: 60%;
