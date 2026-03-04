@@ -163,12 +163,13 @@
 
 @media screen and (max-width: 1023px) and (orientation: portrait) {
 
-  body {
+   
+  body.game-started {
     display: block !important;
-    align-items: stretch;
+    height: 100vh;
   }
 
-  html, body {
+  body.game-started .container {
     height: 100dvh;
   }
 
@@ -218,3 +219,4 @@
 
 
 }
+
