@@ -198,8 +198,8 @@ function startGame() {
     document.getElementById("reloj").textContent = `00:30`;
     updateErrorsDisplay();
     shuffleInstruments();
-    startTimer();
     showNextInstrument();
+    startTimer();
 }
 
 function shuffleInstruments() {
@@ -286,3 +286,4 @@ window.addEventListener("load", function() {
     document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
 
 });
+
