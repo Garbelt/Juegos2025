@@ -96,40 +96,27 @@
 </div>
 
 <!-- ================= CONTENIDO DEL JUEGO ================= -->
-<div class="container" style="display:none;">
-    <table>
-        <tr>
-            <th colspan="2" class="title-cell" style="text-align: center;">
-                <span class="titulo-principal">HOY CLASIFICAMOS...</span><br>
-                <span class="titulo-secundario">Tipos de palabras</span>
-            </th>
-        </tr>
-        <tr>
-            <td>
-                <center><div id="instrument" class="elemento-juego"></div></center>
-                <center>
-                    <div>
-                        <button id="sustantivo-button" class="btn-corregir">SUSTANTIVO</button>
-                        <button id="verbo-button" class="btn-corregir">VERBO</button>
-                        <button id="adjetivo-button" class="btn-corregir">ADJETIVO</button>
-                    </div>
-                </center>
-            </td>
-            <td id="align-left-top" class="celda-panel" style="position: relative;">
-                <div id="panel">
-                    <div>
-                        <div id="actualUsername"></div>
-                        <br>
-                        <div id="puntaje">Puntaje: 0</div>
-                        <div id="reloj">Tiempo: 00:30</div>
-                        <div id="errores">Errores: 0/5</div>
-                    </div>
-                </div>
-                <button id="lectorButton">Cancelar Lectura</button>
-            </td>
-        </tr>
-    </table>
-</div>
+<table class="tabla-horizontal">
+  <tr>
+    <th colspan="2" class="title-cell">...</th>
+  </tr>
+  <tr>
+    <td class="slot-juego"></td>
+    <td class="slot-panel"></td>
+  </tr>
+</table>
+
+<table class="tabla-vertical">
+  <tr>
+    <th class="title-cell">...</th>
+  </tr>
+  <tr>
+    <td class="slot-juego"></td>
+  </tr>
+  <tr>
+    <td class="slot-panel"></td>
+  </tr>
+</table>
 
 <div class="found-message" id="message"></div>
 
@@ -229,4 +216,5 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 <script src="botonera-mobile.js"></script>
 
 </body>
+
 </html>
