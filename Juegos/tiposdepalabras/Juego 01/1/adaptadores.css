@@ -165,41 +165,39 @@
     border: none;
   }
 
-  /* 🔥 La tabla deja de ser tabla */
-  .container table {
-    display: flex;
-    flex-direction: column;
+  /* 🔥 Rompemos completamente el modelo tabla */
+  .container table,
+  .container table tbody,
+  .container table tr,
+  .container table td,
+  .container table th {
+    display: block;
     width: 100%;
+  }
+
+  .container table {
     height: 100%;
   }
 
-  /* Fila título */
+  /* Título */
   .container table tr:first-child {
-    display: block;
     height: 15%;
-  }
-
-  /* Fila juego + panel */
-  .container table tr:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-    height: 85%;
   }
 
   /* Juego */
   .container table tr:nth-child(2) td:first-child {
-    width: 100%;
-    height: 75%;
+    height: 60%;
     border-right: none;
   }
 
   /* Panel */
   .container table tr:nth-child(2) td.celda-panel {
-    width: 100%;
     height: 25%;
     border-left: none;
     border-top: 1px solid black;
   }
+
+}
 
   #instrument {
     width: 90%;
@@ -208,6 +206,7 @@
   }
 
 }
+
 
 
 
