@@ -148,7 +148,6 @@
 
 @media screen and (max-width: 1023px) and (orientation: portrait) {
 
-   
   body.game-started {
     display: block !important;
     height: 100vh;
@@ -166,43 +165,46 @@
     border: none;
   }
 
+  /* 🔥 La tabla deja de ser tabla */
   .container table {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    aspect-ratio: auto !important;
   }
 
-  /* Segunda fila: convertir en bloque */
+  /* Fila título */
+  .container table tr:first-child {
+    display: block;
+    height: 15%;
+  }
+
+  /* Fila juego + panel */
   .container table tr:nth-child(2) {
-    display: block;
-    height: 80%;
+    display: flex;
+    flex-direction: column;
+    height: 85%;
   }
 
-  /* Celda juego */
+  /* Juego */
   .container table tr:nth-child(2) td:first-child {
-    display: block;
     width: 100%;
     height: 75%;
     border-right: none;
   }
 
-  /* Celda panel */
+  /* Panel */
   .container table tr:nth-child(2) td.celda-panel {
-    display: block;
     width: 100%;
     height: 25%;
     border-left: none;
     border-top: 1px solid black;
   }
 
-  /* Instrumento */
   #instrument {
     width: 90%;
     height: 60%;
     margin: 0 auto;
   }
 
-
 }
-
-
