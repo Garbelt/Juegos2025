@@ -199,6 +199,7 @@ function startGame() {
     updateErrorsDisplay();
     shuffleInstruments();
     startTimer();
+    showNextInstrument();
 }
 
 function shuffleInstruments() {
@@ -283,4 +284,5 @@ function checkAnswer(selectedType) {
 window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
     document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
+
 });
