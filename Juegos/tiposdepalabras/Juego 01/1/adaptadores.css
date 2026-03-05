@@ -156,13 +156,12 @@
 
 @media screen and (max-width: 1023px) and (orientation: portrait) {
 
-
-  /* Ocultar fila del panel lateral */
+  /* Ocultar panel lateral */
   .celda-panel {
     display: none;
   }
 
-  /* Mostrar fila inferior completa */
+  /* Mostrar fila del panel inferior */
   .fila-panel-vertical {
     display: table-row;
   }
@@ -190,6 +189,10 @@
     aspect-ratio: auto !important;
   }
 
+  /* =========================================
+     FILAS
+     ========================================= */
+
   /* Fila 1 – Título */
   .container table tr:nth-child(1) {
     height: 15%;
@@ -197,15 +200,17 @@
 
   /* Fila 2 – Juego */
   .container table tr:nth-child(2) {
-    height: 60%;
+    height: auto;
   }
 
-  /* Fila 3 – Panel */
+  /* Fila 3 – Panel
+     (sin altura fija, la controla el estado) */
   .container table tr:nth-child(3) {
-    height: 25%;
+    height: auto;
   }
 
   /* Ajustes visuales */
+
   .container table tr:nth-child(2) td {
     border-right: none;
   }
@@ -216,15 +221,18 @@
   }
 
   /* Instrumento */
+
   #instrument {
     width: 90%;
     height: 60%;
     margin: 0 auto;
   }
 
+  /* =========================================
+     PANEL VERTICAL
+     ========================================= */
 
-/* ================= PANEL VERTICAL ================= */
-.celda-panel-vertical {
+  .celda-panel-vertical {
     background-color: #d0ecf9;
     padding: 10px;
     width: 100%;
@@ -233,51 +241,52 @@
     color: #000;
     line-height: 1.4;
     box-sizing: border-box;
-}
-
-#panel-vertical {
-    height: 100%;
     overflow: hidden;
-}
+  }
 
-#panel-vertical > div {
+  #panel-vertical {
+    height: 100%;
+  }
+
+  #panel-vertical > div {
     height: 100%;
     overflow: auto;
-}
+  }
 
-/* ================= ALTURA SEGÚN ESTADO ================= */
+  /* =========================================
+     ALTURA SEGÚN ESTADO
+     ========================================= */
+
   body.panel-full .fila-panel-vertical {
-      display: table-row;
-      height: 25%;
+    display: table-row;
   }
 
   body.panel-mini .fila-panel-vertical {
-      display: table-row;
-      height: 12%;
+    display: table-row;
   }
 
   body.panel-hidden .fila-panel-vertical {
-      display: none;
+    display: none;
   }
 
-   /* =========================================
-   TÍTULO
-   ========================================= */
+  body.panel-full .celda-panel-vertical {
+    height: 25vh;
+  }
 
-body.header-visible .fila-titulo {
+  body.panel-mini .celda-panel-vertical {
+    height: 12vh;
+  }
+
+  /* =========================================
+     TÍTULO
+     ========================================= */
+
+  body.header-visible .fila-titulo {
     display: table-row;
-}
+  }
 
-body.header-hidden .fila-titulo {
+  body.header-hidden .fila-titulo {
     display: none;
+  }
+
 }
-
-
-}
-
-
-
-
-
-
-
