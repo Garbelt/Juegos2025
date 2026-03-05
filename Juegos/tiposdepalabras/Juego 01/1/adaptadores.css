@@ -219,23 +219,28 @@
   }
 
 
-  /* ================= PANEL FULL ================= */
 
+  /* Fila vertical: fondo celeste, bordes opcionales */
+  .fila-panel-vertical {
+      background-color: #8ec6e6; /* celeste igual que panel lateral */
+      border-top: 1px solid #333;
+  }
+
+  /* FULL: altura completa */
   body.panel-full .fila-panel-vertical {
-    height: 25%;
+      display: table-row;  /* visible */
+      height: 25%;         /* altura completa */
   }
 
-  /* ================= PANEL MINI ================= */
-
+  /* MINI: altura reducida */
   body.panel-mini .fila-panel-vertical {
-    height: 12%;
+      display: table-row;  /* visible */
+      height: 12%;         /* altura menor */
   }
 
-  /* ================= PANEL HIDDEN ================= */
-
+  /* HIDDEN: fila desaparece */
   body.panel-hidden .fila-panel-vertical {
-    display: none;
+      display: none;       /* fila no ocupa espacio */
   }
-   
-}
 
+}
