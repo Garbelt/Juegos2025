@@ -248,12 +248,12 @@
 /* ================= ALTURA SEGÚN ESTADO ================= */
   body.panel-full .fila-panel-vertical {
       display: table-row;
-      height: 25%;
+      height: 25vh;
   }
 
   body.panel-mini .fila-panel-vertical {
       display: table-row;
-      height: 12%;
+      height: 12vh;
   }
 
   body.panel-hidden .fila-panel-vertical {
@@ -274,6 +274,7 @@ body.header-hidden .fila-titulo {
 
 
 }
+
 
 
 
