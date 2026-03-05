@@ -223,17 +223,26 @@
   }
 
 
-
 /* ================= PANEL VERTICAL ================= */
 .celda-panel-vertical {
-    background-color: #d0ecf9;   /* Celeste claro */
+    background-color: #d0ecf9;
     padding: 10px;
+    width: 100%;
     font-size: clamp(14px, 3.5vw, 20px);
     font-family: Arial, sans-serif;
     color: #000;
     line-height: 1.4;
     box-sizing: border-box;
-    text-align: center;
+}
+
+#panel-vertical {
+    height: 100%;
+    overflow: hidden;
+}
+
+#panel-vertical > div {
+    height: 100%;
+    overflow: auto;
 }
 
 /* ================= ALTURA SEGÚN ESTADO ================= */
@@ -265,6 +274,7 @@ body.header-hidden .fila-titulo {
 
 
 }
+
 
 
 
