@@ -219,4 +219,23 @@
   }
 
 
+  /* ================= PANEL FULL ================= */
+
+  body.panel-full .fila-panel-vertical {
+    height: 25%;
+  }
+
+  /* ================= PANEL MINI ================= */
+
+  body.panel-mini .fila-panel-vertical {
+    height: 12%;
+  }
+
+  /* ================= PANEL HIDDEN ================= */
+
+  body.panel-hidden .fila-panel-vertical {
+    display: none;
+  }
+   
 }
+
