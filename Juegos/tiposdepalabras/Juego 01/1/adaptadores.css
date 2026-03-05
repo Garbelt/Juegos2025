@@ -255,14 +255,13 @@ body.header-hidden .fila-titulo {
 }
 
 /* ================= ALTURA SEGÚN ESTADO ================= */
-body.panel-full .fila-panel-vertical {
-    display: table-row;
-    height: 25%;  /* Full */
-}
-
+body.panel-full .fila-panel-vertical,
 body.panel-mini .fila-panel-vertical {
     display: table-row;
-    height: 12%;  /* Mini */
+}
+
+body.panel-hidden .fila-panel-vertical {
+    display: none;
 }
 
 body.panel-hidden .fila-panel-vertical {
@@ -270,6 +269,7 @@ body.panel-hidden .fila-panel-vertical {
 }
 
 }
+
 
 
 
