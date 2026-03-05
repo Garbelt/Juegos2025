@@ -220,27 +220,32 @@
 
 
 
-  /* Fila vertical: fondo celeste, bordes opcionales */
-  .fila-panel-vertical {
-      background-color: #8ec6e6; /* celeste igual que panel lateral */
-      border-top: 1px solid #333;
-  }
+/* ================= PANEL VERTICAL ================= */
+.celda-panel-vertical {
+    background-color: #d0ecf9;   /* Celeste claro */
+    padding: 10px;
+    font-size: clamp(14px, 3.5vw, 20px);
+    font-family: Arial, sans-serif;
+    color: #000;
+    line-height: 1.4;
+    box-sizing: border-box;
+    text-align: center;
+}
 
-  /* FULL: altura completa */
-  body.panel-full .fila-panel-vertical {
-      display: table-row;  /* visible */
-      height: 25%;         /* altura completa */
-  }
+/* ================= ALTURA SEGÚN ESTADO ================= */
+body.panel-full .fila-panel-vertical {
+    display: table-row;
+    height: 25%;  /* Full */
+}
 
-  /* MINI: altura reducida */
-  body.panel-mini .fila-panel-vertical {
-      display: table-row;  /* visible */
-      height: 12%;         /* altura menor */
-  }
+body.panel-mini .fila-panel-vertical {
+    display: table-row;
+    height: 12%;  /* Mini */
+}
 
-  /* HIDDEN: fila desaparece */
-  body.panel-hidden .fila-panel-vertical {
-      display: none;       /* fila no ocupa espacio */
-  }
+body.panel-hidden .fila-panel-vertical {
+    display: none; /* Hidden */
+}
 
 }
+
