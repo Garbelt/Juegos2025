@@ -16,6 +16,20 @@
   display: none;
 }
 
+body.panel-full .fila-panel-vertical {
+    display: table-row;
+    height: 25%;
+}
+
+body.panel-mini .fila-panel-vertical {
+    display: table-row;
+    height: 12%;
+}
+
+body.panel-hidden .fila-panel-vertical {
+    display: none;
+}
+
 
 /* =========================================
    MÓVILES (GENERAL)
@@ -248,4 +262,5 @@ body.panel-hidden .fila-panel-vertical {
 }
 
 }
+
 
