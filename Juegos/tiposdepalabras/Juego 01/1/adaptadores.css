@@ -30,6 +30,14 @@ body.panel-hidden .fila-panel-vertical {
     display: none;
 }
 
+body.header-visible .fila-titulo {
+    display: table-row;
+}
+
+body.header-hidden .fila-titulo {
+    display: none;
+}
+
 
 /* =========================================
    MÓVILES (GENERAL)
@@ -262,5 +270,6 @@ body.panel-hidden .fila-panel-vertical {
 }
 
 }
+
 
 
