@@ -7,37 +7,19 @@
    ESTADO BASE
    ========================================= */
 
-/* La botonera móvil SIEMPRE arranca oculta */
+/* =========================================
+   ESTADO BASE
+   ========================================= */
+
+/* Botonera móvil arranca oculta */
 .mobile-controls {
   display: none;
 }
 
+/* Panel inferior oculto por defecto */
 .fila-panel-vertical {
   display: none;
 }
-
-body.panel-full .fila-panel-vertical {
-    display: table-row;
-    height: 25%;
-}
-
-body.panel-mini .fila-panel-vertical {
-    display: table-row;
-    height: 12%;
-}
-
-body.panel-hidden .fila-panel-vertical {
-    display: none;
-}
-
-body.header-visible .fila-titulo {
-    display: table-row;
-}
-
-body.header-hidden .fila-titulo {
-    display: none;
-}
-
 
 /* =========================================
    MÓVILES (GENERAL)
@@ -269,6 +251,7 @@ body.panel-hidden .fila-panel-vertical {
 }
 
 }
+
 
 
 
