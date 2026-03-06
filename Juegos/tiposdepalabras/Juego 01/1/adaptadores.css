@@ -203,7 +203,8 @@
     height: auto;
   }
 
-  /* Fila 3 – Panel */
+  /* Fila 3 – Panel
+     (sin altura fija, la controla el estado) */
   .container table tr:nth-child(3) {
     height: auto;
   }
@@ -245,53 +246,11 @@
 
   #panel-vertical {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 6px;
   }
 
-  .panel-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .icon {
-    font-size: 1.1em;
-  }
-
-  .value {
-    font-weight: bold;
-  }
-
-  /* =========================================
-     MODO MINI → HUD
-     ========================================= */
-
-  body.panel-mini #panel-vertical {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-  }
-
-  body.panel-mini .label {
-    display: none;
-  }
-
-  body.panel-mini .usuario {
-    display: none;
-  }
-
-  body.panel-mini .value {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-
-  body.panel-mini .celda-panel-vertical {
-    height: auto;
-    padding: 6px 10px;
+  #panel-vertical > div {
+    height: 100%;
+    overflow: auto;
   }
 
   /* =========================================
@@ -315,7 +274,7 @@
   }
 
   body.panel-mini .celda-panel-vertical {
-    height: auto;
+    height: 12vh;
   }
 
   /* =========================================
@@ -328,6 +287,74 @@
 
   body.header-hidden .fila-titulo {
     display: none;
+  }
+
+}
+
+
+
+/* =========================================
+   PANEL MINI / HUD
+   ========================================= */
+
+#panel-vertical {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  align-items:flex-start;
+  justify-content:center;
+  height:100%;
+}
+
+.panel-item{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-weight:bold;
+}
+
+.panel-icon{
+  font-size:18px;
+}
+
+.panel-text{
+  font-size:14px;
+}
+
+
+/* =========================================
+   VERTICAL MINI → HUD
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:portrait){
+
+  body.panel-mini #panel-vertical{
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+  }
+
+  body.panel-mini .panel-text{
+    font-size:12px;
+  }
+
+}
+
+
+/* =========================================
+   HORIZONTAL MINI → COLUMNA SOLO ICONO+VALOR
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:landscape){
+
+  body.panel-mini #panel-vertical{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+  }
+
+  body.panel-mini .panel-text{
+    font-size:12px;
   }
 
 }
