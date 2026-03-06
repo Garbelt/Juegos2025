@@ -354,6 +354,11 @@ body.panel-full .celda-panel {
      ALTURA SEGÚN ESTADO
      ========================================= */
 
+   body.panel-full #panel-vertical > div {
+  justify-content: center;  /* centra horizontalmente los items */
+  align-items: center;      /* opcional: centra verticalmente dentro del contenedor */
+}
+
   body.panel-full .fila-panel-vertical {
     display: table-row;
   }
@@ -387,4 +392,5 @@ body.panel-full .celda-panel {
   }
 
 }
+
 
