@@ -286,9 +286,22 @@ font-size:1.2em;
     height: 25vh;
   }
 
-  body.panel-mini .celda-panel-vertical {
-    height: 12vh;
-  }
+body.panel-mini #panel-vertical{
+align-items:center;
+gap:4px;
+}
+
+body.panel-mini .label{
+display:none;
+}
+
+body.panel-mini .usuario{
+display:none;
+}
+
+body.panel-mini .panel-item{
+font-size:0.9em;
+}
 
   /* =========================================
      TÍTULO
@@ -303,4 +316,5 @@ font-size:1.2em;
   }
 
 }
+
 
