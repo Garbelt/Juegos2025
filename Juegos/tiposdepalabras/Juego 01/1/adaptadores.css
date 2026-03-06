@@ -354,9 +354,13 @@ body.panel-full .celda-panel {
      ALTURA SEGÚN ESTADO
      ========================================= */
 
-   body.panel-full #panel-vertical > div {
-  justify-content: center;  /* centra horizontalmente los items */
-  align-items: center;      /* opcional: centra verticalmente dentro del contenedor */
+body.panel-full #panel-vertical > div {
+  align-items: center;   /* centra el bloque completo */
+}
+
+body.panel-full #panel-vertical > div > div {
+  align-items: center;   /* alinea icono + texto en cada fila */
+  justify-content: flex-start; /* mantiene el texto alineado a la izquierda */
 }
 
   body.panel-full .fila-panel-vertical {
@@ -392,5 +396,6 @@ body.panel-full .celda-panel {
   }
 
 }
+
 
 
