@@ -20,54 +20,62 @@
    ICONOS PANEL
    ========================================= */
 
+/* =========================================
+   ICONOS DEL PANEL
+   ========================================= */
+
 #actualUsername::before,
-#actualUsername-vertical::before {
+#actualUsername-vertical::before{
   content: "👤";
+  display:inline-block;
+  width:20px;
+  margin-right:6px;
 }
 
 #puntaje::before,
-#puntaje-vertical::before {
-  content: "⭐";
+#puntaje-vertical::before{
+  content:"⭐";
+  display:inline-block;
+  width:20px;
+  margin-right:6px;
 }
 
 #reloj::before,
-#reloj-vertical::before {
-  content: "⏱";
+#reloj-vertical::before{
+  content:"⏱";
+  display:inline-block;
+  width:20px;
+  margin-right:6px;
 }
 
 #errores::before,
-#errores-vertical::before {
-  content: "❌";
+#errores-vertical::before{
+  content:"❌";
+  display:inline-block;
+  width:20px;
+  margin-right:6px;
 }
 
 
 /* =========================================
-   ALINEACIÓN PANEL
+   ALINEACIÓN DEL PANEL
    ========================================= */
 
 #panel div,
-#panel-vertical div {
-
-  display: grid;
-  grid-template-columns: 22px auto;
-  column-gap: 6px;
-  align-items: center;
+#panel-vertical div{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
-/* iconos alineados */
-
-#actualUsername::before,
-#puntaje::before,
-#reloj::before,
-#errores::before,
-#actualUsername-vertical::before,
-#puntaje-vertical::before,
-#reloj-vertical::before,
-#errores-vertical::before {
-
-  display: inline-block;
-  width: 22px;
-  text-align: center;
+#panel #puntaje,
+#panel #reloj,
+#panel #errores,
+#panel-vertical #puntaje-vertical,
+#panel-vertical #reloj-vertical,
+#panel-vertical #errores-vertical{
+  display:flex;
+  align-items:center;
 }
 
 
@@ -111,7 +119,7 @@ body.panel-mini .celda-panel {
 }
 
 /* =========================================
-   PANEL MINI (solo icono + valor)
+   MINI PANEL (solo icono + valor)
    ========================================= */
 
 body.panel-mini #puntaje,
@@ -119,22 +127,17 @@ body.panel-mini #reloj,
 body.panel-mini #errores,
 body.panel-mini #puntaje-vertical,
 body.panel-mini #reloj-vertical,
-body.panel-mini #errores-vertical {
-
-  font-size: 0;
+body.panel-mini #errores-vertical{
+  font-size:12px;
 }
 
-/* mostrar solo número */
-
-body.panel-mini #puntaje::after,
-body.panel-mini #reloj::after,
-body.panel-mini #errores::after,
-body.panel-mini #puntaje-vertical::after,
-body.panel-mini #reloj-vertical::after,
-body.panel-mini #errores-vertical::after {
-
-  font-size: 13px;
-  margin-left: 4px;
+body.panel-mini #puntaje::before,
+body.panel-mini #reloj::before,
+body.panel-mini #errores::before,
+body.panel-mini #puntaje-vertical::before,
+body.panel-mini #reloj-vertical::before,
+body.panel-mini #errores-vertical::before{
+  margin-right:4px;
 }
 
   body.panel-full .celda-panel {
@@ -367,3 +370,4 @@ body.panel-mini #errores-vertical::after {
   }
 
 }
+
