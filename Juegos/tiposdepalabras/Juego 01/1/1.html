@@ -129,19 +129,38 @@
             </td>
         </tr>
 
-		<tr class="fila-panel-vertical">
-		    <th colspan="2" class="celda-panel-vertical" style="position: relative;">
-  		      <div id="panel-vertical">
-                    <div>
-                        <div id="actualUsername-vertical"></div>
-                        <br>
-                        <div id="puntaje-vertical">Puntaje: 0</div>
-                        <div id="reloj-vertical">Tiempo: 00:30</div>
-                        <div id="errores-vertical">Errores: 0/5</div>
-                    </div>
-               </div>
-            </th>
-        </tr>
+<tr class="fila-panel-vertical">
+  <th colspan="2" class="celda-panel-vertical" style="position: relative;">
+
+    <div id="panel-vertical">
+
+      <div class="panel-item usuario">
+        <span class="icon">👤</span>
+        <span id="actualUsername-vertical" class="value"></span>
+      </div>
+
+      <div class="panel-item">
+        <span class="icon">⭐</span>
+        <span class="label">Puntaje:</span>
+        <span id="puntaje-vertical" class="value">0</span>
+      </div>
+
+      <div class="panel-item">
+        <span class="icon">⏱</span>
+        <span class="label">Tiempo:</span>
+        <span id="reloj-vertical" class="value">00:30</span>
+      </div>
+
+      <div class="panel-item">
+        <span class="icon">⚠</span>
+        <span class="label">Errores:</span>
+        <span id="errores-vertical" class="value">0/5</span>
+      </div>
+
+    </div>
+
+  </th>
+</tr>
 
     </table>
 </div>
@@ -246,5 +265,6 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
