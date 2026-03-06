@@ -2,7 +2,6 @@
    Adaptadores de diseño
    ============================= */
 
-
 /* =========================================
    ESTADO BASE
    ========================================= */
@@ -17,29 +16,58 @@
   display: none;
 }
 
-
 /* =========================================
-   ICONOS PANEL (GLOBAL)
+   ICONOS PANEL
    ========================================= */
 
 #actualUsername::before,
 #actualUsername-vertical::before {
-  content: "👤 ";
+  content: "👤";
 }
 
 #puntaje::before,
 #puntaje-vertical::before {
-  content: "⭐ ";
+  content: "⭐";
 }
 
 #reloj::before,
 #reloj-vertical::before {
-  content: "⏱ ";
+  content: "⏱";
 }
 
 #errores::before,
 #errores-vertical::before {
-  content: "❌ ";
+  content: "❌";
+}
+
+
+/* =========================================
+   ALINEACIÓN PANEL
+   ========================================= */
+
+#panel div,
+#panel-vertical div {
+
+  display: grid;
+  grid-template-columns: 22px auto;
+  column-gap: 6px;
+  align-items: center;
+}
+
+/* iconos alineados */
+
+#actualUsername::before,
+#puntaje::before,
+#reloj::before,
+#errores::before,
+#actualUsername-vertical::before,
+#puntaje-vertical::before,
+#reloj-vertical::before,
+#errores-vertical::before {
+
+  display: inline-block;
+  width: 22px;
+  text-align: center;
 }
 
 
@@ -68,7 +96,7 @@
      Estados del juego
      ============================= */
 
-  /* SOLO aparece cuando el juego comenzó */
+  /* 👇 SOLO aparece cuando el juego comenzó */
   body.game-started .mobile-controls {
     display: flex;
   }
@@ -77,10 +105,37 @@
     display: none;
   }
 
-  body.panel-mini .celda-panel {
-    width: 15%;
-    font-size: 12px;
-  }
+body.panel-mini .celda-panel {
+  width: 15%;
+  font-size: 12px;
+}
+
+/* =========================================
+   PANEL MINI (solo icono + valor)
+   ========================================= */
+
+body.panel-mini #puntaje,
+body.panel-mini #reloj,
+body.panel-mini #errores,
+body.panel-mini #puntaje-vertical,
+body.panel-mini #reloj-vertical,
+body.panel-mini #errores-vertical {
+
+  font-size: 0;
+}
+
+/* mostrar solo número */
+
+body.panel-mini #puntaje::after,
+body.panel-mini #reloj::after,
+body.panel-mini #errores::after,
+body.panel-mini #puntaje-vertical::after,
+body.panel-mini #reloj-vertical::after,
+body.panel-mini #errores-vertical::after {
+
+  font-size: 13px;
+  margin-left: 4px;
+}
 
   body.panel-full .celda-panel {
     width: 25%;
@@ -106,41 +161,6 @@
   table {
     width: 100%;
     height: 100%;
-  }
-
-}
-
-
-/* =========================================
-   PANEL MINI HORIZONTAL (HUD)
-   ========================================= */
-
-@media screen and (max-width: 1023px) and (orientation: landscape) {
-
-  body.panel-mini #panel > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-  }
-
-  body.panel-mini #panel br {
-    display: none;
-  }
-
-  body.panel-mini #panel #actualUsername {
-    text-align: center;
-    font-weight: bold;
-  }
-
-  body.panel-mini #panel #puntaje,
-  body.panel-mini #panel #reloj,
-  body.panel-mini #panel #errores {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 13px;
   }
 
 }
@@ -260,7 +280,8 @@
     height: auto;
   }
 
-  /* Fila 3 – Panel */
+  /* Fila 3 – Panel
+     (sin altura fija, la controla el estado) */
   .container table tr:nth-child(3) {
     height: auto;
   }
@@ -284,35 +305,65 @@
     margin: 0 auto;
   }
 
-}
+  /* =========================================
+     PANEL VERTICAL
+     ========================================= */
 
+  .celda-panel-vertical {
+    background-color: #d0ecf9;
+    padding: 10px;
+    width: 100%;
+    font-size: clamp(14px, 3.5vw, 20px);
+    font-family: Arial, sans-serif;
+    color: #000;
+    line-height: 1.4;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
 
-/* =========================================
-   PANEL VERTICAL (HUD MÓVIL)
-   ========================================= */
+  #panel-vertical {
+    height: 100%;
+  }
 
-.celda-panel-vertical {
-  background-color: #d0ecf9;
-  padding: 10px;
-  width: 100%;
-  font-size: clamp(14px, 3.5vw, 20px);
-  font-family: Arial, sans-serif;
-  color: #000;
-  line-height: 1.4;
-  box-sizing: border-box;
-  overflow: hidden;
-}
+  #panel-vertical > div {
+    height: 100%;
+    overflow: auto;
+  }
 
-#panel-vertical > div {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+  /* =========================================
+     ALTURA SEGÚN ESTADO
+     ========================================= */
 
-#panel-vertical br {
-  display: none;
-}
+  body.panel-full .fila-panel-vertical {
+    display: table-row;
+  }
 
-#panel-vertical #actualUsername-vertical {
-  font-weight: bold;
+  body.panel-mini .fila-panel-vertical {
+    display: table-row;
+  }
+
+  body.panel-hidden .fila-panel-vertical {
+    display: none;
+  }
+
+  body.panel-full .celda-panel-vertical {
+    height: 25vh;
+  }
+
+  body.panel-mini .celda-panel-vertical {
+    height: 12vh;
+  }
+
+  /* =========================================
+     TÍTULO
+     ========================================= */
+
+  body.header-visible .fila-titulo {
+    display: table-row;
+  }
+
+  body.header-hidden .fila-titulo {
+    display: none;
+  }
+
 }
