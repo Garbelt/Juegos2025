@@ -33,8 +33,11 @@
   display:inline-flex;
   justify-content:center;
   align-items:center;
+
+  /* 👇 ancho fijo para alinear todo */
   width:24px;
   min-width:24px;
+
   margin-right:6px;
 }
 
@@ -102,7 +105,6 @@
      Estados del juego
      ============================= */
 
-  /* 👇 SOLO aparece cuando el juego comenzó */
   body.game-started .mobile-controls {
     display: flex;
   }
@@ -196,7 +198,7 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.3);
   }
 
-  /* Contenedor opciones (cerrado por defecto) */
+  /* Contenedor opciones */
   .fab-options {
     display: flex;
     flex-direction: column;
@@ -208,7 +210,6 @@
     transition: all 0.2s ease;
   }
 
-  /* Cuando está abierto */
   .mobile-controls.open .fab-options {
     opacity: 1;
     pointer-events: auto;
@@ -240,7 +241,7 @@
     display: none;
   }
 
-  /* Mostrar fila del panel inferior */
+  /* Mostrar panel inferior */
   .fila-panel-vertical {
     display: table-row;
   }
@@ -324,6 +325,22 @@
   #panel-vertical > div {
     height: 100%;
     overflow: auto;
+  }
+
+  /* =========================================
+     MINI PANEL MÓVIL (una sola fila compacta)
+     ========================================= */
+
+  body.panel-mini #panel-vertical > div{
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+    gap:6px;
+  }
+
+  body.panel-mini #panel-vertical > div > div{
+    flex-direction:row;
+    align-items:center;
   }
 
   /* =========================================
