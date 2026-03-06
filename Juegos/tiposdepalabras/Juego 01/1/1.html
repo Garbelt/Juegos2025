@@ -130,36 +130,31 @@
         </tr>
 
 <tr class="fila-panel-vertical">
-  <th colspan="2" class="celda-panel-vertical" style="position: relative;">
+    <th colspan="2" class="celda-panel-vertical" style="position: relative;">
+        <div id="panel-vertical">
 
-    <div id="panel-vertical">
+            <div class="panel-item">
+                <span class="panel-icon">👤</span>
+                <span id="actualUsername-vertical" class="panel-text"></span>
+            </div>
 
-      <div class="panel-item usuario">
-        <span class="icon">👤</span>
-        <span id="actualUsername-vertical" class="value"></span>
-      </div>
+            <div class="panel-item">
+                <span class="panel-icon">⭐</span>
+                <span id="puntaje-vertical" class="panel-text">Puntaje: 0</span>
+            </div>
 
-      <div class="panel-item">
-        <span class="icon">⭐</span>
-        <span class="label">Puntaje</span>
-        <span id="puntaje-vertical" class="value">0</span>
-      </div>
+            <div class="panel-item">
+                <span class="panel-icon">⏱</span>
+                <span id="reloj-vertical" class="panel-text">Tiempo: 00:30</span>
+            </div>
 
-      <div class="panel-item">
-        <span class="icon">⏱</span>
-        <span class="label">Tiempo</span>
-        <span id="reloj-vertical" class="value">00:30</span>
-      </div>
+            <div class="panel-item">
+                <span class="panel-icon">❌</span>
+                <span id="errores-vertical" class="panel-text">Errores: 0/5</span>
+            </div>
 
-      <div class="panel-item">
-        <span class="icon">⚠</span>
-        <span class="label">Errores</span>
-        <span id="errores-vertical" class="value">0/5</span>
-      </div>
-
-    </div>
-
-  </th>
+        </div>
+    </th>
 </tr>
 		
     </table>
@@ -265,6 +260,7 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
 
