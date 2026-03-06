@@ -128,29 +128,33 @@
     gap:4px;
   }
 
-  body.panel-mini #puntaje::before,
-  body.panel-mini #reloj::before,
-  body.panel-mini #errores::before,
-  body.panel-mini #puntaje-vertical::before,
-  body.panel-mini #reloj-vertical::before,
-  body.panel-mini #errores-vertical::before{
-    width:28px;
-    min-width:28px;
-    height:28px;
-    font-size:18px; /* icono más grande */
-    margin-right:4px;
-  }
+/* =========================
+   MINI PANEL AJUSTE FINAL
+   ========================= */
 
-  /* Ocultar texto descriptivo en mini */
-  body.panel-mini #panel > div > div span.text,
-  body.panel-mini #panel-vertical > div > div span.text {
-    display: none;
-  }
+/* Iconos un poco más pequeños en mini */
+body.panel-mini #puntaje::before,
+body.panel-mini #reloj::before,
+body.panel-mini #errores::before,
+body.panel-mini #puntaje-vertical::before,
+body.panel-mini #reloj-vertical::before,
+body.panel-mini #errores-vertical::before{
+  width:24px;
+  min-width:24px;
+  height:24px;
+  font-size:16px; /* icono menos grande que antes */
+  margin-right:4px;
+}
 
-  body.panel-full .celda-panel {
-    width: 25%;
-  }
+/* Ocultar texto descriptivo en mini (solo icono + valor) */
+body.panel-mini #panel > div > div span,
+body.panel-mini #panel-vertical > div > div span {
+  display: none !important;
+}
 
+/* Mantener ancho normal de celda en panel full */
+body.panel-full .celda-panel {
+  width: 25%;
 }
 
 /* =========================================
@@ -383,3 +387,4 @@
   }
 
 }
+
