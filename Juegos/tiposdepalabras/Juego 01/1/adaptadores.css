@@ -2,7 +2,6 @@
    Adaptadores de diseño
    ============================= */
 
-
 /* =========================================
    ESTADO BASE
    ========================================= */
@@ -16,7 +15,6 @@
 .fila-panel-vertical {
   display: none;
 }
-
 
 /* =========================================
    ICONOS DEL PANEL
@@ -34,7 +32,7 @@
   justify-content:center;
   align-items:center;
 
-  /* 👇 ancho fijo para alinear todo */
+  /* ancho fijo para alinear todo */
   width:24px;
   min-width:24px;
 
@@ -61,7 +59,6 @@
   content:"❌";
 }
 
-
 /* =========================================
    ALINEACIÓN DEL PANEL
    ========================================= */
@@ -78,7 +75,6 @@
   display:flex;
   align-items:center;
 }
-
 
 /* =========================================
    MÓVILES (GENERAL)
@@ -128,7 +124,7 @@
   body.panel-mini #puntaje-vertical,
   body.panel-mini #reloj-vertical,
   body.panel-mini #errores-vertical{
-    font-size:12px;
+    font-size:14px; /* valor legible en mini */
     gap:4px;
   }
 
@@ -138,7 +134,17 @@
   body.panel-mini #puntaje-vertical::before,
   body.panel-mini #reloj-vertical::before,
   body.panel-mini #errores-vertical::before{
+    width:28px;
+    min-width:28px;
+    height:28px;
+    font-size:18px; /* icono más grande */
     margin-right:4px;
+  }
+
+  /* Ocultar texto descriptivo en mini */
+  body.panel-mini #panel > div > div span.text,
+  body.panel-mini #panel-vertical > div > div span.text {
+    display: none;
   }
 
   body.panel-full .celda-panel {
@@ -146,7 +152,6 @@
   }
 
 }
-
 
 /* =========================================
    MÓVIL HORIZONTAL (fullscreen real)
@@ -168,7 +173,6 @@
   }
 
 }
-
 
 /* =========================================
    BOTONERA FAB MÓVIL
@@ -228,7 +232,6 @@
   }
 
 }
-
 
 /* =========================================
    MÓVIL VERTICAL - AJUSTE PARA 3 FILAS
