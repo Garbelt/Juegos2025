@@ -17,66 +17,43 @@
   display: none;
 }
 
-
 /* =========================================
-   ICONOS DEL PANEL
+   PANEL - ALINEACIÓN GENERAL
    ========================================= */
 
-#actualUsername::before,
-#actualUsername-vertical::before,
-#puntaje::before,
-#puntaje-vertical::before,
-#reloj::before,
-#reloj-vertical::before,
-#errores::before,
-#errores-vertical::before{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-
-  /* 👇 ancho fijo para alinear todo */
-  width:24px;
-  min-width:24px;
-
-  margin-right:6px;
-}
-
-#actualUsername::before,
-#actualUsername-vertical::before{
-  content:"👤";
-}
-
-#puntaje::before,
-#puntaje-vertical::before{
-  content:"⭐";
-}
-
-#reloj::before,
-#reloj-vertical::before{
-  content:"⏱";
-}
-
-#errores::before,
-#errores-vertical::before{
-  content:"❌";
-}
-
-
-/* =========================================
-   ALINEACIÓN DEL PANEL
-   ========================================= */
-
-#panel > div,
-#panel-vertical > div{
+#panel div,
+#panel-vertical div{
   display:flex;
-  flex-direction:column;
+  align-items:center;
   gap:6px;
 }
 
-#panel > div > div,
-#panel-vertical > div > div{
-  display:flex;
-  align-items:center;
+/* ancho fijo para iconos */
+
+#panel i,
+#panel-vertical i{
+  width:22px;
+  text-align:center;
+}
+
+/* etiquetas alineadas */
+
+.label{
+  display:inline-block;
+  min-width:70px;
+}
+
+/* ocultar siempre texto de usuario */
+
+.label-usuario{
+  display:none;
+}
+
+/* evitar saltos de línea cuando el panel está en fila */
+
+#panel br,
+#panel-vertical br{
+  display:none;
 }
 
 
@@ -105,6 +82,7 @@
      Estados del juego
      ============================= */
 
+  /* 👇 SOLO aparece cuando el juego comenzó */
   body.game-started .mobile-controls {
     display: flex;
   }
@@ -116,29 +94,6 @@
   body.panel-mini .celda-panel {
     width: 15%;
     font-size: 12px;
-  }
-
-  /* =========================================
-     MINI PANEL (solo icono + valor)
-     ========================================= */
-
-  body.panel-mini #puntaje,
-  body.panel-mini #reloj,
-  body.panel-mini #errores,
-  body.panel-mini #puntaje-vertical,
-  body.panel-mini #reloj-vertical,
-  body.panel-mini #errores-vertical{
-    font-size:12px;
-    gap:4px;
-  }
-
-  body.panel-mini #puntaje::before,
-  body.panel-mini #reloj::before,
-  body.panel-mini #errores::before,
-  body.panel-mini #puntaje-vertical::before,
-  body.panel-mini #reloj-vertical::before,
-  body.panel-mini #errores-vertical::before{
-    margin-right:4px;
   }
 
   body.panel-full .celda-panel {
@@ -198,7 +153,7 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.3);
   }
 
-  /* Contenedor opciones */
+  /* Contenedor opciones (cerrado por defecto) */
   .fab-options {
     display: flex;
     flex-direction: column;
@@ -210,6 +165,7 @@
     transition: all 0.2s ease;
   }
 
+  /* Cuando está abierto */
   .mobile-controls.open .fab-options {
     opacity: 1;
     pointer-events: auto;
@@ -241,7 +197,7 @@
     display: none;
   }
 
-  /* Mostrar panel inferior */
+  /* Mostrar fila del panel inferior */
   .fila-panel-vertical {
     display: table-row;
   }
@@ -294,8 +250,6 @@
     border-top: 1px solid black;
   }
 
-  /* Instrumento */
-
   #instrument {
     width: 90%;
     height: 60%;
@@ -328,22 +282,6 @@
   }
 
   /* =========================================
-     MINI PANEL MÓVIL (una sola fila compacta)
-     ========================================= */
-
-  body.panel-mini #panel-vertical > div{
-    flex-direction:row;
-    justify-content:space-around;
-    align-items:center;
-    gap:6px;
-  }
-
-  body.panel-mini #panel-vertical > div > div{
-    flex-direction:row;
-    align-items:center;
-  }
-
-  /* =========================================
      ALTURA SEGÚN ESTADO
      ========================================= */
 
@@ -365,6 +303,39 @@
 
   body.panel-mini .celda-panel-vertical {
     height: 12vh;
+  }
+
+  /* =========================================
+     PANEL MINI
+     ========================================= */
+
+  body.panel-mini .label{
+    display:none;
+  }
+
+  body.panel-mini #panel-vertical > div{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+  }
+
+  /* =========================================
+     PANEL FULL CENTRADO
+     ========================================= */
+
+  body.panel-full #panel-vertical > div{
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:flex-start;
+
+    width:fit-content;
+    margin:0 auto;
+
+    gap:6px;
   }
 
   /* =========================================
