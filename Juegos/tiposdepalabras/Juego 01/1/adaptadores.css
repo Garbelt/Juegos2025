@@ -1,4 +1,4 @@
-﻿/* =============================
+/* =============================
    Adaptadores de diseño
    ============================= */
 
@@ -203,8 +203,7 @@
     height: auto;
   }
 
-  /* Fila 3 – Panel
-     (sin altura fija, la controla el estado) */
+  /* Fila 3 – Panel */
   .container table tr:nth-child(3) {
     height: auto;
   }
@@ -244,26 +243,55 @@
     overflow: hidden;
   }
 
-#panel-vertical{
-display:flex;
-flex-direction:column;
-align-items:flex-start;
-gap:6px;
-}
-
-.panel-item{
-display:flex;
-align-items:center;
-gap:6px;
-}
-
-.icon{
-font-size:1.2em;
-}
-
-  #panel-vertical > div {
+  #panel-vertical {
     height: 100%;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .panel-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .icon {
+    font-size: 1.1em;
+  }
+
+  .value {
+    font-weight: bold;
+  }
+
+  /* =========================================
+     MODO MINI → HUD
+     ========================================= */
+
+  body.panel-mini #panel-vertical {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  body.panel-mini .label {
+    display: none;
+  }
+
+  body.panel-mini .usuario {
+    display: none;
+  }
+
+  body.panel-mini .value {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  body.panel-mini .celda-panel-vertical {
+    height: auto;
+    padding: 6px 10px;
   }
 
   /* =========================================
@@ -286,22 +314,9 @@ font-size:1.2em;
     height: 25vh;
   }
 
-body.panel-mini #panel-vertical{
-align-items:center;
-gap:4px;
-}
-
-body.panel-mini .label{
-display:none;
-}
-
-body.panel-mini .usuario{
-display:none;
-}
-
-body.panel-mini .panel-item{
-font-size:0.9em;
-}
+  body.panel-mini .celda-panel-vertical {
+    height: auto;
+  }
 
   /* =========================================
      TÍTULO
@@ -316,5 +331,3 @@ font-size:0.9em;
   }
 
 }
-
-
