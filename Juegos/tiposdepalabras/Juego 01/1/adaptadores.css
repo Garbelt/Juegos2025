@@ -244,9 +244,22 @@
     overflow: hidden;
   }
 
-  #panel-vertical {
-    height: 100%;
-  }
+#panel-vertical{
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:6px;
+}
+
+.panel-item{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.icon{
+font-size:1.2em;
+}
 
   #panel-vertical > div {
     height: 100%;
@@ -290,3 +303,4 @@
   }
 
 }
+
