@@ -7,10 +7,6 @@
    ESTADO BASE
    ========================================= */
 
-/* =========================================
-   ESTADO BASE
-   ========================================= */
-
 /* Botonera móvil arranca oculta */
 .mobile-controls {
   display: none;
@@ -20,6 +16,27 @@
 .fila-panel-vertical {
   display: none;
 }
+
+
+/* =========================================
+   ICONOS PANEL (GLOBAL)
+   ========================================= */
+
+#puntaje::before,
+#puntaje-vertical::before {
+  content: "⭐ ";
+}
+
+#reloj::before,
+#reloj-vertical::before {
+  content: "⏱ ";
+}
+
+#errores::before,
+#errores-vertical::before {
+  content: "❌ ";
+}
+
 
 /* =========================================
    MÓVILES (GENERAL)
@@ -203,8 +220,7 @@
     height: auto;
   }
 
-  /* Fila 3 – Panel
-     (sin altura fija, la controla el estado) */
+  /* Fila 3 – Panel */
   .container table tr:nth-child(3) {
     height: auto;
   }
@@ -292,7 +308,6 @@
 }
 
 
-
 /* =========================================
    PANEL MINI / HUD
    ========================================= */
@@ -304,21 +319,6 @@
   align-items:flex-start;
   justify-content:center;
   height:100%;
-}
-
-.panel-item{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-weight:bold;
-}
-
-.panel-icon{
-  font-size:18px;
-}
-
-.panel-text{
-  font-size:14px;
 }
 
 
@@ -334,8 +334,10 @@
     align-items:center;
   }
 
-  body.panel-mini .panel-text{
-    font-size:12px;
+  body.panel-mini #puntaje-vertical,
+  body.panel-mini #reloj-vertical,
+  body.panel-mini #errores-vertical{
+    font-size:14px;
   }
 
 }
@@ -347,14 +349,19 @@
 
 @media screen and (max-width:1023px) and (orientation:landscape){
 
-  body.panel-mini #panel-vertical{
+  body.panel-mini #puntaje,
+  body.panel-mini #reloj,
+  body.panel-mini #errores{
+    display:flex;
     flex-direction:column;
-    align-items:flex-start;
-    gap:4px;
+    align-items:center;
+    font-size:12px;
   }
 
-  body.panel-mini .panel-text{
-    font-size:12px;
+  body.panel-mini #puntaje::before,
+  body.panel-mini #reloj::before,
+  body.panel-mini #errores::before{
+    font-size:20px;
   }
 
 }
