@@ -129,6 +129,12 @@ body.panel-mini .celda-panel{
     width:100%;
     height:100%;
   }
+   
+  body.panel-mini .icono{
+    width:26px;
+    min-width:26px;
+    font-size:1.15em;
+  }
 
 }
 
@@ -356,6 +362,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
