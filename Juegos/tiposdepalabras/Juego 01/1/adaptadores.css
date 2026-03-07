@@ -283,30 +283,39 @@ body.panel-mini .texto{
   }
 
    
-  /* =========================================
-     PANEL MINI (usuario arriba + stats fila)
-     ========================================= */
+/* =========================================
+   PANEL MINI (usuario arriba + stats fila)
+   ========================================= */
 
-  body.panel-mini #panel-vertical{
-    justify-content:center;
-  }
+body.panel-mini #panel-vertical{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:6px;
+}
 
-  body.panel-mini .panel-user{
-    margin-bottom:4px;
-  }
+/* usuario */
 
-  body.panel-mini .panel-stats{
-    flex-direction:row;
-    justify-content:space-between;
-    gap:12px;
-  }
+body.panel-mini #panel-vertical .dato:first-child{
+  margin-bottom:0;
+}
 
-  body.panel-mini .panel-stats > div{
-    flex-direction:row;
-    align-items:center;
-  }
+/* contenedor de estadísticas */
 
+body.panel-mini #panel-vertical .dato:nth-child(n+2){
+  display:inline-flex;
+  margin-right:12px;
+}
 
+/* hacer que las stats queden en una sola línea */
+
+body.panel-mini #panel-vertical{
+  flex-wrap:wrap;
+}
+
+body.panel-mini #panel-vertical .dato:first-child{
+  width:100%;
+}
   /* =========================================
      ALTURA SEGÚN ESTADO
      ========================================= */
@@ -345,6 +354,7 @@ body.panel-mini .texto{
   }
 
 }
+
 
 
 
