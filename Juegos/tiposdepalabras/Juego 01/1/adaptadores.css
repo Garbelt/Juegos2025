@@ -7,57 +7,12 @@
    ESTADO BASE
    ========================================= */
 
-/* Botonera móvil arranca oculta */
-.mobile-controls {
-  display: none;
+.mobile-controls{
+  display:none;
 }
 
-/* Panel inferior oculto por defecto */
-.fila-panel-vertical {
-  display: none;
-}
-
-
-/* =========================================
-   ICONOS DEL PANEL
-   ========================================= */
-
-#actualUsername::before,
-#actualUsername-vertical::before,
-#puntaje::before,
-#puntaje-vertical::before,
-#reloj::before,
-#reloj-vertical::before,
-#errores::before,
-#errores-vertical::before{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-
-  width:24px;
-  min-width:24px;
-
-  margin-right:6px;
-}
-
-#actualUsername::before,
-#actualUsername-vertical::before{
-  content:"👤";
-}
-
-#puntaje::before,
-#puntaje-vertical::before{
-  content:"⭐";
-}
-
-#reloj::before,
-#reloj-vertical::before{
-  content:"⏱";
-}
-
-#errores::before,
-#errores-vertical::before{
-  content:"❌";
+.fila-panel-vertical{
+  display:none;
 }
 
 
@@ -72,20 +27,33 @@
   gap:6px;
 }
 
-.panel-user{
+.dato{
   display:flex;
   align-items:center;
-}
-
-.panel-stats{
-  display:flex;
-  flex-direction:column;
   gap:6px;
+  flex-wrap:nowrap;
 }
 
-.panel-stats > div{
-  display:flex;
+.icono{
+  display:inline-flex;
+  justify-content:center;
   align-items:center;
+
+  width:24px;
+  min-width:24px;
+}
+
+.texto{
+  white-space:nowrap;
+}
+
+
+/* =========================================
+   MODO MINI (OCULTAR TEXTO)
+   ========================================= */
+
+body.panel-mini .texto{
+  display:none;
 }
 
 
@@ -93,57 +61,57 @@
    MÓVILES (GENERAL)
    ========================================= */
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width:1023px){
 
-  table {
-    aspect-ratio: auto;
+  table{
+    aspect-ratio:auto;
   }
 
-  #lectorButton {
-    display: none;
+  #lectorButton{
+    display:none;
   }
 
-  .header-hidden .title-cell {
-    display: none;
+  .header-hidden .title-cell{
+    display:none;
   }
 
-  body.game-started .mobile-controls {
-    display: flex;
+  body.game-started .mobile-controls{
+    display:flex;
   }
 
-  body.panel-hidden .celda-panel {
-    display: none;
+  body.panel-hidden .celda-panel{
+    display:none;
   }
 
-  body.panel-mini .celda-panel {
-    width: 15%;
-    font-size: 12px;
+  body.panel-mini .celda-panel{
+    width:15%;
+    font-size:12px;
   }
 
-  body.panel-full .celda-panel {
-    width: 25%;
+  body.panel-full .celda-panel{
+    width:25%;
   }
 
 }
 
 
 /* =========================================
-   MÓVIL HORIZONTAL (fullscreen real)
+   MÓVIL HORIZONTAL
    ========================================= */
 
-@media screen and (max-width: 1023px) and (orientation: landscape) {
+@media screen and (max-width:1023px) and (orientation:landscape){
 
-  .container {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    margin: auto;
-    border: none;
+  .container{
+    width:100vw;
+    height:100vh;
+    max-width:100vw;
+    margin:auto;
+    border:none;
   }
 
-  table {
-    width: 100%;
-    height: 100%;
+  table{
+    width:100%;
+    height:100%;
   }
 
 }
@@ -153,55 +121,55 @@
    BOTONERA FAB MÓVIL
    ========================================= */
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width:1023px){
 
-  .mobile-controls {
-    position: fixed;
-    top: 14px;
-    right: 14px;
-    z-index: 999;
-    flex-direction: column;
-    align-items: flex-end;
+  .mobile-controls{
+    position:fixed;
+    top:14px;
+    right:14px;
+    z-index:999;
+    flex-direction:column;
+    align-items:flex-end;
   }
 
-  .fab-main {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: #4fa3d1;
-    color: white;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  .fab-main{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+    background-color:#4fa3d1;
+    color:white;
+    box-shadow:0 3px 6px rgba(0,0,0,0.3);
   }
 
-  .fab-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-5px);
-    transition: all 0.2s ease;
+  .fab-options{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-top:8px;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-5px);
+    transition:all 0.2s ease;
   }
 
-  .mobile-controls.open .fab-options {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
+  .mobile-controls.open .fab-options{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
   }
 
-  .fab-options button {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  .fab-options button{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:none;
+    font-size:16px;
+    cursor:pointer;
+    background-color:white;
+    box-shadow:0 2px 4px rgba(0,0,0,0.25);
   }
 
 }
@@ -211,64 +179,64 @@
    MÓVIL VERTICAL
    ========================================= */
 
-@media screen and (max-width: 1023px) and (orientation: portrait) {
+@media screen and (max-width:1023px) and (orientation:portrait){
 
-  .celda-panel {
-    display: none;
+  .celda-panel{
+    display:none;
   }
 
-  .fila-panel-vertical {
-    display: table-row;
+  .fila-panel-vertical{
+    display:table-row;
   }
 
-  body.game-started {
-    display: block !important;
-    height: 100vh;
+  body.game-started{
+    display:block !important;
+    height:100vh;
   }
 
-  body.game-started .container {
-    height: 100dvh;
+  body.game-started .container{
+    height:100dvh;
   }
 
-  .container {
-    width: 100vw;
-    height: 100dvh;
-    max-width: 100vw;
-    margin: 0;
-    border: none;
+  .container{
+    width:100vw;
+    height:100dvh;
+    max-width:100vw;
+    margin:0;
+    border:none;
   }
 
-  .container table {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto !important;
+  .container table{
+    width:100%;
+    height:100%;
+    aspect-ratio:auto !important;
   }
 
-  .container table tr:nth-child(1) {
-    height: 15%;
+  .container table tr:nth-child(1){
+    height:15%;
   }
 
-  .container table tr:nth-child(2) {
-    height: auto;
+  .container table tr:nth-child(2){
+    height:auto;
   }
 
-  .container table tr:nth-child(3) {
-    height: auto;
+  .container table tr:nth-child(3){
+    height:auto;
   }
 
-  .container table tr:nth-child(2) td {
-    border-right: none;
+  .container table tr:nth-child(2) td{
+    border-right:none;
   }
 
-  .container table tr:nth-child(3) td {
-    border-left: none;
-    border-top: 1px solid black;
+  .container table tr:nth-child(3) td{
+    border-left:none;
+    border-top:1px solid black;
   }
 
-  #instrument {
-    width: 90%;
-    height: 60%;
-    margin: 0 auto;
+  #instrument{
+    width:90%;
+    height:60%;
+    margin:0 auto;
   }
 
 
@@ -276,49 +244,41 @@
      PANEL VERTICAL
      ========================================= */
 
-  .celda-panel-vertical {
-    background-color: #d0ecf9;
-    padding: 10px;
-    width: 100%;
-    font-size: clamp(14px, 3.5vw, 20px);
-    font-family: Arial, sans-serif;
-    color: #000;
-    line-height: 1.4;
-    box-sizing: border-box;
-    overflow: hidden;
+  .celda-panel-vertical{
+    background-color:#d0ecf9;
+    padding:10px;
+    width:100%;
+    font-size:clamp(14px,3.5vw,20px);
+    font-family:Arial, sans-serif;
+    color:#000;
+    line-height:1.4;
+    box-sizing:border-box;
+    overflow:hidden;
   }
 
-  #panel-vertical {
-    height: 100%;
+  #panel-vertical{
+    height:100%;
   }
 
-  #panel-vertical > div {
-    height: 100%;
-    overflow: auto;
+  #panel-vertical{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
   }
 
 
   /* =========================================
-     PANEL MINI (usuario arriba + stats fila)
+     PANEL MINI (stats en fila)
      ========================================= */
 
   body.panel-mini #panel-vertical{
-    justify-content:center;
-  }
-
-  body.panel-mini .panel-user{
-    margin-bottom:4px;
-  }
-
-  body.panel-mini .panel-stats{
     flex-direction:row;
-    justify-content:space-between;
-    gap:12px;
-  }
-
-  body.panel-mini .panel-stats > div{
-    flex-direction:row;
+    justify-content:space-around;
     align-items:center;
+  }
+
+  body.panel-mini .dato{
+    flex-direction:row;
   }
 
 
@@ -326,24 +286,24 @@
      ALTURA SEGÚN ESTADO
      ========================================= */
 
-  body.panel-full .fila-panel-vertical {
-    display: table-row;
+  body.panel-full .fila-panel-vertical{
+    display:table-row;
   }
 
-  body.panel-mini .fila-panel-vertical {
-    display: table-row;
+  body.panel-mini .fila-panel-vertical{
+    display:table-row;
   }
 
-  body.panel-hidden .fila-panel-vertical {
-    display: none;
+  body.panel-hidden .fila-panel-vertical{
+    display:none;
   }
 
-  body.panel-full .celda-panel-vertical {
-    height: 25vh;
+  body.panel-full .celda-panel-vertical{
+    height:25vh;
   }
 
-  body.panel-mini .celda-panel-vertical {
-    height: 12vh;
+  body.panel-mini .celda-panel-vertical{
+    height:12vh;
   }
 
 
@@ -351,12 +311,12 @@
      TÍTULO
      ========================================= */
 
-  body.header-visible .fila-titulo {
-    display: table-row;
+  body.header-visible .fila-titulo{
+    display:table-row;
   }
 
-  body.header-hidden .fila-titulo {
-    display: none;
+  body.header-hidden .fila-titulo{
+    display:none;
   }
 
 }
