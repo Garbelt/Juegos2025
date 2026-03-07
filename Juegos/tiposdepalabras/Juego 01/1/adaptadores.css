@@ -47,7 +47,7 @@
 
 #panel .dato:first-child,
 #panel-vertical .dato:first-child{
-  margin-bottom:10px;
+  margin-bottom:15px;
 }
 
 .icono{
@@ -336,4 +336,5 @@ body.panel-mini .texto{
   }
 
 }
+
 
