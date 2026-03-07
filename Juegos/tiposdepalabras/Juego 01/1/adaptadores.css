@@ -34,6 +34,7 @@
   flex-wrap:nowrap;
 }
 
+
 /* =============================
    USUARIO DESTACADO
    ============================= */
@@ -49,6 +50,11 @@
 #panel-vertical .dato:first-child{
   margin-bottom:15px;
 }
+
+
+/* =========================================
+   ICONOS
+   ========================================= */
 
 .icono{
   display:inline-flex;
@@ -274,40 +280,45 @@ body.panel-mini .texto{
 
   #panel-vertical{
     height:100%;
-  }
-
-  #panel-vertical{
     display:flex;
     flex-direction:column;
     gap:6px;
   }
 
-   
-/* =========================================
-   PANEL MINI (usuario arriba + stats fila)
-   ========================================= */
 
-body.panel-mini #panel-vertical{
-  flex-direction:column;
-  justify-content:center;
-}
+  /* =========================================
+     PANEL VERTICAL FULL
+     ========================================= */
 
-body.panel-mini #panel-vertical .dato:first-child{
-  margin-bottom:6px;
-}
+  body.panel-full #panel-vertical{
+    justify-content:center;
+    align-items:flex-start;
+    width:fit-content;
+    margin-left:auto;
+    margin-right:auto;
+  }
 
-/* stats en una fila */
 
-body.panel-mini #panel-vertical .dato:not(:first-child){
-  display:inline-flex;
-  margin-right:10px;
-}
+  /* =========================================
+     PANEL MINI
+     usuario arriba + stats en fila
+     ========================================= */
 
-/* contenedor de stats */
+  body.panel-mini #panel-vertical{
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+  }
 
-body.panel-mini #panel-vertical{
-  align-items:flex-start;
-}
+  body.panel-mini #panel-vertical .dato:first-child{
+    margin-bottom:6px;
+  }
+
+  body.panel-mini #panel-vertical .dato:not(:first-child){
+    display:inline-flex;
+    margin-right:10px;
+  }
+
 
   /* =========================================
      ALTURA SEGÚN ESTADO
@@ -347,5 +358,3 @@ body.panel-mini #panel-vertical{
   }
 
 }
-
-
