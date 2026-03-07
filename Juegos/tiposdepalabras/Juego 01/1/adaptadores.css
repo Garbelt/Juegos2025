@@ -292,6 +292,7 @@ body.panel-mini #panel-vertical{
   flex-direction:row;
   flex-wrap:wrap;
   align-items:center;
+  justify-content:space-between;
 }
 
 /* usuario ocupa toda la primera línea */
@@ -301,11 +302,11 @@ body.panel-mini #panel-vertical .dato:first-child{
   margin-bottom:4px;
 }
 
-/* stats en línea */
+/* stats en línea ocupando el ancho */
 
 body.panel-mini #panel-vertical .dato:not(:first-child){
   display:flex;
-  margin-right:14px;
+  margin-right:0;
 }
   /* =========================================
      ALTURA SEGÚN ESTADO
@@ -345,6 +346,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
