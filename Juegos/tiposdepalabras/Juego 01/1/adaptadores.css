@@ -34,6 +34,22 @@
   flex-wrap:nowrap;
 }
 
+/* =============================
+   USUARIO DESTACADO
+   ============================= */
+
+#actualUsername,
+#actualUsername-vertical{
+  font-weight:bold;
+}
+
+/* espacio entre usuario y stats */
+
+#panel .dato:first-child,
+#panel-vertical .dato:first-child{
+  margin-bottom:10px;
+}
+
 .icono{
   display:inline-flex;
   justify-content:center;
@@ -320,3 +336,4 @@ body.panel-mini .texto{
   }
 
 }
+
