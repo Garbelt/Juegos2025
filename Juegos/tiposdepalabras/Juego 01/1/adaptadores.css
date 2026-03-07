@@ -62,6 +62,29 @@
 
 
 /* =========================================
+   TEXTO DEL PANEL (solo en FULL)
+   ========================================= */
+
+body.panel-full #puntaje::after,
+body.panel-full #puntaje-vertical::after{
+  content:" Puntaje:";
+  margin-right:4px;
+}
+
+body.panel-full #reloj::after,
+body.panel-full #reloj-vertical::after{
+  content:" Tiempo:";
+  margin-right:4px;
+}
+
+body.panel-full #errores::after,
+body.panel-full #errores-vertical::after{
+  content:" Errores:";
+  margin-right:4px;
+}
+
+
+/* =========================================
    ESTRUCTURA DEL PANEL
    ========================================= */
 
