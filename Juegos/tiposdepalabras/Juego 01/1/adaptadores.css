@@ -289,32 +289,23 @@ body.panel-mini .texto{
 
 body.panel-mini #panel-vertical{
   display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:6px;
-}
-
-/* usuario */
-
-body.panel-mini #panel-vertical .dato:first-child{
-  margin-bottom:0;
-}
-
-/* contenedor de estadísticas */
-
-body.panel-mini #panel-vertical .dato:nth-child(n+2){
-  display:inline-flex;
-  margin-right:12px;
-}
-
-/* hacer que las stats queden en una sola línea */
-
-body.panel-mini #panel-vertical{
+  flex-direction:row;
   flex-wrap:wrap;
+  align-items:center;
 }
+
+/* usuario ocupa toda la primera línea */
 
 body.panel-mini #panel-vertical .dato:first-child{
   width:100%;
+  margin-bottom:4px;
+}
+
+/* stats en línea */
+
+body.panel-mini #panel-vertical .dato:not(:first-child){
+  display:flex;
+  margin-right:14px;
 }
   /* =========================================
      ALTURA SEGÚN ESTADO
@@ -354,6 +345,7 @@ body.panel-mini #panel-vertical .dato:first-child{
   }
 
 }
+
 
 
 
