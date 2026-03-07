@@ -34,7 +34,6 @@
   justify-content:center;
   align-items:center;
 
-  /* 👇 ancho fijo para alinear todo */
   width:24px;
   min-width:24px;
 
@@ -63,18 +62,28 @@
 
 
 /* =========================================
-   ALINEACIÓN DEL PANEL
+   ESTRUCTURA DEL PANEL
    ========================================= */
 
-#panel > div,
-#panel-vertical > div{
+#panel,
+#panel-vertical{
   display:flex;
   flex-direction:column;
   gap:6px;
 }
 
-#panel > div > div,
-#panel-vertical > div > div{
+.panel-user{
+  display:flex;
+  align-items:center;
+}
+
+.panel-stats{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.panel-stats > div{
   display:flex;
   align-items:center;
 }
@@ -86,24 +95,17 @@
 
 @media screen and (max-width: 1023px) {
 
-  /* Quitar aspect-ratio */
   table {
     aspect-ratio: auto;
   }
 
-  /* Ocultar botón lector original en móvil */
   #lectorButton {
     display: none;
   }
 
-  /* Header ocultable */
   .header-hidden .title-cell {
     display: none;
   }
-
-  /* =============================
-     Estados del juego
-     ============================= */
 
   body.game-started .mobile-controls {
     display: flex;
@@ -116,29 +118,6 @@
   body.panel-mini .celda-panel {
     width: 15%;
     font-size: 12px;
-  }
-
-  /* =========================================
-     MINI PANEL (solo icono + valor)
-     ========================================= */
-
-  body.panel-mini #puntaje,
-  body.panel-mini #reloj,
-  body.panel-mini #errores,
-  body.panel-mini #puntaje-vertical,
-  body.panel-mini #reloj-vertical,
-  body.panel-mini #errores-vertical{
-    font-size:12px;
-    gap:4px;
-  }
-
-  body.panel-mini #puntaje::before,
-  body.panel-mini #reloj::before,
-  body.panel-mini #errores::before,
-  body.panel-mini #puntaje-vertical::before,
-  body.panel-mini #reloj-vertical::before,
-  body.panel-mini #errores-vertical::before{
-    margin-right:4px;
   }
 
   body.panel-full .celda-panel {
@@ -185,7 +164,6 @@
     align-items: flex-end;
   }
 
-  /* Botón principal */
   .fab-main {
     width: 42px;
     height: 42px;
@@ -198,7 +176,6 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.3);
   }
 
-  /* Contenedor opciones */
   .fab-options {
     display: flex;
     flex-direction: column;
@@ -231,17 +208,15 @@
 
 
 /* =========================================
-   MÓVIL VERTICAL - AJUSTE PARA 3 FILAS
+   MÓVIL VERTICAL
    ========================================= */
 
 @media screen and (max-width: 1023px) and (orientation: portrait) {
 
-  /* Ocultar panel lateral */
   .celda-panel {
     display: none;
   }
 
-  /* Mostrar panel inferior */
   .fila-panel-vertical {
     display: table-row;
   }
@@ -269,10 +244,6 @@
     aspect-ratio: auto !important;
   }
 
-  /* =========================================
-     FILAS
-     ========================================= */
-
   .container table tr:nth-child(1) {
     height: 15%;
   }
@@ -294,13 +265,12 @@
     border-top: 1px solid black;
   }
 
-  /* Instrumento */
-
   #instrument {
     width: 90%;
     height: 60%;
     margin: 0 auto;
   }
+
 
   /* =========================================
      PANEL VERTICAL
@@ -327,21 +297,30 @@
     overflow: auto;
   }
 
+
   /* =========================================
-     MINI PANEL MÓVIL (una sola fila compacta)
+     PANEL MINI (usuario arriba + stats fila)
      ========================================= */
 
-  body.panel-mini #panel-vertical > div{
-    flex-direction:row;
-    justify-content:space-around;
-    align-items:center;
-    gap:6px;
+  body.panel-mini #panel-vertical{
+    justify-content:center;
   }
 
-  body.panel-mini #panel-vertical > div > div{
+  body.panel-mini .panel-user{
+    margin-bottom:4px;
+  }
+
+  body.panel-mini .panel-stats{
+    flex-direction:row;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  body.panel-mini .panel-stats > div{
     flex-direction:row;
     align-items:center;
   }
+
 
   /* =========================================
      ALTURA SEGÚN ESTADO
@@ -366,6 +345,7 @@
   body.panel-mini .celda-panel-vertical {
     height: 12vh;
   }
+
 
   /* =========================================
      TÍTULO
