@@ -60,7 +60,6 @@
   display:inline-flex;
   justify-content:center;
   align-items:center;
-
   width:24px;
   min-width:24px;
 }
@@ -298,25 +297,27 @@ body.panel-mini .texto{
     margin-right:auto;
   }
 
+  body.panel-full #panel-vertical .dato{
+    justify-content:flex-start;
+  }
+
 
   /* =========================================
      PANEL MINI
-     usuario arriba + stats en fila
      ========================================= */
 
   body.panel-mini #panel-vertical{
-    flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:flex-start;
+    gap:4px;
+  }
+
+  body.panel-mini #panel-vertical .dato{
+    margin:0;
   }
 
   body.panel-mini #panel-vertical .dato:first-child{
-    margin-bottom:6px;
-  }
-
-  body.panel-mini #panel-vertical .dato:not(:first-child){
-    display:inline-flex;
-    margin-right:10px;
+    margin-bottom:4px;
   }
 
 
