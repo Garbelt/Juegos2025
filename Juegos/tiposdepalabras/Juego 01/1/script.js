@@ -247,15 +247,16 @@ function startTimer() {
 function updateTimerDisplay(totalSeconds) {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
-    document.getElementById("reloj").textContent = `Tiempo: ${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
+    document.getElementById("reloj").textContent =
+        `${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
 }
 
 function updateErrorsDisplay() {
-    document.getElementById("errores").textContent = `Errores: ${errors}/5`;
+    document.getElementById("errores").textContent = `${errors}/5`;
 }
 
 function updateScoreDisplay(score) {
-    document.getElementById("puntaje").textContent = `Puntaje: ${score}`;
+    document.getElementById("puntaje").textContent = score;
 }
 
 document.getElementById("sustantivo-button").addEventListener("click", () => checkAnswer("SUSTANTIVO"));
@@ -280,5 +281,5 @@ function checkAnswer(selectedType) {
 
 window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
-    document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
+    document.getElementById("actualUsername").textContent = actualUsername;
 });
