@@ -45,6 +45,8 @@
   content:"👤";
 }
 
+/* MODO MINI (solo iconos) */
+
 #puntaje::before,
 #puntaje-vertical::before{
   content:"⭐";
@@ -58,6 +60,39 @@
 #errores::before,
 #errores-vertical::before{
   content:"❌";
+}
+
+
+/* =========================================
+   TEXTO DEL PANEL (solo en FULL)
+   ========================================= */
+
+/* reemplaza icono por icono + texto */
+
+body.panel-full #puntaje::before,
+body.panel-full #puntaje-vertical::before{
+  content:"⭐ Puntaje:";
+}
+
+body.panel-full #reloj::before,
+body.panel-full #reloj-vertical::before{
+  content:"⏱ Tiempo:";
+}
+
+body.panel-full #errores::before,
+body.panel-full #errores-vertical::before{
+  content:"❌ Errores:";
+}
+
+/* desactiva los after anteriores */
+
+body.panel-full #puntaje::after,
+body.panel-full #puntaje-vertical::after,
+body.panel-full #reloj::after,
+body.panel-full #reloj-vertical::after,
+body.panel-full #errores::after,
+body.panel-full #errores-vertical::after{
+  content:"";
 }
 
 
@@ -271,10 +306,7 @@
     margin: 0 auto;
   }
 
-
-  /* =========================================
-     PANEL VERTICAL
-     ========================================= */
+  /* PANEL VERTICAL */
 
   .celda-panel-vertical {
     background-color: #d0ecf9;
@@ -297,10 +329,7 @@
     overflow: auto;
   }
 
-
-  /* =========================================
-     PANEL MINI (usuario arriba + stats fila)
-     ========================================= */
+  /* PANEL MINI */
 
   body.panel-mini #panel-vertical{
     justify-content:center;
@@ -321,10 +350,7 @@
     align-items:center;
   }
 
-
-  /* =========================================
-     ALTURA SEGÚN ESTADO
-     ========================================= */
+  /* ALTURA SEGÚN ESTADO */
 
   body.panel-full .fila-panel-vertical {
     display: table-row;
@@ -346,10 +372,7 @@
     height: 12vh;
   }
 
-
-  /* =========================================
-     TÍTULO
-     ========================================= */
+  /* TÍTULO */
 
   body.header-visible .fila-titulo {
     display: table-row;
