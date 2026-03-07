@@ -283,18 +283,6 @@ body.panel-mini .texto{
   }
 
    
-      /* =========================================
-   PANEL VERTICAL FULL
-   ========================================= */
-
-body.panel-full #panel-vertical{
-  justify-content:center;   /* centra verticalmente */
-  align-items:flex-start;   /* texto alineado a la izquierda */
-  margin:0 auto;            /* centra horizontalmente el bloque */
-  width:fit-content;
-}
-
-
 /* =========================================
    PANEL MINI (usuario arriba + stats fila)
    ========================================= */
@@ -360,6 +348,16 @@ body.panel-mini #panel-vertical{
 
 }
 
+   /* =========================================
+   PANEL VERTICAL FULL
+   ========================================= */
+
+body.panel-full #panel-vertical{
+  justify-content:center;   /* centra verticalmente */
+  align-items:flex-start;   /* texto alineado a la izquierda */
+  margin:0 auto;            /* centra horizontalmente el bloque */
+  width:fit-content;
+}
 
 
 
