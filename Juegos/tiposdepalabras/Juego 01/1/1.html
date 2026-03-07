@@ -180,10 +180,10 @@
 window.addEventListener("load", () => {
     const actualUsername = localStorage.getItem("ActualUs");
     if (actualUsername) {
-        document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
+        document.getElementById("actualUsername").textContent = actualUsername;
     }
 });
-
+	
 // ===== PANTALLA PREVIA =====
 document.getElementById("read-screen").addEventListener("click", () => {
     leerElemento("game-title");
@@ -246,6 +246,7 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
 
