@@ -274,12 +274,19 @@ body.panel-mini .texto{
 
   #panel-vertical{
     height:100%;
-  }
-
-  #panel-vertical{
     display:flex;
     flex-direction:column;
     gap:6px;
+  }
+
+  /* =========================================
+     PANEL VERTICAL FULL
+     centrar verticalmente
+     ========================================= */
+
+  body.panel-full #panel-vertical{
+    justify-content:center;
+    align-items:flex-start;
   }
 
    
@@ -349,6 +356,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
