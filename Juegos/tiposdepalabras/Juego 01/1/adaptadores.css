@@ -45,6 +45,10 @@
   content:"👤";
 }
 
+/* ============================
+   MODO MINI (solo iconos)
+   ============================ */
+
 #puntaje::before,
 #puntaje-vertical::before{
   content:"⭐";
@@ -65,22 +69,19 @@
    TEXTO DEL PANEL (solo en FULL)
    ========================================= */
 
-body.panel-full #puntaje::after,
-body.panel-full #puntaje-vertical::after{
-  content:" Puntaje:";
-  margin-right:4px;
+body.panel-full #puntaje::before,
+body.panel-full #puntaje-vertical::before{
+  content:"⭐ Puntaje:";
 }
 
-body.panel-full #reloj::after,
-body.panel-full #reloj-vertical::after{
-  content:" Tiempo:";
-  margin-right:4px;
+body.panel-full #reloj::before,
+body.panel-full #reloj-vertical::before{
+  content:"⏱ Tiempo:";
 }
 
-body.panel-full #errores::after,
-body.panel-full #errores-vertical::after{
-  content:" Errores:";
-  margin-right:4px;
+body.panel-full #errores::before,
+body.panel-full #errores-vertical::before{
+  content:"❌ Errores:";
 }
 
 
