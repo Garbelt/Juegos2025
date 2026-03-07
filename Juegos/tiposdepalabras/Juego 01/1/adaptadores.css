@@ -288,25 +288,33 @@ body.panel-mini .texto{
    ========================================= */
 
 body.panel-mini #panel-vertical{
+  display:flex;
   flex-direction:column;
-  justify-content:center;
+  align-items:flex-start;
+  gap:6px;
+}
+
+/* usuario */
+
+body.panel-mini #panel-vertical .dato:first-child{
+  margin-bottom:0;
+}
+
+/* contenedor de estadísticas */
+
+body.panel-mini #panel-vertical .dato:nth-child(n+2){
+  display:inline-flex;
+  margin-right:12px;
+}
+
+/* hacer que las stats queden en una sola línea */
+
+body.panel-mini #panel-vertical{
+  flex-wrap:wrap;
 }
 
 body.panel-mini #panel-vertical .dato:first-child{
-  margin-bottom:6px;
-}
-
-/* stats en una fila */
-
-body.panel-mini #panel-vertical .dato:not(:first-child){
-  display:inline-flex;
-  margin-right:10px;
-}
-
-/* contenedor de stats */
-
-body.panel-mini #panel-vertical{
-  align-items:flex-start;
+  width:100%;
 }
 
   /* =========================================
@@ -347,5 +355,6 @@ body.panel-mini #panel-vertical{
   }
 
 }
+
 
 
