@@ -45,10 +45,6 @@
   content:"👤";
 }
 
-/* ============================
-   MODO MINI (solo iconos)
-   ============================ */
-
 #puntaje::before,
 #puntaje-vertical::before{
   content:"⭐";
