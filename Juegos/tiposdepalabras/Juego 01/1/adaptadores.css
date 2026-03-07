@@ -293,6 +293,9 @@ body.panel-mini #panel-vertical{
   flex-wrap:wrap;
   align-items:center;
   justify-content:space-between;
+
+  width:90%;
+  margin:0 auto;
 }
 
 /* usuario ocupa toda la primera línea */
@@ -302,7 +305,7 @@ body.panel-mini #panel-vertical .dato:first-child{
   margin-bottom:4px;
 }
 
-/* stats en línea ocupando el ancho */
+/* stats en línea */
 
 body.panel-mini #panel-vertical .dato:not(:first-child){
   display:flex;
@@ -346,6 +349,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
