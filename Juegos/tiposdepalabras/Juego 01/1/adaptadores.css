@@ -101,7 +101,7 @@ body.panel-mini .texto{
 
 body.panel-mini .celda-panel{
   width:18%;
-  font-size:clamp(12px, 1.6vw, 14px);
+  font-size:clamp(13px, 1.9vw, 16px);
 }
 
   body.panel-full .celda-panel{
@@ -356,6 +356,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
