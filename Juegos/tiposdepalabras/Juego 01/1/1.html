@@ -116,32 +116,68 @@
                 </center>
             </td>
             <td id="align-left-top" class="celda-panel" style="position: relative;">
-                <div id="panel">
-                    <div>
-                                <div id="actualUsername"></div>
-                        <br>
-								<div id="puntaje">0</div>
-								<div id="reloj">00:30</div>
-								<div id="errores">0/5</div>
-                    </div>
-                </div>
+			<div id="panel">
+			    <div>
+
+			        <div class="dato">
+			            <span class="icono">👤</span>
+			            <span class="texto">Usuario:</span>
+			            <span id="actualUsername"></span>
+			        </div>
+
+			        <div class="dato">
+			            <span class="icono">⭐</span>
+			            <span class="texto">Puntaje:</span>
+			            <span id="puntaje">0</span>
+    			    </div>
+
+  			      <div class="dato">
+			            <span class="icono">⏱</span>
+ 			           <span class="texto">Tiempo:</span>
+			            <span id="reloj">00:30</span>
+  			      </div>
+
+			        <div class="dato">
+			            <span class="icono">❌</span>
+    			        <span class="texto">Errores:</span>
+    			        <span id="errores">0/5</span>
+ 			       </div>
+
+			    </div>
+			</div>
                 <button id="lectorButton">Cancelar Lectura</button>
             </td>
         </tr>
 
 		<tr class="fila-panel-vertical">
 		    <th colspan="2" class="celda-panel-vertical" style="position: relative;">
-<div id="panel-vertical">
-    <div class="panel-user">
-        <div id="actualUsername-vertical"></div>
-    </div>
+			<div id="panel-vertical">
 
-    <div class="panel-stats">
-        <div id="puntaje-vertical">0</div>
-        <div id="reloj-vertical">00:30</div>
-        <div id="errores-vertical">0/5</div>
-    </div>
-</div>
+ 			   <div class="dato">
+ 			       <span class="icono">👤</span>
+  			      <span class="texto">Usuario:</span>
+  			      <span id="actualUsername-vertical"></span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">⭐</span>
+			        <span class="texto">Puntaje:</span>
+   			     <span id="puntaje-vertical">0</span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">⏱</span>
+			        <span class="texto">Tiempo:</span>
+			        <span id="reloj-vertical">00:30</span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">❌</span>
+ 			        <span class="texto">Errores:</span>
+ 			        <span id="errores-vertical">0/5</span>
+			    </div>
+
+			</div>
             </th>
         </tr>
 
@@ -248,6 +284,7 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
 
