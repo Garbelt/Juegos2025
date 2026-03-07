@@ -99,10 +99,10 @@ body.panel-mini .texto{
     display:none;
   }
 
-  body.panel-mini .celda-panel{
-    width:15%;
-    font-size:12px;
-  }
+body.panel-mini .celda-panel{
+  width:18%;
+  font-size:13px;
+}
 
   body.panel-full .celda-panel{
     width:25%;
@@ -356,6 +356,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
