@@ -136,8 +136,16 @@ body.panel-mini .celda-panel{
     font-size:1.15em;
   }
 
-}
+  /* Ajuste imagen del juego */
+  #instrument{
+    width:min(100%, 220px);
+    height:auto;
+    max-height:80%;
+    display:block;
+    margin:10px auto;
+  }
 
+}
 
 /* =========================================
    BOTONERA FAB MÓVIL
@@ -362,6 +370,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
