@@ -149,14 +149,13 @@ body.panel-mini .celda-panel{
   }
 
   /* Imagen del juego */
-#instrument{
-  width:min(100%,220px);
-  height:auto;
-  max-height:75%;
-
-  margin:10px auto;
-  display:block;
-}
+  #instrument{
+    width:min(100%,220px);
+    height:auto;
+    max-height:75%;
+    display:block;
+    margin:0 auto;
+  }
 
 }
 /* =========================================
@@ -382,6 +381,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
