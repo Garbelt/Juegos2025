@@ -143,21 +143,21 @@ body.panel-mini .celda-panel{
     justify-content:center;
     align-items:center;
 
-    padding:8px; /* pequeño margen interno */
+    padding:clamp(6px,1vw,12px);
+    gap:clamp(6px,1vh,10px);   /* separación entre elementos */
     box-sizing:border-box;
   }
 
   /* Imagen del juego */
   #instrument{
-    width:min(100%, 220px);
+    width:min(100%,220px);
     height:auto;
-    max-height:80%;
+    max-height:75%;
     display:block;
-    margin:12px auto;
+    margin:0 auto;
   }
 
 }
-
 /* =========================================
    BOTONERA FAB MÓVIL
    ========================================= */
@@ -381,6 +381,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
