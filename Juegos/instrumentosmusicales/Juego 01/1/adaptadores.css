@@ -136,13 +136,21 @@ body.panel-mini .celda-panel{
     font-size:1.15em;
   }
 
-  /* Ajuste imagen del juego */
+  /* Centrado vertical del contenido del juego */
+  .celda-juego{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
+
+  /* Imagen del juego */
   #instrument{
     width:min(100%, 220px);
     height:auto;
     max-height:80%;
     display:block;
-    margin:10px auto;
+    margin:12px auto;
   }
 
 }
@@ -370,6 +378,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
