@@ -123,22 +123,38 @@ body.panel-mini .celda-panel{
     max-width:100vw;
     margin:auto;
     border:none;
+    overflow:hidden;
   }
 
   table{
     width:100%;
     height:100%;
+    table-layout:fixed;
   }
-   
+
+  /* estructura de filas (similar a vertical) */
+
+  .container table tr:nth-child(1){
+    height:18%;
+  }
+
+  .container table tr:nth-child(2){
+    height:auto;
+  }
+
+  .container table tr:nth-child(3){
+    height:0;
+  }
+
+  /* ajuste iconos en panel mini */
+
   body.panel-mini .icono{
     width:26px;
     min-width:26px;
     font-size:1.15em;
   }
-   
+
 }
-
-
 /* =========================================
    BOTONERA FAB MÓVIL
    ========================================= */
@@ -362,6 +378,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
