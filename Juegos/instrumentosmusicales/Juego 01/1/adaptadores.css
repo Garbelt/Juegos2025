@@ -132,7 +132,7 @@ body.panel-mini .celda-panel{
     table-layout:fixed;
   }
 
-  /* estructura de filas (similar a vertical) */
+  /* estructura de filas */
 
   .container table tr:nth-child(1){
     height:18%;
@@ -144,6 +144,33 @@ body.panel-mini .celda-panel{
 
   .container table tr:nth-child(3){
     height:0;
+  }
+
+  /* celda del juego (instrumento + botones) */
+
+  .container table tr:nth-child(2) td:first-child{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+  }
+
+  /* instrumento */
+
+  #instrument{
+    width:clamp(140px, 28vh, 220px);
+    height:clamp(140px, 28vh, 220px);
+    margin:8px auto;
+    flex-shrink:0;
+  }
+
+  /* imagen del instrumento */
+
+  .instrument-image{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
   }
 
   /* ajuste iconos en panel mini */
@@ -378,6 +405,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
