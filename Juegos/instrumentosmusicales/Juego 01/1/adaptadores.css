@@ -135,7 +135,20 @@ body.panel-mini .celda-panel{
     min-width:26px;
     font-size:1.15em;
   }
+   
+  #instrument{
+    width:clamp(120px, 28vh, 200px);
+    height:clamp(120px, 28vh, 200px);
 
+    margin:6px auto;
+  }
+
+  .instrument-image{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+  }
+   
 }
 
 
@@ -362,6 +375,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
