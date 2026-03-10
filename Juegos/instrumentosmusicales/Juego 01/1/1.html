@@ -99,19 +99,34 @@
   		  </th>
         </tr>
         <tr>
-            <td>
-                <center><div id="instrument" class="elemento-juego"></div></center>
-                <center>
-                    <div>
+	<td>
 
-<button id="vientos-button" class="btn-corregir">Vientos</button>
-<button id="cuerdas-button" class="btn-corregir">Cuerdas</button>
-<button id="percusin-button" class="btn-corregir">Percusión</button>
+		<table class="zona-juego">
+			<tr class="fila-imagen">
+				<td>
 
+					<div id="instrument" class="elemento-juego"></div>
 
-                    </div>
-                </center>
-            </td>
+				</td>
+			</tr>
+
+			<tr class="fila-botones">
+				<td>
+
+					<div class="contenedor-botones">
+
+						<button id="vientos-button" class="btn-corregir">Vientos</button>
+						<button id="cuerdas-button" class="btn-corregir">Cuerdas</button>
+						<button id="percusin-button" class="btn-corregir">Percusión</button>
+
+					</div>
+
+				</td>
+			</tr>
+		</table>
+
+	</td>
+			
             <td id="align-left-top" class="celda-panel" style="position: relative;">
         	<div id="panel">
 			    <div>
@@ -279,4 +294,5 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 
 
 </html>
+
 
