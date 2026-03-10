@@ -146,8 +146,9 @@ body.panel-mini .celda-panel{
 }
 
 #instrument{
-  width:90%;
-  height:90%;
+  #instrument{
+  width:100%;
+  height:100%;
   margin:auto;
 }
 
@@ -402,6 +403,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
