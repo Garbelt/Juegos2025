@@ -174,7 +174,6 @@ function startGame() {
     errors = 0;
     score = 0;
     document.getElementById("reloj").textContent = `01:00`;
-    document.getElementById("reloj-vertical").textContent = `01:00`;
     updateErrorsDisplay();
     shuffleInstruments();
     startTimer();
@@ -263,6 +262,7 @@ window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
     document.getElementById("actualUsername").textContent = actualUsername;
 });
+
 
 
 
