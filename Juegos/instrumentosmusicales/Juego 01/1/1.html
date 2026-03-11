@@ -216,11 +216,18 @@ const firebaseConfig = {
 <script src="script.js"></script>
 
 <script>
-window.addEventListener("load", () => {
+window.addEventListener("load", () => { 
     // Mostrar usuario si existe en localStorage
     const actualUsername = localStorage.getItem("ActualUs");
+
     if (actualUsername) {
-        document.getElementById("actualUsername").textContent = actualUsername;
+
+        const userHorizontal = document.getElementById("actualUsername");
+        const userVertical = document.getElementById("actualUsername-vertical");
+
+        if(userHorizontal) userHorizontal.textContent = actualUsername;
+        if(userVertical) userVertical.textContent = actualUsername;
+
     }
 });
 
@@ -284,5 +291,6 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 <script src="botonera-mobile.js"></script>
 
 </body>
+
 
 </html>
