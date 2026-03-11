@@ -245,18 +245,25 @@ function startTimer() {
     }
 
 function updateTimerDisplay(totalSeconds) {
+    totalSeconds = Math.max(0, totalSeconds); // nunca menor a 0
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
-    document.getElementById("reloj").textContent =
+    const timeText =
         `${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
+    const reloj = document.getElementById("reloj");
+    const relojVertical = document.getElementById("reloj-vertical");
+    if (reloj) reloj.textContent = timeText;
+    if (relojVertical) relojVertical.textContent = timeText;
 }
 
 function updateErrorsDisplay() {
     document.getElementById("errores").textContent = `${errors}/5`;
+    document.getElementById("errores-vertical").textContent = `${errors}/5`;
 }
 
 function updateScoreDisplay(score) {
     document.getElementById("puntaje").textContent = score;
+    document.getElementById("puntaje-vertical").textContent = score;
 }
 
 document.getElementById("sustantivo-button").addEventListener("click", () => checkAnswer("SUSTANTIVO"));
@@ -283,3 +290,4 @@ window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
     document.getElementById("actualUsername").textContent = actualUsername;
 });
+
