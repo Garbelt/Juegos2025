@@ -228,10 +228,12 @@ function updateTimerDisplay(totalSeconds) {
 
 function updateErrorsDisplay() {
     document.getElementById("errores").textContent = `${errors}/5`;
+    document.getElementById("errores-vertical").textContent = `${errors}/5`;
 }
 
 function updateScoreDisplay(score) {
     document.getElementById("puntaje").textContent = score;
+    document.getElementById("puntaje-vertical").textContent = score;
 }
 
 document.getElementById("vientos-button").addEventListener("click", () => checkAnswer("Vientos"));
@@ -260,4 +262,5 @@ window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
     document.getElementById("actualUsername").textContent = actualUsername;
 });
+
 
