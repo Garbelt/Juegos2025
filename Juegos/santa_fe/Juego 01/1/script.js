@@ -141,9 +141,9 @@ function updateDisplay() {
   puntaje.textContent = `${score}`;
   intentos.textContent = `${attempts}`;
 
-  relojVertical.textContent = `${minutes}:${seconds}`;
-  puntajeVertical.textContent = `${score}`;
-  intentosVertical.textContent = `${attempts}`;
+  reloj-vertical.textContent = `${minutes}:${seconds}`;
+  puntaje-vertical.textContent = `${score}`;
+  intentos-vertical.textContent = `${attempts}`;
 }
 
   function barajarPendientes() {
@@ -404,4 +404,5 @@ function showMessagexIntentos() {
   window.almacenarRegistroConZ = almacenarRegistroConZ;
   window.incrementGameNumber = incrementGameNumberLocal;
 });
+
 
