@@ -137,21 +137,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 function updateDisplay() {
+
   const minutes = String(Math.floor(time / 60)).padStart(2, "0");
   const seconds = String(time % 60).padStart(2, "0");
 
   const tiempoTexto = `${minutes}:${seconds}`;
-  const erroresTexto = `${attempts}/5`;
+  const intentosTexto = `${attempts}`;
 
   // Panel horizontal
   if (reloj) reloj.textContent = tiempoTexto;
   if (puntaje) puntaje.textContent = score;
-  if (intentos) intentos.textContent = erroresTexto;
+  if (intentos) intentos.textContent = intentosTexto;
 
   // Panel vertical
   if (relojVertical) relojVertical.textContent = tiempoTexto;
   if (puntajeVertical) puntajeVertical.textContent = score;
-  if (intentosVertical) intentosVertical.textContent = erroresTexto;
+  if (intentosVertical) intentosVertical.textContent = intentosTexto;
 }
   
   function barajarPendientes() {
@@ -412,6 +413,7 @@ function showMessagexIntentos() {
   window.almacenarRegistroConZ = almacenarRegistroConZ;
   window.incrementGameNumber = incrementGameNumberLocal;
 });
+
 
 
 
