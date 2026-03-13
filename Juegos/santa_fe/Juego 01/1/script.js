@@ -142,7 +142,7 @@ function updateDisplay() {
   const seconds = String(time % 60).padStart(2, "0");
 
   const tiempoTexto = `${minutes}:${seconds}`;
-  const intentosTexto = `${attempts}`;
+  const intentosTexto = `${5 - attempts}/5`;
 
   // Panel horizontal
   if (reloj) reloj.textContent = tiempoTexto;
@@ -413,6 +413,7 @@ function showMessagexIntentos() {
   window.almacenarRegistroConZ = almacenarRegistroConZ;
   window.incrementGameNumber = incrementGameNumberLocal;
 });
+
 
 
 
