@@ -261,6 +261,18 @@ body.panel-mini .celda-panel{
     margin:0 auto;
   }
 
+   #zona-indicaciones{
+    position:fixed;
+    bottom:95px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    background:#ffffffee;
+    padding:8px;
+    border-radius:8px;
+}
+
+
 
   /* =========================================
      PANEL VERTICAL
@@ -362,6 +374,7 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
+
 
 
 
