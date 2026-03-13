@@ -17,6 +17,16 @@
       width: 100%;
       height: auto;
   }
+  #mapa-img{
+      display:block;
+      margin:auto;
+
+      width:auto;
+      height:auto;
+
+      max-width:100%;
+      max-height:85vh;
+  }
 
    .modal {
        display: none;
@@ -37,6 +47,14 @@
        width: 80%;
        max-width: 300px;
    }
+
+@media screen and (max-width:1023px) and (orientation:landscape){
+	
+  #mapa-img{
+      max-width:800px;
+      max-height:200px;
+  }
+	
 </style>
 </head>
 <body>
@@ -308,4 +326,5 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
