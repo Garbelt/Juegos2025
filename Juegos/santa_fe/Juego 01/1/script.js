@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const reloj = document.getElementById("reloj");
   const puntaje = document.getElementById("puntaje");
   const intentos = document.getElementById("intentos");
+  const relojVertical = document.getElementById("reloj-vertical");
+  const puntajeVertical = document.getElementById("puntaje-vertical");
+  const intentosVertical = document.getElementById("errores-vertical");
   const indicacion = document.getElementById("indicacion");
   const titulo = document.getElementById("titulo-instruccion");
   const cuadrantes = document.querySelectorAll(".quadrant");
@@ -133,13 +136,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  function updateDisplay() {
-    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
-    const seconds = String(time % 60).padStart(2, "0");
-    reloj.textContent = `${minutes}:${seconds}`;
-    puntaje.textContent = `${score}`;
-    intentos.textContent = `${attempts}`;
-  }
+function updateDisplay() {
+  const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+  const seconds = String(time % 60).padStart(2, "0");
+
+  const tiempoTexto = `${minutes}:${seconds}`;
+  const erroresTexto = `${attempts}/5`;
+
+  // Panel horizontal
+  if (reloj) reloj.textContent = tiempoTexto;
+  if (puntaje) puntaje.textContent = score;
+  if (intentos) intentos.textContent = erroresTexto;
+
+  // Panel vertical
+  if (relojVertical) relojVertical.textContent = tiempoTexto;
+  if (puntajeVertical) puntajeVertical.textContent = score;
+  if (intentosVertical) intentosVertical.textContent = erroresTexto;
+}
   
   function barajarPendientes() {
     partesAleatorias = [...pendientes].sort(() => Math.random() - 0.5);
@@ -399,6 +412,7 @@ function showMessagexIntentos() {
   window.almacenarRegistroConZ = almacenarRegistroConZ;
   window.incrementGameNumber = incrementGameNumberLocal;
 });
+
 
 
 
