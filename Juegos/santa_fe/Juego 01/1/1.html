@@ -82,17 +82,19 @@
 
 @media screen and (max-width:1023px) and (orientation: landscape){
     #puzzle img {
-        width: auto;
-        max-height: 45vh;
+        height: 45vh;  /* altura fija relativa al viewport */
+        width: auto;    /* el ancho se ajusta según proporción */
         display: block;
+        margin: 0 auto; /* centrado horizontal */
     }
 }
 
 @media screen and (max-width:1023px) and (orientation:portrait){
     #puzzle img {
+        height: 80vh;   /* altura más grande en portrait */
         width: auto;
-        max-height: 100vh;
         display: block;
+        margin: 0 auto;
     }
 }
 	
@@ -372,6 +374,7 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
 
