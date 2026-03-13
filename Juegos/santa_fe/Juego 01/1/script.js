@@ -133,13 +133,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  function updateDisplay() {
-    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
-    const seconds = String(time % 60).padStart(2, "0");
-    reloj.textContent = `${minutes}:${seconds}`;
-    puntaje.textContent = `${score}`;
-    intentos.textContent = `${attempts}`;
-  }
+function updateDisplay() {
+  const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+  const seconds = String(time % 60).padStart(2, "0");
+
+  reloj.textContent = `${minutes}:${seconds}`;
+  puntaje.textContent = `${score}`;
+  intentos.textContent = `${attempts}`;
+
+  relojVertical.textContent = `${minutes}:${seconds}`;
+  puntajeVertical.textContent = `${score}`;
+  intentosVertical.textContent = `${attempts}`;
+}
 
   function barajarPendientes() {
     partesAleatorias = [...pendientes].sort(() => Math.random() - 0.5);
@@ -399,3 +404,4 @@ function showMessagexIntentos() {
   window.almacenarRegistroConZ = almacenarRegistroConZ;
   window.incrementGameNumber = incrementGameNumberLocal;
 });
+
