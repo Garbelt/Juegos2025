@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const intentos = document.getElementById("intentos");
   const relojVertical = document.getElementById("reloj-vertical");
   const puntajeVertical = document.getElementById("puntaje-vertical");
-  const intentosVertical = document.getElementById("errores-vertical");
+  const intentosVertical = document.getElementById("intentos-vertical");
   const indicacion = document.getElementById("indicacion");
   const titulo = document.getElementById("titulo-instruccion");
   const cuadrantes = document.querySelectorAll(".quadrant");
@@ -412,6 +412,7 @@ function showMessagexIntentos() {
   window.almacenarRegistroConZ = almacenarRegistroConZ;
   window.incrementGameNumber = incrementGameNumberLocal;
 });
+
 
 
 
