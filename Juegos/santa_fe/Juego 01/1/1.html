@@ -27,12 +27,6 @@
     width:100%;
 }
 
-#puzzle img{
-    max-width:90%;
-    display:block;
-	margin: 0 auto; /* centrado horizontal */
-}
-
 #zona-indicacion{
     width:85%;
     background:rgba(0,0,0,0.45);
@@ -84,13 +78,16 @@
     #puzzle img {
         height: 65vh;  /* altura fija relativa al viewport */
 		height: 65dvh;
-    }
-}
+	    display:block;
+	    margin: 0 auto; /* centrado horizontal */
+    }}
 
 @media screen and (max-width:1023px) and (orientation:portrait){
     #puzzle img {
         height: 40vh;
         height: 40dvh;
+	    display:block;
+   	    margin: 0 auto; /* centrado horizontal */
     }
 }
 	
@@ -370,6 +367,7 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
 
