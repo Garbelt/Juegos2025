@@ -419,21 +419,26 @@ function showMessagexIntentos() {
    ========================================= */
 
 function ajustarMapa() {
-  const img = document.getElementById("mapa-img");
-  const areas = document.querySelectorAll("map area");
-  
-  if (!img || areas.length === 0) return;
 
-  const anchoOriginal = 1095;
-  const altoOriginal = 1590;
+  const img = document.getElementById("mapa-img");
+  if (!img) return;
 
   const anchoActual = img.clientWidth;
   const altoActual = img.clientHeight;
+
+  /* si la imagen todavía no tiene tamaño, salir */
+  if (anchoActual === 0 || altoActual === 0) return;
+
+  const areas = document.querySelectorAll('#DepartamentosSantafesinos area');
+
+  const anchoOriginal = 1095;
+  const altoOriginal = 1590;
 
   const escalaX = anchoActual / anchoOriginal;
   const escalaY = altoActual / altoOriginal;
 
   areas.forEach(area => {
+
     if (!area.dataset.originalCoords) {
       area.dataset.originalCoords = area.coords;
     }
@@ -441,17 +446,13 @@ function ajustarMapa() {
     const coordsOriginal = area.dataset.originalCoords.split(",");
 
     const coordsNuevas = coordsOriginal.map((coord, i) => {
-
-      if (i % 2 === 0) {
-        return Math.round(coord * escalaX);
-      } else {
-        return Math.round(coord * escalaY);
-      }
+      return Math.round(coord * (i % 2 === 0 ? escalaX : escalaY));
     });
 
     area.coords = coordsNuevas.join(",");
 
   });
+
 }
 
 window.addEventListener("resize", ajustarMapa);
