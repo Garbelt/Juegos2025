@@ -423,40 +423,58 @@ function ajustarMapa() {
   const img = document.getElementById("mapa-img");
   if (!img) return;
 
-  const anchoActual = img.clientWidth;
-  const altoActual = img.clientHeight;
+  const rect = img.getBoundingClientRect();
+  const anchoActual = rect.width;
+  const altoActual = rect.height;
 
-  /* si la imagen todavía no tiene tamaño, salir */
-  if (anchoActual === 0 || altoActual === 0) return;
+  /* si la imagen aún no tiene tamaño visible, salir */
+  if (!anchoActual || !altoActual) return;
 
-  const areas = document.querySelectorAll('#DepartamentosSantafesinos area');
+  const areas = document.querySelectorAll("#DepartamentosSantafesinos area");
+  if (!areas.length) return;
 
-  const anchoOriginal = 1095;
-  const altoOriginal = 1590;
+  /* tamaño original de la imagen */
+  const anchoOriginal = img.naturalWidth || 1095;
+  const altoOriginal = img.naturalHeight || 1590;
 
   const escalaX = anchoActual / anchoOriginal;
   const escalaY = altoActual / altoOriginal;
 
   areas.forEach(area => {
 
+    /* guardar coords originales solo la primera vez */
     if (!area.dataset.originalCoords) {
       area.dataset.originalCoords = area.coords;
     }
 
-    const coordsOriginal = area.dataset.originalCoords.split(",");
+    const coordsOriginal = area.dataset.originalCoords
+      .split(",")
+      .map(Number);
 
-    const coordsNuevas = coordsOriginal.map((coord, i) => {
-      return Math.round(coord * (i % 2 === 0 ? escalaX : escalaY));
-    });
+    const coordsEscaladas = coordsOriginal.map((coord, i) =>
+      Math.round(coord * (i % 2 === 0 ? escalaX : escalaY))
+    );
 
-    area.coords = coordsNuevas.join(",");
+    area.coords = coordsEscaladas.join(",");
 
   });
 
 }
 
+/* ejecutar cuando la imagen esté cargada */
+window.addEventListener("load", () => {
+  const img = document.getElementById("mapa-img");
+  if (!img) return;
+
+  if (img.complete) {
+    ajustarMapa();
+  } else {
+    img.addEventListener("load", ajustarMapa);
+  }
+});
+
+/* recalcular si cambia el tamaño de pantalla */
 window.addEventListener("resize", ajustarMapa);
-window.addEventListener("load", ajustarMapa);
 
 
 
