@@ -144,25 +144,21 @@
 
 @media screen and (min-width:1024px){
 
-    #puzzle{
-        justify-content:flex-start;
-    }
-
     #contenedor-imagen{
-        flex:1;
         display:flex;
         justify-content:center;
         align-items:center;
+        width:100%;
+        height:100%;
     }
 
     #puzzle img{
-        height:100%;     /* usa la mayor altura posible */
+        max-height:85%;
         width:auto;
-        max-width:900px; /* evita que se vuelva gigante en monitores grandes */
+        max-width:100%;
     }
 
 }
-
 
 </style>
 </head>
