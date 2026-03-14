@@ -414,6 +414,50 @@ function showMessagexIntentos() {
   window.incrementGameNumber = incrementGameNumberLocal;
 });
 
+/* =========================================
+   ESCALADO AUTOMÁTICO DEL IMAGE MAP
+   ========================================= */
+
+function ajustarMapa() {
+  const img = document.getElementById("mapa-img");
+  const areas = document.querySelectorAll("map area");
+  
+  if (!img || areas.length === 0) return;
+
+  const anchoOriginal = 1095;
+  const altoOriginal = 1590;
+
+  const anchoActual = img.clientWidth;
+  const altoActual = img.clientHeight;
+
+  const escalaX = anchoActual / anchoOriginal;
+  const escalaY = altoActual / altoOriginal;
+
+  areas.forEach(area => {
+    if (!area.dataset.originalCoords) {
+      area.dataset.originalCoords = area.coords;
+    }
+
+    const coordsOriginal = area.dataset.originalCoords.split(",");
+
+    const coordsNuevas = coordsOriginal.map((coord, i) => {
+
+      if (i % 2 === 0) {
+        return Math.round(coord * escalaX);
+      } else {
+        return Math.round(coord * escalaY);
+      }
+    });
+
+    area.coords = coordsNuevas.join(",");
+
+  });
+}
+
+window.addEventListener("resize", ajustarMapa);
+window.addEventListener("load", ajustarMapa);
+
+
 
 
 
