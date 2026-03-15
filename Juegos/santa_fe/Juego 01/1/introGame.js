@@ -120,6 +120,6 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 
     startGame();
 
-    requestAnimationFrame(() => ajustarMapa());
+    requestAnimationFrame(ajustarMapa);
 
 });
