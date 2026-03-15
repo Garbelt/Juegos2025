@@ -31,15 +31,18 @@
     align-items:center;
     flex:1;
     width:100%;
+    height:100%;
+    overflow:hidden;
 }
 
 /* imagen del mapa */
 
 #puzzle img{
     display:block;
-    margin:0 auto;
-    width:auto;
+    margin:auto;
     max-width:100%;
+    max-height:100%;
+    width:auto;
     height:auto;
 }
 
@@ -77,25 +80,27 @@
    MODAL
    ========================================= */
 
-   .modal {
-       display: none;
-   }
-   .modal-content {
-       position: fixed;
-       top: 50%;
-       left: 50%;
-       transform: translate(-50%, -50%);
-       background-color: #8ec6e6;
-       color: black;
-       padding: 20px;
-       border: 2px solid #333;
-       border-radius: 10px;
-       font-size: 24px;
-       z-index: 9999;
-       text-align: center;
-       width: 80%;
-       max-width: 300px;
-   }
+.modal {
+    display: none;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #8ec6e6;
+    color: black;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    font-size: 24px;
+    z-index: 9999;
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
 
 /* =========================================
    UTILIDAD
@@ -109,34 +114,91 @@
 
 /* =========================================
    MÓVIL HORIZONTAL
-   (cuidar el alto)
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation:landscape){
 
-    #puzzle img{
-        height:60dvh;
-        width:auto;
-        max-width:90vw;
-    }
+/* estado base: panel full + título visible */
+
+body.panel-full:not(.header-hidden) #contenedor-imagen{
+    width:70vw;
+    height:55dvh;
+}
+
+/* panel mini */
+
+body.panel-mini:not(.header-hidden) #contenedor-imagen{
+    width:82vw;
+    height:55dvh;
+}
+
+/* panel oculto */
+
+body.panel-hidden:not(.header-hidden) #contenedor-imagen{
+    width:96vw;
+    height:55dvh;
+}
+
+/* título oculto */
+
+body.header-hidden.panel-full #contenedor-imagen{
+    width:70vw;
+    height:65dvh;
+}
+
+body.header-hidden.panel-mini #contenedor-imagen{
+    width:82vw;
+    height:65dvh;
+}
+
+body.header-hidden.panel-hidden #contenedor-imagen{
+    width:96vw;
+    height:65dvh;
+}
 
 }
 
 
 /* =========================================
    MÓVIL VERTICAL
-   (espacio para título + panel)
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation:portrait){
 
-    #puzzle img{
-        height:58dvh;
-        width:auto;
-        max-width:95vw;
-    }
+/* estado base */
+
+body.panel-full:not(.header-hidden) #contenedor-imagen{
+    height:52dvh;
+}
+
+/* panel mini */
+
+body.panel-mini:not(.header-hidden) #contenedor-imagen{
+    height:60dvh;
+}
+
+/* panel oculto */
+
+body.panel-hidden:not(.header-hidden) #contenedor-imagen{
+    height:70dvh;
+}
+
+/* título oculto */
+
+body.header-hidden.panel-full #contenedor-imagen{
+    height:60dvh;
+}
+
+body.header-hidden.panel-mini #contenedor-imagen{
+    height:68dvh;
+}
+
+body.header-hidden.panel-hidden #contenedor-imagen{
+    height:80dvh;
+}
 
 }
+
 
 	/* =========================================
    ESCRITORIO
