@@ -118,46 +118,49 @@
 
 @media screen and (max-width:1023px) and (orientation:landscape){
 
-/* estado base: panel full + título visible */
+/* panel full + título visible */
 
 body.panel-full:not(.header-hidden) #contenedor-imagen{
-    width:70vw;
-    height:55dvh;
+    height:200px;
+    width:auto;
 }
 
-/* panel mini */
+/* panel full + título oculto */
+
+body.panel-full.header-hidden #contenedor-imagen{
+    height:220px;
+    width:auto;
+}
+
+/* panel mini + título visible */
 
 body.panel-mini:not(.header-hidden) #contenedor-imagen{
-    width:82vw;
-    height:55dvh;
+    height:200px;
+    width:auto;
 }
 
-/* panel oculto */
+/* panel mini + título oculto */
+
+body.panel-mini.header-hidden #contenedor-imagen{
+    height:220px;
+    width:auto;
+}
+
+/* panel oculto + título visible */
 
 body.panel-hidden:not(.header-hidden) #contenedor-imagen{
-    width:96vw;
-    height:55dvh;
+    height:200px;
+    width:auto;
 }
 
-/* título oculto */
+/* panel oculto + título oculto */
 
-body.header-hidden.panel-full #contenedor-imagen{
-    width:70vw;
-    height:65dvh;
-}
-
-body.header-hidden.panel-mini #contenedor-imagen{
-    width:82vw;
-    height:65dvh;
-}
-
-body.header-hidden.panel-hidden #contenedor-imagen{
-    width:96vw;
-    height:65dvh;
+body.panel-hidden.header-hidden #contenedor-imagen{
+    height:220px;
+    width:auto;
 }
 
 }
-
 
 /* =========================================
    MÓVIL VERTICAL
