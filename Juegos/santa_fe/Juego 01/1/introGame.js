@@ -119,4 +119,7 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
     hablar("Comienza el juego");
 
     startGame();
+
+    requestAnimationFrame(() => ajustarMapa());
+
 });
