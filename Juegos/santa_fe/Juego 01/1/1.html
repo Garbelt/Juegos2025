@@ -168,36 +168,40 @@ body.panel-hidden.header-hidden #contenedor-imagen{
 
 @media screen and (max-width:1023px) and (orientation:portrait){
 
-/* estado base */
+/* panel full + título visible (estado base) */
 
 body.panel-full:not(.header-hidden) #contenedor-imagen{
-    height:52dvh;
+    height:350px;
 }
 
-/* panel mini */
+/* panel full + título oculto */
+
+body.panel-full.header-hidden #contenedor-imagen{
+    height:365px;
+}
+
+/* panel mini + título visible */
 
 body.panel-mini:not(.header-hidden) #contenedor-imagen{
-    height:60dvh;
+    height:365px;
 }
 
-/* panel oculto */
+/* panel mini + título oculto */
+
+body.panel-mini.header-hidden #contenedor-imagen{
+    height:380px;
+}
+
+/* panel oculto + título visible */
 
 body.panel-hidden:not(.header-hidden) #contenedor-imagen{
-    height:70dvh;
+    height:380px;
 }
 
-/* título oculto */
+/* panel oculto + título oculto */
 
-body.header-hidden.panel-full #contenedor-imagen{
-    height:60dvh;
-}
-
-body.header-hidden.panel-mini #contenedor-imagen{
-    height:68dvh;
-}
-
-body.header-hidden.panel-hidden #contenedor-imagen{
-    height:80dvh;
+body.panel-hidden.header-hidden #contenedor-imagen{
+    height:400px;
 }
 
 }
