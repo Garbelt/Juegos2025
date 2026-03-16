@@ -1,4 +1,4 @@
-﻿// script.js - Juego de provincias con guardado LOCAL + FIREBASE (DTOS_sei)
+// script.js - Juego de provincias con guardado LOCAL + FIREBASE (DTOS_sei)
 
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("start-button");
@@ -353,8 +353,9 @@ function showMessagexIntentos() {
     updateDisplay();
   });
 
-  cuadrantes.forEach(zona => {
-    zona.addEventListener("click", () => {
+cuadrantes.forEach(zona => {
+  zona.addEventListener("click", (e) => {
+    e.preventDefault();
       if (attempts <= 0 || pendientes.length === 0 || endGameExecuted) return;
 
       const parteEsperada = normalizarTexto(partesAleatorias[parteActualIndex]);
