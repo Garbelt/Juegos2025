@@ -125,5 +125,3 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
     setTimeout(ajustarMapa, 500);
 
 });;
-
-});
