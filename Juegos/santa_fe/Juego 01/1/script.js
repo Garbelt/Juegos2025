@@ -429,7 +429,7 @@ function ajustarMapa() {
 
   if (!anchoActual || !altoActual) return;
 
-  const areas = document.querySelectorAll("#DepartamentosSantafesinos area");
+  const areas = document.querySelectorAll('map[name="DepartamentosSantafesinos"] area');
   if (!areas.length) return;
 
   const anchoOriginal = img.naturalWidth || 1095;
@@ -469,6 +469,7 @@ window.addEventListener("load", () => {
   if (!img) return;
 
   function iniciarEscalado(){
+
     ajustarMapa();
 
     const observer = new ResizeObserver(() => {
@@ -476,6 +477,7 @@ window.addEventListener("load", () => {
     });
 
     observer.observe(img);
+
   }
 
   if (img.complete) {
