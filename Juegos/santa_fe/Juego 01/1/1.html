@@ -25,15 +25,15 @@
 
 /* contenedor del mapa */
 
-#contenedor-imagen{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex:1;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-}
+    #contenedor-imagen{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        height:100%;
+    }
+
+	
 
 /* imagen del mapa */
 
@@ -121,43 +121,49 @@
 /* panel full + título visible */
 
 body.panel-full:not(.header-hidden) #contenedor-imagen{
-    height:200px;
-    width:auto;
+        height:200px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel full + título oculto */
 
 body.panel-full.header-hidden #contenedor-imagen{
-    height:220px;
-    width:auto;
+        height:220px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel mini + título visible */
 
 body.panel-mini:not(.header-hidden) #contenedor-imagen{
-    height:200px;
-    width:auto;
+        height:200px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel mini + título oculto */
 
 body.panel-mini.header-hidden #contenedor-imagen{
-    height:220px;
-    width:auto;
+        height:220px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel oculto + título visible */
 
 body.panel-hidden:not(.header-hidden) #contenedor-imagen{
-    height:200px;
-    width:auto;
+        height:200px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel oculto + título oculto */
 
 body.panel-hidden.header-hidden #contenedor-imagen{
-    height:220px;
-    width:auto;
+        height:220px;
+        width:auto;
+        max-width:100%;
 }
 
 }
@@ -171,37 +177,49 @@ body.panel-hidden.header-hidden #contenedor-imagen{
 /* panel full + título visible (estado base) */
 
 body.panel-full:not(.header-hidden) #contenedor-imagen{
-    height:350px;
+        height:350px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel full + título oculto */
 
 body.panel-full.header-hidden #contenedor-imagen{
-    height:365px;
+        height:365px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel mini + título visible */
 
 body.panel-mini:not(.header-hidden) #contenedor-imagen{
-    height:365px;
+        height:365px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel mini + título oculto */
 
 body.panel-mini.header-hidden #contenedor-imagen{
-    height:380px;
+        height:380px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel oculto + título visible */
 
 body.panel-hidden:not(.header-hidden) #contenedor-imagen{
-    height:380px;
+        height:380px;
+        width:auto;
+        max-width:100%;
 }
 
 /* panel oculto + título oculto */
 
 body.panel-hidden.header-hidden #contenedor-imagen{
-    height:400px;
+        height:400px;
+        width:auto;
+        max-width:100%;
 }
 
 }
@@ -212,14 +230,6 @@ body.panel-hidden.header-hidden #contenedor-imagen{
    ========================================= */
 
 @media screen and (min-width:1024px){
-
-    #contenedor-imagen{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        width:100%;
-        height:100%;
-    }
 
     #puzzle img{
         height:380px;
