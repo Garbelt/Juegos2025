@@ -423,17 +423,14 @@ function ajustarMapa() {
   const img = document.getElementById("mapa-img");
   if (!img) return;
 
-  const rect = img.getBoundingClientRect();
-  const anchoActual = rect.width;
-  const altoActual = rect.height;
+  const anchoActual = img.clientWidth;
+  const altoActual = img.clientHeight;
 
-  /* si la imagen aún no tiene tamaño visible, salir */
   if (!anchoActual || !altoActual) return;
 
   const areas = document.querySelectorAll("#DepartamentosSantafesinos area");
   if (!areas.length) return;
 
-  /* tamaño original de la imagen */
   const anchoOriginal = img.naturalWidth || 1095;
   const altoOriginal = img.naturalHeight || 1590;
 
@@ -442,7 +439,6 @@ function ajustarMapa() {
 
   areas.forEach(area => {
 
-    /* guardar coords originales solo la primera vez */
     if (!area.dataset.originalCoords) {
       area.dataset.originalCoords = area.coords;
     }
@@ -461,17 +457,30 @@ function ajustarMapa() {
 
 }
 
-/* ejecutar cuando la imagen esté cargada */
+
+/* =========================================
+   OBSERVAR CAMBIOS DE TAMAÑO DE LA IMAGEN
+   ========================================= */
+
 window.addEventListener("load", () => {
+
   const img = document.getElementById("mapa-img");
   if (!img) return;
 
-  if (img.complete) {
+  function iniciarEscalado(){
     ajustarMapa();
-  } else {
-    img.addEventListener("load", ajustarMapa);
-  }
-});
 
-/* recalcular si cambia el tamaño de pantalla */
-window.addEventListener("resize", ajustarMapa);
+    const observer = new ResizeObserver(() => {
+      ajustarMapa();
+    });
+
+    observer.observe(img);
+  }
+
+  if (img.complete) {
+    iniciarEscalado();
+  } else {
+    img.addEventListener("load", iniciarEscalado);
+  }
+
+});
