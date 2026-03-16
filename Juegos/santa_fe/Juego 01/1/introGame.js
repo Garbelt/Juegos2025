@@ -120,6 +120,10 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 
     startGame();
 
-    requestAnimationFrame(ajustarMapa);
+    setTimeout(ajustarMapa, 50);
+    setTimeout(ajustarMapa, 200);
+    setTimeout(ajustarMapa, 500);
+
+});;
 
 });
