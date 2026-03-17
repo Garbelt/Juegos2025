@@ -230,6 +230,12 @@ function showMessagexExito() {
   setTimeout(() => {
     titulo.style.visibility = "hidden";
     indicacion.textContent = '';
+
+const zonaIndicacion = document.getElementById("zona-indicacion");
+if (zonaIndicacion){
+  zonaIndicacion.classList.add("indicacion-oculta");
+}
+
     fadeOutMusic(audio, 4);
 
     const bonus = time * 2;
@@ -270,6 +276,11 @@ function showMessagexTiempo() {
   titulo.style.visibility = "hidden";
   document.getElementById('indicacion').textContent = '';
 
+const zonaIndicacion = document.getElementById("zona-indicacion");
+if (zonaIndicacion){
+  zonaIndicacion.classList.add("indicacion-oculta");
+}
+
   fadeOutMusic(audio, 4);
 
   const messageEl = document.getElementById("message");
@@ -303,6 +314,12 @@ function showMessagexIntentos() {
   setTimeout(() => {
     titulo.style.visibility = "hidden";
     document.getElementById('indicacion').textContent = '';
+
+const zonaIndicacion = document.getElementById("zona-indicacion");
+if (zonaIndicacion){
+  zonaIndicacion.classList.add("indicacion-oculta");
+}
+
     fadeOutMusic(audio, 4);
 
     const messageEl = document.getElementById("message");
