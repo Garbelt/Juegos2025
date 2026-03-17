@@ -64,6 +64,13 @@
     width:fit-content;
     min-width:60%;
     max-width:90%;
+
+    min-height: 60px; /* 👈 CLAVE: mantiene el espacio */
+    display:flex;              /* 👇 mejora alineación */
+    align-items:center;
+    justify-content:center;
+
+    transition: opacity 0.4s ease; /* 👈 transición suave */
 }
 
 #titulo-instruccion{
@@ -75,6 +82,11 @@
     font-weight:900;
 }
 
+
+.indicacion-oculta{
+    opacity: 0;
+    pointer-events: none;
+}
 
 /* =========================================
    MODAL
