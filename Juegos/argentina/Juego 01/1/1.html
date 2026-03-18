@@ -1,0 +1,595 @@
+﻿
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Identificar en la imagen</title>
+<link rel="stylesheet" href="mensajesdiferente.css">
+<link rel="stylesheet" href="botoneria.css">
+<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="adaptadores.css">
+<link rel="stylesheet" href="pre-game.css">
+<style>
+/* =========================================
+   PUZZLE
+   ========================================= */
+
+#puzzle{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    width:100%;
+}
+
+/* contenedor del mapa */
+
+    #contenedor-imagen{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        height:100%;
+    }
+
+	
+
+/* imagen del mapa */
+
+#puzzle img{
+    display:block;
+    margin:auto;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+}
+
+
+/* =========================================
+   INDICACIÓN
+   ========================================= */
+
+#zona-indicacion{
+    background:rgba(0,0,0,0.45);
+    color:white;
+    text-align:center;
+    padding:6px 8px;
+    border-radius:6px;
+
+    font-size:clamp(16px,2.5vw,24px);
+    font-weight:bold;
+
+    width:fit-content;
+    min-width:60%;
+    max-width:90%;
+}
+
+#titulo-instruccion{
+    opacity:0.8;
+    margin-right:6px;
+}
+
+#indicacion{
+    font-weight:900;
+}
+
+#zona-indicacion.indicacion-oculta{
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =========================================
+   MODAL
+   ========================================= */
+
+.modal {
+    display: none;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #8ec6e6;
+    color: black;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    font-size: 24px;
+    z-index: 9999;
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+
+/* =========================================
+   UTILIDAD
+   ========================================= */
+
+#align-center-center{
+    vertical-align:middle;
+    text-align:center;
+}
+
+
+/* =========================================
+   MÓVIL HORIZONTAL
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:landscape){
+
+/* 🔒 REGLA PRINCIPAL: título visible = tamaño inicial */
+
+body:not(.header-hidden) #puzzle img{
+        height:215px;
+        max-height:60vh;
+        max-height:60dvh;
+        width:auto;
+        max-width:100%;
+}
+
+/* 🔹 título oculto + panel full */
+
+body.panel-full.header-hidden #puzzle img{
+        max-height:75vh;
+        max-height:75dvh;
+}
+
+/* 🔹 título oculto + panel mini */
+
+body.panel-mini.header-hidden #puzzle img{
+        max-height:78vh;
+        max-height:78dvh;
+}
+
+/* 🔹 título oculto + panel oculto */
+
+body.panel-hidden.header-hidden #puzzle img{
+        max-height:85vh;
+        max-height:85dvh;
+        max-width:95vw;
+}
+
+}
+
+
+/* =========================================
+   MÓVIL VERTICAL
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:portrait){
+
+/* 🔹 panel full + título visible (base estable) */
+
+body.panel-full:not(.header-hidden) #puzzle img{
+        height:370px;
+        max-height:80vh;
+        max-height:80dvh;
+        width:auto;
+        max-width:100%;
+}
+
+/* 🔹 panel full + título oculto */
+
+body.panel-full.header-hidden #puzzle img{
+	    max-width:87vw;
+}
+
+/* 🔹 panel mini */
+
+body.panel-mini:not(.header-hidden) #puzzle img{
+	    max-width:88vw;
+}
+
+body.panel-mini.header-hidden #puzzle img{
+	    max-width:90vw;
+}
+
+/* 🔹 panel oculto */
+
+body.panel-hidden:not(.header-hidden) #puzzle img{
+	    max-width:92vw;
+}
+
+body.panel-hidden.header-hidden #puzzle img{
+        max-width:95vw;
+}
+}
+
+	/* =========================================
+   ESCRITORIO
+   ========================================= */
+
+@media screen and (min-width:1024px){
+
+    #puzzle img{
+        height:380px;
+        width:auto;
+        max-width:100%;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- ================= PANTALLA PREVIA ================= -->
+<div id="pre-game-screen" style="display: none;">
+    <div id="pre-game-container">
+        <h1 id="game-title" class="pre-game-title">Clasificación de Instrumentos Folclóricos</h1>
+        <p id="game-description" class="pre-game-description">
+            Aprende a clasificar los instrumentos según su tipo. Selecciona correctamente para ganar puntos.
+        </p>
+
+        <div id="pre-game-buttons">
+            <button id="ver-video-btn">Ver Video Explicativo</button>
+            <button id="read-screen">Leer Descripción</button>
+        </div>
+
+        <button id="continuar-btn" class="btn-continue">Continuar</button>
+    </div>
+
+    <!-- Modal de video -->
+	<div id="video-modal" class="modal">
+ 	   <div class="modal-content">
+    	    <span id="close-video" style="cursor:pointer;">Cerrar X</span>
+
+   	     <video id="pre-game-video" width="100%" controls>
+    	        <source src="videos/explicacion.mp4" type="video/mp4">
+    	        Tu navegador no soporta el video.
+  	      </video>
+
+ 	   </div>
+	</div>
+</div>
+
+<!-- ================= BOTON INICIAR ================= -->
+<div id="start-button-container">
+    <button id="start-button" class="disable-clicks">COMENZAR EL JUEGO</button>
+</div>
+
+<!-- ================= CONTENIDO DEL JUEGO ================= -->
+<div class="container" style="display:none;">
+<table>
+<tr>
+  <th colspan="2" class="title-cell" style="text-align: center;">
+    <span class="titulo-principal">SEÑALAR EN LA IMAGEN</span><br>
+    <span class="titulo-secundario">LAS PROVINCIAS DE ARGENTINA</span>
+  </th>
+</tr>
+<tr>
+<td id="align-center-center">
+<div id="puzzle">
+<img id="mapa-img" src="Image/imagen.jpg" usemap="#ProvinciasArgentinas" />
+<map name="ProvinciasArgentinas">
+
+<area shape="poly" 
+      coords="207,98,209,67,196,61,224,35,234,31,238,16,257,31,280,26,274,47,284,67,295,82,318,82,321,117,305,127,285,128,270,121,251,105,254,90,241,88,235,98,238,110,227,117" 
+      alt="jujuy" 
+      class="quadrant jujuy" />
+  
+
+<area shape="poly" 
+      coords="159,160,162,151,153,145,164,134,184,122,198,112,207,100,228,117,237,115,237,95,245,88,251,95,250,108,261,110,267,124,290,130,308,127,323,117,321,85,307,84,294,77,272,47,281,26,293,25,304,37,313,54,318,38,324,21,366,19,387,39,389,101,390,121,347,171,320,174,313,193,300,194,290,197,281,190,267,191,265,200,245,196,242,207,231,194,219,188,225,178,232,174,234,163,194,163" 
+      alt="salta" 
+      class="quadrant salta" />
+  
+
+<area shape="poly" 
+      coords="389,107,387,38,401,54,416,67,437,79,442,94,452,94,469,100,482,100,500,114,526,130,559,145,582,157,573,167,551,194,551,208,539,221,523,206,513,197,502,197,482,173,467,160,450,147,433,131,411,114" 
+      alt="formosa" 
+      class="quadrant formosa" />
+  
+
+<area shape="poly" 
+      coords="629,240,629,253,634,270,639,274,651,270,665,261,678,251,692,247,711,233,714,193,708,184,708,171,684,174,677,185,680,207,662,224,649,226,642,240" 
+      alt="misiones" 
+      class="quadrant misiones" />
+  
+
+<area shape="poly" 
+      coords="496,360,513,357,532,353,548,363,556,373,575,347,602,317,638,283,631,263,628,244,615,237,598,241,576,241,559,234,528,237,525,249,519,263,515,283,512,306,493,319,495,339" 
+      alt="corrientes" 
+      class="quadrant corrientes" />
+  
+
+<area shape="poly" 
+      coords="492,360,510,362,530,353,545,362,553,372,559,383,556,397,549,406,551,418,545,428,548,442,545,453,548,463,551,472,540,479,536,495,535,508,536,518,526,522,506,505,485,492,459,476,450,456,453,436,457,420,473,400,490,377" 
+      alt="entre_rios" 
+      class="quadrant entre_rios" />
+  
+
+<area shape="poly" 
+      coords="520,261,520,241,532,223,536,216,512,197,502,197,487,178,475,170,467,160,436,134,417,120,390,105,389,122,373,141,354,165,417,165,420,260" 
+      alt="chaco" 
+      class="quadrant chaco" />
+  
+
+<area shape="poly" 
+      coords="407,346,407,319,410,306,417,293,417,267,414,168,353,168,346,174,320,177,313,196,315,207,310,223,297,243,297,257,293,271,293,296,304,310,305,332,324,329,340,329,360,337,374,337,386,347" 
+      alt="santiago_del_estero" 
+      class="quadrant santiago_del_estero" />
+  
+
+<area shape="poly" 
+      coords="290,270,280,267,275,276,261,260,258,244,261,227,248,211,234,203,234,197,221,193,222,180,232,175,232,164,191,163,182,167,161,161,161,185,168,197,168,206,159,217,176,231,171,238,162,246,152,247,151,257,145,266,172,269,176,279,192,279,198,287,215,286,241,283,244,296,252,304,271,317,278,334,285,350,298,347,301,330,307,322,298,306,288,299" 
+      alt="catamarca" 
+      class="quadrant catamarca" />
+  
+
+<area shape="poly" 
+      coords="277,271,291,267,298,244,308,217,310,196,298,197,285,197,272,193,265,201,250,198,245,211,250,218,254,227,254,237,260,249,258,257,265,266" 
+      alt="tucuman" 
+      class="quadrant tucuman" />
+  
+
+<area shape="poly" 
+      coords="377,526,426,528,449,493,456,496,467,486,454,469,449,449,456,425,467,409,479,390,489,376,495,350,495,327,509,306,516,289,516,267,420,266,414,299,407,319,410,347,406,369,416,379,410,397,401,420,406,438,414,455,414,472,413,481" 
+      alt="santa_fe" 
+      class="quadrant santa_fe" />
+  
+
+<area shape="poly" 
+      coords="308,556,367,554,366,534,380,529,411,481,414,469,413,452,404,436,399,416,414,379,406,370,407,352,387,346,373,337,360,342,347,333,330,332,318,329,301,333,301,349,284,356,284,373,274,390,275,426,290,432,300,445,310,452,308,472,301,485,304,512" 
+      alt="cordoba" 
+      class="quadrant cordoba" />
+  
+
+<area shape="poly" 
+      coords="373,791,387,793,399,801,414,786,404,771,410,743,410,730,400,715,409,710,432,718,473,714,516,705,545,691,562,683,563,670,581,652,588,634,588,612,576,607,568,592,576,575,568,561,558,549,546,542,532,532,515,515,495,499,477,489,466,491,452,499,437,511,430,522,420,532,368,531,368,645,371,717" 
+      alt="buenos_aires" 
+      class="quadrant buenos_aires" />
+  
+
+<area shape="poly" 
+      coords="373,733,368,650,367,558,308,559,307,602,284,604,255,607,234,607,205,608,207,630,207,644,209,671,227,672,228,693,241,697,248,693,254,704,267,711,287,713,308,711,334,714,354,723" 
+      alt="la_pampa" 
+      class="quadrant la_pampa" />
+  
+
+<area shape="poly" 
+      coords="305,599,310,556,304,539,305,515,301,502,304,478,308,453,295,448,295,438,278,429,267,433,254,438,242,435,227,433,218,442,227,455,231,472,231,491,239,511,254,521,247,541,258,555,264,565,258,599" 
+      alt="san_luis" 
+      class="quadrant san_luis" />
+  
+
+<area shape="poly" 
+      coords="148,271,169,271,175,277,194,283,205,290,219,289,232,281,242,286,244,297,248,304,261,310,274,326,284,354,284,370,275,386,275,402,275,430,257,433,244,432,229,416,229,396,214,379,209,367,194,356,178,344,168,342,156,346,158,327,158,316,146,309,135,299,131,289,138,280" 
+      alt="la_rioja" 
+      class="quadrant la_rioja" />
+  
+
+<area shape="poly" 
+      coords="217,445,219,433,232,433,245,435,228,416,228,397,214,379,207,370,195,359,181,347,168,343,159,347,158,333,156,320,148,313,139,302,128,299,125,310,126,326,121,334,118,359,123,372,119,382,112,399,112,412,106,433,119,446,116,459,131,473,143,453,158,446,171,453,182,449,196,443" 
+      alt="san_juan" 
+      class="quadrant san_juan" />
+  
+
+<area shape="poly" 
+      coords="131,473,145,458,155,448,166,450,168,459,181,455,189,448,201,450,215,450,227,456,228,475,229,493,237,508,248,518,248,535,250,552,260,561,260,578,258,595,252,604,224,605,202,604,204,619,207,638,207,668,192,667,178,655,166,658,151,648,138,631,128,622,133,592,129,581,133,561,138,544,135,516,132,498" 
+      alt="mendoza" 
+      class="quadrant mendoza" />
+  
+
+<area shape="poly" 
+      coords="113,826,133,807,149,796,161,793,178,767,194,746,208,730,211,705,208,681,191,667,176,658,165,662,148,644,142,632,126,622,121,638,109,650,115,664,113,681,122,705,129,723,126,737,113,738,118,751,112,768,106,787,112,799,105,817" 
+      alt="neuquen" 
+      class="quadrant neuquen" />
+  
+
+<area shape="poly" 
+      coords="209,717,209,674,224,674,227,691,238,698,247,700,264,708,270,715,290,715,313,717,330,715,350,724,367,737,368,764,368,776,366,786,373,794,386,799,383,806,368,809,343,800,323,794,320,806,323,826,321,844,224,853,149,862,121,863,115,850,109,836,122,831,132,831,136,814,146,803,159,803,168,797,172,780,185,766,205,741,211,728" 
+      alt="rio_negro" 
+      class="quadrant rio_negro" />
+  
+
+<area shape="poly" 
+      coords="121,866,169,863,219,859,275,853,323,850,337,860,336,872,340,882,348,880,354,863,361,850,373,862,367,880,350,892,330,905,321,925,324,943,318,960,304,970,288,983,277,993,262,1019,234,1021,198,1025,171,1028,146,1031,141,1016,151,1001,139,990,125,983,139,978,149,978,152,968,141,966,131,968,131,945,132,935,122,929,125,917,112,903,115,889,110,874,121,877" 
+      alt="chubut" 
+      class="quadrant chubut" />
+  
+
+<area shape="poly" 
+      coords="148,1033,184,1028,214,1028,238,1018,260,1021,275,1048,293,1062,318,1062,318,1081,310,1091,308,1104,290,1121,275,1138,268,1158,268,1182,255,1195,242,1210,241,1225,239,1241,250,1255,257,1268,261,1280,239,1277,227,1268,218,1267,208,1270,194,1276,176,1281,159,1261,162,1247,159,1231,148,1218,151,1207,135,1200,119,1197,122,1185,121,1172,132,1158,148,1162,138,1142,141,1125,131,1108,138,1088,149,1092,143,1072,148,1058,159,1051,146,1043" 
+      alt="santa_cruz" 
+      class="quadrant santa_cruz" />
+  
+
+<area shape="poly" 
+      coords="265,1300,265,1331,271,1356,274,1374,274,1384,303,1386,321,1389,340,1387,356,1383,366,1371,340,1371,318,1360,301,1346,287,1334,278,1316" 
+      alt="tierra_del_fuego" 
+      class="quadrant tierra_del_fuego" />
+  
+
+<area shape="poly" 
+      coords="447,1247,454,1265,467,1268,480,1263,486,1273,506,1274,528,1258,545,1244,533,1230,512,1224,496,1230,480,1223,465,1230,454,1215,444,1223,449,1234" 
+      alt="islas_malvinas" 
+      class="quadrant islas_malvinas" />
+  
+</map>
+<!-- INDICACION DENTRO DEL AREA DE JUEGO -->
+<div id="zona-indicacion">
+    <span id="titulo-instruccion"><b>SEÑALAR</b></span>
+    <span id="indicacion"></span>
+</div>
+</div>
+</td>
+
+<td id="align-left-top" class="celda-panel" style="position: relative;">
+        <div id="panel">
+              <div>
+			    <div>
+			        <div class="dato">
+			            <span class="icono">👤</span>
+			            <span id="actualUsername"></span>
+			        </div>
+			        <div class="dato">
+			            <span class="icono">⭐</span>
+			            <span class="texto">Puntaje:</span>
+			            <span id="puntaje">0</span>
+    			        </div>
+  			        <div class="dato">
+			            <span class="icono">⏱</span>
+ 			           <span class="texto">Tiempo:</span>
+			            <span id="reloj">01:00</span>
+  			        </div>
+			        <div class="dato">
+			            <span class="icono">❌</span>
+    			            <span class="texto">Errores:</span>
+    			            <span id="intentos">0/5</span>
+ 			        </div>
+			    </div>
+        	</div>
+			<button id="lectorButton">Cancelar Lectura</button>
+</td>
+</tr>
+
+		<tr class="fila-panel-vertical">
+		    <th colspan="2" class="celda-panel-vertical" style="position: relative;">
+			<div id="panel-vertical">
+
+ 			   <div class="dato">
+ 			       <span class="icono">👤</span>
+  			      <span id="actualUsername-vertical"></span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">⭐</span>
+			        <span class="texto">Puntaje:</span>
+   			     <span id="puntaje-vertical">0</span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">⏱</span>
+			        <span class="texto">Tiempo:</span>
+			        <span id="reloj-vertical">01:00</span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">❌</span>
+ 			        <span class="texto">Errores:</span>
+ 			        <span id="intentos-vertical">0/5</span>
+			    </div>
+			</div>
+            </th>
+        </tr>
+
+</table>
+
+</div>
+
+<div class="found-message" id="message"></div>
+
+<audio id="audio-tiempo-agotado" src="sounds/finportiempo.mp3"></audio>
+<audio id="audio-error" src="sounds/finporintentos.mp3"></audio>
+<audio id="audio-correcto" src="sounds/finporcompletar.mp3"></audio>
+<audio id="background-music" loop>
+<source src="sounds/El gran Puzzle [1].mp3" type="audio/mpeg" />
+Tu navegador no soporta la reproducción de audio.
+</audio>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
+        authDomain: "juego001-469b6.firebaseapp.com",
+        databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
+        projectId: "juego001-469b6",
+        storageBucket: "juego001-469b6.appspot.com",
+        messagingSenderId: "528847999661",
+        appId: "1:528847999661:web:6085a104fe64262a042c24"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Scripts -->
+<script src="lector.js"></script>
+<script src="introGame.js"></script>
+<script src="verificacionesjuegos.js"></script>
+<script src="script.js"></script>
+
+<script>
+window.addEventListener("load", () => { 
+    // Mostrar usuario si existe en localStorage
+    const actualUsername = localStorage.getItem("ActualUs");
+    if (actualUsername) {
+        const userHorizontal = document.getElementById("actualUsername");
+        const userVertical = document.getElementById("actualUsername-vertical");
+        if(userHorizontal) userHorizontal.textContent = actualUsername;
+        if(userVertical) userVertical.textContent = actualUsername;
+    }
+});
+
+// ===== PANTALLA PREVIA =====
+document.getElementById("read-screen").addEventListener("click", () => {
+    leerElemento("game-title");
+    leerElemento("game-description");
+});
+
+document.getElementById("ver-video-btn").addEventListener("click", () => {
+    const videoModal = document.getElementById("video-modal");
+    const video = document.getElementById("pre-game-video");
+    if(video.src){
+        videoModal.style.display = "block";
+        video.play();
+    }
+});
+
+document.getElementById("close-video").addEventListener("click", () => {
+    const videoModal = document.getElementById("video-modal");
+    const video = document.getElementById("pre-game-video");
+    video.pause();
+    video.currentTime = 0;
+    videoModal.style.display = "none";
+});
+
+document.getElementById("continuar-btn").addEventListener("click", () => {
+    document.getElementById("pre-game-screen").style.display = "none";
+    document.querySelector(".container").style.display = "block";
+    document.getElementById("background-music").play();
+    startGame();
+});
+</script>
+
+<!-- ================= BOTONERA MÓVIL ================= -->
+<div class="mobile-controls">
+
+  <button id="mobile-main-btn"
+          class="fab-main"
+          aria-label="Mostrar opciones del juego">
+    <span aria-hidden="true">☰</span>
+  </button>
+
+  <div class="fab-options">
+
+    <button id="mobile-read-btn">
+      <span aria-hidden="true">🔊</span>
+    </button>
+
+    <button id="mobile-toggle-header-btn">
+      <span aria-hidden="true">🧾</span>
+    </button>
+
+    <button id="mobile-panel-btn">
+      <span aria-hidden="true">📊</span>
+    </button>
+
+  </div>
+</div>
+
+<script src="botonera-mobile.js"></script>
+
+</body>
+</html>
