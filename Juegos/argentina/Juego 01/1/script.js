@@ -463,7 +463,7 @@ function ajustarMapa() {
 
   if (!anchoActual || !altoActual) return;
 
-  const areas = document.querySelectorAll('map[name="DepartamentosSantafesinos"] area');
+  const areas = document.querySelectorAll('map[name="ProvinciasArgentinas"] area');
   if (!areas.length) return;
 
   const anchoOriginal = img.naturalWidth || 774;
