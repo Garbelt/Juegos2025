@@ -123,6 +123,13 @@ button {
 ========================= */
 @media screen and (max-width:1023px) and (orientation:landscape){
 
+    body {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden; /* ✅ OK en tu caso */
+  }
+
+
   .container {
     aspect-ratio: unset;
     width: 95vw;   /* fallback */
@@ -148,7 +155,6 @@ button {
   .enviar-btn {
     width: 100%; /* 🔴 ocupa toda la celda */
   }
-
   
   .footer {
     flex-direction: row;
@@ -164,6 +170,12 @@ button {
    📱 MOBILE (vertical)
 ========================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
+
+    body {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden; /* ✅ OK en tu caso */
+  }
 
   .container {
     aspect-ratio: unset;
