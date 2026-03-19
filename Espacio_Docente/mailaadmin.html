@@ -129,7 +129,6 @@ button {
     overflow: hidden; /* ✅ OK en tu caso */
   }
 
-
   .container {
     aspect-ratio: unset;
     width: 95vw;   /* fallback */
@@ -138,10 +137,12 @@ button {
     height: 95dvh; /* moderno */
     max-width: none;
     padding: 15px;
+    overflow: hidden; /* 🔴 evita scroll externo */
   }
 
   table {
     width: 90%;
+    overflow-y: auto;
   }
 
   td {
@@ -185,6 +186,7 @@ button {
     height: 95dvh; /* moderno */
     max-width: none;
     padding: 15px;
+    overflow: hidden;
   }
  
   table {
