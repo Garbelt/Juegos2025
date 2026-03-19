@@ -127,6 +127,7 @@ button {
     height: 100vh;
     height: 100dvh;
     overflow: hidden; /* ✅ OK en tu caso */
+    font-size: clamp(12px, 1.5vw, 16px);
   }
 
   .container {
@@ -147,10 +148,6 @@ button {
 
   td {
     display: table-cell; /* 🔴 vuelve a formato normal */
-  }
-
-  button {
-    font-size: 13px;
   }
 
   .enviar-btn {
@@ -176,6 +173,7 @@ button {
     height: 100vh;
     height: 100dvh;
     overflow: hidden; /* ✅ OK en tu caso */
+    font-size: clamp(12px, 1.5vw, 16px);
   }
 
   .container {
@@ -214,10 +212,6 @@ button {
     justify-content: center;
   }
   
-  button {
-    font-size: 13px;
-  }
-
   .enviar-btn {
     width: 100%; /* 🔴 ocupa toda la celda */
   }
