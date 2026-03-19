@@ -124,9 +124,11 @@ button {
 @media screen and (max-width:1023px) and (orientation:landscape){
 
   .container {
-    aspect-ratio: auto;
-    height: 100%;
-    min-height: auto;
+    aspect-ratio: unset;   /* 🔴 eliminamos proporción */
+    width: 95%;
+    height: 95%;
+    max-width: none;       /* 🔴 importante */
+    padding: 15px;
   }
 
   table {
@@ -162,11 +164,12 @@ button {
 @media screen and (max-width:1023px) and (orientation:portrait){
 
   .container {
-    aspect-ratio: auto;
-    height: 100%;
-    min-height: auto;
+    aspect-ratio: unset;   /* 🔴 eliminamos proporción */
+    width: 95%;
+    height: 95%;
+    max-width: none;       /* 🔴 importante */
     padding: 15px;
-  }
+  
 
   table {
     width: 100%;
