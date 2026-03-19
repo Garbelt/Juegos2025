@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -58,13 +58,29 @@ td {
   border-bottom: 1px solid #c0c0c0; /* 🔴 gris más visible */
 }
 
+button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  font-size: 14px;
+  line-height: 1.2;
+  white-space: normal;     /* 🔴 permite salto de línea */
+  word-break: break-word;  /* 🔴 evita desbordes */
+}
 
 .footer {
   display: flex;
   justify-content: space-between;
 }
 
-.enviar-btn { background-color: #2980b9; }
+.enviar-btn {
+  background-color: #2980b9;
+  color: white; /* 🔴 CLAVE */
+  font-weight: bold;
+}
+
 .enviar-btn:hover { background-color: #3498db; }
 .marcar-btn { background-color: #90ee90; color: black; }
 .eliminar-btn { background-color: #ff7f7f; color: black; }
@@ -108,8 +124,8 @@ td {
 
   .container {
     aspect-ratio: auto;
-    height: auto;
-    min-height: 80vh;
+    height: 100%;
+    min-height: auto;
   }
 
   table {
@@ -120,6 +136,15 @@ td {
     display: table-cell; /* 🔴 vuelve a formato normal */
   }
 
+  button {
+    font-size: 13px;
+  }
+
+  .enviar-btn {
+    width: 100%; /* 🔴 ocupa toda la celda */
+  }
+
+  
   .footer {
     flex-direction: row;
   }
@@ -136,19 +161,24 @@ td {
 @media screen and (max-width:1023px) and (orientation:portrait){
 
   .container {
-    aspect-ratio: auto;       /* 🔴 clave: sacamos proporción fija */
-    height: auto;
-    min-height: 90vh;
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: auto;
     padding: 15px;
   }
 
   table {
-    width: 100%;              /* ocupa todo el ancho */
+    width: 100%;
+  }
+
+  tr {
+    border-bottom: 1px solid #c0c0c0;
   }
 
   td {
-    display: block;           /* 🔴 rompe la tabla en formato vertical */
+    display: block;
     width: 100%;
+    border-bottom: none;
   }
 
   td:first-child {
@@ -156,16 +186,30 @@ td {
     margin-bottom: 5px;
   }
 
+  td:last-child {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  button {
+    font-size: 13px;
+  }
+
+  .enviar-btn {
+    width: 100%; /* 🔴 ocupa toda la celda */
+  }
+  
   .footer {
-    flex-direction: column;   /* 🔴 botones uno debajo del otro */
+    flex-direction: column;
     gap: 10px;
   }
 
   .logout-button {
-    width: 100%;              /* botones ancho completo */
+    width: 100%;
   }
-}
 
+}
 
 </style>
 
