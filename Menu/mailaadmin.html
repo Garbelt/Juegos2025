@@ -123,33 +123,22 @@ button {
 ========================= */
 @media screen and (max-width:1023px) and (orientation:landscape){
 
-  body {
-    height: auto;          /* 🔴 clave */
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
+    body {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden; /* ✅ OK en tu caso */
   }
 
   .container {
-    width: 95dvw;
+    aspect-ratio: unset;
+    width: 95vw;   /* fallback */
+    width: 95dvw;  /* moderno */
+    height: 95vh;  /* fallback */
+    height: 95dvh; /* moderno */
     max-width: none;
-    margin: auto;          /* 🔴 centra SIN depender de flex */
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    height: auto;          /* 🔴 NO forzar altura */
+    padding: 15px;
+    overflow: hidden; /* 🔴 evita scroll externo */
   }
-
-  h2 {
-  font-size: clamp(16px, 2vw, 22px);
-}
-
-.subtitulo {
-  font-size: clamp(12px, 1.5vw, 16px);
-}
-
-button {
-  font-size: clamp(12px, 1.5vw, 15px);
-}
 
   table {
     width: 90%;
@@ -160,12 +149,14 @@ button {
     display: table-cell; /* 🔴 vuelve a formato normal */
   }
 
-  .enviar-btn {
-    width: 100%; /* 🔴 ocupa toda la celda */
-    display: block;
-    margin: 0 auto; /* 🔴 centra perfecto */
+  button {
+    font-size: 13px;
   }
 
+  .enviar-btn {
+    width: 100%; /* 🔴 ocupa toda la celda */
+  }
+  
   .footer {
     flex-direction: row;
   }
@@ -181,33 +172,22 @@ button {
 ========================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
 
-  body {
-    height: auto;          /* 🔴 clave */
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
+    body {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden; /* ✅ OK en tu caso */
   }
 
   .container {
-    width: 95dvw;
+    aspect-ratio: unset;
+    width: 95vw;   /* fallback */
+    width: 95dvw;  /* moderno */
+    height: 95vh;  /* fallback */
+    height: 95dvh; /* moderno */
     max-width: none;
-    margin: auto;          /* 🔴 centra SIN depender de flex */
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    height: auto;          /* 🔴 NO forzar altura */
+    padding: 15px;
+    overflow: hidden;
   }
-
-  h2 {
-  font-size: clamp(16px, 2vw, 22px);
-}
-
-.subtitulo {
-  font-size: clamp(12px, 1.5vw, 16px);
-}
-
-button {
-  font-size: clamp(12px, 1.5vw, 15px);
-}
  
   table {
     width: 100%;
@@ -232,15 +212,16 @@ button {
     margin-top: 8px;
     display: flex;
     justify-content: center;
-    align-items: center;
   }
   
+  button {
+    font-size: 13px;
+  }
+
   .enviar-btn {
     width: 100%; /* 🔴 ocupa toda la celda */
-    display: block;
-    margin: 0 auto; /* 🔴 centra perfecto */
   }
-   
+  
   .footer {
     flex-direction: column;
     gap: 10px;
