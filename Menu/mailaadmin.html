@@ -122,55 +122,55 @@ td {
   max-width:500px;
 }
 
-/* =====================================================
-   MOVIL VERTICAL
-   ===================================================== */
 @media screen and (max-width:1023px) and (orientation:portrait){
-  html,
-  body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;   /* elimina scroll fantasma */
-  }
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .container {
-      width: 95vw;
-      max-width: 500px;
-      aspect-ratio: auto;   /* en móvil no necesitamos proporción fija */
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-  }
+    .container {
+        width: 92vw;
+        max-width: 500px;
+        padding: 15px;
+        box-sizing: border-box;
+        max-height: 100%;
+    }
+
+    .botonera {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
-/* =====================================================
-   MOVIL HORIZONTAL
-   ===================================================== */
-@media screen and (max-width:1023px) and (orientation:landscape){
-  html,
-  body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-  }
 
-  .container {
-      width: 90vw;
-      max-width: 650px;
-      aspect-ratio: auto;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-  }
+@media screen and (max-width:1023px) and (orientation:landscape){
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 90vw;
+        max-width: 650px;
+        padding: 12px;
+        box-sizing: border-box;
+        max-height: 100%;
+    }
+
+    .botonera {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 }
 </style>
 
