@@ -49,16 +49,27 @@ h2 {
 }
 
 table {
- margin: auto; /* 🔴 centra horizontal */ 
- width: 80%; /* opcional, para estética */ 
- text-align: center;
- }
-td {
-  padding: 10px;
-  border-bottom: 1px solid #c0c0c0; /* 🔴 gris más visible */
+  margin: auto;              /* centra horizontal */
+  width: 80%;                /* opcional */
+  border-collapse: collapse; /* une los bordes */
+  border: 1px solid #808080; /* borde exterior visible */
 }
 
+td {
+  padding: 10px;
+  border: 1px solid #c0c0c0; /* bordes internos visibles */
+}
 
+/* Primera columna: texto alineado a la izquierda */
+td:first-child {
+  text-align: left;
+}
+
+/* Segunda columna: botón centrado */
+td:nth-child(2) {
+  text-align: center;
+}
+  
 .footer {
   display: flex;
   justify-content: space-between;
