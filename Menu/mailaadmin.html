@@ -126,68 +126,51 @@ td {
    MOVIL VERTICAL
    ===================================================== */
 @media screen and (max-width:1023px) and (orientation:portrait){
-  body{
-    align-items: center;
-    padding: 10px;
-    height: auto;}
-  .container{
-    width: 95vw;
-    max-width: 500px;
-    aspect-ratio: auto;
-    padding: 15px;
-    margin-top: 10px;}
+  html,
+  body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;   /* elimina scroll fantasma */
+  }
 
-  h2{
-    font-size: 18px;}
-  .subtitulo{
-    font-size: 14px;}
-
-  table{
-    width: 100%;
-    font-size: 15px;}
-  td{
-    padding: 12px 8px;}
-
-  .footer{
-    margin-top: 10px;
-    gap: 10px;}
-
-  .logout-button,
-  .enviar-btn{
-    width: 48%;
-    font-size: 15px;
-    padding: 10px 0;}
+  .container {
+      width: 95vw;
+      max-width: 500px;
+      aspect-ratio: auto;   /* en móvil no necesitamos proporción fija */
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
 }
-
 /* =====================================================
    MOVIL HORIZONTAL
    ===================================================== */
 @media screen and (max-width:1023px) and (orientation:landscape){
-  body{
-    align-items: center;
-    padding: 8px;}
-  .container{
-    width: 90vw;
-    max-width: 650px;
-    aspect-ratio: auto;
-    padding: 12px;}
+  html,
+  body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+  }
 
-  h2{
-    font-size: 17px;}
-  .subtitulo{
-    font-size: 13px;}
-
-  table{
-    width: 100%;
-    font-size: 14px;}
-  td{
-    padding: 10px;}
-
-  .logout-button,
-  .enviar-btn{
-    width: 45%;
-    font-size: 14px;
-    padding: 9px 0;}
+  .container {
+      width: 90vw;
+      max-width: 650px;
+      aspect-ratio: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
 }
 </style>
 
