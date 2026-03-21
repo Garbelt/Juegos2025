@@ -121,6 +121,76 @@ td {
   width:90%;
   max-width:500px;
 }
+
+/* =====================================================
+   MOVIL VERTICAL
+   ===================================================== */
+@media screen and (max-width:1023px) and (orientation:portrait){
+
+  body{
+    height: 100dvh;
+    min-height: 100dvh;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .container{
+
+    width: 100vw;
+    max-width: 100vw;
+
+    height: 92dvh;
+    max-height: 92dvh;
+
+    aspect-ratio: auto;
+
+    padding: 16px;
+
+    overflow: hidden;
+  }
+
+  table{
+    width: 100%;
+    font-size: 15px;
+  }
+
+  td{
+    padding: 14px 8px;
+  }
+
+  .footer{
+    gap: 10px;
+  }
+
+  .logout-button,
+  .enviar-btn{
+    width: 48%;
+    font-size: 15px;
+    padding: 10px 0;
+  }
+
+  /* MODAL */
+
+  #modalForm{
+
+    height: 100dvh;
+    width: 100vw;
+
+    padding: 10px;
+  }
+
+  .modal-box{
+
+    width: 95vw;
+
+    max-height: 85dvh;
+
+    overflow-y: auto;
+  }
+
+}
+  
+  
 </style>
 
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
