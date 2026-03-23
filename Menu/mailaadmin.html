@@ -233,7 +233,6 @@ td:nth-child(2) {
 }
 
 /* BOTONES */
-
 .logout-button {
   width: 150px;
   padding: 8px 0;
@@ -252,33 +251,39 @@ td:nth-child(2) {
 /* ============================= */
 /* ===== AJUSTE SOLO MÓVIL ===== */
 /* ============================= */
-
 @media screen and (max-width: 1023px) {
-
   body {
     font-size: 14px;     /* escala general */
   }
-
   .container {
     width: 95vw;
     min-height: 420px;
     padding: 16px;
   }
-
   table {
     width: 95%;
   }
-
   td {
     padding: 8px;
   }
-
   .logout-button {
     width: 130px;
     font-size: 12px;
     padding: 6px 0;
   }
+}
 
+  /* ============================= */
+/* === AJUSTE MÓVIL HORIZONTAL == */
+/* ============================= */
+
+@media screen 
+and (max-width: 1023px) 
+and (orientation: landscape) {
+  .container {
+    min-height: 380px;   /* antes 420px */
+    padding: 14px;       /* un poco menos de aire */
+  }
 }
 </style>
 
