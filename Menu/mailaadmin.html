@@ -134,56 +134,151 @@ td:nth-child(2) {
   max-width:500px;
 }
 
-@media screen and (max-width:1023px){
-html,
+/* ============================= */
+/* ===== BASE (Mobile First) ==== */
+/* ============================= */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+
+  /* 🔒 Bloqueo de movimientos indeseados en móvil */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior: none;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-
-    height: 100dvh;
-    min-height: 100dvh;
-
-    overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-}
-  
-@media screen and (max-width:1023px) and (orientation:portrait){
-    .container {
-        width: 92vw;
-        max-width: 500px;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        max-height: 100%;
-    }
-
-    .botonera {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media screen and (max-width:1023px) and (orientation:landscape){
-    .container {
-        width: 90vw;
-        max-width: 650px;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        max-height: 100%;
-    }
+/* CONTENEDOR PRINCIPAL */
 
-    .botonera {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+.container {
+  width: 100%;
+  max-width: 700px;        /* mantiene estética en pantallas grandes */
+  min-height: 420px;       /* altura mínima, pero flexible */
+  padding: 20px;           /* aire interno */
+  box-sizing: border-box;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* footer abajo */
+
+  position: relative;
+  text-align: center;
+}
+
+.container h2 {
+  margin-top: 10px;
+}
+
+/* SUBTÍTULO */
+
+.subtitulo {
+  margin: 0;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+/* SEPARADOR */
+
+.separador {
+  border-top: 1px solid #000;
+  margin: 10px 0;
+}
+
+/* TABLA */
+
+table {
+  margin: auto;
+  width: 90%;                 /* un poco más flexible en móvil */
+  border-collapse: collapse;
+  border: 1px solid #808080;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #c0c0c0;
+}
+
+/* Primera columna: texto a la izquierda */
+
+td:first-child {
+  text-align: left;
+}
+
+/* Segunda columna: botón centrado */
+
+td:nth-child(2) {
+  text-align: center;
+}
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* BOTONES */
+
+.logout-button {
+  width: 150px;
+  padding: 8px 0;
+  font-size: 13px;
+  border-radius: 5px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #3498db;
+}
+
+/* ============================= */
+/* ===== AJUSTE SOLO MÓVIL ===== */
+/* ============================= */
+
+@media screen and (max-width: 1023px) {
+
+  body {
+    font-size: 14px;     /* escala general */
+  }
+
+  .container {
+    width: 95vw;
+    min-height: 420px;
+    padding: 16px;
+  }
+
+  table {
+    width: 95%;
+  }
+
+  td {
+    padding: 8px;
+  }
+
+  .logout-button {
+    width: 130px;
+    font-size: 12px;
+    padding: 6px 0;
+  }
+
 }
 </style>
 
