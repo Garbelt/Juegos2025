@@ -221,14 +221,16 @@ td:nth-child(2) {
 /* === AJUSTE MÓVIL HORIZONTAL == */
 /* ============================= */
 @media screen and (max-width:1023px) and (orientation:landscape) {
+
   body {
-    align-items: flex-start;
-    padding-top: 8px;
+    align-items: center;
+    padding-top: 0;
   }
   .container {
     width: 95vw;
-    aspect-ratio: auto;   /* 🔴 ESTO ES LA CLAVE */
-    max-height: 85vh;     /* altura real del dispositivo */
+    aspect-ratio: auto;
+    max-height: 95vh;
+    max-height: 95dvh;   /* 🔴 coherencia con el body */
     padding: 12px;
   }
 }
