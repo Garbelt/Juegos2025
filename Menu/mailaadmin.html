@@ -178,6 +178,54 @@ td:nth-child(2) {
     margin-top: 10px;
   }
 
+    /* Caja del modal */
+
+  .modal-box {
+    width: 95%;
+    max-width: 420px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  /* Texto del modal */
+
+  .modal-box h2,
+  .modal-box label,
+  .modal-box p {
+    font-size: clamp(14px, 2.8vw, 16px);
+  }
+
+  /* Inputs y selects */
+
+  .modal-box input,
+  .modal-box select,
+  .modal-box textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: clamp(13px, 2.6vw, 15px);
+    box-sizing: border-box;
+  }
+
+  /* Contenedor de botones */
+
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  /* Botones Enviar y Cancelar */
+
+  .modal-buttons button {
+    flex: 1;                 /* mismo tamaño automático */
+    max-width: 160px;        /* evita que se estiren demasiado */
+    padding: 8px 0;
+    font-size: clamp(13px, 2.6vw, 15px);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
 }
 
 /* ============================= */
