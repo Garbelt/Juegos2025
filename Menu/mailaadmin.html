@@ -11,8 +11,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;  
+  height: 100vh;     /* fallback para navegadores antiguos */
+  height: 100dvh;    /* viewport real en móviles modernos */
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   background-color: #f9f9f9;
 }
