@@ -157,9 +157,7 @@ td:nth-child(2) {
 @media screen and (max-width: 1023px) {
 
   html, body {
-    /* 🔒 Bloqueo de movimientos indeseados en móvil */
-    position: fixed;
-    
+    /* 🔒 Bloqueo de movimientos indeseados en móvil */    
     overflow-x: hidden;
     overflow-y: hidden;
     overscroll-behavior: none;
@@ -231,8 +229,8 @@ td:nth-child(2) {
   .container {
     width: 95vw;
     aspect-ratio: auto;
-    max-height: 92vh;
-    max-height: 92dvh;   /* 🔴 coherencia con el body */
+    min-height: 92vh;
+    min-height: 92dvh;   /* 🔴 coherencia con el body */
     padding: 12px;
   }
 }
