@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -157,7 +157,7 @@ td:nth-child(2) {
 @media screen and (max-width: 1023px) {
 
   html, body {
-    /* 🔒 Bloqueo de movimientos indeseados en móvil */    
+    /* 🔒 Bloqueo de movimientos indeseados en móvil */
     overflow-x: hidden;
     overflow-y: hidden;
     overscroll-behavior: none;
@@ -211,13 +211,9 @@ td:nth-child(2) {
 /* ============================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
   .container {
-    max-width: 750px;
-    width: 95%;
-    margin: 0 auto;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 95vw;
+    min-height: 420px;
+    padding: 16px;
   }
 }
   
@@ -231,13 +227,11 @@ td:nth-child(2) {
     padding-top: 0;
   }
   .container {
-    max-width: 750px;
-    width: 95%;
-    margin: 0 auto;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 95vw;
+    aspect-ratio: auto;
+    max-height: 92vh;
+    max-height: 92dvh;   /* 🔴 coherencia con el body */
+    padding: 12px;
   }
 }
 </style>
