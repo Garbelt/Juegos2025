@@ -85,25 +85,25 @@
 /* =========================================
    PUZZLE - MODO FLEX SOLO EN MOVIL
    ========================================= */
-
 @media screen and (max-width:1023px){
     #puzzle {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        max-width: 100%;
         width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }
-	
 
 /* =========================================
-   REFERENCIA EN LINEA - MOVIL HORIZONTAL
+   MOVIL HORIZONTAL
    ========================================= */
-
 @media screen and (max-width:1023px) and (orientation:landscape){
-
+/* =============================
+   REFERENCIA EN LINEA
+   ============================= */
     .titulo-referencias {
         font-size: clamp(16px, 2.5vw, 20px);
         display: flex;
@@ -111,100 +111,86 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
+        flex-wrap: wrap;
         white-space: normal;
+        margin-top: 8px;
     }
-
     #lista-palabras {
         font-size: inherit;
         line-height: inherit;
         max-height: none;
         overflow: visible;
     }
-
     #lista-palabras ul {
         display: flex;
         flex-direction: row;
         padding: 0;
         margin: 0;
     }
-
     #lista-palabras li {
         font-size: inherit;
         font-weight: 900;
         margin: 0;
     }
-}
-	
-/* 🔒 BASE: título visible */
 
-body:not(.header-hidden) #puzzle table{
-        height:215px;
-        max-height:60vh;
-        max-height:60dvh;
-        width:auto;
-        max-width:100%;
-}
+/* =============================
+   CONTROL DE ALTURA DE GRILLA
+   ============================= */
+    #puzzle {
+        max-height: 58vh;
+        max-height: 58dvh;
+        overflow: hidden;
+    }
 
-/* 🔹 título oculto + panel full */
-
-body.panel-full.header-hidden #puzzle table{
-        max-height:75vh;
-        max-height:75dvh;
-}
-
-/* 🔹 título oculto + panel mini */
-
-body.panel-mini.header-hidden #puzzle table{
-        max-height:78vh;
-        max-height:78dvh;
-}
-
-/* 🔹 título oculto + panel oculto */
-
-body.panel-hidden.header-hidden #puzzle table{
-        max-height:85vh;
-        max-height:85dvh;
-        max-width:95vw;
-}
+/* =============================
+   ESTADOS DEL PANEL
+   ============================= */
+/* titulo visible */
+    body:not(.header-hidden) #puzzle {
+        max-height: 58vh;
+    }
+/* titulo oculto + panel full */
+    body.panel-full.header-hidden #puzzle {
+        max-height: 72vh;
+    }
+/* titulo oculto + panel mini */
+    body.panel-mini.header-hidden #puzzle {
+        max-height: 76vh;
+    }
+/* titulo oculto + panel oculto */
+    body.panel-hidden.header-hidden #puzzle {
+        max-height: 82vh;
+    }
 }
 
+
+/* =========================================
+   MOVIL VERTICAL
+   ========================================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
-
-/* panel full + título visible */
-
-body.panel-full:not(.header-hidden) #puzzle table{
-        height:370px;
-        max-height:80vh;
-        max-height:80dvh;
-        width:auto;
-        max-width:100%;
-}
-
-/* título oculto */
-
-body.panel-full.header-hidden #puzzle table{
-        max-width:87vw;
-}
-
+/* panel full + titulo visible */
+    body.panel-full:not(.header-hidden) #puzzle {
+        max-height: 80vh;
+        max-height: 80dvh;
+    }
+/* titulo oculto */
+    body.panel-full.header-hidden #puzzle {
+        max-width: 87vw;
+    }
 /* panel mini */
-
-body.panel-mini:not(.header-hidden) #puzzle table{
-        max-width:88vw;
-}
-
-body.panel-mini.header-hidden #puzzle table{
-        max-width:90vw;
-}
-
+    body.panel-mini:not(.header-hidden) #puzzle {
+        max-width: 88vw;
+    }
+    body.panel-mini.header-hidden #puzzle {
+        max-width: 90vw;
+    }
 /* panel oculto */
-
-body.panel-hidden:not(.header-hidden) #puzzle table{
-        max-width:92vw;
-}
-
-body.panel-hidden.header-hidden #puzzle table{
-        max-width:95vw;
-}
+    body.panel-hidden:not(.header-hidden) #puzzle {
+        max-width: 92vw;
+    }
+    body.panel-hidden.header-hidden #puzzle {
+        max-width: 95vw;
+    }
 }
 
 </style>
