@@ -156,6 +156,8 @@ function updateTimerDisplay(totalSeconds) {
   const seconds = totalSeconds % 60;
   document.getElementById("reloj").textContent =
     `${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
+  document.getElementById("reloj-vertical").textContent =
+    `${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
 }
 
 // 🚫 / 🟢 Control de clics
