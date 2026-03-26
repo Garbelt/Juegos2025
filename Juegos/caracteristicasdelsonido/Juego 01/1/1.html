@@ -82,6 +82,34 @@
        max-width: 300px;
    }
 
+
+/* =========================================
+   REFERENCIA EN LINEA - MOVIL HORIZONTAL
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:landscape){
+
+    .titulo-referencias {
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+        flex-wrap:wrap;
+        text-align:center;
+    }
+    #lista-palabras ul {
+        display:flex;
+        flex-direction:row;
+        padding:0;
+        margin:0;
+    }
+    #lista-palabras li {
+        list-style:none;
+        font-weight:900;
+    }
+}
+
 </style>
 </head>
 <body>
