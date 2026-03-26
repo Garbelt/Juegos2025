@@ -105,25 +105,35 @@
 @media screen and (max-width:1023px) and (orientation:landscape){
 
     .titulo-referencias {
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-        justify-content:center;
-        gap:8px;
-        flex-wrap:wrap;
-        text-align:center;
-    }
-    #lista-palabras ul {
-        display:flex;
-        flex-direction:row;
-        padding:0;
-        margin:0;
-    }
-    #lista-palabras li {
-        list-style:none;
-        font-weight:900;
+        font-size: clamp(16px, 2.5vw, 20px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        white-space: normal;
     }
 
+    #lista-palabras {
+        font-size: inherit;
+        line-height: inherit;
+        max-height: none;
+        overflow: visible;
+    }
+
+    #lista-palabras ul {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+    }
+
+    #lista-palabras li {
+        font-size: inherit;
+        font-weight: 900;
+        margin: 0;
+    }
+}
 	
 /* 🔒 BASE: título visible */
 
