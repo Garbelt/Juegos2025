@@ -211,29 +211,78 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 </script>
 
-<!-- Verificaciones -->
+<!-- Scripts -->
+<script src="lector.js"></script>
+<script src="introGame.js"></script>
 <script src="verificacionesjuegos.js"></script>
-
-<!-- Script principal del juego -->
 <script src="script.js"></script>
 
 <script>
 window.addEventListener("load", () => {
-    // Solo mostrar el usuario; no hacemos login aquí porque ya lo hace verificacionesjuegos.js
-    const actualUsername = localStorage.getItem("ActualUs") || "desconocido";
-    document.getElementById("actualUsername").textContent = `Usuario: ${actualUsername}`;
+    const actualUsername = localStorage.getItem("ActualUs");
+    if (actualUsername) {
+        document.getElementById("actualUsername").textContent = actualUsername;
+    }
+});
+	
+// ===== PANTALLA PREVIA =====
+document.getElementById("read-screen").addEventListener("click", () => {
+    leerElemento("game-title");
+    leerElemento("game-description");
 });
 
-document.getElementById("start-button").addEventListener("click", function() {
-    const startButton = this;
-    if (startButton.classList.contains("disable-clicks")) return;
+document.getElementById("ver-video-btn").addEventListener("click", () => {
+    const videoModal = document.getElementById("video-modal");
+    const video = document.getElementById("pre-game-video");
+    if(video.src){
+        videoModal.style.display = "block";
+        video.play();
+    }
+});
 
-    document.getElementById("start-button-container").style.display = "none";
+document.getElementById("close-video").addEventListener("click", () => {
+    const videoModal = document.getElementById("video-modal");
+    const video = document.getElementById("pre-game-video");
+    video.pause();
+    video.currentTime = 0;
+    videoModal.style.display = "none";
+});
+
+document.getElementById("continuar-btn").addEventListener("click", () => {
+    document.getElementById("pre-game-screen").style.display = "none";
     document.querySelector(".container").style.display = "block";
-
     document.getElementById("background-music").play();
-    createPuzzle(); // Función de la sopa de letras
+    startGame();
 });
 </script>
+
+<!-- ================= BOTONERA MÓVIL ================= -->
+<div class="mobile-controls">
+
+  <button id="mobile-main-btn"
+          class="fab-main"
+          aria-label="Mostrar opciones del juego">
+    <span aria-hidden="true">☰</span>
+  </button>
+
+  <div class="fab-options">
+
+    <button id="mobile-read-btn">
+      <span aria-hidden="true">🔊</span>
+    </button>
+
+    <button id="mobile-toggle-header-btn">
+      <span aria-hidden="true">🧾</span>
+    </button>
+
+    <button id="mobile-panel-btn">
+      <span aria-hidden="true">📊</span>
+    </button>
+
+  </div>
+</div>
+
+<script src="botonera-mobile.js"></script>
+
 </body>
 </html>
