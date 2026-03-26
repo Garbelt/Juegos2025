@@ -98,32 +98,55 @@
 }
 
 /* =========================================
-   MOVIL HORIZONTAL
+   MOVIL HORIZONTAL - AJUSTE COMPLETO SOPA
    ========================================= */
+
 @media screen and (max-width:1023px) and (orientation:landscape){
-/* =============================
-   REFERENCIA EN LINEA
-   ============================= */
+    /* ----- CONTENEDOR DE LA GRILLA ----- */
+    #puzzle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+        box-sizing: border-box;
+        margin-top: 4px;
+    }
+
+    /* ----- TAMAÑO REAL DE LAS CELDAS ----- */
+
+    .cell {
+        width: clamp(18px, 4.8vh, 28px);
+        height: clamp(18px, 4.8vh, 28px);
+        line-height: clamp(18px, 4.8vh, 28px);
+        font-size: clamp(11px, 2.4vh, 15px);
+    }
+
+    /* ----- REFERENCIA ALINEADA ----- */
+
     .titulo-referencias {
-	font-size: clamp(14px, 2vw, 18px);
+        font-size: clamp(14px, 2vh, 18px);
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
         white-space: normal;
         margin-top: 8px;
+        line-height: 1;
     }
 
     #lista-palabras {
-	font-size: clamp(14px, 2vw, 18px);
         display: flex;
         align-items: center;
         font-size: inherit;
         line-height: 1;
         max-height: none;
         overflow: visible;
+        text-align: center;
     }
 
     #lista-palabras ul {
@@ -131,6 +154,7 @@
         align-items: center;
         padding: 0;
         margin: 0;
+        list-style-type: none;
     }
 
     #lista-palabras li {
@@ -139,23 +163,7 @@
         margin: 0;
         line-height: 1;
     }
-
-/* =============================
-   CONTROL DE ALTURA DE GRILLA
-   ============================= */
-    #puzzle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-        max-width: 100%;
-        max-height: 40vh;
-        max-height: 40dvh;
-        overflow: visible;
-        box-sizing: border-box;
-        margin-top: 4px;
-    }
+}
 
 /* =============================
    ESTADOS DEL PANEL
