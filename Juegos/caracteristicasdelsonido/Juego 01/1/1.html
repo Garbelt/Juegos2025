@@ -103,17 +103,21 @@
 
 @media screen and (max-width:1023px) and (orientation:landscape){
     /* ----- CONTENEDOR DE LA GRILLA ----- */
-    #puzzle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-        max-width: 100%;
-        overflow: visible;
-        box-sizing: border-box;
-        margin-top: 4px;
-    }
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+#puzzle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    width: 100%;
+    margin-top: 4px;
+}
 
     /* ----- TAMAÑO REAL DE LAS CELDAS ----- */
 
@@ -167,28 +171,46 @@
 /* =============================
    ESTADOS DEL PANEL
    ============================= */
-/* titulo visible */
-    body:not(.header-hidden) #puzzle {
-        max-height: 40vh;
-        max-height: 40dvh;
-    }
-/* titulo oculto + panel full */
-    body.panel-full.header-hidden #puzzle {
-        max-height: 46vh;
-        max-height: 46dvh;
-    }
-/* titulo oculto + panel mini */
-    body.panel-mini.header-hidden #puzzle {
-        max-height: 46vh;
-        max-height: 46dvh;
-    }
-/* titulo oculto + panel oculto */
-    body.panel-hidden.header-hidden #puzzle {
-        max-height: 50vh;
-        max-height: 50dvh;
-    }
+/* -----------------------------------------
+   TAMAÑO BASE — TÍTULO VISIBLE
+   ----------------------------------------- */
+body:not(.header-hidden) .cell{
+    width: clamp(18px, 4.8vh, 28px);
+    height: clamp(18px, 4.8vh, 28px);
+    line-height: clamp(18px, 4.8vh, 28px);
+    font-size: clamp(11px, 2.4vh, 15px);
 }
 
+/* -----------------------------------------
+   PANEL FULL
+   ----------------------------------------- */
+body.panel-full.header-hidden .cell{
+    width: clamp(18px, 5.2vh, 30px);
+    height: clamp(18px, 5.2vh, 30px);
+    line-height: clamp(18px, 5.2vh, 30px);
+    font-size: clamp(11px, 2.6vh, 16px);
+}
+
+/* -----------------------------------------
+   PANEL MINI
+   ----------------------------------------- */
+body.panel-mini.header-hidden .cell{
+    width: clamp(18px, 5.5vh, 32px);
+    height: clamp(18px, 5.5vh, 32px);
+    line-height: clamp(18px, 5.5vh, 32px);
+    font-size: clamp(11px, 2.8vh, 17px);
+}
+
+/* -----------------------------------------
+   PANEL OCULTO
+   ----------------------------------------- */
+body.panel-hidden.header-hidden .cell{
+    width: clamp(18px, 6vh, 34px);
+    height: clamp(18px, 6vh, 34px);
+    line-height: clamp(18px, 6vh, 34px);
+    font-size: clamp(12px, 3vh, 18px);
+}
+}
 
 /* =========================================
    MOVIL VERTICAL
