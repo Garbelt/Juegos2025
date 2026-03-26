@@ -208,6 +208,7 @@ function showFoundMessage() {
   // 1️⃣ Sumar puntaje inmediatamente
   score += 20;
   document.getElementById("puntaje").textContent = `${score}`;
+  document.getElementById("puntaje-vertical").textContent = `${score}`;
 
   // 2️⃣ Mostrar mensaje
   showGameMessage("PALABRA ENCONTRADA", 3000, "sound/PalabraEncontrada.mp3", () => {
