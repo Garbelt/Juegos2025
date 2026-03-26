@@ -216,28 +216,64 @@ body.panel-hidden.header-hidden .cell{
    MOVIL VERTICAL
    ========================================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
-/* panel full + titulo visible */
-    body.panel-full:not(.header-hidden) #puzzle {
-        width: 85vw;
-    }
-/* titulo oculto */
-    body.panel-full.header-hidden #puzzle {
-        width: 88vw;
-    }
-/* panel mini */
-    body.panel-mini:not(.header-hidden) #puzzle {
-        max-width: 90vw;
-    }
-    body.panel-mini.header-hidden #puzzle {
-        max-width: 93vw;
-    }
-/* panel oculto */
-    body.panel-hidden:not(.header-hidden) #puzzle {
-        max-width: 95vw;
-    }
-    body.panel-hidden.header-hidden #puzzle {
-        max-width: 97vw;
-    }
+
+/* -----------------------------------------
+   REFERENCIA CERCA DEL BOTTOM
+   ----------------------------------------- */
+
+.titulo-referencias{
+    margin-top: auto;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* -----------------------------------------
+   PANEL FULL + TÍTULO VISIBLE
+   ----------------------------------------- */
+
+body.panel-full:not(.header-hidden) .cell{
+    width: clamp(20px, 6vw, 32px);
+    height: clamp(20px, 6vw, 32px);
+    line-height: clamp(20px, 6vw, 32px);
+    font-size: clamp(12px, 3vw, 17px);
+}
+
+/* -----------------------------------------
+   PANEL FULL + TÍTULO OCULTO
+   ----------------------------------------- */
+
+body.panel-full.header-hidden .cell{
+    width: clamp(20px, 6.5vw, 34px);
+    height: clamp(20px, 6.5vw, 34px);
+    line-height: clamp(20px, 6.5vw, 34px);
+    font-size: clamp(12px, 3.2vw, 18px);
+}
+
+/* -----------------------------------------
+   PANEL MINI
+   ----------------------------------------- */
+
+body.panel-mini .cell{
+    width: clamp(20px, 7vw, 36px);
+    height: clamp(20px, 7vw, 36px);
+    line-height: clamp(20px, 7vw, 36px);
+    font-size: clamp(12px, 3.4vw, 19px);
+}
+
+/* -----------------------------------------
+   PANEL OCULTO
+   ----------------------------------------- */
+
+body.panel-hidden .cell{
+    width: clamp(20px, 7.5vw, 38px);
+    height: clamp(20px, 7.5vw, 38px);
+    line-height: clamp(20px, 7.5vw, 38px);
+    font-size: clamp(13px, 3.6vw, 20px);
+}
 }
 
 </style>
