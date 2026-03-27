@@ -271,6 +271,60 @@ font-size:clamp(13px,3.6vw,20px);
 
 }
 
+/* =========================================
+   ESCRITORIO
+   (usa el layout original centrado)
+   ========================================= */
+
+@media screen and (min-width:1024px){
+
+body{
+font-family: Arial, sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.container{
+display:none;
+width:100%;
+max-width:900px;
+margin:0 auto;
+border:2px solid #333;
+align-items:center;
+}
+
+table{
+border-collapse:collapse;
+width:100%;
+aspect-ratio:7 / 4;
+}
+
+#align-center-center{
+text-align:center;
+vertical-align:middle;
+}
+
+/* En escritorio NO usamos flex vertical interno */
+
+#contenedor-juego{
+display:block;
+height:auto;
+}
+
+#zona-puzzle{
+display:block;
+}
+
+.titulo-referencias{
+margin-top:8px;
+margin-bottom:0;
+position:static;
+}
+
+}
 </style>
 </head>
 <body>
