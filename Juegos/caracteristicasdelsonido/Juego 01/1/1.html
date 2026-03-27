@@ -13,30 +13,65 @@
 <style>
 
 /* =========================================
+   TD CONTENEDOR DEL JUEGO
+   ========================================= */
+
+td{
+
+display:flex;
+flex-direction:column;
+
+align-items:center;
+
+justify-content:flex-start;
+
+height:100%;
+
+}
+
+
+/* =========================================
    LISTA DE PALABRAS (compatibilidad)
    ========================================= */
 
 #lista-palabras{
+
 font-size:inherit;
+
 line-height:1;
+
 max-height:none;
+
 overflow:visible;
+
 text-align:center;
+
 display:flex;
+
 align-items:center;
+
 }
 
 #lista-palabras ul{
+
 list-style-type:none;
+
 padding:0;
+
 margin:0;
+
 display:flex;
+
 align-items:center;
+
 }
 
 #lista-palabras ul li{
+
 margin:0;
+
 font-weight:900;
+
 }
 
 
@@ -45,74 +80,58 @@ font-weight:900;
    ========================================= */
 
 .cell{
+
 width:clamp(22px,6vw,30px);
+
 height:clamp(22px,6vw,30px);
+
 border:1px solid #ccc;
+
 display:inline-block;
+
 text-align:center;
+
 line-height:clamp(22px,6vw,30px);
+
 font-size:clamp(12px,3vw,16px);
+
 box-sizing:border-box;
+
 }
 
 #puzzle{
+
 display:inline-block;
+
 max-width:100%;
+
+margin-bottom:8px;
+
 }
 
 .row{
+
 display:flex;
+
 }
 
 .found{
+
 background-color:yellow;
+
 }
 
 
 /* =========================================
-   MODAL
+   REFERENCIA
+   (afuera del puzzle, pegada abajo del td)
    ========================================= */
-
-.modal{
-display:none;
-}
-
-.modal-content{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background-color:#8ec6e6;
-color:black;
-padding:20px;
-border:2px solid #333;
-border-radius:10px;
-font-size:24px;
-z-index:9999;
-text-align:center;
-width:80%;
-max-width:300px;
-}
-
-
-/* =========================================
-   REFERENCIA GLOBAL
-   (pegada al bottom del área del juego)
-   ========================================= */
-
-#contenedor-juego{
-position:relative;
-}
 
 .titulo-referencias{
 
-position:absolute;
+margin-top:auto;
 
-bottom:8px;
-
-left:50%;
-
-transform:translateX(-50%);
+margin-bottom:6px;
 
 background:rgba(0,0,0,0.45);
 
@@ -142,16 +161,58 @@ min-width:60%;
 
 max-width:90%;
 
-z-index:9999;
-
-pointer-events:none;
 }
 
 
-/* Espacio para que la referencia no tape el juego */
+/* =========================================
+   MODAL
+   ========================================= */
+
+.modal{
+
+display:none;
+
+}
+
+.modal-content{
+
+position:fixed;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+background-color:#8ec6e6;
+
+color:black;
+
+padding:20px;
+
+border:2px solid #333;
+
+border-radius:10px;
+
+font-size:24px;
+
+z-index:9999;
+
+text-align:center;
+
+width:80%;
+
+max-width:300px;
+
+}
+
+
+/* Espacio de seguridad */
 
 body{
-padding-bottom:70px;
+
+padding-bottom:10px;
+
 }
 
 
@@ -162,13 +223,21 @@ padding-bottom:70px;
 @media screen and (max-width:1023px){
 
 #puzzle{
+
 display:flex;
+
 flex-direction:column;
+
 align-items:center;
+
 justify-content:flex-start;
+
 width:100%;
+
 max-width:100%;
+
 box-sizing:border-box;
+
 }
 
 }
@@ -181,50 +250,77 @@ box-sizing:border-box;
 @media screen and (max-width:1023px) and (orientation:landscape){
 
 body{
+
 display:flex;
+
 flex-direction:column;
+
 min-height:100vh;
+
 }
 
 #puzzle{
-flex:1;
+
+flex:0;
+
 margin-top:4px;
+
 }
 
 /* Tamaño base */
 
 body:not(.header-hidden) .cell{
+
 width:clamp(18px,4.8vh,28px);
+
 height:clamp(18px,4.8vh,28px);
+
 line-height:clamp(18px,4.8vh,28px);
+
 font-size:clamp(11px,2.4vh,15px);
+
 }
 
 /* Panel full */
 
 body.panel-full.header-hidden .cell{
+
 width:clamp(18px,5.2vh,30px);
+
 height:clamp(18px,5.2vh,30px);
+
 line-height:clamp(18px,5.2vh,30px);
+
 font-size:clamp(11px,2.6vh,16px);
+
 }
 
 /* Panel mini */
 
 body.panel-mini.header-hidden .cell{
+
 width:clamp(18px,5.5vh,32px);
+
 height:clamp(18px,5.5vh,32px);
+
 line-height:clamp(18px,5.5vh,32px);
+
 font-size:clamp(11px,2.8vh,17px);
+
 }
 
 /* Panel oculto */
 
 body.panel-hidden.header-hidden .cell{
+
 width:clamp(18px,6vh,34px);
+
 height:clamp(18px,6vh,34px);
+
 line-height:clamp(18px,6vh,34px);
+
 font-size:clamp(12px,3vh,18px);
+
 }
 
 }
@@ -236,40 +332,52 @@ font-size:clamp(12px,3vh,18px);
 
 @media screen and (max-width:1023px) and (orientation:portrait){
 
-/* Panel full + título visible */
-
 body.panel-full:not(.header-hidden) .cell{
-width:clamp(20px,6vw,32px);
-height:clamp(20px,6vw,32px);
-line-height:clamp(20px,6vw,32px);
-font-size:clamp(12px,3vw,17px);
-}
 
-/* Panel full + título oculto */
+width:clamp(20px,6vw,32px);
+
+height:clamp(20px,6vw,32px);
+
+line-height:clamp(20px,6vw,32px);
+
+font-size:clamp(12px,3vw,17px);
+
+}
 
 body.panel-full.header-hidden .cell{
-width:clamp(20px,6.5vw,34px);
-height:clamp(20px,6.5vw,34px);
-line-height:clamp(20px,6.5vw,34px);
-font-size:clamp(12px,3.2vw,18px);
-}
 
-/* Panel mini */
+width:clamp(20px,6.5vw,34px);
+
+height:clamp(20px,6.5vw,34px);
+
+line-height:clamp(20px,6.5vw,34px);
+
+font-size:clamp(12px,3.2vw,18px);
+
+}
 
 body.panel-mini .cell{
+
 width:clamp(20px,7vw,36px);
+
 height:clamp(20px,7vw,36px);
+
 line-height:clamp(20px,7vw,36px);
+
 font-size:clamp(12px,3.4vw,19px);
+
 }
 
-/* Panel oculto */
-
 body.panel-hidden .cell{
+
 width:clamp(20px,7.5vw,38px);
+
 height:clamp(20px,7.5vw,38px);
+
 line-height:clamp(20px,7.5vw,38px);
+
 font-size:clamp(13px,3.6vw,20px);
+
 }
 
 }
