@@ -320,16 +320,33 @@ display:block;
 }
 
 .titulo-referencias{
-display:inline-flex;
-line-height:1;
-align-items:center;
+display:inline-flex;   /* importante en tablas */
+align-items:center;    /* no baseline */
 justify-content:center;
+line-height:1;
 margin-left:auto;
 margin-right:auto;
-margin-top:8px;
-margin-bottom:0;
-width:fit-content;
-text-align:center;
+}
+
+#lista-palabras{
+display:inline-flex;
+align-items:center;
+line-height:1;
+}
+
+#lista-palabras ul{
+display:inline-flex;
+align-items:center;
+margin:0;
+padding:0;
+}
+
+#lista-palabras ul li{
+display:inline-flex;
+align-items:center;
+line-height:1;
+margin:0;
+padding:0;
 }
 }
 	
