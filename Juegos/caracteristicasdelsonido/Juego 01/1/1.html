@@ -13,32 +13,26 @@
 <style>
 
 /* =========================================
-   CONTENEDOR VERTICAL DEL JUEGO
+   CONTENEDOR DEL JUEGO
    ========================================= */
+
 #contenedor-juego{
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-height:100%;
-min-height:100%;
 width:100%;
+text-align:center;
 }
 
 /* =========================================
    ZONA DEL PUZZLE
    ========================================= */
+
 #zona-puzzle{
-flex:1;
-display:flex;
-align-items:center;
-justify-content:center;
 width:100%;
 }
 
 /* =========================================
    REFERENCIA
    ========================================= */
+
 .titulo-referencias{
 background:rgba(0,0,0,0.45);
 color:white;
@@ -46,63 +40,79 @@ padding:6px 12px;
 border-radius:6px;
 font-size:clamp(16px,2.2vw,24px);
 font-weight:700;
-display:flex;
+
+display:inline-flex;
 align-items:center;
 justify-content:center;
+
 gap:8px;
+
 white-space:nowrap;
-width:fit-content;
-min-width:60%;
-max-width:90%;
-line-height:1;
-margin-top:auto;
+
+margin-top:6px;
 margin-bottom:6px;
+
+line-height:1;
 }
 
 /* =========================================
    LISTA DE PALABRAS
    ========================================= */
+
 #lista-palabras{
-font-size:inherit;
-line-height:1;
-display:flex;
+display:inline-flex;
 align-items:center;
 justify-content:center;
-margin:0;
-padding:0;
+
+line-height:1;
 }
 
 #lista-palabras ul{
-list-style-type:none;
+list-style:none;
 padding:0;
 margin:0;
-display:flex;
+
+display:inline-flex;
 align-items:center;
 }
 
 #lista-palabras ul li{
-margin:0;
-padding:0;
+
 font-weight:900;
+
 line-height:1;
-display:inline-block;
-position:relative;
+
+display:inline-flex;
+align-items:center;
+
 /* compensación tipográfica del bold */
+
+position:relative;
 top:-0.5px;
+
 }
 
 /* =========================================
    GRILLA BASE
    ========================================= */
+
 .cell{
+
 width:clamp(22px,6vw,30px);
 height:clamp(22px,6vw,30px);
+
 border:1px solid #ccc;
+
 display:inline-block;
+
 text-align:center;
+
 line-height:clamp(22px,6vw,30px);
+
 font-size:clamp(12px,3vw,16px);
+
 box-sizing:border-box;
+
 }
 
 #puzzle{
@@ -119,8 +129,18 @@ background-color:yellow;
 }
 
 /* =========================================
+   TD DEL JUEGO
+   ========================================= */
+
+#align-center-center{
+text-align:center;
+vertical-align:middle;
+}
+
+/* =========================================
    MODAL
    ========================================= */
+
 .modal{
 display:none;
 }
@@ -130,192 +150,80 @@ position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
+
 background-color:#8ec6e6;
 color:black;
+
 padding:20px;
+
 border:2px solid #333;
 border-radius:10px;
+
 font-size:24px;
+
 z-index:9999;
+
 text-align:center;
+
 width:80%;
 max-width:300px;
 }
 
-
 /* =========================================
-   TD DEL JUEGO
+   MOVIL
    ========================================= */
-#align-center-center{
+
+@media screen and (max-width:1023px){
+
+#contenedor-juego{
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
 height:100%;
-vertical-align:top;
+width:100%;
+
 }
 
-/* =========================================
-   PUZZLE FLEX SOLO EN MOVIL
-   ========================================= */
-@media screen and (max-width:1023px){
+#zona-puzzle{
+
+flex:1;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:100%;
+
+}
+
 #puzzle{
+
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:flex-start;
+
 width:100%;
-max-width:100%;
-box-sizing:border-box;
+
 }
+
 }
 
 /* =========================================
    MOVIL HORIZONTAL
    ========================================= */
+
 @media screen and (max-width:1023px) and (orientation:landscape){
+
 body{
 display:flex;
 flex-direction:column;
 min-height:100vh;
 }
 
-#puzzle{
-flex:0;
-margin-top:4px;
-}
-
-/* Tamaño base */
-body:not(.header-hidden) .cell{
-width:clamp(18px,4.8vh,28px);
-height:clamp(18px,4.8vh,28px);
-line-height:clamp(18px,4.8vh,28px);
-font-size:clamp(11px,2.4vh,15px);
-}
-
-/* Panel full */
-body.panel-full.header-hidden .cell{
-width:clamp(18px,5.2vh,30px);
-height:clamp(18px,5.2vh,30px);
-line-height:clamp(18px,5.2vh,30px);
-font-size:clamp(11px,2.6vh,16px);
-}
-
-/* Panel mini */
-body.panel-mini.header-hidden .cell{
-width:clamp(18px,5.5vh,32px);
-height:clamp(18px,5.5vh,32px);
-line-height:clamp(18px,5.5vh,32px);
-font-size:clamp(11px,2.8vh,17px);
-}
-
-/* Panel oculto */
-body.panel-hidden.header-hidden .cell{
-width:clamp(18px,6vh,34px);
-height:clamp(18px,6vh,34px);
-line-height:clamp(18px,6vh,34px);
-font-size:clamp(12px,3vh,18px);
-}
-}
-
-/* =========================================
-   MOVIL VERTICAL
-   ========================================= */
-@media screen and (max-width:1023px) and (orientation:portrait){
-body.panel-full:not(.header-hidden) .cell{
-width:clamp(20px,6vw,32px);
-height:clamp(20px,6vw,32px);
-line-height:clamp(20px,6vw,32px);
-font-size:clamp(12px,3vw,17px);
-}
-
-body.panel-full.header-hidden .cell{
-width:clamp(20px,6.5vw,34px);
-height:clamp(20px,6.5vw,34px);
-line-height:clamp(20px,6.5vw,34px);
-font-size:clamp(12px,3.2vw,18px);
-}
-
-body.panel-mini .cell{
-width:clamp(20px,7vw,36px);
-height:clamp(20px,7vw,36px);
-line-height:clamp(20px,7vw,36px);
-font-size:clamp(12px,3.4vw,19px);
-}
-
-body.panel-hidden .cell{
-width:clamp(20px,7.5vw,38px);
-height:clamp(20px,7.5vw,38px);
-line-height:clamp(20px,7.5vw,38px);
-font-size:clamp(13px,3.6vw,20px);
-}
-}
-
-/* =========================================
-   ESCRITORIO
-   ========================================= */
-@media screen and (min-width:1024px){
-body{
-font-family:Arial, sans-serif;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-margin:0;
-}
-
-.container{
-display:none;
-width:100%;
-max-width:900px;
-margin:0 auto;
-border:2px solid #333;
-align-items:center;
-}
-
-table{
-border-collapse:collapse;
-width:100%;
-aspect-ratio:7 / 4;
-}
-
-#align-center-center{
-text-align:center;
-vertical-align:middle;
-}
-
-/* layout simple en escritorio */
-#contenedor-juego{
-display:block;
-height:auto;
-}
-
-#zona-puzzle{
-display:block;
-}
-
-.titulo-referencias{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-margin-left:auto;
-margin-right:auto;
-line-height:1;
-}
-
-#lista-palabras{
-display:inline-flex;
-align-items:center;
-}
-
-#lista-palabras ul{
-display:inline-flex;
-align-items:center;
-}
-
-#lista-palabras ul li{
-display:inline-flex;
-align-items:center;
-line-height:1;
-position:relative;
-top:-0.5px;
-}
 }
 
 </style>
