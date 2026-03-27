@@ -13,6 +13,60 @@
 <style>
 
 /* =========================================
+   CONTENEDOR VERTICAL DEL JUEGO
+   ========================================= */
+
+#contenedor-juego{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100%;
+min-height:100%;
+width:100%;
+}
+
+
+/* =========================================
+   ZONA DEL PUZZLE
+   (centra la grilla verticalmente)
+   ========================================= */
+
+#zona-puzzle{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+}
+
+
+/* =========================================
+   REFERENCIA
+   (siempre abajo del área del juego)
+   ========================================= */
+
+.titulo-referencias{
+margin-top:auto;
+margin-bottom:6px;
+background:rgba(0,0,0,0.45);
+color:white;
+padding:6px 12px;
+border-radius:6px;
+font-size:clamp(16px,2.2vw,24px);
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+white-space:nowrap;
+width:fit-content;
+min-width:60%;
+max-width:90%;
+}
+
+
+/* =========================================
    LISTA DE PALABRAS (compatibilidad)
    ========================================= */
 
@@ -96,62 +150,13 @@ max-width:300px;
 
 
 /* =========================================
-   REFERENCIA GLOBAL
-   (pegada al bottom del área del juego)
+   TD DEL JUEGO
+   (permite el centrado vertical)
    ========================================= */
 
-#contenedor-juego{
-position:relative;
-}
-
-.titulo-referencias{
-
-position:absolute;
-
-bottom:-30px;
-
-left:50%;
-
-transform:translateX(-50%);
-
-background:rgba(0,0,0,0.45);
-
-color:white;
-
-padding:6px 12px;
-
-border-radius:6px;
-
-font-size:clamp(16px,2.2vw,24px);
-
-font-weight:bold;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-gap:8px;
-
-white-space:nowrap;
-
-width:fit-content;
-
-min-width:60%;
-
-max-width:90%;
-
-z-index:9999;
-
-pointer-events:none;
-}
-
-
-/* Espacio para que la referencia no tape el juego */
-
-body{
-padding-bottom:70px;
+#align-center-center{
+height:100%;
+vertical-align:top;
 }
 
 
@@ -187,7 +192,7 @@ min-height:100vh;
 }
 
 #puzzle{
-flex:1;
+flex:0;
 margin-top:4px;
 }
 
@@ -236,16 +241,12 @@ font-size:clamp(12px,3vh,18px);
 
 @media screen and (max-width:1023px) and (orientation:portrait){
 
-/* Panel full + título visible */
-
 body.panel-full:not(.header-hidden) .cell{
 width:clamp(20px,6vw,32px);
 height:clamp(20px,6vw,32px);
 line-height:clamp(20px,6vw,32px);
 font-size:clamp(12px,3vw,17px);
 }
-
-/* Panel full + título oculto */
 
 body.panel-full.header-hidden .cell{
 width:clamp(20px,6.5vw,34px);
@@ -254,16 +255,12 @@ line-height:clamp(20px,6.5vw,34px);
 font-size:clamp(12px,3.2vw,18px);
 }
 
-/* Panel mini */
-
 body.panel-mini .cell{
 width:clamp(20px,7vw,36px);
 height:clamp(20px,7vw,36px);
 line-height:clamp(20px,7vw,36px);
 font-size:clamp(12px,3.4vw,19px);
 }
-
-/* Panel oculto */
 
 body.panel-hidden .cell{
 width:clamp(20px,7.5vw,38px);
