@@ -67,17 +67,6 @@
 /* ================= MOBILE BASE ================= */
 
 @media screen and (max-width:1023px){
-
-    /* El alto lo controlan las reglas de estado */
-    /* El ancho se ajusta solo para mantener el cuadrado */
-
-    #puzzle{
-        width: auto;
-        max-width: 100%;
-        aspect-ratio: 1 / 1;
-        margin: 0 auto;
-    }
-
     .piece{
         width:25%;
         height:25%;
@@ -85,7 +74,6 @@
         background-repeat:no-repeat;
         background-position:center;
     }
-
 }
 
 
@@ -97,32 +85,38 @@
 
 body.panel-full:not(.header-hidden) #puzzle{
         height:372px;
+    	width:372px;
 }
 
 /* 🔹 panel full + título oculto */
 
 body.panel-full.header-hidden #puzzle{
         height:376px;
+	    width:376px;
 }
 
 /* 🔹 panel mini */
 
 body.panel-mini:not(.header-hidden) #puzzle{
         height:380px;
+	    width:380px;
 }
 
 body.panel-mini.header-hidden #puzzle{
         height:384px;
+	    width:284px;
 }
 
 /* 🔹 panel oculto */
 
 body.panel-hidden:not(.header-hidden) #puzzle{
         height:390px;
+	    width:390px:
 }
 
 body.panel-hidden.header-hidden #puzzle{
         height:394px;
+	    width:394px;
 }
 
 }
@@ -135,25 +129,29 @@ body.panel-hidden.header-hidden #puzzle{
 /* 🔒 regla principal */
 
 body:not(.header-hidden) #puzzle{
-        height:216px;
+        height:216px;    
+	    width:216px;
 }
 
 /* 🔹 título oculto + panel full */
 
 body.panel-full.header-hidden #puzzle{
         height:220px;
+	    width:220px;
 }
 
 /* 🔹 título oculto + panel mini */
 
 body.panel-mini.header-hidden #puzzle{
         height:224px;
+	    width:224px;
 }
 
 /* 🔹 título oculto + panel oculto */
 
 body.panel-hidden.header-hidden #puzzle{
         height:228px;
+	    width:228px;
 }
 
 }
