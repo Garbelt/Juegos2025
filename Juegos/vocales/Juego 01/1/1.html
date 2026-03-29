@@ -10,60 +10,43 @@
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="adaptadores.css">
     <link rel="stylesheet" href="pre-game.css">
-    <style>
-/* =========================================
-   PUZZLE
-   ========================================= */
-#puzzle{
-    display:flex;
-    flex-wrap:wrap;
-    margin:0 auto;
-    /* siempre cuadrado */
-    aspect-ratio:1 / 1;
-    width:100%;
-    max-width:408px;
+<style>
+        #puzzle {
+            display: flex;
+            flex-wrap: wrap;
+            width: 408px; /* Ajustar según el tamañodela imagen*/
+            height: 408px; /* Ajustar según el tamañodela imagen*/
+            margin: 0 auto;
+        }
+
+#puzzle img{
+    display:block;
+    margin:auto;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
 }
 
-/* =========================================
-   PIEZAS
-   ========================================= */
-.piece{
-    /* 4 x 4 */
-    width:25%;
-    height:25%;
-    background-size:100% 100%;
-    cursor:pointer;
-    box-sizing:border-box;
-    border:1px solid #333;
-}
+        .piece {
+            width: 102px; /* Ajustar según el tamañodela imageny el número de piezas */
+            height: 102px; /* Ajustar según el tamañodela imageny el número de piezas */
+            background-size: 408px 408px; /* Ajustarsegún el tamaño de la imagen */
+            cursor: pointer;
+            box-sizing: border-box;
+            border: 1px solid #333;
+        }
 
-.piece.selected{
-    box-shadow:0 0 10px 5px rgba(0,0,255,0.5);
-    transform:scale(1.1);
-    z-index:1;
-}
+        .piece.selected {
+            box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.5);
+            transform: scale(1.1);
+            z-index: 1;
+        }
 
-.empty{
-    background:none;
-    border:none;
-}
-
-/* =========================================
-   LISTA DE PALABRAS
-   ========================================= */
-#lista-palabras{
-    margin-top:10px;
-}
-
-#lista-palabras ul{
-    list-style-type:none;
-    padding:0;
-    margin:0;
-}
-
-#lista-palabras ul li{
-    margin-bottom:5px;
-}
+        .empty {
+            background: none;
+            border: none;
+        }
 
 /* =========================================
    MODAL
@@ -92,79 +75,74 @@
 /* =========================================
    MÓVIL HORIZONTAL
    ========================================= */
+
 @media screen and (max-width:1023px) and (orientation:landscape){
-/* 🔒 base estable */
-body:not(.header-hidden) #puzzle{
-    height:215px;
-    max-height:60vh;
-    max-height:60dvh;
-    width:auto;
+/* 🔒 REGLA PRINCIPAL: título visible = tamaño inicial */
+body:not(.header-hidden) #puzzle img{
+        height:215px;
+        max-height:60vh;
+        max-height:60dvh;
+        width:auto;
+        max-width:100%;
 }
 
-/* título oculto + panel full */
-body.panel-full.header-hidden #puzzle{
-    max-height:75vh;
-    max-height:75dvh;
+/* 🔹 título oculto + panel full */
+body.panel-full.header-hidden #puzzle img{
+        max-height:75vh;
+        max-height:75dvh;
 }
 
-/* panel mini */
-body.panel-mini.header-hidden #puzzle{
-    max-height:78vh;
-    max-height:78dvh;
+/* 🔹 título oculto + panel mini */
+body.panel-mini.header-hidden #puzzle img{
+        max-height:78vh;
+        max-height:78dvh;
 }
 
-/* panel oculto */
-body.panel-hidden.header-hidden #puzzle{
-    max-height:85vh;
-    max-height:85dvh;
-    max-width:95vw;
+/* 🔹 título oculto + panel oculto */
+body.panel-hidden.header-hidden #puzzle img{
+        max-height:85vh;
+        max-height:85dvh;
+        max-width:95vw;
 }
 }
+
 
 /* =========================================
    MÓVIL VERTICAL
    ========================================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
-/* base estable */
-body.panel-full:not(.header-hidden) #puzzle{
-    height:370px;
-    max-height:80vh;
-    max-height:80dvh;
-    width:auto;
+/* 🔹 panel full + título visible (base estable) */
+body.panel-full:not(.header-hidden) #puzzle img{
+        height:370px;
+        max-height:80vh;
+        max-height:80dvh;
+        width:auto;
+        max-width:100%;
 }
 
-/* título oculto */
-body.panel-full.header-hidden #puzzle{
-    max-width:87vw;
+/* 🔹 panel full + título oculto */
+body.panel-full.header-hidden #puzzle img{
+	    max-width:87vw;
 }
 
-/* panel mini */
-body.panel-mini:not(.header-hidden) #puzzle{
-    max-width:88vw;
+/* 🔹 panel mini */
+
+body.panel-mini:not(.header-hidden) #puzzle img{
+	    max-width:88vw;
 }
 
-body.panel-mini.header-hidden #puzzle{
-    max-width:90vw;
+body.panel-mini.header-hidden #puzzle img{
+	    max-width:90vw;
 }
 
-/* panel oculto */
-body.panel-hidden:not(.header-hidden) #puzzle{
-    max-width:92vw;
+/* 🔹 panel oculto */
+body.panel-hidden:not(.header-hidden) #puzzle img{
+	    max-width:92vw;
 }
 
-body.panel-hidden.header-hidden #puzzle{
-    max-width:95vw;
+body.panel-hidden.header-hidden #puzzle img{
+        max-width:95vw;
 }
-}
-
-/* =========================================
-   ESCRITORIO (SE MANTIENE EXACTO)
-   ========================================= */
-@media screen and (min-width:1024px){
-    #puzzle{
-        width:408px;
-        height:408px;
-    }
 }
 </style>
 </head>
