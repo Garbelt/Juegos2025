@@ -42,7 +42,6 @@
 /* =========================================
    MODAL
    ========================================= */
-
 .modal {
     display: none;
 }
@@ -65,7 +64,6 @@
 }
 
 /* ================= MOBILE BASE ================= */
-
 @media screen and (max-width:1023px){
     .piece{
         width:25%;
@@ -76,84 +74,120 @@
     }
 }
 
-
 /* ================= PORTRAIT ================= */
-
 @media screen and (max-width:1023px) and (orientation:portrait){
-
 /* 🔹 panel full + título visible */
-
 body.panel-full:not(.header-hidden) #puzzle{
-        height:372px;
-    	width:372px;
+        height:360px;
+    	width:360px;
+        max-height:364px;
+    	max-width:364px;
+        min-height:356px;
+    	min-width:356px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
 /* 🔹 panel full + título oculto */
-
 body.panel-full.header-hidden #puzzle{
-        height:376px;
-	    width:376px;
+        height:364px;
+    	width:364px;
+        max-height:368px;
+    	max-width:368px;
+        min-height:360px;
+    	min-width:360px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
-/* 🔹 panel mini */
-
+/* 🔹 panel mini + título visible */
 body.panel-mini:not(.header-hidden) #puzzle{
-        height:380px;
-	    width:380px;
+        height:364px;
+    	width:364px;
+        max-height:368px;
+    	max-width:368px;
+        min-height:360px;
+    	min-width:360px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
+/* 🔹 panel mini + título oculto */
 body.panel-mini.header-hidden #puzzle{
-        height:384px;
-	    width:384px;
+        height:368px;
+    	width:368px;
+        max-height:372px;
+    	max-width:372px;
+        min-height:364px;
+    	min-width:364px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
-/* 🔹 panel oculto */
-
+/* 🔹 panel oculto + título visible */
 body.panel-hidden:not(.header-hidden) #puzzle{
-        height:390px;
-	    width:390px:
+        height:372px;
+    	width:372px;
+        max-height:376px;
+    	max-width:376px;
+        min-height:368px;
+    	min-width:368px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
+/* 🔹 panel oculto + título oculto */
 body.panel-hidden.header-hidden #puzzle{
-        height:394px;
-	    width:394px;
+        height:380px;
+    	width:380px;
+        max-height:384px;
+    	max-width:384px;
+        min-height:376px;
+    	min-width:376px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
-
 }
-
 
 /* ================= LANDSCAPE ================= */
-
 @media screen and (max-width:1023px) and (orientation:landscape){
-
 /* 🔒 regla principal */
-
 body:not(.header-hidden) #puzzle{
-        height:300px;    
-	    width:300px;
+        height:364px;
+    	width:364px;
+        max-height:368px;
+    	max-width:368px;
+        min-height:360px;
+    	min-width:360px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
 /* 🔹 título oculto + panel full */
-
 body.panel-full.header-hidden #puzzle{
-        height:382px;
-	    width:382px;
+        height:376px;
+    	width:376px;
+        max-height:380px;
+    	max-width:380px;
+        min-height:372px;
+    	min-width:372px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
 /* 🔹 título oculto + panel mini */
-
 body.panel-mini.header-hidden #puzzle{
-        height:386px;
-	    width:386px;
+        height:376px;
+    	width:376px;
+        max-height:380px;
+    	max-width:380px;
+        min-height:372px;
+    	min-width:372px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
 
 /* 🔹 título oculto + panel oculto */
-
 body.panel-hidden.header-hidden #puzzle{
-        height:394px;
-	    width:394px;
+        height:380px;
+    	width:380px;
+        max-height:384px;
+    	max-width:384px;
+        min-height:376px;
+    	min-width:376px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
-
 }
 </style>
 </head>
