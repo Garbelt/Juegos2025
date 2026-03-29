@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateClockDisplay() {
         const minutes = String(Math.floor(time / 60)).padStart(2, "0");
         const seconds = String(time % 60).padStart(2, "0");
-        reloj.textContent = `Tiempo: ${minutes}:${seconds}`;
-        puntaje.textContent = `Puntaje: ${Math.max(0, score - (timeLimit - time))}`;
+        reloj.textContent = `${minutes}:${seconds}`;
+        puntaje.textContent = `${Math.max(0, score - (timeLimit - time))}`;
     }
 
     function splitImage(imageSrc) {
