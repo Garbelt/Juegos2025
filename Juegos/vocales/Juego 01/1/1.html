@@ -17,6 +17,7 @@
             width: 408px; /* Ajustar según el tamañodela imagen*/
             height: 408px; /* Ajustar según el tamañodela imagen*/
             margin: 0 auto;
+		    aspect-ratio:1 / 1;   /* siempre cuadrado */
         }
 
         .piece {
@@ -69,12 +70,6 @@
 @media screen and (max-width:1023px){
 
     /* ================= BASE ================= */
-
-    #puzzle{
-        max-width:100%;
-        aspect-ratio:1 / 1;   /* siempre cuadrado */
-    }
-
     .piece{
         width:25%;
         height:25%;
@@ -82,46 +77,40 @@
         background-repeat:no-repeat;
         background-position:center;
     }
-
 }
-
 
 /* ================= PORTRAIT ================= */
 
 @media screen and (max-width:1023px) and (orientation:portrait){
-
 /* 🔹 panel full + título visible (base estable) */
-
 body.panel-full:not(.header-hidden) #puzzle{
-        height:370px;
-        max-height:80vh;
-        max-height:80dvh;
+        height:372px;
 }
 
 /* 🔹 panel full + título oculto */
 
 body.panel-full.header-hidden #puzzle{
-        max-width:87vw;
+        height:376px;
 }
 
 /* 🔹 panel mini */
 
 body.panel-mini:not(.header-hidden) #puzzle{
-        max-width:88vw;
+        height:380px;
 }
 
 body.panel-mini.header-hidden #puzzle{
-        max-width:90vw;
+        height:384px;
 }
 
 /* 🔹 panel oculto */
 
 body.panel-hidden:not(.header-hidden) #puzzle{
-        max-width:92vw;
+        height:390px;
 }
 
 body.panel-hidden.header-hidden #puzzle{
-        max-width:96vw;
+        height:394px;
 }
 
 }
