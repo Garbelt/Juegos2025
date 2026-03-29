@@ -1,5 +1,9 @@
 /* ================= MOBILE BASE ================= */
 @media screen and (max-width:1023px){
+
+body{
+    background:red;
+}
     .piece{
         width:20%;
         height:20%;
