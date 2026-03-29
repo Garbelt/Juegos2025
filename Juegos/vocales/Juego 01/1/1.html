@@ -65,13 +65,6 @@
 }
 
 @media screen and (max-width:1023px){
-    /* ================= BASE MÓVIL ================= */
-    #puzzle{
-        width:100%;
-        max-width:100%;
-        aspect-ratio:1 / 1;   /* asegura que el puzzle siempre sea cuadrado */
-    }
-
     .piece{
         width:25%;
         height:25%;
@@ -88,34 +81,48 @@ body.panel-full:not(.header-hidden) #puzzle{
         height:370px;
         max-height:80vh;
         max-height:80dvh;
-        width:auto;
-        max-width:100%;
+        aspect-ratio:1 / 1;
 }
 
 /* 🔹 panel full + título oculto */
 
 body.panel-full.header-hidden #puzzle{
-        max-width:87vw;
+        height:380px;
+        max-height:87vh;
+        max-height:87dvh;;
+	    aspect-ratio:1 / 1;
 }
 
 /* 🔹 panel mini */
 
 body.panel-mini:not(.header-hidden) #puzzle{
-        max-width:88vw;
+        height:385px;
+        max-height:89vh;
+        max-height:89dvh;;
+	    aspect-ratio:1 / 1;
 }
 
 body.panel-mini.header-hidden #puzzle{
-        max-width:90vw;
+        height:390px;
+        max-height:91vh;
+        max-height:91dvh;;
+	    aspect-ratio:1 / 1;
 }
 
 /* 🔹 panel oculto */
 
 body.panel-hidden:not(.header-hidden) #puzzle{
-        max-width:92vw;
+        height:393px;
+        max-height:94vh;
+        max-height:94dvh;;
+	    aspect-ratio:1 / 1;
 }
 
 body.panel-hidden.header-hidden #puzzle{
-        max-width:96vw;
+        height:395px;
+        max-height:96vh;
+        max-height:96dvh;;
+	    aspect-ratio:1 / 1;
 }
 }
 
