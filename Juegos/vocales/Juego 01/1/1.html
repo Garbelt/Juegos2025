@@ -87,7 +87,7 @@
    ========================================= */
 @media screen and (max-width:1023px) and (orientation:landscape){
 /* 🔒 REGLA PRINCIPAL: título visible = tamaño inicial */
-body:not(.header-hidden) #puzzle{
+body:not(.header-hidden) #puzzle img{
         height:215px;
         max-height:60vh;
         max-height:60dvh;
@@ -96,19 +96,19 @@ body:not(.header-hidden) #puzzle{
 }
 
 /* 🔹 título oculto + panel full */
-body.panel-full.header-hidden #puzzle{
+body.panel-full.header-hidden #puzzle img{
         max-height:75vh;
         max-height:75dvh;
 }
 
 /* 🔹 título oculto + panel mini */
-body.panel-mini.header-hidden #puzzle{
+body.panel-mini.header-hidden #puzzle img{
         max-height:78vh;
         max-height:78dvh;
 }
 
 /* 🔹 título oculto + panel oculto */
-body.panel-hidden.header-hidden #puzzle{
+body.panel-hidden.header-hidden #puzzle img{
         max-height:85vh;
         max-height:85dvh;
         max-width:95vw;
@@ -120,7 +120,7 @@ body.panel-hidden.header-hidden #puzzle{
    ========================================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
 /* 🔹 panel full + título visible (base estable) */
-body.panel-full:not(.header-hidden) #puzzle{
+body.panel-full:not(.header-hidden) #puzzle img{
         height:370px;
         max-height:80vh;
         max-height:80dvh;
@@ -129,25 +129,25 @@ body.panel-full:not(.header-hidden) #puzzle{
 }
 
 /* 🔹 panel full + título oculto */
-body.panel-full.header-hidden #puzzle{
+body.panel-full.header-hidden #puzzle img{
 	    max-width:87vw;
 }
 
 /* 🔹 panel mini */
-body.panel-mini:not(.header-hidden) #puzzle{
+body.panel-mini:not(.header-hidden) #puzzle img{
 	    max-width:88vw;
 }
 
-body.panel-mini.header-hidden #puzzle{
+body.panel-mini.header-hidden #puzzle img{
 	    max-width:90vw;
 }
 
 /* 🔹 panel oculto */
-body.panel-hidden:not(.header-hidden) #puzzle{
+body.panel-hidden:not(.header-hidden) #puzzle img{
 	    max-width:92vw;
 }
 
-body.panel-hidden.header-hidden #puzzle{
+body.panel-hidden.header-hidden #puzzle img{
         max-width:95vw;
 }
 }
