@@ -47,12 +47,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     }
 
-    function updateClockDisplay() {
-        const minutes = String(Math.floor(time / 60)).padStart(2, "0");
-        const seconds = String(time % 60).padStart(2, "0");
-        reloj.textContent = `${minutes}:${seconds}`;
-        puntaje.textContent = `${Math.max(0, score - (timeLimit - time))}`;
+function updateClockDisplay() {
+    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+    const seconds = String(time % 60).padStart(2, "0");
+    const tiempoFormateado = `${minutes}:${seconds}`;
+    const puntajeActual = Math.max(0, score - (timeLimit - time));
+    document.getElementById("reloj").textContent = tiempoFormateado;
+    const relojVertical = document.getElementById("reloj-vertical");
+    if (relojVertical) {
+        relojVertical.textContent = tiempoFormateado;
     }
+    document.getElementById("puntaje").textContent = puntajeActual;
+    const puntajeVertical = document.getElementById("puntaje-vertical");
+    if (puntajeVertical) {
+        puntajeVertical.textContent = puntajeActual;
+    }
+}
 
     function splitImage(imageSrc) {
         const pieces = [];
@@ -265,13 +275,19 @@ function incrementGameNumber() {
         }, fadeOutInterval);
     }
 
-    window.addEventListener("load", () => {
-        const actualUsername = localStorage.getItem("ActualUs");
-        const usernameElement = document.getElementById("actualUsername");
-        if (usernameElement) {
-            usernameElement.textContent = `Usuario: ${actualUsername}`;
-        } else {
-            console.error("Error: Username element not found.");
-        }
-    });
+window.addEventListener("load", () => {
+    const actualUsername = localStorage.getItem("ActualUs");
+    const usernameElement =
+        document.getElementById("actualUsername");
+    const usernameVerticalElement =
+        document.getElementById("actualUsername-vertical");
+    if (usernameElement) {
+        usernameElement.textContent =
+            `Usuario: ${actualUsername}`;
+    }
+    if (usernameVerticalElement) {
+        usernameVerticalElement.textContent =
+            actualUsername;
+    }
+});
 });
