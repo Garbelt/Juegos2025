@@ -1,0 +1,8 @@
+/* ================= MOBILE BASE ================= */
+@media screen and (max-width:1023px){
+    .piece{
+        width:33.333333%;
+        height:33.333333%;
+        background-size:300% 300%;
+    }
+}
