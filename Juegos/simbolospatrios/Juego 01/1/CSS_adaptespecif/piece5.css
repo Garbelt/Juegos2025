@@ -1,9 +1,14 @@
+    .piece {
+        width: 82px; /* Ajustar según el tamañodela imageny el número de piezas */
+        height: 82px; /* Ajustar según el tamañodela imageny el número de piezas */
+        background-size: 410px 410px; /* Ajustarsegún el tamaño de la imagen */
+        cursor: pointer;
+        box-sizing: border-box;
+        border: 1px solid #333;
+    }
+
 /* ================= MOBILE BASE ================= */
 @media screen and (max-width:1023px){
-
-body{
-    background:red;
-}
     .piece{
         width:20%;
         height:20%;
