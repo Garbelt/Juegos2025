@@ -279,5 +279,57 @@ document.getElementById('username')
 document.getElementById('username').focus();
 </script>
 
+<!-- Registro del Service Worker -->
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/Juegos2025/sw.js")
+    .then(() => console.log("Service Worker registrado"))
+    .catch(error => console.log("Error registrando SW:", error));
+}
+</script>
+
+<script>
+let deferredPrompt;
+const installText = document.getElementById("installText");
+
+// Detecta si ya está instalada (modo standalone)
+function isStandalone() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+// Evento cuando la app es instalable
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  if (!isStandalone()) {
+    installText.style.display = "block";
+  }
+});
+
+// Click en el texto
+installText.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+
+  if (outcome === "accepted") {
+    console.log("Usuario instaló la app");
+  } else {
+    console.log("Usuario canceló instalación");
+  }
+
+  deferredPrompt = null;
+  installText.style.display = "none";
+});
+
+// Si ya está instalada, ocultar
+window.addEventListener("appinstalled", () => {
+  installText.style.display = "none";
+});
+</script>
+
+
 </body>
 </html>
