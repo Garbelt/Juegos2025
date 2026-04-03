@@ -105,36 +105,35 @@ document.getElementById("read-screen").addEventListener("click", () => {
 // ▶️ Botón continuar
 // ==============================
 
-document.getElementById("continuar-btn").addEventListener("click", () => {
+// ==============================
+// ▶️ Botón continuar
+// ==============================
 
+document.getElementById("continuar-btn").addEventListener("click", () => {
     // 1 — Cancelar lectura previa
     if (window.speechSynthesis) {
         speechSynthesis.cancel();
     }
-
     // 2 — Reset estado lector
     if (typeof lecturaActiva !== "undefined") {
         lecturaActiva = true;
     }
-
     // 3 — Mostrar juego
     document.getElementById("pre-game-screen").style.display = "none";
     document.querySelector(".container").style.display = "flex";
-
     document.body.classList.add("game-started");
-
-
+    // 4 — Habilitar definitivamente el botón lector
+    const lectorBtn = document.getElementById("lectorButton");
+    if (lectorBtn) {
+        lectorBtn.style.pointerEvents = "auto";
+        lectorBtn.style.opacity = "1";
+    }
     // 5 — Esperar un frame real antes de iniciar la pregunta
     requestAnimationFrame(() => {
-
         requestAnimationFrame(() => {
-
             if (window.loadQuestion) {
                 loadQuestion();
             }
-
         });
-
     });
-
 });
