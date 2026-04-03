@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juego de Alfabetización - Trivia</title>
+  <link rel="stylesheet" href="mensajesdiferente.css" />
+  <link rel="stylesheet" href="botoneria.css" />
+  <link rel="stylesheet" href="estilosdiferente.css" />
+  <link rel="stylesheet" href="adaptadores.css">
+  <link rel="stylesheet" href="pre-game.css">
+
+  <style>
+    .container > table {
+      border-collapse: collapse;
+      width: 100%;
+      aspect-ratio: 7 / 4;
+      border: 1px solid black;
+    }
+    td {
+      border: none;
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      border: 1px solid black;
+      padding: 0px;
+    }
+    #main-table {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    #main-table td {
+      border: 0px solid black;
+      padding: 0;
+      vertical-align: middle;
+    }
+    .usuario {
+      margin-top: 4px;
+      font-size: clamp(15px, 1.9vw, 22px);
+    }
+    .question {
+      font-size: clamp(14px, 1.7vw, 20px);
+      margin-bottom: 4px;
+      font-weight: normal;
+    }
+    .options {
+      list-style-type: none;
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .options li {
+      font-size: clamp(12px, 1.5vw, 16px);
+      text-align: center;
+      justify-content: center;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .options li:hover {
+      background-color: #e0e0e0;
+    }
+    #toggleButton {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 160px;
+      padding: 6px 14px;
+      font-size: clamp(11px, 1.3vw, 15px);
+      font-weight: bold;
+      cursor: pointer;
+      border: 1px solid #888;
+      background-color: #A0B4BA;
+      color: #333;
+      border-radius: 6px;
+      opacity: 0.9;
+      transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.2s;
+      text-align: center;
+      white-space: nowrap;
+      transform-origin: center;
+    }
+    #toggleButton:hover {
+      transform: translateX(-50%) scale(1.05);
+      background-color: #B8C9CF;
+      opacity: 1;
+    }
+    .fixed-width {
+      width: 40%;
+      aspect-ratio: 1 / 1;
+      text-align: center;
+      padding: 20px;
+    }
+    .fixed-width2 {
+      width: 90%;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f0f0;
+      border: 1px solid black;
+    }
+    #questionImage {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: none; /* por defecto oculto */
+    }
+    #reloj {
+      width: 65%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: conic-gradient(#2ecc71 100%, #ecf0f1 0%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin: auto;
+      user-select: none;
+      border: 1px solid #333;
+    }
+
+/* =========================================
+   MODAL
+   ========================================= */
+
+.modal {
+    display: none;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #8ec6e6;
+    color: black;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    font-size: 24px;
+    z-index: 9999;
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+  </style>
+</head>
+<body>
+
+<!-- ================= PANTALLA PREVIA ================= -->
+<div id="pre-game-screen" style="display: none;">
+    <div id="pre-game-container">
+        <h1 id="game-title" class="pre-game-title">Clasificación de Instrumentos Folclóricos</h1>
+        <p id="game-description" class="pre-game-description">
+            Aprende a clasificar los instrumentos según su tipo. Selecciona correctamente para ganar puntos.
+        </p>
+
+        <div id="pre-game-buttons">
+            <button id="ver-video-btn">Ver Video Explicativo</button>
+            <button id="read-screen">Leer Descripción</button>
+        </div>
+
+        <button id="continuar-btn" class="btn-continue">Continuar</button>
+    </div>
+
+    <!-- Modal de video -->
+	<div id="video-modal" class="modal">
+ 	   <div class="modal-content">
+    	    <span id="close-video" style="cursor:pointer;">Cerrar X</span>
+
+   	     <video id="pre-game-video" width="100%" controls>
+    	        <source src="videos/explicacion.mp4" type="video/mp4">
+    	        Tu navegador no soporta el video.
+  	      </video>
+
+ 	   </div>
+	</div>
+</div>
+
+<!-- ================= BOTON INICIAR ================= -->
+<div id="start-button-container">
+    <button id="start-button" class="disable-clicks">COMENZAR EL JUEGO</button>
+</div>
+
+
+<!-- ================= CONTENIDO DEL JUEGO ================= -->
+<div class="container" style="display:none;">
+<table>
+<tr>
+  <th colspan="2" class="title-cell" style="text-align: center;">
+    <div class="usuario" id="actualUsername"></div>
+    <div class="question" id="question"></div>
+  </th>
+</tr>
+<tr>
+  <!-- Celda imagen (se oculta si no hay imagen) -->
+  <td id="image-cell" class="fixed-width" style="display: none;">
+    <div class="fixed-width2" style="position: relative;">
+      <img id="questionImage" src="" alt="" style="width: 100%; height: auto; display: block;">
+      <button id="speaker-button" 
+        style="
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          display: none;
+          padding: 0;
+        "
+        title="Escuchar pista">
+        <img src="image/speaker-icon.png" alt="Escuchar pista" style="width: 24px; height: 24px;">
+      </button>
+    </div>
+  </td>
+  <!-- Celda opciones -->
+  <td id="options-cell" colspan="2">
+    <ul class="options" id="options"></ul>
+    <div class="found-message" id="message"></div>
+  </td>
+</tr>
+
+
+    </table>
+<button id="lectorButton">Cancelar Lectura</button>
+  </div>
+
+  <!-- Audios generales -->
+  <audio id="audio-musica-pregunta" src="sounds/musicapregunta.mp3"></audio>
+  <audio id="audio-tictac" src="sounds/tictac.mp3" loop></audio>
+  <audio id="audio-tiempo-agotado" src="sounds/finportiempo.mp3"></audio>
+  <audio id="audio-error" src="sounds/finporintentos.mp3"></audio>
+  <audio id="audio-correcto" src="sounds/finporcompletar.mp3"></audio>
+  <audio id="audio-correcto2" src="sounds/correcto.mp3"></audio>
+  <audio id="audio-error2" src="sounds/error.mp3"></audio>
+  <audio id="background-music" loop>
+    <source src="sounds/Celesta.mp3" type="audio/mpeg" />
+    Tu navegador no soporta la reproducción de audio.
+  </audio>
+  <audio id="audio-palabra"></audio>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
+        authDomain: "juego001-469b6.firebaseapp.com",
+        databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
+        projectId: "juego001-469b6",
+        storageBucket: "juego001-469b6.appspot.com",
+        messagingSenderId: "528847999661",
+        appId: "1:528847999661:web:6085a104fe64262a042c24"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Scripts -->
+<script src="lector.js"></script>
+<script src="introGame.js"></script>
+<script src="verificacionesjuegos.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
