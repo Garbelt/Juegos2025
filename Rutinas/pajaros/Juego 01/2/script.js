@@ -174,12 +174,13 @@ function enableOptions() {
     return audio;
   }
 
-  function leerOpcion(event) {
-    if (!audioPaused) {
-      const texto = event.target.textContent;
-      hablar(texto);
-    }
-  }
+function leerOpcion(event) {
+  if (lecturaEnCurso) return;
+  if (!lecturaActiva) return;
+  const texto =
+    event.target.textContent;
+  hablar(texto);
+}
 
   function showMessage(text, type) {
     const audioSrc = type === 'correct' ? 'audio/correcto.mp3' : 'audio/error.mp3';
