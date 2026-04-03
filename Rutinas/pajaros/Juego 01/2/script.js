@@ -103,7 +103,7 @@
 function disableOptions() {
   const options = optionsElement.querySelectorAll('li');
   options.forEach(option => {
-      option.style.pointerEvents = 'none';
+    option.style.pointerEvents = 'none';
   });
   questionElement.style.pointerEvents = 'none';
   questionElement.style.cursor = 'default';
@@ -115,29 +115,16 @@ function disableOptions() {
     speakerButton.style.opacity = '0.4';
     speakerButton.onclick = null;
   }
-  // 🔴 AGREGAR ESTO
-  const lectorBtn =
-    document.getElementById("lectorButton");
-  if (lectorBtn) {
-    lectorBtn.style.pointerEvents = "none";
-    lectorBtn.style.opacity = "0.4";
-  }
 }
 
 function enableOptions() {
   const options =
     optionsElement.querySelectorAll('li');
   options.forEach(option => {
-      option.style.pointerEvents = 'auto';
+    option.style.pointerEvents = 'auto';
   });
   questionElement.style.pointerEvents = 'auto';
   questionElement.style.cursor = 'pointer';
-  const lectorBtn =
-    document.getElementById("lectorButton");
-  if (lectorBtn) {
-    lectorBtn.style.pointerEvents = "auto";
-    lectorBtn.style.opacity = "1";
-  }
 }
 
 
