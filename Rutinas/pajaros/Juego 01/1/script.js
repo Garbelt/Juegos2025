@@ -149,10 +149,12 @@ function activarLectura() {
 }
 
 function cancelarLectura() {
+  console.log("Lector cancelado");
   lecturaActiva = false;
-  console.log(
-    "Lector cancelado"
-  );
+  // cancelar realmente la voz
+  speechSynthesis.cancel();
+  // limpiar acción pendiente
+  accionPendiente = null;
   reactivarInterfaz();
 }
    
