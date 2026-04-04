@@ -312,7 +312,7 @@ hablar(currentQuestion.question, {
       accionPendiente = null;
     }
   }
-});
+}
 
   window.loadQuestion = loadQuestion;
 
