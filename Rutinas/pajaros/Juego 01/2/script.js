@@ -486,106 +486,173 @@ lecturaActiva = true;
 hablar(currentQuestion.question, {
 
   onEnd: () => {
+
     // 🔴 Liberar siempre el estado de lectura
     lecturaEnCurso = false;
+
     // Restaurar el estado original del lector
     lecturaActiva = estadoPrevio;
+
     // Reactivar opciones
     enableOptions();
+
     // Reactivar imagen
     if (questionImage) {
       questionImage.style.pointerEvents = 'auto';
     }
+
     // Reactivar botón parlante
     const speakerButton =
       document.getElementById('speaker-button');
+
     if (speakerButton) {
       speakerButton.style.pointerEvents = 'auto';
       speakerButton.style.opacity = '0.4';
       speakerButton.onclick =
         speakerButton._playAudioFunc || null;
     }
+
     // Reactivar cursor del título
     questionElement.style.cursor = 'pointer';
+
     // 🔥 INICIAR RELOJ SOLO SI NO ESTÁ CORRIENDO
     if (!intervaloTemporizador) {
       iniciarTemporizador();
     }
+
     // 🔊 INICIAR MÚSICA SOLO SI NO ESTÁ SONANDO
     const musicaPregunta =
       document.getElementById('audio-musica-pregunta');
+
     if (musicaPregunta) {
+
       if (musicaPregunta.paused) {
+
         musicaPregunta.volume = 1;
         musicaPregunta.currentTime = 0;
+
         musicaPregunta.play().catch(e =>
           console.log(
             'No se pudo reproducir música de pregunta:',
             e
           )
         );
+
       }
+
     }
+
   }
+
 });
-} // ← CIERRE DE loadQuestion()
 
-  window.loadQuestion = loadQuestion;
+} // cierre correcto de loadQuestion
 
-  // Listener para click en la imagen (dentro de DOMContentLoaded)
+window.loadQuestion = loadQuestion;
+
+
+// Listener para click en la imagen
 questionImage.addEventListener('click', () => {
-  const currentQuestion = questions[currentQuestionIndex];
+
+  const currentQuestion =
+    questions[currentQuestionIndex];
+
   if (currentQuestion.type === 'imageChange') {
-    const secondImageSrc = questionImage.dataset.secondImage;
+
+    const secondImageSrc =
+      questionImage.dataset.secondImage;
+
     if (secondImageSrc) {
-      const originalImageSrc = questionImage.src;
-      questionImage.src = secondImageSrc;
+
+      const originalImageSrc =
+        questionImage.src;
+
+      questionImage.src =
+        secondImageSrc;
+
       setTimeout(() => {
-        questionImage.src = originalImageSrc;
+
+        questionImage.src =
+          originalImageSrc;
+
       }, 3000);
+
     }
+
   }
-  // Para 'imageaudio' o cualquier otro tipo, no hacer nada al click en la imagen
+
 });
-
-
 
 
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
-const lectorBtn = document.getElementById("lectorButton");
+const lectorBtn =
+  document.getElementById("lectorButton");
+
 if (lectorBtn) {
+
   lectorBtn.addEventListener("click", () => {
+
     // esperar a que lector.js actualice lecturaActiva
     requestAnimationFrame(() => {
+
       // Si la lectura quedó desactivada (cancelada)
       if (!lecturaActiva) {
-        // 🔴 RESET CRÍTICO: evita que las opciones queden mudas
+
+        // 🔴 RESET CRÍTICO
         if (typeof lecturaEnCurso !== "undefined") {
           lecturaEnCurso = false;
         }
+
         // Reactivar opciones
         enableOptions();
+
         // Reactivar título
-        questionElement.style.pointerEvents = "auto";
-        questionElement.style.cursor = "pointer";
+        questionElement.style.pointerEvents =
+          "auto";
+        questionElement.style.cursor =
+          "pointer";
+
         // Reactivar imagen
         if (questionImage) {
-          questionImage.style.pointerEvents = "auto";
+          questionImage.style.pointerEvents =
+            "auto";
         }
+
         // Reactivar botón parlante
         const speakerButton =
-          document.getElementById("speaker-button");
+          document.getElementById(
+            "speaker-button"
+          );
+
         if (speakerButton) {
-          speakerButton.style.pointerEvents = "auto";
-          speakerButton.style.opacity = "1";
+
+          speakerButton.style.pointerEvents =
+            "auto";
+
+          speakerButton.style.opacity =
+            "1";
+
           speakerButton.onclick =
-            speakerButton._playAudioFunc || null;
+            speakerButton._playAudioFunc
+            || null;
+
         }
-        // 🔥 GARANTIZAR QUE EL TEMPORIZADOR SIGA CORRIENDO
+
+        // 🔥 GARANTIZAR TEMPORIZADOR
         if (!intervaloTemporizador) {
           iniciarTemporizador();
         }
+
       }
+
     });
+
   });
+
 }
+
+
+// 🔵 INICIO REAL DEL JUEGO
+loadQuestion();
+
+});
