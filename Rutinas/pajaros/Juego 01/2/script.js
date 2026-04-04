@@ -151,6 +151,7 @@ function enableOptions() {
 
   function iniciarTiempoAcumulado() {
       clearInterval(intervaloTiempoAcumulado);
+      intervaloTiempoAcumulado = null;
       intervaloTiempoAcumulado = setInterval(() => {
           tiempoTotalSegundos++;
           timeAcumuladoElement.textContent = `Tiempo: ${formatearTiempo(tiempoTotalSegundos)}`;
@@ -159,6 +160,7 @@ function enableOptions() {
 
   function detenerTiempoAcumulado() {
       clearInterval(intervaloTiempoAcumulado);
+      intervaloTiempoAcumulado = null;
   }
 
   function actualizarRelojGrafico(tiempoRestante, tiempoTotal = 15) {
@@ -238,6 +240,7 @@ function leerOpcion(event) {
 function handleOptionClick(event) {
   if(questionAudioPlayer) questionAudioPlayer.pause();
   clearInterval(intervaloTemporizador);
+  intervaloTemporizador = null;
   audioTictac.pause();
   detenerTiempoAcumulado();
 
