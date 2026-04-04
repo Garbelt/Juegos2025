@@ -101,9 +101,6 @@ document.getElementById("read-screen").addEventListener("click", () => {
 
 });
 
-// ==============================
-// ▶️ Botón continuar
-// ==============================
 
 // ==============================
 // ▶️ Botón continuar
