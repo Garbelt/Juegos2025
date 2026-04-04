@@ -19,7 +19,6 @@
   const questionImage = document.getElementById('questionImage');
   const imageCell = document.getElementById('image-cell');
 
-  let accionPendiente = null;
   let questionAudioPlayer = null;
   let audioPaused = false;
 
@@ -83,6 +82,7 @@
   ];
 
   let currentQuestionIndex = 0;
+  let accionPendiente = null;
 
   function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
