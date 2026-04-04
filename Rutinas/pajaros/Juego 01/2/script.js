@@ -115,13 +115,6 @@ function disableOptions() {
     speakerButton.style.opacity = '0.4';
     speakerButton.onclick = null;
   }
-  // 🔴 AGREGAR ESTO
-  const lectorBtn =
-    document.getElementById("lectorButton");
-  if (lectorBtn) {
-    lectorBtn.style.pointerEvents = "none";
-    lectorBtn.style.opacity = "0.4";
-  }
 }
 
 function enableOptions() {
