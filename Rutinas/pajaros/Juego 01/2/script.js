@@ -159,10 +159,12 @@ function activarLectura() {
 }
 
 function cancelarLectura() {
+  console.log("Lector cancelado");
   lecturaActiva = false;
-  console.log(
-    "Lector cancelado"
-  );
+  // cancelar realmente la voz
+  speechSynthesis.cancel();
+  // limpiar acción pendiente
+  accionPendiente = null;
   reactivarInterfaz();
 }
    
@@ -514,7 +516,6 @@ lecturaActiva = true;
 
 hablar(currentQuestion.question, {
 
-  bloquearBotones: true,
   onEnd: () => {
     // Restaurar el estado original del lector
     lecturaActiva = estadoPrevio;
@@ -594,8 +595,9 @@ questionImage.addEventListener('click', () => {
 const lectorBtn = document.getElementById("lectorButton");
 if (lectorBtn) {
   lectorBtn.addEventListener("click", () => {
-    const estaLeyendo =
-      speechSynthesis.speaking;
+      const estaLeyendo =
+          speechSynthesis.speaking ||
+          speechSynthesis.pending;
     // Si está leyendo, NO cancelar
     // Guardar la intención
     if (estaLeyendo) {
