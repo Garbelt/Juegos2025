@@ -189,35 +189,50 @@ function enableOptions() {
     messageElement.style.display = 'block';
   }
 
-  function manejarTiempoAgotado() {
-    clearInterval(intervaloTemporizador);
-    
-    const musicaPregunta =
-    document.getElementById('audio-musica-pregunta');
-    if (musicaPregunta) {
-      fadeOutAudio(musicaPregunta, 2000);
-    }
-    
-    audioTictac.pause();
-    detenerTiempoAcumulado();
-    disableOptions();
+function manejarTiempoAgotado() {
+  clearInterval(intervaloTemporizador);
 
-    errores++;
-    fallidosElement.textContent = `Errores: ${errores}`;
-
-    questions.push(questions[currentQuestionIndex]);
-    questions.splice(currentQuestionIndex, 1);
-
-    showMessage('ERROR', 'error');
-
-    setTimeout(() => {
-      messageElement.style.display = 'none';
-      if (currentQuestionIndex >= questions.length) {
-          currentQuestionIndex = 0;
-      }
-      loadQuestion();
-    }, 2000);
+  const musicaPregunta =
+    document.getElementById(
+      'audio-musica-pregunta'
+    );
+  if (musicaPregunta) {
+    fadeOutAudio(musicaPregunta, 2000);
   }
+
+  audioTictac.pause();
+  detenerTiempoAcumulado();
+  disableOptions();
+
+  errores++;
+  if (fallidosElement) {
+    fallidosElement.textContent =
+      `Errores: ${errores}`;
+  }
+
+  questions.push(
+    questions[currentQuestionIndex]
+  );
+  questions.splice(
+    currentQuestionIndex,
+    1
+  );
+  showMessage(
+    'ERROR',
+    'error'
+  );
+  setTimeout(() => {
+    messageElement.style.display =
+      'none';
+    if (
+      currentQuestionIndex >=
+      questions.length
+    ) {
+      currentQuestionIndex = 0;
+    }
+    loadQuestion();
+  }, 2000);
+}
 
   function fadeOutAudio(audio, duration) {
     let volume = audio.volume;
