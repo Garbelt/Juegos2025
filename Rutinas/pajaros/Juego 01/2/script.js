@@ -492,49 +492,56 @@ lecturaActiva = true;
 hablar(currentQuestion.question, {
 
   bloquearBotones: true,
-
-onEnd: () => {
-
-  // Restaurar el estado original del lector
-  lecturaActiva = estadoPrevio;
-
-  enableOptions();
-
-  questionImage.style.pointerEvents = 'auto';
-
-  speakerButton.style.pointerEvents = 'auto';
-  speakerButton.style.opacity = '0.4';
-
-  questionElement.style.cursor = 'pointer';
-
-// 🔧 Sincronizar explícitamente el lectorButton
-const lectorBtn = document.getElementById("lectorButton");
-if (lectorBtn) {
-  lectorBtn.style.pointerEvents = "auto";
-  lectorBtn.style.opacity = "1";
-}
-
-  // 🔥 INICIAR RELOJ
-  iniciarTemporizador();
-
-  // 🔊 INICIAR MÚSICA DE LA PREGUNTA
-  const musicaPregunta =
-    document.getElementById('audio-musica-pregunta');
-  if (musicaPregunta) {
-    musicaPregunta.volume = 1;
-    musicaPregunta.currentTime = 0;
-    musicaPregunta.play().catch(e =>
+  onEnd: () => {
+    // Restaurar el estado original del lector
+    lecturaActiva = estadoPrevio;
+    enableOptions();
+    questionImage.style.pointerEvents = 'auto';
+    speakerButton.style.pointerEvents = 'auto';
+    speakerButton.style.opacity = '0.4';
+    questionElement.style.cursor = 'pointer';
+    // 🔧 Sincronizar explícitamente el lectorButton
+    const lectorBtn = document.getElementById("lectorButton");
+    if (lectorBtn) {
+      lectorBtn.style.pointerEvents = "auto";
+      lectorBtn.style.opacity = "1";
+    }
+    // ==============================
+    // EJECUTAR ACCIÓN PENDIENTE
+    // ==============================
+    if (accionPendiente) {
       console.log(
-        'No se pudo reproducir música de pregunta:',
-        e
-      )
-    );
+        "Ejecutando acción pendiente:",
+        accionPendiente
+      );
+      if (accionPendiente === "cancelar") {
+        cancelarLectura();
+      }
+      if (accionPendiente === "activar") {
+        activarLectura();
+      }
+      accionPendiente = null;
+      return; // ← importante: evita iniciar reloj/música
+    }
+    // 🔥 INICIAR RELOJ
+    iniciarTemporizador();
+    // 🔊 INICIAR MÚSICA DE LA PREGUNTA
+    const musicaPregunta =
+      document.getElementById(
+        'audio-musica-pregunta'
+      );
+    if (musicaPregunta) {
+      musicaPregunta.volume = 1;
+      musicaPregunta.currentTime = 0;
+      musicaPregunta.play().catch(e =>
+        console.log(
+          'No se pudo reproducir música de pregunta:',
+          e
+        )
+      );
+    }
   }
-
-}
-
 });
-}
 
   window.loadQuestion = loadQuestion;
 
