@@ -125,12 +125,6 @@ function enableOptions() {
   });
   questionElement.style.pointerEvents = 'auto';
   questionElement.style.cursor = 'pointer';
-  const lectorBtn =
-    document.getElementById("lectorButton");
-  if (lectorBtn) {
-    lectorBtn.style.pointerEvents = "auto";
-    lectorBtn.style.opacity = "1";
-  }
 }
 
 
