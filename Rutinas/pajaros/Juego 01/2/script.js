@@ -485,40 +485,50 @@ const estadoPrevio = lecturaActiva;
 lecturaActiva = true;
 
 hablar(currentQuestion.question, {
-onEnd: () => {
-  // Restaurar el estado original del lector
-  lecturaActiva = estadoPrevio;
 
-  enableOptions();
-
-  questionImage.style.pointerEvents = 'auto';
-
-  speakerButton.style.pointerEvents = 'auto';
-  speakerButton.style.opacity = '0.4';
-
-  questionElement.style.cursor = 'pointer';
-
-  // 🔥 INICIAR RELOJ
-  iniciarTemporizador();
-
-  // 🔊 INICIAR MÚSICA DE LA PREGUNTA
-  const musicaPregunta =
-    document.getElementById('audio-musica-pregunta');
-  if (musicaPregunta) {
-    musicaPregunta.volume = 1;
-    musicaPregunta.currentTime = 0;
-    musicaPregunta.play().catch(e =>
-      console.log(
-        'No se pudo reproducir música de pregunta:',
-        e
-      )
-    );
+  onEnd: () => {
+    // 🔴 Liberar siempre el estado de lectura
+    lecturaEnCurso = false;
+    // Restaurar el estado original del lector
+    lecturaActiva = estadoPrevio;
+    // Reactivar opciones
+    enableOptions();
+    // Reactivar imagen
+    if (questionImage) {
+      questionImage.style.pointerEvents = 'auto';
+    }
+    // Reactivar botón parlante
+    const speakerButton =
+      document.getElementById('speaker-button');
+    if (speakerButton) {
+      speakerButton.style.pointerEvents = 'auto';
+      speakerButton.style.opacity = '0.4';
+      speakerButton.onclick =
+        speakerButton._playAudioFunc || null;
+    }
+    // Reactivar cursor del título
+    questionElement.style.cursor = 'pointer';
+    // 🔥 INICIAR RELOJ SOLO SI NO ESTÁ CORRIENDO
+    if (!intervaloTemporizador) {
+      iniciarTemporizador();
+    }
+    // 🔊 INICIAR MÚSICA SOLO SI NO ESTÁ SONANDO
+    const musicaPregunta =
+      document.getElementById('audio-musica-pregunta');
+    if (musicaPregunta) {
+      if (musicaPregunta.paused) {
+        musicaPregunta.volume = 1;
+        musicaPregunta.currentTime = 0;
+        musicaPregunta.play().catch(e =>
+          console.log(
+            'No se pudo reproducir música de pregunta:',
+            e
+          )
+        );
+      }
+    }
   }
-
-}
-
 });
-}
 
   window.loadQuestion = loadQuestion;
 
