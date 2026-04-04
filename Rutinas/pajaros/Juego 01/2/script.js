@@ -547,35 +547,49 @@ const lectorBtn = document.getElementById("lectorButton");
 
 if (lectorBtn) {
 
- lectorBtn.addEventListener("click", () => {
+  lectorBtn.addEventListener("click", () => {
 
-  // esperar a que lector.js actualice lecturaActiva
-  requestAnimationFrame(() => {
+    // Si está hablando realmente, forzar cancelación
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+    }
 
-    if (!lecturaActiva) {
+    // Esperar un instante para que el motor actualice su estado
+    setTimeout(() => {
 
-      // Reactivar la interfaz del juego
-      enableOptions();
+      const leyendoRealmente =
+        speechSynthesis.speaking;
 
-      questionElement.style.pointerEvents = "auto";
-      questionElement.style.cursor = "pointer";
+      if (!leyendoRealmente) {
 
-      questionImage.style.pointerEvents = "auto";
+        // Sincronizar estado lógico
+        lecturaActiva = false;
 
-      const speakerButton =
-        document.getElementById("speaker-button");
+        // Reactivar la interfaz del juego
+        enableOptions();
 
-      if (speakerButton) {
+        questionElement.style.pointerEvents = "auto";
+        questionElement.style.cursor = "pointer";
 
-        speakerButton.style.pointerEvents = "auto";
-        speakerButton.style.opacity = "1";
+        questionImage.style.pointerEvents = "auto";
 
-        speakerButton.onclick =
-          speakerButton._playAudioFunc || null;
+        const speakerButton =
+          document.getElementById("speaker-button");
+
+        if (speakerButton) {
+
+          speakerButton.style.pointerEvents = "auto";
+          speakerButton.style.opacity = "1";
+
+          speakerButton.onclick =
+            speakerButton._playAudioFunc || null;
+
+        }
 
       }
-    }
+
+    }, 100);
+
   });
-});
+
 }
-});
