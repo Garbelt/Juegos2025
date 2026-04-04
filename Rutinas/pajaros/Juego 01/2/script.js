@@ -128,7 +128,21 @@ function enableOptions() {
   questionElement.style.cursor = 'pointer';
 }
 
+function activarLectura() {
+  lecturaActiva = true;
+  console.log(
+    "Lector activado"
+  );
+}
 
+function cancelarLectura() {
+  lecturaActiva = false;
+  console.log(
+    "Lector cancelado"
+  );
+  reactivarInterfaz();
+}
+   
   function iniciarTemporizador() {
     clearInterval(intervaloTemporizador);
     let tiempoRestante = 15;
