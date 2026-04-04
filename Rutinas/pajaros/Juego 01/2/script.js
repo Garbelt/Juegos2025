@@ -543,38 +543,39 @@ questionImage.addEventListener('click', () => {
 
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
 const lectorBtn = document.getElementById("lectorButton");
-
 if (lectorBtn) {
-
- lectorBtn.addEventListener("click", () => {
-
-  // esperar a que lector.js actualice lecturaActiva
-  requestAnimationFrame(() => {
-
-    if (!lecturaActiva) {
-
-      // Reactivar la interfaz del juego
-      enableOptions();
-
-      questionElement.style.pointerEvents = "auto";
-      questionElement.style.cursor = "pointer";
-
-      questionImage.style.pointerEvents = "auto";
-
-      const speakerButton =
-        document.getElementById("speaker-button");
-
-      if (speakerButton) {
-
-        speakerButton.style.pointerEvents = "auto";
-        speakerButton.style.opacity = "1";
-
-        speakerButton.onclick =
-          speakerButton._playAudioFunc || null;
-
+  lectorBtn.addEventListener("click", () => {
+    // esperar a que lector.js actualice lecturaActiva
+    requestAnimationFrame(() => {
+      // Si la lectura quedó desactivada (cancelada)
+      if (!lecturaActiva) {
+        // 🔴 RESET CRÍTICO: evita que las opciones queden mudas
+        if (typeof lecturaEnCurso !== "undefined") {
+          lecturaEnCurso = false;
+        }
+        // Reactivar opciones
+        enableOptions();
+        // Reactivar título
+        questionElement.style.pointerEvents = "auto";
+        questionElement.style.cursor = "pointer";
+        // Reactivar imagen
+        if (questionImage) {
+          questionImage.style.pointerEvents = "auto";
+        }
+        // Reactivar botón parlante
+        const speakerButton =
+          document.getElementById("speaker-button");
+        if (speakerButton) {
+          speakerButton.style.pointerEvents = "auto";
+          speakerButton.style.opacity = "1";
+          speakerButton.onclick =
+            speakerButton._playAudioFunc || null;
+        }
+        // 🔥 GARANTIZAR QUE EL TEMPORIZADOR SIGA CORRIENDO
+        if (!intervaloTemporizador) {
+          iniciarTemporizador();
+        }
       }
-    }
+    });
   });
-});
 }
-});
