@@ -288,41 +288,33 @@ hablar(currentQuestion.question, {
 const lectorBtn = document.getElementById("lectorButton");
 
 if (lectorBtn) {
-
- lectorBtn.addEventListener("click", () => {
-
-  // esperar a que lector.js actualice lecturaActiva
-  requestAnimationFrame(() => {
-
-    if (!lecturaActiva) {
-
-      // Reactivar la interfaz del juego
-      enableOptions();
-
-      questionElement.style.pointerEvents = "auto";
-      questionElement.style.cursor = "pointer";
-
-      questionImage.style.pointerEvents = "auto";
-
-      const speakerButton =
-        document.getElementById("speaker-button");
-
-      if (speakerButton) {
-
-        speakerButton.style.pointerEvents = "auto";
-        speakerButton.style.opacity = "1";
-
-        speakerButton.onclick =
-          speakerButton._playAudioFunc || null;
-
-      }
-
+  lectorBtn.addEventListener("click", () => {
+    // Si está hablando realmente, forzar cancelación
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
     }
-
+    // Esperar un instante para que el motor actualice su estado
+    setTimeout(() => {
+      const leyendoRealmente =
+        speechSynthesis.speaking;
+      if (!leyendoRealmente) {
+        // Sincronizar estado lógico
+        lecturaActiva = false;
+        // Reactivar la interfaz del juego
+        enableOptions();
+        questionElement.style.pointerEvents = "auto";
+        questionElement.style.cursor = "pointer";
+        questionImage.style.pointerEvents = "auto";
+        const speakerButton =
+          document.getElementById("speaker-button");
+        if (speakerButton) {
+          speakerButton.style.pointerEvents = "auto";
+          speakerButton.style.opacity = "1";
+          speakerButton.onclick =
+            speakerButton._playAudioFunc || null;
+        }
+      }
+    }, 100);
   });
-
-});
-
 }
-
-});
+}); // ← cierre correcto del DOMContentLoaded
