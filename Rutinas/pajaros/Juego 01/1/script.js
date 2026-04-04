@@ -264,21 +264,32 @@ lecturaActiva = true;
 hablar(currentQuestion.question, {
 
   bloquearBotones: true,
-
   onEnd: () => {
     // Restaurar el estado original del lector
     lecturaActiva = estadoPrevio;
-
-      enableOptions();
-      questionImage.style.pointerEvents = 'auto';
-      speakerButton.style.pointerEvents = 'auto';
-      speakerButton.style.opacity = '1';
-      questionElement.style.cursor = 'pointer';
-
+    enableOptions();
+    questionImage.style.pointerEvents = 'auto';
+    speakerButton.style.pointerEvents = 'auto';
+    speakerButton.style.opacity = '1';
+    questionElement.style.cursor = 'pointer';
+    // ==============================
+    // Ejecutar acción pendiente
+    // ==============================
+    if (accionPendiente) {
+      console.log(
+        "Ejecutando acción pendiente:",
+        accionPendiente
+      );
+      if (accionPendiente === "cancelar") {
+        cancelarLectura();
+      }
+      if (accionPendiente === "activar") {
+        activarLectura();
+      }
+      accionPendiente = null;
+    }
   }
 });
-
-  }
 
   window.loadQuestion = loadQuestion;
 
