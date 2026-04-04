@@ -472,13 +472,6 @@ onEnd: () => {
 
   questionElement.style.cursor = 'pointer';
 
-// 🔧 Sincronizar explícitamente el lectorButton
-const lectorBtn = document.getElementById("lectorButton");
-if (lectorBtn) {
-  lectorBtn.style.pointerEvents = "auto";
-  lectorBtn.style.opacity = "1";
-}
-
   // 🔥 INICIAR RELOJ
   iniciarTemporizador();
 
