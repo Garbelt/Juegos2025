@@ -564,7 +564,7 @@ hablar(currentQuestion.question, {
       );
     }
   }
-});
+}
 
   window.loadQuestion = loadQuestion;
 
