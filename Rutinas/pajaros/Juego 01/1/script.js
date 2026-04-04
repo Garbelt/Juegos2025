@@ -343,7 +343,8 @@ const lectorBtn = document.getElementById("lectorButton");
 if (lectorBtn) {
   lectorBtn.addEventListener("click", () => {
     const estaLeyendo =
-      speechSynthesis.speaking;
+        speechSynthesis.speaking ||
+        speechSynthesis.pending;
     // Si está leyendo, NO cancelar
     // Guardar la intención
     if (estaLeyendo) {
