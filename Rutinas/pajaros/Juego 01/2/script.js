@@ -175,10 +175,9 @@ function enableOptions() {
   }
 
 function leerOpcion(event) {
-  if (lecturaEnCurso) return;
   if (!lecturaActiva) return;
-  const texto =
-    event.target.textContent;
+  if (lecturaEnCurso === true) return;
+  const texto = event.target.textContent;
   hablar(texto);
 }
 
