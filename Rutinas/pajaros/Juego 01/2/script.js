@@ -101,6 +101,29 @@
       }
   }
 
+function reactivarInterfaz() {
+  enableOptions();
+  questionElement.style.pointerEvents =
+    "auto";
+  questionElement.style.cursor =
+    "pointer";
+  questionImage.style.pointerEvents =
+    "auto";
+  const speakerButton =
+    document.getElementById(
+      "speaker-button"
+    );
+  if (speakerButton) {
+    speakerButton.style.pointerEvents =
+      "auto";
+    speakerButton.style.opacity =
+      "1";
+    speakerButton.onclick =
+      speakerButton._playAudioFunc
+      || null;
+  }
+}
+   
 function disableOptions() {
   const options = optionsElement.querySelectorAll('li');
   options.forEach(option => {
