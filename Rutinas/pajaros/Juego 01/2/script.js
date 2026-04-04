@@ -92,6 +92,7 @@
   let score = 0;
   let errores = 0;
   let intervaloTemporizador;
+  let accionPendiente = null;
 
   function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
