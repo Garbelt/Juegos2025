@@ -108,7 +108,7 @@ function disableOptions() {
   }
 }
 
-function enableOptions() {
+   function enableOptions() {
   const options =
     optionsElement.querySelectorAll('li');
   options.forEach(option => {
@@ -118,6 +118,21 @@ function enableOptions() {
   questionElement.style.cursor = 'pointer';
 }
 
+function activarLectura() {
+  lecturaActiva = true;
+  console.log(
+    "Lector activado"
+  );
+}
+
+function cancelarLectura() {
+  lecturaActiva = false;
+  console.log(
+    "Lector cancelado"
+  );
+  reactivarInterfaz();
+}
+   
   function playAudio(audioSrc) {
     const audio = new Audio(audioSrc);
     audio.play().catch(error => console.error('Audio playback failed:', error));
