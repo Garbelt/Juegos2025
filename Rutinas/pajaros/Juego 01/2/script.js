@@ -564,9 +564,10 @@ hablar(currentQuestion.question, {
       );
     }
   }
-}
+});
+} // ← cierre real de loadQuestion
 
-  window.loadQuestion = loadQuestion;
+window.loadQuestion = loadQuestion;
 
   // Listener para click en la imagen (dentro de DOMContentLoaded)
 questionImage.addEventListener('click', () => {
