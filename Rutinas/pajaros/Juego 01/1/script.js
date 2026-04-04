@@ -286,7 +286,6 @@ lecturaActiva = true;
 
 hablar(currentQuestion.question, {
 
-  bloquearBotones: true,
   onEnd: () => {
     // Restaurar el estado original del lector
     lecturaActiva = estadoPrevio;
