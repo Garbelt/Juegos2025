@@ -19,6 +19,7 @@
   const questionImage = document.getElementById('questionImage');
   const imageCell = document.getElementById('image-cell');
 
+  let accionPendiente = null;
   let questionAudioPlayer = null;
   let audioPaused = false;
 
