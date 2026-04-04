@@ -191,7 +191,13 @@ function enableOptions() {
 
   function manejarTiempoAgotado() {
     clearInterval(intervaloTemporizador);
-    fadeOutAudio(document.getElementById('audio-musica-pregunta'), 2000);
+    
+    const musicaPregunta =
+    document.getElementById('audio-musica-pregunta');
+    if (musicaPregunta) {
+      fadeOutAudio(musicaPregunta, 2000);
+    }
+    
     audioTictac.pause();
     detenerTiempoAcumulado();
     disableOptions();
