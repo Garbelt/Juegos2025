@@ -312,9 +312,10 @@ hablar(currentQuestion.question, {
       accionPendiente = null;
     }
   }
-}
+});
+} // ← cierre real de loadQuestion
 
-  window.loadQuestion = loadQuestion;
+window.loadQuestion = loadQuestion;
 
   questionImage.addEventListener('click', () => {
     const currentQuestion = questions[currentQuestionIndex];
