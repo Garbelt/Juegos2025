@@ -528,6 +528,7 @@ hablar(currentQuestion.question, {
     }
   }
 });
+} // ← CIERRE DE loadQuestion()
 
   window.loadQuestion = loadQuestion;
 
