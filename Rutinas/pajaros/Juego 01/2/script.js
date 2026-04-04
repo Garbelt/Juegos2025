@@ -130,6 +130,7 @@ function enableOptions() {
 
   function iniciarTemporizador() {
     clearInterval(intervaloTemporizador);
+    intervaloTemporizador = null;
     let tiempoRestante = 15;
 
     actualizarRelojGrafico(tiempoRestante);
@@ -191,6 +192,7 @@ function leerOpcion(event) {
 
   function manejarTiempoAgotado() {
     clearInterval(intervaloTemporizador);
+    intervaloTemporizador = null;
     fadeOutAudio(document.getElementById('audio-musica-pregunta'), 2000);
     audioTictac.pause();
     detenerTiempoAcumulado();
