@@ -184,13 +184,20 @@ function enableOptions() {
       clearInterval(intervaloTiempoAcumulado);
   }
 
-  function actualizarRelojGrafico(tiempoRestante, tiempoTotal = 15) {
+function actualizarRelojGrafico(tiempoRestante, tiempoTotal = 15) {
     const porcentaje = (tiempoRestante / tiempoTotal) * 100;
-    const reloj = document.getElementById('reloj');
     const porcentajeInvertido = 100 - porcentaje;
-    reloj.style.background = `conic-gradient(from 0deg at 50% 50%, #2ecc71  ${porcentajeInvertido}%, #ecf0f1 ${porcentajeInvertido}%)`;
-    reloj.textContent = `${tiempoRestante}`;
-  }
+    const relojes = [
+        document.getElementById('reloj'),
+        document.getElementById('reloj-vertical')
+    ];
+    relojes.forEach(reloj => {
+        if (!reloj) return;
+        reloj.style.background =
+          `conic-gradient(from 0deg at 50% 50%, #2ecc71 ${porcentajeInvertido}%, #ecf0f1 ${porcentajeInvertido}%)`;
+        reloj.textContent = `${tiempoRestante}`;
+    });
+}
 
   function playAudio(audioSrc) {
     const audio = new Audio(audioSrc);
