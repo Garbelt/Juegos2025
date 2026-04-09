@@ -100,17 +100,16 @@ mobileToggleHeaderBtn.addEventListener("click", () => {
 /* ================= TOGGLE LECTURA ================= */
 
 mobileReadBtn.addEventListener("click", () => {
-
+  if (mobileReadBtn.style.pointerEvents === "none") {
+    return;
+  }
   if (typeof toggleLectura === "function") {
     toggleLectura();
   }
-
   actualizarBotonLectura();
   leerBoton(mobileReadBtn);
   cerrarMenu();
-
 });
-
 
 /* ================= PANEL (CICLO CONTROLADO) ================= */
 
