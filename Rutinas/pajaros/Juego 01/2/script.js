@@ -126,13 +126,20 @@ function disableOptions() {
 }
 
 function setEstadoBotonLector(habilitado) {
-    const boton = document.getElementById("lectorButton");
-    if (!boton) return;
-    if (habilitado) {
-        boton.style.pointerEvents = "auto";
-    } else {
-        boton.style.pointerEvents = "none";
-    }
+    const botones = [
+        document.getElementById("lectorButton"),
+        document.getElementById("mobile-read-btn")
+    ];
+    botones.forEach(boton => {
+        if (!boton) return;
+        if (habilitado) {
+            boton.style.pointerEvents = "auto";
+            boton.style.opacity = "1";
+        } else {
+            boton.style.pointerEvents = "none";
+            boton.style.opacity = "0.5";
+        }
+    });
 }
 
 function enableOptions() {
@@ -143,12 +150,7 @@ function enableOptions() {
   });
   questionElement.style.pointerEvents = 'auto';
   questionElement.style.cursor = 'pointer';
-  const lectorBtn =
-    document.getElementById("lectorButton");
-  if (lectorBtn) {
-    lectorBtn.style.pointerEvents = "auto";
-    lectorBtn.style.opacity = "1";
-  }
+  setEstadoBotonLector(true);
 }
 
 
