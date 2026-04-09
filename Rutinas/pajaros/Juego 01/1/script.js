@@ -365,12 +365,11 @@ lecturaActiva = true;
 hablar(currentQuestion.question, {
   bloquearBotones: true,
   onEnd: () => {
-    // Restaurar estado original
+    console.log("FIN LECTURA");
+
     lecturaActiva = estadoPrevio;
-    // 🔓 Habilitar botón lector
     setEstadoBotonLector(true);
 
-    // Continuar juego
     iniciarInterfazPregunta()
   }
 });
