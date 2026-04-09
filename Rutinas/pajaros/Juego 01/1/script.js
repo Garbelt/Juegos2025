@@ -362,17 +362,26 @@ setEstadoBotonLector(false);
 // Forzar lectura temporal
 lecturaActiva = true;
 
+let interfazIniciada = false;
+
+function iniciarInterfazSeguro() {
+  if (interfazIniciada) return;
+
+  interfazIniciada = true;
+
+  lecturaActiva = estadoPrevio;
+  setEstadoBotonLector(true);
+
+  iniciarInterfazPregunta();
+}
+
 hablar(currentQuestion.question, {
   bloquearBotones: true,
-  onEnd: () => {
-    console.log("FIN LECTURA");
-
-    lecturaActiva = estadoPrevio;
-    setEstadoBotonLector(true);
-
-    iniciarInterfazPregunta()
-  }
+  onEnd: iniciarInterfazSeguro
 });
+
+// Fallback por si onEnd no se dispara
+setTimeout(iniciarInterfazSeguro, 4000);
 }
 
   window.loadQuestion = loadQuestion;
