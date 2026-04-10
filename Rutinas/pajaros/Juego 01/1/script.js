@@ -378,6 +378,7 @@ setTimeout(() => {
     finalizarLectura();
   }
 }, 2500);
+  }
 
   window.loadQuestion = loadQuestion;
 
