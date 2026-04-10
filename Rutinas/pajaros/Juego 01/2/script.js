@@ -570,18 +570,29 @@ setEstadoBotonLector(false);
 // Forzar lectura temporal
 lecturaActiva = true;
 
+let lecturaTerminada = false;
+
+function finalizarLectura() {
+  if (lecturaTerminada) return;
+  lecturaTerminada = true;
+  lecturaActiva = estadoPrevio;
+  setEstadoBotonLector(true);
+  iniciarInterfazPregunta();
+}
+
 hablar(currentQuestion.question, {
   bloquearBotones: true,
-  onEnd: () => {
-    // Restaurar estado original
-    lecturaActiva = estadoPrevio;
-    // 🔓 Habilitar nuevamente el botón lector
-    setEstadoBotonLector(true);
-    // Continuar juego
-    iniciarInterfazPregunta();
-  }
+  onEnd: finalizarLectura
 });
-}
+// 🛟 Fallback crítico para móviles
+setTimeout(() => {
+  if (!lecturaTerminada) {
+    console.log("⚠️ Fallback: lectura no inició o no terminó");
+    finalizarLectura();
+  }
+}, 2500);
+
+} // ← cierre de loadQuestion
 
 window.loadQuestion = loadQuestion;
 
