@@ -381,31 +381,21 @@ setTimeout(() => {
 
 } // ← cierre de loadQuestion
 
-window.loadQuestion = loadQuestion;
+  window.loadQuestion = loadQuestion;
 
-loadQuestion(); // ← iniciar primera pregunta
-
-questionImage.addEventListener('click', () => {
-  const currentQuestion =
-    questions[currentQuestionIndex];
-
-  if (currentQuestion.type === 'imageChange') {
-    const secondImageSrc =
-      questionImage.dataset.secondImage;
-
-    if (secondImageSrc) {
-      const originalImageSrc =
-        questionImage.src;
-
-      questionImage.src = secondImageSrc;
-
-      setTimeout(() => {
-        questionImage.src =
-          originalImageSrc;
-      }, 3000);
+  questionImage.addEventListener('click', () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion.type === 'imageChange') {
+      const secondImageSrc = questionImage.dataset.secondImage;
+      if (secondImageSrc) {
+        const originalImageSrc = questionImage.src;
+        questionImage.src = secondImageSrc;
+        setTimeout(() => {
+          questionImage.src = originalImageSrc;
+        }, 3000);
+      }
     }
-  }
-});
+  });
 
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
 const lectorBtn = document.getElementById("lectorButton");
