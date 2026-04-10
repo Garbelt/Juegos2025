@@ -358,14 +358,10 @@ speakerButton._playAudioFunc = () => {
 
 const estadoPrevio = lecturaActiva;
 
-// 🔹 Mostrar contenedor cuando la primera pregunta ya está lista
-if (typeof primeraPregunta !== "undefined" && primeraPregunta) {
-  const container = document.querySelector(".container");
-  if (container) {
-    container.classList.remove("container-invisible");
-  }
-  // Muy importante: marcar que ya no es la primera
-  primeraPregunta = false;
+// 🔹 Mostrar contenedor si estaba oculto
+const container = document.querySelector(".container");
+if (container && container.classList.contains("container-invisible")) {
+  container.classList.remove("container-invisible");
 }
     
 let lecturaTerminada = false;
