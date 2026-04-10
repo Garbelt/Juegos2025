@@ -71,6 +71,7 @@
   ];
 
   let currentQuestionIndex = 0;
+  let primeraPregunta = true;
 
 questionElement.addEventListener("click", () => {
   const currentQuestion =
