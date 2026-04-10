@@ -368,29 +368,10 @@ function finalizarLectura() {
   iniciarInterfazPregunta();
 }
 
-function ejecutarLectura() {
-  if (typeof hablar === "function") {
-    hablar(currentQuestion.question, {
-      bloquearBotones: true,
-      onEnd: finalizarLectura
-    });
-  } else {
-    console.log("⚠️ hablar() no disponible");
-    finalizarLectura();
-  }
-}
-
-// 🔵 Retardo solo en la primera pregunta
-if (primeraPregunta) {
-  console.log("⏳ Retardo inicial del lector");
-  setTimeout(() => {
-    ejecutarLectura();
-  }, 1000);
-  primeraPregunta = false;
-} else {
-  ejecutarLectura();
-}
-    
+hablar(currentQuestion.question, {
+  bloquearBotones: true,
+  onEnd: finalizarLectura
+});
 // 🛟 Fallback crítico para móviles
 setTimeout(() => {
   if (!lecturaTerminada) {
