@@ -358,10 +358,13 @@ speakerButton._playAudioFunc = () => {
 
 const estadoPrevio = lecturaActiva;
 
-// 🔹 Mostrar contenedor si estaba oculto
 const container = document.querySelector(".container");
-if (container && container.classList.contains("container-invisible")) {
-  container.classList.remove("container-invisible");
+if (container) {
+  if (container.classList.contains("container-invisible")) {
+    container.classList.remove("container-invisible");
+  }
+  // 🔹 ESTA LÍNEA ES LA QUE FALTA
+  container.classList.add("container-visible");
 }
     
 let lecturaTerminada = false;
