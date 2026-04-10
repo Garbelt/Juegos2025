@@ -106,7 +106,6 @@ document.getElementById("read-screen").addEventListener("click", () => {
 // ==============================
 
 document.getElementById("continuar-btn").addEventListener("click", () => {
-
     // 1 — Cancelar lectura previa
     if (window.speechSynthesis) {
         speechSynthesis.cancel();
@@ -119,26 +118,29 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 
     // 3 — Mostrar juego
     document.getElementById("pre-game-screen").style.display = "none";
-    document.querySelector(".container").style.display = "flex";
-
+    const container = document.querySelector(".container");
+    // Mostrar pero invisible (solo primera carga)
+    container.style.display = "flex";
+    if (typeof primeraPregunta !== "undefined" && primeraPregunta) {
+        container.classList.add("container-invisible");
+    }
     document.body.classList.add("game-started");
 
     // 4 — Iniciar música (dentro del click real)
-
     const audio = document.getElementById("background-music");
     if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(console.error);
+        audio.currentTime = 0;
+        audio.play().catch(console.error);
     }
 
-// 5 — Esperar render + estabilización del lector
-requestAnimationFrame(() => {
+    // 5 — Esperar render + estabilización del lector
     requestAnimationFrame(() => {
-        setTimeout(() => {
-            if (window.loadQuestion) {
-                loadQuestion();
-            }
-        }, 700); // delay de estabilización del speech engine
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                if (window.loadQuestion) {
+                    loadQuestion();
+                }
+            }, 700);
+        });
     });
-  });
 });
