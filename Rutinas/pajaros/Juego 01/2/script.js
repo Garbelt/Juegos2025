@@ -134,17 +134,13 @@ function setEstadoBotonLector(habilitado) {
     if (boton) {
         boton.style.pointerEvents =
             habilitado ? "auto" : "none";
-        // aseguramos que no quede visualmente disabled
-        boton.disabled = false;
-        boton.classList.remove("disabled");
     }
     if (mobileBtn) {
+        // CRÍTICO: nunca usar disabled
+        mobileBtn.disabled = false;
         mobileBtn.style.pointerEvents =
             habilitado ? "auto" : "none";
-        // lo mismo para mobile
-        mobileBtn.disabled = false;
-        mobileBtn.classList.remove("disabled");
-    }
+   }
 }
 
 function enableOptions() {
