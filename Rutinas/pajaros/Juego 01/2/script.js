@@ -26,9 +26,7 @@ hablar(currentQuestion.question, {
   const imageCell = document.getElementById('image-cell');
   const timeAcumuladoElement = document.getElementById('timeacumulado');
   const puntajeElement = document.getElementById('puntaje');
-  const puntajeElementVertical = document.getElementById("puntaje-vertical");
   const fallidosElement = document.getElementById('fallidos');
-  const fallidosElementVertical = document.getElementById('fallidos-vertical');
   const audioTictac = document.getElementById('audio-tictac');
   let questionAudioPlayer = null;
   let audioPaused = false;
@@ -287,10 +285,6 @@ function handleOptionClick(event) {
     puntaje += 20;
     score += 20;
     puntajeElement.textContent = `${puntaje}`;
-    if (puntajeElementVertical) {
-      puntajeElementVertical.textContent =
-        `${puntaje}`;
-    }
     showMessage('CORRECTO', 'correct');
 
     setTimeout(() => {
@@ -311,11 +305,7 @@ function handleOptionClick(event) {
 
     errores++;
     fallidosElement.textContent = `${errores}`;
-    if (fallidosElementVertical) {
-      fallidosElementVertical.textContent =
-        `${errores}`;
-    }
-
+    
     if (errores >= MAX_ERRORES) {
         perderJuego();
         return;
