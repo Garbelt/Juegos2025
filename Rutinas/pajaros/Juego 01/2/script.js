@@ -286,6 +286,8 @@ function handleOptionClick(event) {
     puntaje += 20;
     score += 20;
     puntajeElement.textContent = `${puntaje}`;
+    if (puntajeElementVertical) {puntajeElementVertical.textContent = `${puntaje}`;}
+    
     showMessage('CORRECTO', 'correct');
 
     setTimeout(() => {
