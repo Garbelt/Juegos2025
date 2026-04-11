@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Variables globales y elementos DOM
   const questionElement = document.getElementById('question');
 
@@ -26,7 +26,9 @@ hablar(currentQuestion.question, {
   const imageCell = document.getElementById('image-cell');
   const timeAcumuladoElement = document.getElementById('timeacumulado');
   const puntajeElement = document.getElementById('puntaje');
+  const puntajeElementVertical = document.getElementById("puntaje-vertical");
   const fallidosElement = document.getElementById('fallidos');
+  const fallidosElementVertical = document.getElementById('fallidos-vertical');
   const audioTictac = document.getElementById('audio-tictac');
   let questionAudioPlayer = null;
   let audioPaused = false;
@@ -177,6 +179,7 @@ function enableOptions() {
       intervaloTiempoAcumulado = setInterval(() => {
           tiempoTotalSegundos++;
           timeAcumuladoElement.textContent = `${formatearTiempo(tiempoTotalSegundos)}`;
+          if (timeAcumuladoElementVertical) {timeAcumuladoElementVertical.textContent = formatearTiempo(tiempoTotalSegundos);}
       }, 1000);
   }
 
@@ -284,6 +287,10 @@ function handleOptionClick(event) {
     puntaje += 20;
     score += 20;
     puntajeElement.textContent = `${puntaje}`;
+    if (puntajeElementVertical) {
+      puntajeElementVertical.textContent =
+        `${puntaje}`;
+    }
     showMessage('CORRECTO', 'correct');
 
     setTimeout(() => {
@@ -304,6 +311,11 @@ function handleOptionClick(event) {
 
     errores++;
     fallidosElement.textContent = `${errores}`;
+    if (fallidosElementVertical) {
+      fallidosElementVertical.textContent =
+        `${errores}`;
+    }
+
     if (errores >= MAX_ERRORES) {
         perderJuego();
         return;
@@ -563,46 +575,25 @@ speakerButton._playAudioFunc = () => {
   questionElement.style.cursor = 'default';
 
 // === LECTURA AUTOMÁTICA DE LA PREGUNTA (SIEMPRE) ===
-
-const estadoPrevio =
-  typeof lecturaActiva !== "undefined"
-    ? lecturaActiva
-    : true;
-
+// Guardar estado actual del lector
+const estadoPrevio = lecturaActiva;
+// 🔒 Bloquear botón lector mientras se lee la pregunta
 setEstadoBotonLector(false);
+// Forzar lectura temporal
 lecturaActiva = true;
-
-const container = document.querySelector(".container");
-if (container) {
-  if (container.classList.contains("container-invisible")) {
-    container.classList.remove("container-invisible");
-  }
-}
-    
-let lecturaTerminada = false;
-
-function finalizarLectura() {
-  if (lecturaTerminada) return;
-  lecturaTerminada = true;
-  lecturaActiva = estadoPrevio;
-  setEstadoBotonLector(true);
-  iniciarInterfazPregunta();
-}
 
 hablar(currentQuestion.question, {
   bloquearBotones: true,
-  onEnd: finalizarLectura
-});
-// 🛟 Fallback crítico para móviles
-setTimeout(() => {
-  if (!lecturaTerminada) {
-    console.log("⚠️ Fallback: lectura no inició o no terminó");
-    finalizarLectura();
+  onEnd: () => {
+    // Restaurar estado original
+    lecturaActiva = estadoPrevio;
+    // 🔓 Habilitar nuevamente el botón lector
+    setEstadoBotonLector(true);
+    // Continuar juego
+    iniciarInterfazPregunta();
   }
-}, 2500);
-
-} // ← cierre de loadQuestion
-
+});
+}
 
 window.loadQuestion = loadQuestion;
 
