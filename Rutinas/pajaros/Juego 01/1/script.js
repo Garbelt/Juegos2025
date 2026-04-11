@@ -369,8 +369,6 @@ if (container) {
   if (container.classList.contains("container-invisible")) {
     container.classList.remove("container-invisible");
   }
-  // 🔹 ESTA LÍNEA ES LA QUE FALTA
-  container.classList.add("container-visible");
 }
     
 let lecturaTerminada = false;
