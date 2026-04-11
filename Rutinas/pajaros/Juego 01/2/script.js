@@ -129,19 +129,21 @@ function disableOptions() {
 }
 
 function setEstadoBotonLector(habilitado) {
-    // --- BOTÓN LECTOR PRINCIPAL ---
     const boton = document.getElementById("lectorButton");
+    const mobileBtn = document.getElementById("mobile-read-btn");
     if (boton) {
         boton.style.pointerEvents =
             habilitado ? "auto" : "none";
+        // aseguramos que no quede visualmente disabled
+        boton.disabled = false;
+        boton.classList.remove("disabled");
     }
-
-    // --- BOTÓN LECTOR MÓVIL ---
-    const mobileBtn =
-        document.getElementById("mobile-read-btn");
     if (mobileBtn) {
         mobileBtn.style.pointerEvents =
             habilitado ? "auto" : "none";
+        // lo mismo para mobile
+        mobileBtn.disabled = false;
+        mobileBtn.classList.remove("disabled");
     }
 }
 
