@@ -252,8 +252,8 @@ function fadeOutAndStopAudio(audio, duration = 2500) {
     disableOptions();
 
     errores++;
-    fallidosElement.textContent = `${errores}`;
-    if (fallidosElementVertical) {fallidosElementVertical.textContent = `${errores}`;}
+    fallidosElement.textContent = `${errores}/${MAX_ERRORES}`;
+    if (fallidosElementVertical) {fallidosElementVertical.textContent = = `${errores}/${MAX_ERRORES}`;}
     
     if (errores >= MAX_ERRORES) {
         perderJuego();
@@ -329,8 +329,8 @@ function handleOptionClick(event) {
     fadeOutAudio(document.getElementById('audio-musica-pregunta'), 2000);
 
     errores++;
-    fallidosElement.textContent = `${errores}`;
-    if (fallidosElementVertical) {fallidosElementVertical.textContent = `${errores}`;}
+    fallidosElement.textContent = `${errores}/${MAX_ERRORES}`;
+    if (fallidosElementVertical) {fallidosElementVertical.textContent = `${errores}/${MAX_ERRORES}`;}
     
     if (errores >= MAX_ERRORES) {
         perderJuego();
