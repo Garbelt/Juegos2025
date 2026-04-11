@@ -106,7 +106,6 @@ document.getElementById("read-screen").addEventListener("click", () => {
 // ==============================
 
 document.getElementById("continuar-btn").addEventListener("click", () => {
-
     // 1 — Cancelar lectura previa
     if (window.speechSynthesis) {
         speechSynthesis.cancel();
@@ -119,21 +118,32 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 
     // 3 — Mostrar juego
     document.getElementById("pre-game-screen").style.display = "none";
-    document.querySelector(".container").style.display = "flex";
+
+    const container = document.querySelector(".container");
+
+    if (container) {
+        // Mostrar pero invisible (solo primera carga)
+        container.style.display = "flex";
+        container.classList.add("container-invisible");
+    }
 
     document.body.classList.add("game-started");
 
-    // 5 — Esperar un frame real antes de iniciar la pregunta
+    // 4 — Iniciar música (dentro del click real)
+    const audio = document.getElementById("background-music");
+    if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(console.error);
+    }
+
+    // 5 — Esperar render + estabilización del lector
     requestAnimationFrame(() => {
-
         requestAnimationFrame(() => {
-
-            if (window.loadQuestion) {
-                 loadQuestion();
-            }
-
+            setTimeout(() => {
+                if (window.loadQuestion) {
+                    loadQuestion();
+                }
+            }, 700);
         });
-
     });
-
 });
