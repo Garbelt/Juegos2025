@@ -576,24 +576,44 @@ speakerButton._playAudioFunc = () => {
 
 // === LECTURA AUTOMÁTICA DE LA PREGUNTA (SIEMPRE) ===
 // Guardar estado actual del lector
-const estadoPrevio = lecturaActiva;
-// 🔒 Bloquear botón lector mientras se lee la pregunta
+const estadoPrevio =
+  typeof lecturaActiva !== "undefined"
+    ? lecturaActiva
+    : true;
+
 setEstadoBotonLector(false);
-// Forzar lectura temporal
 lecturaActiva = true;
+
+const container = document.querySelector(".container");
+if (container) {
+  if (container.classList.contains("container-invisible")) {
+    container.classList.remove("container-invisible");
+  }
+}
+    
+let lecturaTerminada = false;
+
+function finalizarLectura() {
+  if (lecturaTerminada) return;
+  lecturaTerminada = true;
+  lecturaActiva = estadoPrevio;
+  setEstadoBotonLector(true);
+  iniciarInterfazPregunta();
+}
 
 hablar(currentQuestion.question, {
   bloquearBotones: true,
-  onEnd: () => {
-    // Restaurar estado original
-    lecturaActiva = estadoPrevio;
-    // 🔓 Habilitar nuevamente el botón lector
-    setEstadoBotonLector(true);
-    // Continuar juego
-    iniciarInterfazPregunta();
-  }
+  onEnd: finalizarLectura
 });
-}
+// 🛟 Fallback crítico para móviles
+setTimeout(() => {
+  if (!lecturaTerminada) {
+    console.log("⚠️ Fallback: lectura no inició o no terminó");
+    finalizarLectura();
+  }
+}, 2500);
+
+} // ← cierre de loadQuestion
 
 window.loadQuestion = loadQuestion;
 
