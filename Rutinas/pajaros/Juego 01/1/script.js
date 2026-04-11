@@ -116,11 +116,16 @@ function disableOptions() {
 
 function setEstadoBotonLector(habilitado) {
     const boton = document.getElementById("lectorButton");
-    if (!boton) return;
-    if (habilitado) {
-        boton.style.pointerEvents = "auto";
-    } else {
-        boton.style.pointerEvents = "none";
+    const mobileBtn = document.getElementById("mobile-read-btn");
+    if (boton) {
+        boton.style.pointerEvents =
+            habilitado ? "auto" : "none";
+    }
+    if (mobileBtn) {
+        // CRÍTICO: nunca usar disabled
+        mobileBtn.disabled = false;
+        mobileBtn.style.pointerEvents =
+            habilitado ? "auto" : "none";
     }
 }
 
