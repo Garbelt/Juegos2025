@@ -73,3 +73,13 @@
   opacity: 1;
 }
 
+
+#mobile-read-btn {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.mobile-controls button {
+  opacity: 1;
+  filter: none;
+}
