@@ -1,0 +1,35 @@
+﻿/* =========================================
+   LAYOUT RESPONSIVO
+   Imagen + Opciones + Panel
+   ========================================= */
+
+
+/* ===============================
+   VISTA HORIZONTAL
+   =============================== */
+
+@media (orientation: landscape) {
+
+  .fila-principal {
+    display: table-row;
+  }
+
+}
+
+
+
+/* ===============================
+   VISTA VERTICAL
+   =============================== */
+
+@media (orientation: portrait) {
+
+  /* Convertimos la fila en layout vertical */
+
+  .fila-principal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+}
