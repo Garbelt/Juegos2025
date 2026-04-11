@@ -121,7 +121,6 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
     const container = document.querySelector(".container");
     // Mostrar pero invisible (solo primera carga)
     container.style.display = "flex";
-    if (typeof primeraPregunta !== "undefined" && primeraPregunta) {
         container.classList.add("container-invisible");
     }
     document.body.classList.add("game-started");
