@@ -253,7 +253,7 @@ function fadeOutAndStopAudio(audio, duration = 2500) {
 
     errores++;
     fallidosElement.textContent = `${errores}/${MAX_ERRORES}`;
-    if (fallidosElementVertical) {fallidosElementVertical.textContent = = `${errores}/${MAX_ERRORES}`;}
+    if (fallidosElementVertical) {fallidosElementVertical.textContent = `${errores}/${MAX_ERRORES}`;}
     
     if (errores >= MAX_ERRORES) {
         perderJuego();
