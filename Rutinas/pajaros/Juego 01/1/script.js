@@ -356,7 +356,10 @@ speakerButton._playAudioFunc = () => {
       optionsElement.appendChild(li);
     });
 
-const estadoPrevio = lecturaActiva;
+const estadoPrevio =
+  typeof lecturaActiva !== "undefined"
+    ? lecturaActiva
+    : true;
 
 setEstadoBotonLector(false);
 lecturaActiva = true;
