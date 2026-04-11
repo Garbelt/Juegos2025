@@ -143,20 +143,6 @@ function setEstadoBotonLector(habilitado) {
    }
 }
 
-  function bloquearClickMobileReadBtn() {
-    const btn = document.getElementById("mobile-read-btn");
-    if (!btn) return;
-    btn.dataset.locked = "true";
-    btn.style.pointerEvents = "none";
-}
-
-function desbloquearClickMobileReadBtn() {
-    const btn = document.getElementById("mobile-read-btn");
-    if (!btn) return;
-    btn.dataset.locked = "false";
-    btn.style.pointerEvents = "auto";
-}
-
 function enableOptions() {
   const options =
     optionsElement.querySelectorAll('li');
@@ -617,8 +603,6 @@ const estadoPrevio =
     : true;
 
 setEstadoBotonLector(false);
-bloquearClickMobileReadBtn();
-  
 lecturaActiva = true;
 
 const container = document.querySelector(".container");
@@ -635,7 +619,6 @@ function finalizarLectura() {
   lecturaTerminada = true;
   lecturaActiva = estadoPrevio;
   setEstadoBotonLector(true);
-  desbloquearClickMobileReadBtn();
   iniciarInterfazPregunta();
 }
 
