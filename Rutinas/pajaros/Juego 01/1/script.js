@@ -358,9 +358,6 @@ speakerButton._playAudioFunc = () => {
 
 const estadoPrevio = lecturaActiva;
 
-setEstadoBotonLector(false);
-lecturaActiva = true;
-
 const container = document.querySelector(".container");
 if (container) {
   if (container.classList.contains("container-invisible")) {
