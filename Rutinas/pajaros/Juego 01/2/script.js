@@ -28,6 +28,7 @@ hablar(currentQuestion.question, {
   const puntajeElement = document.getElementById('puntaje');
   const puntajeElementVertical = document.getElementById('puntaje-vertical');
   const fallidosElement = document.getElementById('fallidos');
+  const fallidosElementVertical = document.getElementById('fallidos-vertical');
   const audioTictac = document.getElementById('audio-tictac');
   let questionAudioPlayer = null;
   let audioPaused = false;
