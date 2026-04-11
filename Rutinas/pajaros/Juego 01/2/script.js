@@ -129,12 +129,19 @@ function disableOptions() {
 }
 
 function setEstadoBotonLector(habilitado) {
+    // --- BOTÓN LECTOR PRINCIPAL ---
     const boton = document.getElementById("lectorButton");
-    if (!boton) return;
-    if (habilitado) {
-        boton.style.pointerEvents = "auto";
-    } else {
-        boton.style.pointerEvents = "none";
+    if (boton) {
+        boton.style.pointerEvents =
+            habilitado ? "auto" : "none";
+    }
+
+    // --- BOTÓN LECTOR MÓVIL ---
+    const mobileBtn =
+        document.getElementById("mobile-read-btn");
+    if (mobileBtn) {
+        mobileBtn.style.pointerEvents =
+            habilitado ? "auto" : "none";
     }
 }
 
