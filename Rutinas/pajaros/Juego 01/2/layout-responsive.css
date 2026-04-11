@@ -45,14 +45,13 @@
 
   /* Manejamos tamaño de la imagen */
   .fixed-width {
-    width: 100%;
+    width: 60%;
     aspect-ratio: auto;
     padding: 10px;
   }
   .fixed-width2 {
-    width: 80%;
+    width: 40%;
     max-width: 320px;
     margin: 0 auto;
   }
-
 }
