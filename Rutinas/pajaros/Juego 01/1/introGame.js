@@ -118,11 +118,15 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 
     // 3 — Mostrar juego
     document.getElementById("pre-game-screen").style.display = "none";
+
     const container = document.querySelector(".container");
-    // Mostrar pero invisible (solo primera carga)
-    container.style.display = "flex";
+
+    if (container) {
+        // Mostrar pero invisible (solo primera carga)
+        container.style.display = "flex";
         container.classList.add("container-invisible");
     }
+
     document.body.classList.add("game-started");
 
     // 4 — Iniciar música (dentro del click real)
