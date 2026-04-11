@@ -1,22 +1,17 @@
-﻿/* =========================================
+/* =========================================
    LAYOUT RESPONSIVO
    Imagen + Opciones + Panel
    ========================================= */
-
 
 /* ===============================
    VISTA HORIZONTAL
    =============================== */
 
 @media (orientation: landscape) {
-
   .fila-principal {
     display: table-row;
   }
-
 }
-
-
 
 /* ===============================
    VISTA VERTICAL
@@ -25,11 +20,39 @@
 @media (orientation: portrait) {
 
   /* Convertimos la fila en layout vertical */
-
   .fila-principal {
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+
+
+  /* Ordenamos los elementos de la fila (ahora encolumnados) */
+  #options-cell {
+    order: 1;
+    width: 100%;
+  }
+  #image-cell {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  #align-left-top {
+    order: 3;
+    width: 100%;
+  }
+
+  /* Manejamos tamaño de la imagen */
+  .fixed-width {
+    width: 100%;
+    aspect-ratio: auto;
+    padding: 10px;
+  }
+  .fixed-width2 {
+    width: 80%;
+    max-width: 320px;
+    margin: 0 auto;
   }
 
 }
