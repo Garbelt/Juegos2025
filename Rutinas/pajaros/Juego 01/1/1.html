@@ -316,6 +316,13 @@ document.getElementById("close-video").addEventListener("click", () => {
     videoModal.style.display = "none";
 });
 
+	document.getElementById("continuar-btn").addEventListener("click", () => {
+    document.getElementById("pre-game-screen").style.display = "none";
+    document.querySelector(".container").style.display = "block";
+    document.getElementById("background-music").play();
+    startGame();
+});
+
 </script>
 
 <!-- ================= BOTONERA MÓVIL ================= -->
