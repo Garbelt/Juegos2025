@@ -63,10 +63,10 @@
 }
 
   .fixed-width2 {
-    height: 280px;
-    width: auto;
-    max-height: 280px;
-    max-width: 280px;
+    height: 250px;
+    width: 250px;
+    max-height: 250px;
+    max-width: 250px;
   }
    
    .usuario {
