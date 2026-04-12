@@ -64,10 +64,13 @@
     display: table-row;
   }
 
+.container {
+  margin: 0;
+}
 .container table tr:nth-child(1) {
     height: 70px;
   }
-
+   
   .fixed-width2 {
     height: 250px;
     width: 250px;
