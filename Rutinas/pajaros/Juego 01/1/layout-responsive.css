@@ -46,8 +46,7 @@
   }
 
 .container table tr:nth-child(1) {
-    height: 15%;
-    min-height: 60px;
+    min-height: 70px;
   }
 
 .container table tr:nth-child(1) td {
