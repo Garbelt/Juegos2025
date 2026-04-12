@@ -12,19 +12,37 @@
 
   html,
   body {
-    overflow: hidden;
     margin: 0;
     padding: 0;
   }
 
-  /* CONTENEDOR PRINCIPAL */
+  body {
+    display: block;
+    overflow: hidden;
+  }
+}
 
-  .container {
+  /* CONTENEDOR PRINCIPAL */
+.container {
     height: 100dvh;
     width: 100vw;
     margin: 0;
+    aspect-ratio:auto !important;
     display: block;   /* evita centrado vertical */
   }
+ .container > table {
+    aspect-ratio: auto !important;
+ }
+
+.container table tr:nth-child(1) {
+  height: 80px;
+}
+.container table tr:nth-child(2) {
+  height: auto;
+}
+.container table tr:nth-child(3) {
+  height: auto;
+}
 
   /* CELDA DE IMAGEN */
 
@@ -78,27 +96,22 @@
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation: landscape) {
-
-  body {
-    margin: 0;
-  }
-
+ 
+   
+ .container > table {
+      border-collapse: collapse;
+	  height: 100dvh;
+      aspect-ratio: auto;
+ }
+   
   .fila-principal {
     display: table-row;
   }
 
   /* CLAVE: eliminar cualquier centrado */
 
-  .container {
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-    display: block;
-  }
-
   table {
-    width: 100%;
-    height: 100%;
+    height: 100dvh;
   }
 
   /* ALTURA HEADER */
@@ -111,11 +124,11 @@
 
   .fixed-width2 {
 
-    height: 250px;
-    width: 250px;
+    height: 240px;
+    width: 240px;
 
-    max-height: 250px;
-    max-width: 250px;
+    max-height: 240px;
+    max-width: 240px;
 
   }
 
@@ -134,12 +147,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
-
-  .container {
-    height: 100dvh;
-    width: 100vw;
-    margin: 0;
   }
 
   /* HEADER */
