@@ -209,4 +209,11 @@
 
   }
 
+#reloj {
+  width: 22vh;
+  height: 22vh;
+  max-width: 140px;
+  max-height: 140px;
+}
+
 }
