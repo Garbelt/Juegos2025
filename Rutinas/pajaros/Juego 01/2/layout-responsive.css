@@ -3,55 +3,202 @@
    Imagen + Opciones + Panel
    ========================================= */
 
-/* ===============================
-   VISTA HORIZONTAL
-   =============================== */
 
-@media (orientation: landscape) {
+/* =========================================
+   MÓVIL GRAL.
+   ========================================= */
+
+@media screen and (max-width:1023px) {
+
+  html,
+  body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* CONTENEDOR PRINCIPAL */
+
+  .container {
+    height: 100dvh;
+    width: 100vw;
+    margin: 0;
+    display: block;   /* evita centrado vertical */
+  }
+
+  /* CELDA DE IMAGEN */
+
+  #image-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .fixed-width2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    aspect-ratio: 1 / 1;
+  }
+
+  /* CENTRADO DEL HEADER */
+
+  .container table tr:nth-child(1) td {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* =========================================
+     OPCIONES CONTROLADAS
+     ========================================= */
+
+  #options-cell {
+    overflow: hidden;
+  }
+
+  .options {
+    overflow-y: auto;
+    max-height: 100%;
+  }
+
+  .options li {
+    word-break: break-word;
+  }
+
+}
+
+
+/* =========================================
+   VISTA HORIZONTAL
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation: landscape) {
+
+  body {
+    margin: 0;
+  }
+
   .fila-principal {
     display: table-row;
   }
+
+  /* CLAVE: eliminar cualquier centrado */
+
+  .container {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: block;
+  }
+
+  table {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ALTURA HEADER */
+
+  .container table tr:nth-child(1) {
+    height: 70px;
+  }
+
+  /* IMAGEN */
+
+  .fixed-width2 {
+
+    height: 250px;
+    width: 250px;
+
+    max-height: 250px;
+    max-width: 250px;
+
+  }
+
 }
 
-/* ===============================
+
+/* =========================================
    VISTA VERTICAL
-   =============================== */
+   ========================================= */
 
-@media (orientation: portrait) {
+@media screen and (max-width:1023px) and (orientation: portrait) {
 
-  /* Convertimos la fila en layout vertical */
+  /* Layout vertical */
+
   .fila-principal {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 
+  .container {
+    height: 100dvh;
+    width: 100vw;
+    margin: 0;
+  }
 
-  /* Ordenamos los elementos de la fila (ahora encolumnados) */
+  /* HEADER */
+
+  .container table tr:nth-child(1) {
+    height: 90px;
+  }
+
+  /* ORDEN VISUAL */
+
   #options-cell {
     order: 1;
     width: 100%;
   }
+
   #image-cell {
     order: 2;
+
     width: 100%;
+
     display: flex;
     justify-content: center;
-  }
-  #align-left-top {
-    order: 3;
-    width: 100%;
+    align-items: center;
   }
 
-  /* Manejamos tamaño de la imagen */
+  /* OCULTAR SI NO HAY IMAGEN */
+
+  #image-cell:has(#questionImage[style*="display: none"]) {
+    display: none;
+  }
+
+  /* CONTENEDOR INTERNO */
+
   .fixed-width {
-    width: 60%;
-    aspect-ratio: auto;
+
+    box-sizing: border-box;
+
+    width: 100%;
+
     padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
   }
+
+  /* TAMAÑO IMAGEN */
+
   .fixed-width2 {
-    width: 40%;
-    max-width: 320px;
+
+    width: 55%;
+
+    max-width: 260px;
+
+    max-height: 35vh;
+
     margin: 0 auto;
+
   }
+
 }
