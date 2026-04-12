@@ -21,6 +21,14 @@
     justify-content: center;
   }
 
+   .container table tr:nth-child(1) td {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* centra vertical */
+  align-items: center;       /* centra horizontal */
+  text-align: center;
+}
+
    OPCIONES CONTROLADAS
    ========================================= */
   #options-cell {
@@ -86,14 +94,6 @@
    .container table tr:nth-child(1) {
     height: 90px;
   }
-
-   .container table tr:nth-child(1) td {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;   /* centra vertical */
-  align-items: center;       /* centra horizontal */
-  text-align: center;
-}
 
   /* Ordenamos los elementos de la fila (ahora encolumnados) */
   #options-cell {
