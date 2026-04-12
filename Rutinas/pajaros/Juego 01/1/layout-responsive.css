@@ -33,9 +33,16 @@
  .container > table {
     aspect-ratio: auto !important;
  }
- .container table tr:nth-child(1) {
-    height: 12vh;
- }
+
+.container table tr:nth-child(1) {
+  height: 80px;
+}
+.container table tr:nth-child(2) {
+  height: auto;
+}
+.container table tr:nth-child(3) {
+  height: auto;
+}
 
   /* CELDA DE IMAGEN */
 
