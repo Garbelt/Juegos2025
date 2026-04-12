@@ -36,6 +36,7 @@
 
 .container table tr:nth-child(1) {
   height: 80px;
+  padding-top: 6px;
 }
 .container table tr:nth-child(2) {
   height: auto;
