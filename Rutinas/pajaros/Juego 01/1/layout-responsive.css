@@ -24,7 +24,7 @@
 
   .container {
     height: 100dvh;
-    width: 100vw;
+    width: auto;
     margin: 0;
     aspect-ratio:auto !important;
     display: block;   /* evita centrado vertical */
