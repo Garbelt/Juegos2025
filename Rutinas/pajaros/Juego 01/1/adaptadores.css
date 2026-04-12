@@ -77,10 +77,6 @@ body.panel-mini .texto{
    MÓVILES (GENERAL)
    ========================================= */
 
-/* =========================================
-   ESPACIADO USUARIO / PREGUNTA (MÓVIL)
-   ========================================= */
-
 @media screen and (max-width:1023px){
 
   table{
@@ -113,12 +109,12 @@ body.panel-mini .celda-panel{
 }
 
 .usuario {
+  margin-top: 2px;
   margin-bottom: 6px;
 }
 .question {
-  margin-top: 4px;
+  margin-bottom: 2px;
 }
-
 }
 
 
