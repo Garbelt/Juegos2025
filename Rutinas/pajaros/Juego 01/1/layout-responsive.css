@@ -9,6 +9,10 @@
 
 @media screen and (max-width:1023px) {
 
+  .container {
+    height: 100dvh;
+  }
+
   #image-cell {
     display: flex;
     align-items: center;
