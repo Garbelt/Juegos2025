@@ -47,6 +47,7 @@
 
 .container table tr:nth-child(1) {
     height: 20%;
+    min-height: 60px;
   }
 
    .usuario {
