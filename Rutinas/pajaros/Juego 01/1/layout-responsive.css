@@ -62,12 +62,13 @@
     order: 1;
     width: 100%;
   }
-  #image-cell {
-    order: 2;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+#image-cell {
+  order: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
   /* Manejamos tamaño de la imagen */
 .fixed-width {
