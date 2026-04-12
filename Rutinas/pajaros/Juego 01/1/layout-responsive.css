@@ -4,9 +4,22 @@
    ========================================= */
 
 /* =========================================
-   ESPACIADO USUARIO / PREGUNTA (MÓVIL)
+   MÓVIL GRAL.
    ========================================= */
 
+@media screen and (max-width:1023px) {
+
+  #image-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fixed-width2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 /* ===============================
    VISTA HORIZONTAL
@@ -46,8 +59,9 @@
     width: 100%;
   }
   #image-cell {
+    order: 2;
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
   }
   #align-left-top {
@@ -56,16 +70,20 @@
   }
 
   /* Manejamos tamaño de la imagen */
-  .fixed-width {
-    width: 60%;
-    aspect-ratio: auto;
-    padding: 10px;
-  }
-  .fixed-width2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.fixed-width {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fixed-width2 {
+  width: 55%;
+  max-width: 260px;
+  max-height: 35vh;
+  margin: 0 auto;
+}
 
    .usuario {
   margin-top: 2px;
