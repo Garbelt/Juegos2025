@@ -88,6 +88,18 @@ mainBtn.addEventListener("click", () => {
 
 mobileToggleHeaderBtn.addEventListener("click", () => {
 
+  // 🔒 En móvil: esta opción no está disponible
+  if (window.matchMedia("(max-width: 1023px)").matches) {
+
+    if (typeof hablar === "function") {
+      hablar("Esta opción no está disponible en móvil");
+    }
+
+    cerrarMenu();
+    return;
+  }
+
+  // (si alguna vez se usa en desktop)
   document.body.classList.toggle("header-hidden");
 
   actualizarBotonTitulos();
@@ -95,7 +107,6 @@ mobileToggleHeaderBtn.addEventListener("click", () => {
   cerrarMenu();
 
 });
-
 
 /* ================= TOGGLE LECTURA ================= */
 
