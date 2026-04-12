@@ -91,22 +91,26 @@ function leerBotones() {
     const botones = document.querySelectorAll("button, .btn, .btn-corregir");
 
     botones.forEach(boton => {
-        boton.addEventListener("mouseenter", () => {
-
-            // Prioridad 1: aria-label
-            const aria = boton.getAttribute("aria-label");
-
-            // Prioridad 2: texto visible
-            const texto = boton.textContent.trim();
-
-            if (aria) {
-                hablar(aria);
-            } else if (texto) {
-                hablar(texto);
-            }
-
-        });
+    boton.addEventListener("mouseenter", () => {
+        // 🔹 Caso especial: botón ocultar pregunta en móvil
+        if (
+            boton.id === "toggleQuestion" &&
+            window.matchMedia("(max-width: 1023px)").matches
+        ) {
+            hablar("Esta opción no está disponible en móvil");
+            return;
+        }
+        // Prioridad 1: aria-label
+        const aria = boton.getAttribute("aria-label");
+        // Prioridad 2: texto visible
+        const texto = boton.textContent.trim();
+        if (aria) {
+            hablar(aria);
+        } else if (texto) {
+            hablar(texto);
+        }
     });
+  });
 }
 
 // 📷 Leer imágenes
