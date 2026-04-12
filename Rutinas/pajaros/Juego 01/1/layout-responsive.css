@@ -25,9 +25,13 @@
    VISTA HORIZONTAL
    =============================== */
 
-@media (orientation: landscape) {
+@media screen and (max-width:1023px) and (orientation: landscape) {
   .fila-principal {
     display: table-row;
+  }
+
+.container table tr:nth-child(1) {
+    height: 20%;
   }
 
    .usuario {
@@ -43,7 +47,7 @@
    VISTA VERTICAL
    =============================== */
 
-@media (orientation: portrait) {
+@media screen and (max-width:1023px) and (orientation: portrait) {
 
   /* Convertimos la fila en layout vertical */
   .fila-principal {
