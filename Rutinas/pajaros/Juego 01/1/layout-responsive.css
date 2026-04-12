@@ -46,7 +46,7 @@
   }
 
 .container table tr:nth-child(1) {
-    height: 20%;
+    height: 15%;
     min-height: 60px;
   }
 
@@ -75,6 +75,10 @@
     width: 100%;
   }
 
+   .container table tr:nth-child(1) {
+    height: 15%;
+    min-height: 90px;
+  }
 
   /* Ordenamos los elementos de la fila (ahora encolumnados) */
   #options-cell {
