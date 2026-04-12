@@ -19,6 +19,21 @@
     align-items: center;
     justify-content: center;
   }
+
+   OPCIONES CONTROLADAS
+   ========================================= */
+  #options-cell {
+    overflow: hidden;
+  }
+
+  .options {
+    overflow-y: auto;
+    max-height: 100%;
+  }
+
+  .options li {
+    word-break: break-word;
+  }
 }
 
 /* ===============================
