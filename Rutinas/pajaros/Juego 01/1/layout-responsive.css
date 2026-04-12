@@ -68,14 +68,6 @@
     max-height: 250px;
     max-width: 250px;
   }
-   
-   .usuario {
-  margin-top: 2px;
-  margin-bottom: 4px;
-}
-.question {
-  margin-bottom: 2px;
-}
 }
 
 /* ===============================
@@ -127,13 +119,5 @@
   max-width: 260px;
   max-height: 35vh;
   margin: 0 auto;
-}
-
-   .usuario {
-  margin-top: 2px;
-  margin-bottom: 6px;
-}
-.question {
-  margin-bottom: 2px;
 }
 }
