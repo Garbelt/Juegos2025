@@ -86,6 +86,10 @@
   align-items: center;
 }
 
+#image-cell:has(#questionImage[style*="display: none"]) {
+  display: none;
+}
+
   /* Manejamos tamaño de la imagen */
 .fixed-width {
   box-sizing: border-box;
