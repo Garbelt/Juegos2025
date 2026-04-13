@@ -3,42 +3,50 @@
    Imagen + Opciones + Panel
    ========================================= */
 
+
 /* =========================================
-   MÓVIL GRAL.
+   MÓVIL GENERAL
    ========================================= */
+
 @media screen and (max-width:1023px) {
+
   html,
   body {
     margin: 0;
     padding: 0;
   }
+
   body {
     display: block;
     overflow: hidden;
   }
-}
 
   /* CONTENEDOR PRINCIPAL */
- .container {
-   height: 100dvh;
-   width: 100vw;
-   margin: 0;
-   aspect-ratio:auto !important;
-   display: block;   /* evita centrado vertical */
- }
- .container > table {
+
+  .container {
+    height: 100dvh;
+    width: 100vw;
+    margin: 0;
     aspect-ratio: auto !important;
- }
-.container table tr:nth-child(1) {
-  height: 80px;
-  padding-top: 6px;
-}
-.container table tr:nth-child(2) {
-  height: auto;
-}
-.container table tr:nth-child(3) {
-  height: auto;
-}
+    display: block; /* evita centrado vertical */
+  }
+
+  .container > table {
+    aspect-ratio: auto !important;
+  }
+
+  .container table tr:nth-child(1) {
+    height: 80px;
+    padding-top: 6px;
+  }
+
+  .container table tr:nth-child(2) {
+    height: auto;
+  }
+
+  .container table tr:nth-child(3) {
+    height: auto;
+  }
 
   /* CELDA DE IMAGEN */
 
@@ -80,24 +88,25 @@
   .options li {
     word-break: break-word;
   }
+
 }
+
 
 /* =========================================
    VISTA HORIZONTAL
    ========================================= */
+
 @media screen and (max-width:1023px) and (orientation: landscape) {
-    
- .container > table {
-      border-collapse: collapse;
-	  height: 100dvh;
-      aspect-ratio: auto;
- }
-   
+
+  .container > table {
+    border-collapse: collapse;
+    height: 100dvh;
+    aspect-ratio: auto;
+  }
+
   .fila-principal {
     display: table-row;
   }
-
-  /* CLAVE: eliminar cualquier centrado */
 
   table {
     height: 100dvh;
@@ -117,15 +126,18 @@
     max-height: 240px;
     max-width: 240px;
   }
+
 }
 
 
 /* =========================================
    VISTA VERTICAL
    ========================================= */
+
 @media screen and (max-width:1023px) and (orientation: portrait) {
 
   /* Layout vertical */
+
   .fila-principal {
     display: flex;
     flex-direction: column;
@@ -142,6 +154,7 @@
     order: 1;
     width: 100%;
   }
+
   #image-cell {
     order: 2;
     width: 100%;
@@ -151,11 +164,13 @@
   }
 
   /* OCULTAR SI NO HAY IMAGEN */
+
   #image-cell:has(#questionImage[style*="display: none"]) {
     display: none;
   }
 
   /* CONTENEDOR INTERNO */
+
   .fixed-width {
     box-sizing: border-box;
     width: 100%;
@@ -166,6 +181,7 @@
   }
 
   /* TAMAÑO IMAGEN */
+
   .fixed-width2 {
     width: 55%;
     max-width: 260px;
@@ -173,10 +189,13 @@
     margin: 0 auto;
   }
 
-#reloj {
-  width: 22vh;
-  height: 22vh;
-  max-width: 140px;
-  max-height: 140px;
-}
+  /* RELOJ */
+
+  #reloj {
+    width: 22vh;
+    height: 22vh;
+    max-width: 140px;
+    max-height: 140px;
+  }
+
 }
