@@ -37,6 +37,10 @@ utterance.onstart = () => {
     // ✅ Cuando termina
 utterance.onend = () => {
     leyendoAhora = false;
+    // 🔓 Desbloquear botonera móvil si existe
+    if (typeof desbloquearBotoneraMovil === "function") {
+        desbloquearBotoneraMovil();
+    }
     if (opciones.bloquearBotones) {
         setBotonesEstado(false);
     }
@@ -45,14 +49,12 @@ utterance.onend = () => {
     }
 };
 
-    utterance.onerror = () => {
-        leyendoAhora = false;
-
-        if (opciones.bloquearBotones) {
-            setBotonesEstado(false);
-        }
-    };
-
+utterance.onerror = () => {
+    leyendoAhora = false;
+    if (opciones.bloquearBotones) {
+        setBotonesEstado(false);
+    }
+};
     synth.cancel();
     synth.speak(utterance);
 }
