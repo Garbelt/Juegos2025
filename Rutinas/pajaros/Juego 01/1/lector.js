@@ -77,7 +77,7 @@ function setBotonesEstado(estado) {
     botones.forEach(btn => {
         btn.disabled = estado;
         btn.style.pointerEvents = estado ? "none" : "auto";
-        btn.style.opacity = estado ? "0.6" : "1";
+        btn.style.opacity = estado ? "1" : "1";
     });
 }
 
