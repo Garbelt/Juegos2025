@@ -51,10 +51,15 @@ utterance.onend = () => {
 
 utterance.onerror = () => {
     leyendoAhora = false;
+    // 🔓 Seguridad: desbloquear si hubo error
+    if (typeof desbloquearBotoneraMovil === "function") {
+        desbloquearBotoneraMovil();
+    }
     if (opciones.bloquearBotones) {
         setBotonesEstado(false);
     }
 };
+    
     synth.cancel();
     synth.speak(utterance);
 }
