@@ -13,16 +13,20 @@ let panelState = 0; // 0=full | 1=mini | 2=hidden
 /* ================= UTILIDAD ================= */
 
 function leerBoton(btn) {
+
+  // 🚫 Caso especial: botón deshabilitado para este juego
+  if (
+    btn.id === "mobile-toggle-header-btn" &&
+    document.body.classList.contains("no-header-toggle")
+  ) {
+    hablar("Opción no disponible para este juego");
+    return;
+  }
   const texto = btn.getAttribute("aria-label");
   if (texto && typeof hablar === "function") {
     hablar(texto);
   }
 }
-
-function cerrarMenu() {
-  mobileControls.classList.remove("open");
-}
-
 
 /* ================= ACTUALIZAR LABELS ================= */
 
@@ -88,6 +92,18 @@ mainBtn.addEventListener("click", () => {
 
 mobileToggleHeaderBtn.addEventListener("click", () => {
 
+  // 🚫 Este juego no permite ocultar títulos
+  if (document.body.classList.contains("no-header-toggle")) {
+
+    if (typeof hablar === "function") {
+      hablar("Opción no disponible para este juego");
+    }
+
+    cerrarMenu();
+    return; // 🔴 bloquea toda acción
+  }
+
+  // comportamiento normal (otros juegos)
   document.body.classList.toggle("header-hidden");
 
   actualizarBotonTitulos();
@@ -95,7 +111,6 @@ mobileToggleHeaderBtn.addEventListener("click", () => {
   cerrarMenu();
 
 });
-
 
 /* ================= TOGGLE LECTURA ================= */
 
