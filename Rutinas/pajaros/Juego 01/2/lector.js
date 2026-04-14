@@ -101,6 +101,10 @@ function leerBotones() {
     );
     botones.forEach(boton => {
         boton.addEventListener("mouseenter", () => {
+            // 🔹 No leer el botón principal de opciones de juego
+            if (boton.id === "mobile-main-btn") {
+                return;
+            }
             // 🔹 Caso especial: botón ocultar pregunta en móvil
             if (
                 boton.id === "toggleQuestion" &&
