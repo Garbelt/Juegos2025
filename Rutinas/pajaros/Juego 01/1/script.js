@@ -283,6 +283,7 @@ function iniciarInterfazPregunta() {
 }
 
   function loadQuestion() {
+    sistemaListo = false; // 🔴 BLOQUEO INICIAL INMEDIATO
     if (questionAudioPlayer) {questionAudioPlayer.pause();}
     if (birdAudioPlayer) {birdAudioPlayer.currentTime = 0;}
 
@@ -358,6 +359,11 @@ speakerButton._playAudioFunc = () => {
           hablar(option.text);
         }
     });
+
+     setTimeout(() => {
+          sistemaListo = true;
+     }, 350);
+      
       optionsElement.appendChild(li);
     });
 
