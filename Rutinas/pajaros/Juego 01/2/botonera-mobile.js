@@ -13,13 +13,16 @@ let panelState = 0; // 0=full | 1=mini | 2=hidden
 /* ================= UTILIDAD ================= */
 
 function leerBoton(btn) {
-
+  // 🚫 No iniciar lectura si el sistema ya está leyendo
+  if (typeof leyendoAhora !== "undefined" && leyendoAhora) {
+    return;
+  }
   // 🚫 Caso especial: botón deshabilitado para este juego
   if (
     btn.id === "mobile-toggle-header-btn" &&
     document.body.classList.contains("no-header-toggle")
   ) {
-    hablar("Opción no disponible para este juego");
+    hablar("Opción no disponible");
     return;
   }
   const texto = btn.getAttribute("aria-label");
