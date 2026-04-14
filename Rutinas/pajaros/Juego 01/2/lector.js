@@ -90,7 +90,9 @@ function leerElemento(id, opciones = {}) {
 
 // 🎯 Leer botones al pasar el mouse
 function leerBotones() {
-    const botones = document.querySelectorAll("button, .btn, .btn-corregir");
+    const botones = document.querySelectorAll(
+    "button:not(#mobile-main-btn), .btn:not(#mobile-main-btn), .btn-corregir"
+);
 
     botones.forEach(boton => {
     boton.addEventListener("mouseenter", () => {
