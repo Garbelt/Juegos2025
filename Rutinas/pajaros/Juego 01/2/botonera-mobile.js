@@ -54,12 +54,10 @@ function actualizarBotonPanel() {
 }
 
 function actualizarBotonTitulos() {
-
-  if (document.body.classList.contains("header-hidden")) {
-    mobileToggleHeaderBtn.setAttribute("aria-label", "Mostrar títulos");
-  } else {
-    mobileToggleHeaderBtn.setAttribute("aria-label", "Ocultar títulos");
-  }
+  mobileToggleHeaderBtn.setAttribute(
+    "aria-label",
+    "Opción no disponible"
+  );
 }
 
 function actualizarBotonLectura() {
