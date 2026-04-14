@@ -490,6 +490,7 @@ function showMessagexExito() {
 
   // Esta función carga la pregunta y configura todo
 function loadQuestion() {
+  sistemaListo = false; // 🔴 BLOQUEO INICIAL INMEDIATO
   if (questionAudioPlayer) {questionAudioPlayer.pause();}
   if (birdAudioPlayer) {birdAudioPlayer.currentTime = 0;}
 
@@ -572,6 +573,10 @@ speakerButton._playAudioFunc = () => {
           }
         }
       });
+
+     setTimeout(() => {
+          sistemaListo = true;
+     }, 350);
 
       // 📱 Lectura en pantallas táctiles
       li.addEventListener('pointerdown', () => {
