@@ -1,11 +1,11 @@
-﻿// ==============================
+// ==============================
 // 🎬 Pantalla de inicio y previa
 // ==============================
 
 // Mostrar pantalla previa
 document.getElementById("start-button").addEventListener("click", function () {
     if (this.classList.contains("disable-clicks")) return;
-    hablar("¡A JUGAR!", {
+    hablar("Preparando juego", {
         bloquearBotones: true,
         onEnd: () => {
             document.getElementById("start-button-container").style.display = "none";
