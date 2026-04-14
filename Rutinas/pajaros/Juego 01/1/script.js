@@ -358,14 +358,13 @@ speakerButton._playAudioFunc = () => {
         if (!audioPaused) {
           hablar(option.text);
         }
+    });      
+      optionsElement.appendChild(li);
     });
 
      setTimeout(() => {
           sistemaListo = true;
      }, 350);
-      
-      optionsElement.appendChild(li);
-    });
 
 const estadoPrevio =
   typeof lecturaActiva !== "undefined"
