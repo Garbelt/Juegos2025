@@ -5,7 +5,7 @@
 // Mostrar pantalla previa
 document.getElementById("start-button").addEventListener("click", function () {
     if (this.classList.contains("disable-clicks")) return;
-    hablar("", {
+    hablar("¡A JUGAR!", {
         bloquearBotones: true,
         onEnd: () => {
             document.getElementById("start-button-container").style.display = "none";
