@@ -21,41 +21,46 @@ function hablar(texto, opciones = {}) {
 
     // ✅ Cuando REALMENTE empieza a hablar
 utterance.onstart = () => {
-
-    // ⏳ Pequeño retraso para estabilizar mobile speech engine
     setTimeout(() => {
-
+        // 🔒 Bloquear botonera móvil si existe
+        if (typeof bloquearBotoneraMovil === "function") {
+            bloquearBotoneraMovil();
+        }
         if (opciones.bloquearBotones) {
             setBotonesEstado(true);
         }
-
         if (typeof opciones.onStart === "function") {
             opciones.onStart();
         }
-
-    }, 80); // puedes probar 80–120 ms
+    }, 80);
+};
+    
+    // ✅ Cuando termina
+utterance.onend = () => {
+    leyendoAhora = false;
+    // 🔓 Desbloquear botonera móvil si existe
+    if (typeof desbloquearBotoneraMovil === "function") {
+        desbloquearBotoneraMovil();
+    }
+    if (opciones.bloquearBotones) {
+        setBotonesEstado(false);
+    }
+    if (typeof opciones.onEnd === "function") {
+        opciones.onEnd();
+    }
 };
 
-    // ✅ Cuando termina
-    utterance.onend = () => {
-        leyendoAhora = false;
 
-        if (opciones.bloquearBotones) {
-            setBotonesEstado(false);
-        }
-
-        if (typeof opciones.onEnd === "function") {
-            opciones.onEnd();
-        }
-    };
-
-    utterance.onerror = () => {
-        leyendoAhora = false;
-
-        if (opciones.bloquearBotones) {
-            setBotonesEstado(false);
-        }
-    };
+utterance.onerror = () => {
+    leyendoAhora = false;
+    // 🔓 Seguridad: desbloquear si hubo error
+    if (typeof desbloquearBotoneraMovil === "function") {
+        desbloquearBotoneraMovil();
+    }
+    if (opciones.bloquearBotones) {
+        setBotonesEstado(false);
+    }
+};
 
     synth.cancel();
     synth.speak(utterance);
