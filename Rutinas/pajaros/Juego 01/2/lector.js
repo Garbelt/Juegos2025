@@ -2,6 +2,7 @@
 // 📘 lector.js — Lector universal para juegos educativos
 // ==============================
 
+lecturaImagenesActiva = false;
 let lecturaActiva = true;
 let leyendoAhora = false;
 const synth = window.speechSynthesis;
@@ -123,10 +124,15 @@ function leerBotones() {
 
 // 📷 Leer imágenes
 function leerImagenes() {
+    if (!lecturaImagenesActiva) return;
     const imagenes = document.querySelectorAll("img");
     imagenes.forEach(img => {
         img.addEventListener("mouseenter", () => {
-            const nombre = img.alt || img.getAttribute("data-name") || "imagen";
+            if (!lecturaImagenesActiva) return;
+            const nombre =
+                img.alt ||
+                img.getAttribute("data-name") ||
+                "imagen";
             hablar(nombre);
         });
     });
