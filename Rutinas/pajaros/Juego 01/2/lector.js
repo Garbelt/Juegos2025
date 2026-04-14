@@ -24,26 +24,21 @@ utterance.onstart = () => {
 
     // ⏳ Pequeño retraso para estabilizar mobile speech engine
     setTimeout(() => {
-
         if (opciones.bloquearBotones) {
             setBotonesEstado(true);
         }
-
         if (typeof opciones.onStart === "function") {
             opciones.onStart();
         }
-
     }, 80); // puedes probar 80–120 ms
 };
 
     // ✅ Cuando termina
     utterance.onend = () => {
         leyendoAhora = false;
-
         if (opciones.bloquearBotones) {
             setBotonesEstado(false);
         }
-
         if (typeof opciones.onEnd === "function") {
             opciones.onEnd();
         }
@@ -51,7 +46,6 @@ utterance.onstart = () => {
 
     utterance.onerror = () => {
         leyendoAhora = false;
-
         if (opciones.bloquearBotones) {
             setBotonesEstado(false);
         }
