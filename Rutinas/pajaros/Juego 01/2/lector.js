@@ -100,27 +100,27 @@ function leerBotones() {
         "button, .btn, .btn-corregir"
     );
     botones.forEach(boton => {
+        // HOVER
         boton.addEventListener("mouseenter", () => {
             // 🔹 No leer el botón principal de opciones de juego
             if (boton.id === "mobile-main-btn") {
                 return;
             }
-            // 🔹 Caso especial: botón ocultar pregunta en móvil
-            if (
-                boton.id === "toggleQuestion" &&
-                window.matchMedia("(max-width: 1023px)").matches
-            ) {
-                hablar("Opción no disponible");
-                return;
-            }
-            // 🔹 Caso especial: botón ocultar título
-            if (boton.id === "mobile-toggle-header-btn") {
-                hablar("Opción no disponible");
-                return;
-            }
-            // Prioridad 1: aria-label
             const aria = boton.getAttribute("aria-label");
-            // Prioridad 2: texto visible
+            const texto = boton.textContent.trim();
+            if (aria) {
+                hablar(aria);
+            } else if (texto) {
+                hablar(texto);
+            }
+        });
+        // CLICK
+        boton.addEventListener("click", () => {
+            // 🔹 No leer el botón principal de opciones de juego
+            if (boton.id === "mobile-main-btn") {
+                return;
+            }
+            const aria = boton.getAttribute("aria-label");
             const texto = boton.textContent.trim();
             if (aria) {
                 hablar(aria);
