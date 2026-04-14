@@ -9,40 +9,31 @@ const mobilePanelBtn = document.getElementById("mobile-panel-btn");
 let autoCloseTimeout;
 let panelState = 0; // 0=full | 1=mini | 2=hidden
 
-/* ================= BLOQUEO DURANTE LECTURA ================= */
-
-let bloqueoBotoneraMovil = false;
-
-function bloquearBotoneraMovil() {
-  bloqueoBotoneraMovil = true;
-}
-
-function desbloquearBotoneraMovil() {
-  bloqueoBotoneraMovil = false;
-}
-
 
 /* ================= UTILIDAD ================= */
 
 function leerBoton(btn) {
-
+  // 🚫 Este botón nunca se lee
+  if (btn.id === "mobile-main-btn") {
+    return;
+  }
+  // 🚫 No leer mientras el sistema está leyendo
+  if (typeof leyendoAhora !== "undefined" && leyendoAhora) {
+    return;
+  }
   // 🚫 Caso especial: botón deshabilitado para este juego
   if (
     btn.id === "mobile-toggle-header-btn" &&
     document.body.classList.contains("no-header-toggle")
   ) {
-    hablar("Opción no disponible para este juego");
+    hablar("Opción no disponible");
     return;
   }
-
   const texto = btn.getAttribute("aria-label");
-
   if (texto && typeof hablar === "function") {
     hablar(texto);
   }
-
 }
-
 
 /* ================= ACTUALIZAR LABELS ================= */
 
@@ -64,61 +55,46 @@ function actualizarBotonPanel() {
     mobilePanelBtn.setAttribute("aria-label", "Reducir tamaño del panel");
     panelState = 0;
   }
-
 }
 
 function actualizarBotonTitulos() {
-
-  if (document.body.classList.contains("header-hidden")) {
-    mobileToggleHeaderBtn.setAttribute("aria-label", "Mostrar títulos");
-  }
-
-  else {
-    mobileToggleHeaderBtn.setAttribute("aria-label", "Ocultar títulos");
-  }
-
+  mobileToggleHeaderBtn.setAttribute(
+    "aria-label",
+    "Opción no disponible"
+  );
 }
 
 function actualizarBotonLectura() {
 
   if (typeof lecturaActiva !== "undefined" && lecturaActiva) {
     mobileReadBtn.setAttribute("aria-label", "Cancelar lectura");
-  }
-
-  else {
+  } else {
     mobileReadBtn.setAttribute("aria-label", "Activar lectura");
   }
-
 }
 
 
 /* ================= BOTÓN PRINCIPAL ================= */
 
-mainBtn.addEventListener("click", () => {
-
-  if (bloqueoBotoneraMovil) return;
-
+mainBtn.addEventListener("click", (e) => {
+  // 🚫 No abrir si el sistema está leyendo
+  if (typeof leyendoAhora !== "undefined" && leyendoAhora) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
   mobileControls.classList.toggle("open");
-  leerBoton(mainBtn);
-
   if (mobileControls.classList.contains("open")) {
-
     clearTimeout(autoCloseTimeout);
-
     autoCloseTimeout = setTimeout(() => {
       mobileControls.classList.remove("open");
     }, 5000);
-
   }
-
 });
-
 
 /* ================= TOGGLE TÍTULOS ================= */
 
 mobileToggleHeaderBtn.addEventListener("click", () => {
-
-  if (bloqueoBotoneraMovil) return;
 
   // 🚫 Este juego no permite ocultar títulos
   if (document.body.classList.contains("no-header-toggle")) {
@@ -128,9 +104,10 @@ mobileToggleHeaderBtn.addEventListener("click", () => {
     }
 
     cerrarMenu();
-    return; // bloquea toda acción
+    return; // 🔴 bloquea toda acción
   }
 
+  // comportamiento normal (otros juegos)
   document.body.classList.toggle("header-hidden");
 
   actualizarBotonTitulos();
@@ -139,12 +116,9 @@ mobileToggleHeaderBtn.addEventListener("click", () => {
 
 });
 
-
 /* ================= TOGGLE LECTURA ================= */
 
 mobileReadBtn.addEventListener("click", () => {
-
-  if (bloqueoBotoneraMovil) return;
 
   if (typeof toggleLectura === "function") {
     toggleLectura();
@@ -161,15 +135,10 @@ mobileReadBtn.addEventListener("click", () => {
 
 mobilePanelBtn.addEventListener("click", () => {
 
-  if (bloqueoBotoneraMovil) return;
-
   document.body.classList.remove("panel-full", "panel-mini", "panel-hidden");
 
   panelState++;
-
-  if (panelState > 2) {
-    panelState = 0;
-  }
+  if (panelState > 2) panelState = 0;
 
   if (panelState === 0) {
     document.body.classList.add("panel-full");
