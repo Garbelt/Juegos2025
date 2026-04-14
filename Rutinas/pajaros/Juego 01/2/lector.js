@@ -79,9 +79,7 @@ function setBotonesEstado(estado) {
         "button:not(.lectorButton):not(#mobile-read-btn):not(#mobile-toggle-header-btn):not(#mobile-panel-btn):not(#mobile-main-btn)"
     );
     botones.forEach(btn => {
-        btn.disabled = estado;
         btn.style.pointerEvents = estado ? "none" : "auto";
-        btn.style.opacity = estado ? "0.6" : "1";
     });
 }
 
