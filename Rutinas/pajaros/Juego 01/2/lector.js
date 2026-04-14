@@ -97,15 +97,11 @@ function leerElemento(id, opciones = {}) {
 // 🎯 Leer botones al pasar el mouse
 function leerBotones() {
     const botones = document.querySelectorAll(
-        "button, .btn, .btn-corregir"
+        "button:not(#mobile-main-btn), .btn:not(#mobile-main-btn), .btn-corregir"
     );
     botones.forEach(boton => {
-        // HOVER
         boton.addEventListener("mouseenter", () => {
-            // 🔹 No leer el botón principal de opciones de juego
-            if (boton.id === "mobile-main-btn") {
-                return;
-            }
+            if (leyendoAhora) return;
             const aria = boton.getAttribute("aria-label");
             const texto = boton.textContent.trim();
             if (aria) {
@@ -114,12 +110,8 @@ function leerBotones() {
                 hablar(texto);
             }
         });
-        // CLICK
         boton.addEventListener("click", () => {
-            // 🔹 No leer el botón principal de opciones de juego
-            if (boton.id === "mobile-main-btn") {
-                return;
-            }
+            if (leyendoAhora) return;
             const aria = boton.getAttribute("aria-label");
             const texto = boton.textContent.trim();
             if (aria) {
