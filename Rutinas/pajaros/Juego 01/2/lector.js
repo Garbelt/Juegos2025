@@ -108,7 +108,7 @@ function leerBotones() {
                 boton.id === "toggleQuestion" &&
                 window.matchMedia("(max-width: 1023px)").matches
             ) {
-                hablar("Esta opción no está disponible en móvil");
+                hablar("Opción no disponible");
                 return;
             }
             // 🔹 Caso especial: botón ocultar título
