@@ -21,46 +21,36 @@ function hablar(texto, opciones = {}) {
 
     // ✅ Cuando REALMENTE empieza a hablar
 utterance.onstart = () => {
+
+    // ⏳ Pequeño retraso para estabilizar mobile speech engine
     setTimeout(() => {
-        // 🔒 Bloquear botonera móvil si existe
-        if (typeof bloquearBotoneraMovil === "function") {
-            bloquearBotoneraMovil();
-        }
         if (opciones.bloquearBotones) {
             setBotonesEstado(true);
         }
         if (typeof opciones.onStart === "function") {
             opciones.onStart();
         }
-    }, 80);
-};
-    
-    // ✅ Cuando termina
-utterance.onend = () => {
-    leyendoAhora = false;
-    // 🔓 Desbloquear botonera móvil si existe
-    if (typeof desbloquearBotoneraMovil === "function") {
-        desbloquearBotoneraMovil();
-    }
-    if (opciones.bloquearBotones) {
-        setBotonesEstado(false);
-    }
-    if (typeof opciones.onEnd === "function") {
-        opciones.onEnd();
-    }
+    }, 80); // puedes probar 80–120 ms
 };
 
-utterance.onerror = () => {
-    leyendoAhora = false;
-    // 🔓 Seguridad: desbloquear si hubo error
-    if (typeof desbloquearBotoneraMovil === "function") {
-        desbloquearBotoneraMovil();
-    }
-    if (opciones.bloquearBotones) {
-        setBotonesEstado(false);
-    }
-};
-    
+    // ✅ Cuando termina
+    utterance.onend = () => {
+        leyendoAhora = false;
+        if (opciones.bloquearBotones) {
+            setBotonesEstado(false);
+        }
+        if (typeof opciones.onEnd === "function") {
+            opciones.onEnd();
+        }
+    };
+
+    utterance.onerror = () => {
+        leyendoAhora = false;
+        if (opciones.bloquearBotones) {
+            setBotonesEstado(false);
+        }
+    };
+
     synth.cancel();
     synth.speak(utterance);
 }
@@ -95,29 +85,31 @@ function leerElemento(id, opciones = {}) {
 
 // 🎯 Leer botones al pasar el mouse
 function leerBotones() {
-    const botones = document.querySelectorAll("button, .btn, .btn-corregir");
-
+    const botones = document.querySelectorAll(
+        "button:not(#mobile-main-btn), .btn:not(#mobile-main-btn), .btn-corregir"
+    );
     botones.forEach(boton => {
-    boton.addEventListener("mouseenter", () => {
-        // 🔹 Caso especial: botón ocultar pregunta en móvil
-        if (
-            boton.id === "toggleQuestion" &&
-            window.matchMedia("(max-width: 1023px)").matches
-        ) {
-            hablar("Esta opción no está disponible en móvil");
-            return;
-        }
-        // Prioridad 1: aria-label
-        const aria = boton.getAttribute("aria-label");
-        // Prioridad 2: texto visible
-        const texto = boton.textContent.trim();
-        if (aria) {
-            hablar(aria);
-        } else if (texto) {
-            hablar(texto);
-        }
+        boton.addEventListener("mouseenter", () => {
+            if (!sistemaListo) return; // 🔴 BLOQUEO INICIAL
+            if (boton.id === "toggleQuestion" &&
+                window.matchMedia("(max-width: 1023px)").matches
+            ) {
+                hablar("Esta opción no está disponible en móvil");
+                return;
+            }
+            const aria = boton.getAttribute("aria-label");
+            const texto = boton.textContent.trim();
+            if (aria) hablar(aria);
+            else if (texto) hablar(texto);
+        });
+        boton.addEventListener("click", () => {
+            if (!sistemaListo) return; // 🔴 BLOQUEO INICIAL
+            const aria = boton.getAttribute("aria-label");
+            const texto = boton.textContent.trim();
+            if (aria) hablar(aria);
+            else if (texto) hablar(texto);
+        });
     });
-  });
 }
 
 // 📷 Leer imágenes
@@ -153,7 +145,7 @@ function leerElementosDelJuego() {
 // 🧠 Inicializar lector
 function inicializarLector() {
     leerBotones();
-    leerImagenes();
+    // leerImagenes(); // 🔇 imágenes desactivadas
     leerElementosDelJuego();
     console.log("🔊 Lector universal activado.");
 }
