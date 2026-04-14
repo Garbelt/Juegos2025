@@ -146,7 +146,7 @@ function leerElementosDelJuego() {
 // 🧠 Inicializar lector
 function inicializarLector() {
     leerBotones();
-    leerImagenes();
+    // leerImagenes(); // 🔇 imágenes desactivadas
     leerElementosDelJuego();
     console.log("🔊 Lector universal activado.");
 }
