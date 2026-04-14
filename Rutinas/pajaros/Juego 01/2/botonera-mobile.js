@@ -71,21 +71,22 @@ function actualizarBotonLectura() {
 
 /* ================= BOTÓN PRINCIPAL ================= */
 
-mainBtn.addEventListener("click", () => {
-
+mainBtn.addEventListener("click", (e) => {
+  // 🚫 No permitir abrir mientras se está leyendo
+  if (typeof leyendoAhora !== "undefined" && leyendoAhora) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
   mobileControls.classList.toggle("open");
-  leerBoton(mainBtn);
-
+  // 🚫 Este botón nunca se debe leer
+  // (no llamar a leerBoton aquí)
   if (mobileControls.classList.contains("open")) {
-
     clearTimeout(autoCloseTimeout);
-
     autoCloseTimeout = setTimeout(() => {
       mobileControls.classList.remove("open");
     }, 5000);
-
   }
-
 });
 
 /* ================= TOGGLE TÍTULOS ================= */
