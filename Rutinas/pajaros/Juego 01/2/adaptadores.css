@@ -119,7 +119,7 @@ body.panel-mini .celda-panel{
 
   .container{
     width:100vw;
-    height:100vh;
+    height:100dvh;
     max-width:100vw;
     margin:auto;
     border:none;
@@ -362,16 +362,3 @@ body.panel-mini #panel-vertical .dato:not(:first-child){
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
