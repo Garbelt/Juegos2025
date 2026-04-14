@@ -2,6 +2,7 @@
 // 📘 lector.js — Lector universal para juegos educativos
 // ==============================
 
+let sistemaListo = false;
 let lecturaActiva = true;
 let leyendoAhora = false;
 const synth = window.speechSynthesis;
