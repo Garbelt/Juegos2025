@@ -13,7 +13,11 @@ let panelState = 0; // 0=full | 1=mini | 2=hidden
 /* ================= UTILIDAD ================= */
 
 function leerBoton(btn) {
-  // 🚫 No iniciar lectura si el sistema ya está leyendo
+  // 🚫 Este botón nunca se lee
+  if (btn.id === "mobile-main-btn") {
+    return;
+  }
+  // 🚫 No leer mientras el sistema está leyendo
   if (typeof leyendoAhora !== "undefined" && leyendoAhora) {
     return;
   }
