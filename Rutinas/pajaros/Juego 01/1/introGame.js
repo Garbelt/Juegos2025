@@ -5,23 +5,18 @@
 // Mostrar pantalla previa
 document.getElementById("start-button").addEventListener("click", function () {
     if (this.classList.contains("disable-clicks")) return;
-    hablar("Preparando juego", {
-        bloquearBotones: true,
-        onEnd: () => {
-            document.getElementById("start-button-container").style.display = "none";
-            document.getElementById("pre-game-screen").style.display = "flex";
-            const titulo = document.getElementById("game-title");
-            // ⏳ Pequeño margen para estabilizar el DOM
-            setTimeout(() => {
-                // 🔊 Leer título
-                leerElemento("game-title");
-                // ✨ Activar brillo
-                titulo.classList.add("brillo-activo");
-                setTimeout(() => {
-                    titulo.classList.remove("brillo-activo");
-                }, 2000);
-            }, 120);
-        }
+    document.getElementById("start-button-container").style.display = "none";
+    document.getElementById("pre-game-screen").style.display = "flex";
+    const titulo = document.getElementById("game-title");
+    // Esperar a que el DOM se renderice
+    requestAnimationFrame(() => {
+        // 🔊 Leer título
+        leerElemento("game-title");
+        // ✨ Activar brillo
+        titulo.classList.add("brillo-activo");
+        setTimeout(() => {
+            titulo.classList.remove("brillo-activo");
+        }, 2000);
     });
 });
 
