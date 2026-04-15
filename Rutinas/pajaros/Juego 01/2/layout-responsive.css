@@ -1,5 +1,11 @@
 /* =========================================
-   MÓVIL GENERAL — BASE NEUTRA
+   LAYOUT RESPONSIVO
+   Imagen + Opciones + Panel
+   ========================================= */
+
+
+/* =========================================
+   MÓVIL GENERAL
    ========================================= */
 
 @media screen and (max-width:1023px) {
@@ -11,27 +17,64 @@
   }
 
   body {
+    display: block;
     overflow: hidden;
   }
+
+  /* CONTENEDOR PRINCIPAL */
 
   .container {
     height: 100dvh;
     width: 100vw;
     margin: 0;
     aspect-ratio: auto !important;
+    display: block; /* evita centrado vertical */
   }
 
   .container > table {
     aspect-ratio: auto !important;
   }
 
-  /* HEADER */
-
   .container table tr:nth-child(1) {
     height: 80px;
+    padding-top: 6px;
   }
 
-  /* OPCIONES */
+  .container table tr:nth-child(2) {
+    height: auto;
+  }
+
+  .container table tr:nth-child(3) {
+    height: auto;
+  }
+
+  /* CELDA DE IMAGEN */
+
+  #image-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .fixed-width2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+  }
+
+  .container table tr:nth-child(1) td {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* =========================================
+     OPCIONES CONTROLADAS
+     ========================================= */
 
   #options-cell {
     overflow: hidden;
@@ -42,53 +85,40 @@
     max-height: 100%;
   }
 
+  .options li {
+    word-break: break-word;
+  }
+
 }
 
+
 /* =========================================
-   VISTA HORIZONTAL — TABLA
+   VISTA HORIZONTAL
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation: landscape) {
 
-  /* restaurar comportamiento tabla */
-
   .container > table {
-    display: table;
-    width: 100%;
+    border-collapse: collapse;
     height: 100dvh;
-    table-layout: fixed;
+    aspect-ratio: auto;
   }
-
-  .container > table tbody {
-    display: table-row-group;
-  }
-
-  .container > table tr {
-    display: table-row;
-  }
-
-  .container > table td {
-    display: table-cell;
-  }
-
-  /* HEADER */
-
-  .container table tr:nth-child(1) {
-    height: 70px;
-  }
-
-  /* FILA PRINCIPAL */
 
   .fila-principal {
     display: table-row;
   }
 
-  /* IMAGEN */
-
-  #image-cell {
-    text-align: center;
-    vertical-align: middle;
+  table {
+    height: 100dvh;
   }
+
+  /* ALTURA HEADER */
+
+  .container table tr:nth-child(1) {
+    height: 70px;
+  }
+
+  /* IMAGEN */
 
   .fixed-width2 {
     height: 240px;
@@ -97,52 +127,36 @@
     max-width: 240px;
   }
 
-  /* RELOJ */
-
-  #reloj {
-    width: 140px;
-    height: 140px;
-  }
-
 }
 
+
 /* =========================================
-   VISTA VERTICAL — LAYOUT INDEPENDIENTE
+   VISTA VERTICAL
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation: portrait) {
 
-  /* La tabla deja de comportarse como tabla */
+  /* Layout vertical */
 
-  .container > table,
-  .container > table tbody,
-  .container > table tr,
-  .container > table td {
-    display: block;
+  .fila-principal {
+    display: flex;
+    flex-direction: column;
     width: 100%;
   }
-
-  /* HEADER */
 
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
-  /* FILA PRINCIPAL */
-
-  .fila-principal {
-    display: block;
-    width: 100%;
-  }
-
-  /* ORDEN VERTICAL */
+  /* ORDEN VISUAL */
 
   #options-cell {
+    order: 1;
     width: 100%;
-    margin: 0;
   }
 
   #image-cell {
+    order: 2;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -158,41 +172,21 @@
   /* CONTENEDOR INTERNO */
 
   .fixed-width {
+    box-sizing: border-box;
     width: 100%;
     padding: 10px;
-    box-sizing: border-box;
-
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
   }
 
-  /* IMAGEN */
+  /* TAMAÑO IMAGEN */
 
   .fixed-width2 {
     width: 55%;
     max-width: 260px;
     max-height: 35vh;
-
     margin: 0 auto;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* OPCIONES */
-
-  .options {
-    width: 100%;
-    overflow-y: auto;
-  }
-
-  /* PANEL (fila 3) */
-
-  .container table tr:nth-child(3) {
-    display: block;
-    width: 100%;
   }
 
   /* RELOJ */
@@ -200,9 +194,8 @@
   #reloj {
     width: 22vh;
     height: 22vh;
-
-    max-width: 65px;
-    max-height: 65px;
+    max-width: 140px;
+    max-height: 140px;
   }
 
 }
