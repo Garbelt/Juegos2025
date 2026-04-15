@@ -136,8 +136,24 @@
 
 @media screen and (max-width:1023px) and (orientation: portrait) {
 
+  /* La tabla ocupa toda la pantalla y reparte alturas */
+
   .container > table {
     height: 100dvh;
+    table-layout: fixed;        /* CLAVE: distribuye alturas */
+  }
+
+  /* TITLE */
+
+  .container table tr:nth-child(1) {
+    height: 90px;
+    min-height: 90px;           /* CLAVE: asegura visibilidad */
+  }
+
+  /* PANEL VERTICAL */
+
+  .container table tr.fila-panel-vertical {
+    height: auto;
   }
 
   /* Layout vertical */
@@ -146,21 +162,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
-  }
 
-  .container table tr:nth-child(1) {
-    height: 90px;
-  }
-
-  /* CONTROL DE FILAS */
-
-  .container table tr:nth-child(2) {
-    height: auto;
-  }
-
-  .container table tr.fila-panel-vertical {
-    height: auto;
+    height: 100%;               /* CLAVE: usa el espacio restante */
+    min-height: 0;              /* CLAVE: permite encogerse */
   }
 
   /* ORDEN VISUAL */
@@ -168,6 +172,8 @@
   #options-cell {
     order: 1;
     width: 100%;
+    min-height: 0;              /* CLAVE */
+    overflow: hidden;
   }
 
   #image-cell {
@@ -176,6 +182,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
   }
 
   /* OCULTAR SI NO HAY IMAGEN */
@@ -184,12 +191,13 @@
     display: none;
   }
 
-  /* OPCIONES — ahora con límite real */
+  /* OPCIONES — ahora se adaptan al espacio disponible */
 
   .options {
-    max-height: 45vh;
+    height: 100%;               /* CLAVE */
     overflow-y: auto;
     padding: 10px;
+    min-height: 0;              /* CLAVE */
   }
 
   .options li {
