@@ -153,7 +153,6 @@
   #options-cell {
     order: 1;
     width: 100%;
-    overflow: hidden; /* mantiene scroll interno controlado */
   }
 
   #image-cell {
@@ -175,39 +174,28 @@
   .fixed-width {
     box-sizing: border-box;
     width: 100%;
-    padding: 8px; /* levemente reducido */
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* TAMAÑO IMAGEN (ajuste crítico) */
+  /* TAMAÑO IMAGEN */
 
   .fixed-width2 {
-    width: 48%;          /* antes 55% */
-    max-width: 240px;    /* antes 260px */
-    max-height: 28vh;    /* antes 35vh */
+    width: 55%;
+    max-width: 260px;
+    max-height: 35vh;
     margin: 0 auto;
-  }
-
-  /* CONTROL DE ALTURA DE OPCIONES (clave) */
-
-  .options {
-    max-height: 40vh;    /* evita que empujen el layout */
-    overflow-y: auto;
-  }
-
-  .options li {
-    margin: 6px;         /* antes 10px */
-    padding: 8px;        /* antes 10px */
   }
 
   /* RELOJ */
 
   #reloj {
-    width: 20vh;         /* antes 22vh */
-    height: 20vh;
-    max-width: 130px;    /* antes 140px */
-    max-height: 130px;
+    width: 22vh;
+    height: 22vh;
+    max-width: 140px;
+    max-height: 140px;
   }
+
 }
