@@ -189,7 +189,8 @@ function showMessage(text, type) {
 function handleOptionClick(event) {
   if(questionAudioPlayer) questionAudioPlayer.pause();
   if (birdAudioPlayer) {fadeOutAndStopAudio(birdAudioPlayer);}
-
+  
+  sistemaListo = false; // 🔴 Bloqueo total de interacción
   disableOptions();
   setEstadoBotonLector(false);
 
