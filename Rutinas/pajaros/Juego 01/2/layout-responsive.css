@@ -131,64 +131,124 @@
 
 
 /* =========================================
-   VISTA VERTICAL
+   VISTA VERTICAL (OPTIMIZADA)
+   Opciones arriba + Imagen abajo + Panel fijo
    ========================================= */
 
-con esto alcanzaría? @media screen and (max-width:1023px) and (orientation: portrait) {
+@media screen and (max-width:1023px) and (orientation: portrait) {
+
+  /* =============================
+     BASE
+     ============================= */
 
   .container {
     height: 100dvh;
     width: 100vw;
-    overflow: hidden; /* CRÍTICO */
+    overflow: hidden;
   }
 
   .container table {
     height: 100%;
+    width: 100%;
     table-layout: fixed;
   }
 
-  /* HEADER */
+  /* =============================
+     HEADER FIJO
+     ============================= */
+
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
-  /* PANEL */
+  /* =============================
+     PANEL FIJO
+     ============================= */
+
   .fila-panel-vertical {
-    height: 25vh;
+    height: 22vh; /* un poco más compacto */
   }
 
-  /* ZONA CENTRAL: ocupar lo restante REAL */
+  /* =============================
+     ZONA CENTRAL (IMPORTANTE)
+     ============================= */
+
   .container table tr:nth-child(2) {
-    height: calc(100dvh - 90px - 25vh);
+    height: calc(100dvh - 90px - 22vh);
   }
 
-  /* EVITA EXPANSIÓN INTERNA */
+  /* =============================
+     CELDAS CENTRALES
+     ============================= */
+
   #options-cell,
   #image-cell {
     overflow: hidden;
   }
 
-  /* CLAVE: zona interna controlada */
+  /* 🔴 CLAVE: columna interna real */
   #options-cell {
     display: flex;
     flex-direction: column;
     height: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+    gap: 6px;
   }
+
+  /* =============================
+     OPCIONES (ARRIBA)
+     ============================= */
 
   .options {
     flex: 1;
     overflow-y: auto;
-    min-height: 0; /* CRÍTICO REAL */
+    min-height: 0;
+
+    padding: 6px;
+    margin: 0;
   }
 
-  /* IMAGEN CONTROLADA */
+  .options li {
+    margin: 5px;
+    padding: 8px;
+    font-size: clamp(11px, 1.4vw, 15px);
+    word-break: break-word;
+  }
+
+  /* =============================
+     IMAGEN (ABAJO)
+     ============================= */
+
+  #image-cell {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-top: 6px;
+  }
+
   .fixed-width2 {
-    max-height: 35vh;
-    width: auto;
+    width: 85%;
+    max-height: 28vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #questionImage {
     max-height: 100%;
     width: auto;
+    object-fit: contain;
+  }
+
+  /* =============================
+     RELOJ (ajuste móvil)
+     ============================= */
+
+  #reloj {
+    width: 20vh;
+    height: 20vh;
+    max-width: 120px;
+    max-height: 120px;
   }
 }
