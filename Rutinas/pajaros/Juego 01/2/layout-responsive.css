@@ -132,125 +132,116 @@
 
 /* =========================================
    VISTA VERTICAL
-   Tabla interna con la misma lógica estructural
+   Opciones arriba + Imagen abajo
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation: portrait) {
 
-  /* =============================
-     CONTENEDOR
-     ============================= */
-
   .container {
     height: 100dvh;
     width: 100vw;
-    overflow: hidden;
+    overflow: hidden; /* CRÍTICO */
   }
 
   .container table {
     height: 100%;
-    width: 100%;
     table-layout: fixed;
   }
 
-  /* =============================
-     HEADER
-     ============================= */
+  /* HEADER */
 
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
-  /* =============================
-     PANEL
-     ============================= */
+  /* PANEL */
 
-  body.panel-full .celda-panel-vertical {
+  .fila-panel-vertical {
     height: 25vh;
   }
 
-  body.panel-mini .celda-panel-vertical {
-    height: 12vh;
+  /* ZONA CENTRAL: ocupar lo restante REAL */
+
+  .container table tr:nth-child(2) {
+    height: calc(100dvh - 90px - 25vh);
   }
 
-  /* =============================
-     FILA PRINCIPAL
-     ahora se comporta como tabla vertical
-     ============================= */
+  /* =========================================
+     CAMBIO CLAVE:
+     apilar las celdas en vertical
+     ========================================= */
 
   .fila-principal {
 
-    display: table;
+    display: flex;
 
-    width: 100%;
+    flex-direction: column;
+
     height: 100%;
 
-    table-layout: fixed;
   }
 
-  /* =============================
-     OPCIONES ARRIBA
-     ============================= */
+  /* las celdas ocupan todo el ancho */
+
+  #options-cell,
+  #image-cell {
+
+    width: 100%;
+
+    overflow: hidden;
+
+  }
+
+  /* =========================================
+     OPCIONES (arriba)
+     ========================================= */
 
   #options-cell {
 
-    display: table-row;
+    flex: 1;
 
-    height: auto;
+    display: flex;
 
-    overflow: hidden;
+    flex-direction: column;
+
+    height: 100%;
+
   }
 
   .options {
 
-    max-height: 100%;
+    flex: 1;
 
     overflow-y: auto;
 
-    padding: 10px;
+    min-height: 0; /* CRÍTICO REAL */
 
-    margin: 0;
   }
 
-  .options li {
-
-    margin: 6px;
-
-    padding: 8px;
-
-    font-size: clamp(11px, 1.4vw, 15px);
-
-    word-break: break-word;
-  }
-
-  /* =============================
-     IMAGEN ABAJO
-     ============================= */
+  /* =========================================
+     IMAGEN (abajo)
+     ========================================= */
 
   #image-cell {
 
-    display: table-row;
+    flex: 0 0 auto;
 
-    height: 30vh;
+    display: flex;
 
-    text-align: center;
+    justify-content: center;
 
-    overflow: hidden;
+    align-items: center;
+
+    padding: 6px 0;
+
   }
 
   .fixed-width2 {
 
-    width: 85%;
+    max-height: 35vh;
 
-    max-height: 100%;
+    width: auto;
 
-    margin: 0 auto;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
   }
 
   #questionImage {
@@ -259,7 +250,6 @@
 
     width: auto;
 
-    object-fit: contain;
   }
 
 }
