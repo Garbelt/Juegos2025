@@ -1,62 +1,19 @@
-/* =========================================
-   LAYOUT RESPONSIVO
-   Imagen + Opciones + Panel
-   ========================================= */
+/* ===============================
+   VISTA VERTICAL
+   =============================== */
 
-
-/* =========================================
-   MÓVIL GENERAL
-   ========================================= */
-
-@media screen and (max-width:1023px) {
-
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    display: block;
-    overflow: hidden;
-  }
-
-  /* CONTENEDOR PRINCIPAL */
+@media screen and (max-width:1023px) and (orientation: portrait) {
 
   .container {
     height: 100dvh;
-    width: 100vw;
-    margin: 0;
-    aspect-ratio: auto !important;
-    display: block; /* evita centrado vertical */
   }
-
-  .container > table {
-    aspect-ratio: auto !important;
-  }
-
-  .container table tr:nth-child(1) {
-    height: 80px;
-    padding-top: 6px;
-  }
-
-  .container table tr:nth-child(2) {
-    height: auto;
-  }
-
-  .container table tr:nth-child(3) {
-    height: auto;
-  }
-
-  /* CELDA DE IMAGEN */
 
   #image-cell {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: hidden;   /* ← aquí */
   }
-
   .fixed-width2 {
     display: flex;
     align-items: center;
@@ -64,18 +21,21 @@
     aspect-ratio: 1 / 1;
   }
 
-  .container table tr:nth-child(1) td {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  html,
+  body {
+    overflow: hidden;
   }
 
-  /* =========================================
-     OPCIONES CONTROLADAS
-     ========================================= */
+   .container table tr:nth-child(1) td {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* centra vertical */
+  align-items: center;       /* centra horizontal */
+  text-align: center;
+}
 
+   OPCIONES CONTROLADAS
+   ========================================= */
   #options-cell {
     overflow: hidden;
   }
@@ -88,52 +48,8 @@
   .options li {
     word-break: break-word;
   }
-
 }
 
-
-/* =========================================
-   VISTA HORIZONTAL
-   ========================================= */
-
-@media screen and (max-width:1023px) and (orientation: landscape) {
-
-  .container > table {
-    border-collapse: collapse;
-    height: 100dvh;
-    aspect-ratio: auto;
-  }
-
-  .fila-principal {
-    display: table-row;
-  }
-
-  table {
-    height: 100dvh;
-  }
-
-  /* ALTURA HEADER */
-
-  .container table tr:nth-child(1) {
-    height: 70px;
-  }
-
-  /* IMAGEN */
-
-  .fixed-width2 {
-    height: 240px;
-    width: 240px;
-    max-height: 240px;
-    max-width: 240px;
-  }
-
-}
-
-/* =========================================
-   VISTA VERTICAL
-   ========================================= */
-
-@media screen and (max-width:1023px) and (orientation: portrait) {
 
   /* Convertimos la fila en layout vertical */
   .fila-principal {
@@ -179,14 +95,4 @@
   max-height: 35vh;
   margin: 0 auto;
 }
-
-  /* RELOJ */
-
-  #reloj {
-    width: 20vh;
-    height: 20vh;
-    max-width: 130px;
-    max-height: 130px;
-  }
-
-}
+} 
