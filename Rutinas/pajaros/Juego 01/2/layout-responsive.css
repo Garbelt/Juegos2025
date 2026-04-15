@@ -131,22 +131,33 @@
 
 
 /* =========================================
-   VISTA VERTICAL
+   VISTA VERTICAL — estable con título visible
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation: portrait) {
 
   /* -------------------------------------
-     1) La fila principal pasa a vertical
+     La tabla usa toda la pantalla
      ------------------------------------- */
 
-  .fila-principal {
-    display: block;
+  .container > table {
+    height: 100dvh;
     width: 100%;
+    table-layout: fixed;
   }
 
   /* -------------------------------------
-     2) Ocultar panel lateral horizontal
+     TITLE — siempre visible
+     ------------------------------------- */
+
+  .container table tr:nth-child(1) {
+    height: 90px;
+    min-height: 90px;
+  }
+
+  /* -------------------------------------
+     OCULTAR PANEL LATERAL
+     (libera el ancho real)
      ------------------------------------- */
 
   .celda-panel {
@@ -154,11 +165,12 @@
   }
 
   /* -------------------------------------
-     3) Mostrar panel inferior
+     MOSTRAR PANEL INFERIOR
      ------------------------------------- */
 
   .fila-panel-vertical {
     display: table-row;
+    width: 100%;
   }
 
   #panel-vertical {
@@ -167,54 +179,84 @@
   }
 
   /* -------------------------------------
-     4) Centrar espacio de juego
+     FILA PRINCIPAL — usa todo el ancho
      ------------------------------------- */
 
-  #image-cell,
-  #options-cell {
-    display: block;
+  .fila-principal {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    text-align: center;
+    height: auto;
   }
 
   /* -------------------------------------
-     5) Botones ocupan 90% del ancho
+     CELDAS ocupan ancho completo
      ------------------------------------- */
 
-  #options-cell button {
+  #options-cell,
+  #image-cell {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* -------------------------------------
+     OPCIONES — ocupan el espacio real
+     ------------------------------------- */
+
+  .options {
+    width: 100%;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  .options li {
     width: 90%;
-    max-width: 500px;
-    margin: 10px auto;
-    display: block;
+    margin: 6px auto;
+    padding: 8px;
+    box-sizing: border-box;
   }
 
   /* -------------------------------------
-     6) Imagen centrada
+     IMAGEN centrada y adaptable
      ------------------------------------- */
+
+  #image-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .fixed-width {
-    width: 60%;
-    max-width: 320px;
-    margin: 15px auto;
-    display: block;
-  }
-
-  /* -------------------------------------
-     7) Panel ocupa todo el ancho
-     ------------------------------------- */
-
-  .panel {
     width: 100%;
+    padding: 6px;
+  }
+
+  .fixed-width2 {
+    width: 42%;
+    max-width: 180px;
+    max-height: 24vh;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* -------------------------------------
-     8) Reloj gráfico circular
+     RELOJ circular
      ------------------------------------- */
 
-  canvas {
-    width: 140px;
-    height: 140px;
-    display: block;
+  #reloj-vertical {
+    width: min(20vh, 130px);
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     margin: 10px auto;
   }
 
