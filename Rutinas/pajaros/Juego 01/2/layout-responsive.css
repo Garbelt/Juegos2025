@@ -136,146 +136,86 @@
 
 @media screen and (max-width:1023px) and (orientation: portrait) {
 
-  /* La tabla ocupa toda la pantalla y reparte alturas */
-
-  .container > table {
-    height: 100dvh;
-    table-layout: fixed;
-  }
-
-  /* TITLE */
-
-  .container table tr:nth-child(1) {
-    height: 90px;
-    min-height: 90px;
-  }
-
-  /* PANEL VERTICAL */
-
-  .container table tr.fila-panel-vertical {
-    height: auto;
-  }
-
-  /* PANEL — ancho completo real */
-
-  .container table tr.fila-panel-vertical td {
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .fila-panel-vertical .fixed-width {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
-    box-sizing: border-box;
-  }
-
-  .panel-vertical {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  /* Layout vertical */
+  /* -------------------------------------
+     1) La fila principal pasa a vertical
+     ------------------------------------- */
 
   .fila-principal {
-    display: flex;
-    flex-direction: column;
+    display: block;
     width: 100%;
-
-    height: 100%;
-    min-height: 0;
   }
 
-  /* ORDEN VISUAL */
+  /* -------------------------------------
+     2) Ocultar panel lateral horizontal
+     ------------------------------------- */
 
-  #options-cell {
-    order: 1;
-    width: 100%;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  #image-cell {
-    order: 2;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  /* OCULTAR SI NO HAY IMAGEN */
-
-  #image-cell:has(#questionImage[style*="display: none"]) {
+  .celda-panel {
     display: none;
   }
 
-  /* OPCIONES */
+  /* -------------------------------------
+     3) Mostrar panel inferior
+     ------------------------------------- */
 
-  .options {
-    height: 100%;
-    overflow-y: auto;
-    padding: 10px;
-    min-height: 0;
+  .fila-panel-vertical {
+    display: table-row;
   }
 
-  .options li {
-    width: 90%;
-    margin: 6px auto;
-    padding: 8px;
+  #panel-vertical {
+    width: 100%;
     box-sizing: border-box;
   }
 
-  /* IMAGEN */
+  /* -------------------------------------
+     4) Centrar espacio de juego
+     ------------------------------------- */
+
+  #image-cell,
+  #options-cell {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* -------------------------------------
+     5) Botones ocupan 90% del ancho
+     ------------------------------------- */
+
+  #options-cell button {
+    width: 90%;
+    max-width: 500px;
+    margin: 10px auto;
+    display: block;
+  }
+
+  /* -------------------------------------
+     6) Imagen centrada
+     ------------------------------------- */
 
   .fixed-width {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .fixed-width2 {
-    width: 42%;
-    max-width: 180px;
-    max-height: 24vh;
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* CENTRADO REAL DE LA IMAGEN */
-
-  .fixed-width2 img,
-  #questionImage {
+    width: 60%;
+    max-width: 320px;
+    margin: 15px auto;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    height: auto;
   }
 
-  /* RELOJ */
+  /* -------------------------------------
+     7) Panel ocupa todo el ancho
+     ------------------------------------- */
 
-#reloj-vertical {
-  width: 20vh;
-  height: 20vh;
-  max-width: 130px;
-  max-height: 130px;
-  aspect-ratio: 1 / 1;   /* CLAVE */
-  border-radius: 50%;     /* CLAVE */
-  overflow: hidden;       /* asegura círculo visual */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .panel {
+    width: 100%;
+  }
+
+  /* -------------------------------------
+     8) Reloj gráfico circular
+     ------------------------------------- */
+
+  canvas {
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: 10px auto;
+  }
+
 }
