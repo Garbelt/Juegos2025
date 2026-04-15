@@ -1,3 +1,126 @@
+/* =========================================
+   LAYOUT RESPONSIVO
+   Imagen + Opciones + Panel
+   ========================================= */
+
+/* =========================================
+   VISTA HORIZONTAL
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation: landscape) {
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    display: block;
+    overflow: hidden;
+  }
+
+  /* CONTENEDOR PRINCIPAL */
+
+  .container {
+    height: 100dvh;
+    width: 100vw;
+    margin: 0;
+    aspect-ratio: auto !important;
+    display: block; /* evita centrado vertical */
+  }
+
+  .container > table {
+    aspect-ratio: auto !important;
+  }
+
+  .container table tr:nth-child(1) {
+    height: 80px;
+    padding-top: 6px;
+  }
+
+  .container table tr:nth-child(2) {
+    height: auto;
+  }
+
+  .container table tr:nth-child(3) {
+    height: auto;
+  }
+
+  /* CELDA DE IMAGEN */
+
+  #image-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .fixed-width2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+  }
+
+  .container table tr:nth-child(1) td {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* =========================================
+     OPCIONES CONTROLADAS
+     ========================================= */
+
+  #options-cell {
+    overflow: hidden;
+  }
+
+  .options {
+    overflow-y: auto;
+    max-height: 100%;
+  }
+
+  .options li {
+    word-break: break-word;
+  }
+
+}
+
+  .container > table {
+    border-collapse: collapse;
+    height: 100dvh;
+    aspect-ratio: auto;
+  }
+
+  .fila-principal {
+    display: table-row;
+  }
+
+  table {
+    height: 100dvh;
+  }
+
+  /* ALTURA HEADER */
+
+  .container table tr:nth-child(1) {
+    height: 70px;
+  }
+
+  /* IMAGEN */
+
+  .fixed-width2 {
+    height: 240px;
+    width: 240px;
+    max-height: 240px;
+    max-width: 240px;
+  }
+}
+
+
 /* ===============================
    VISTA VERTICAL
    =============================== */
@@ -96,3 +219,4 @@
   margin: 0 auto;
 }
 } 
+
