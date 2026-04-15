@@ -187,6 +187,7 @@ function showMessage(text, type) {
   }
 
 function handleOptionClick(event) {
+  if (!sistemaListo) return; // 🛑 evita doble activación
   if(questionAudioPlayer) questionAudioPlayer.pause();
   if (birdAudioPlayer) {fadeOutAndStopAudio(birdAudioPlayer);}
   
