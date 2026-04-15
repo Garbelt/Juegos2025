@@ -143,6 +143,7 @@
     table-layout: fixed;
   }
 
+   
   .fila-principal {
     display: flex;
     flex-direction: column;
@@ -179,39 +180,28 @@
   .fixed-width {
     box-sizing: border-box;
     width: 100%;
-    padding: 6px; /* antes 10px */
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* TAMAÑO IMAGEN — ahora más chica inicialmente */
+  /* TAMAÑO IMAGEN */
 
-.fixed-width2 {
-    width: 42%;
-    max-width: 180px;
-    max-height: min(24vh, 180px);
+  .fixed-width2 {
+    width: 55%;
+    max-width: 260px;
+    max-height: 35vh;
     margin: 0 auto;
-}
   }
 
-  /* OPCIONES — menos separación vertical */
-
-  .options {
-    padding: 12px; /* antes 20px */
-  }
-
-  .options li {
-    margin: 5px;   /* antes 10px */
-    padding: 8px;  /* antes 10px */
-  }
-
-  /* RELOJ — leve reducción */
+  /* RELOJ */
 
   #reloj {
-    width: 20vh;        /* antes 22vh */
-    height: 20vh;
-    max-width: 130px;   /* antes 140px */
-    max-height: 130px;
+    width: 22vh;
+    height: 22vh;
+    max-width: 140px;
+    max-height: 140px;
   }
+
 }
