@@ -131,14 +131,14 @@
 
 
 /* =========================================
-   VISTA VERTICAL (OPTIMIZADA)
-   Opciones arriba + Imagen abajo + Panel fijo
+   VISTA VERTICAL
+   Tabla interna con la misma lógica estructural
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation: portrait) {
 
   /* =============================
-     BASE
+     CONTENEDOR
      ============================= */
 
   .container {
@@ -154,7 +154,7 @@
   }
 
   /* =============================
-     HEADER FIJO
+     HEADER
      ============================= */
 
   .container table tr:nth-child(1) {
@@ -162,93 +162,104 @@
   }
 
   /* =============================
-     PANEL FIJO
+     PANEL
      ============================= */
 
-  .fila-panel-vertical {
-    height: 22vh; /* un poco más compacto */
+  body.panel-full .celda-panel-vertical {
+    height: 25vh;
+  }
+
+  body.panel-mini .celda-panel-vertical {
+    height: 12vh;
   }
 
   /* =============================
-     ZONA CENTRAL (IMPORTANTE)
+     FILA PRINCIPAL
+     ahora se comporta como tabla vertical
      ============================= */
 
-  .container table tr:nth-child(2) {
-    height: calc(100dvh - 90px - 22vh);
+  .fila-principal {
+
+    display: table;
+
+    width: 100%;
+    height: 100%;
+
+    table-layout: fixed;
   }
 
   /* =============================
-     CELDAS CENTRALES
+     OPCIONES ARRIBA
      ============================= */
 
-  #options-cell,
-  #image-cell {
+  #options-cell {
+
+    display: table-row;
+
+    height: auto;
+
     overflow: hidden;
   }
 
-  /* 🔴 CLAVE: columna interna real */
-  #options-cell {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 6px;
-    box-sizing: border-box;
-    gap: 6px;
-  }
-
-  /* =============================
-     OPCIONES (ARRIBA)
-     ============================= */
-
   .options {
-    flex: 1;
-    overflow-y: auto;
-    min-height: 0;
 
-    padding: 6px;
+    max-height: 100%;
+
+    overflow-y: auto;
+
+    padding: 10px;
+
     margin: 0;
   }
 
   .options li {
-    margin: 5px;
+
+    margin: 6px;
+
     padding: 8px;
+
     font-size: clamp(11px, 1.4vw, 15px);
+
     word-break: break-word;
   }
 
   /* =============================
-     IMAGEN (ABAJO)
+     IMAGEN ABAJO
      ============================= */
 
   #image-cell {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-top: 6px;
+
+    display: table-row;
+
+    height: 30vh;
+
+    text-align: center;
+
+    overflow: hidden;
   }
 
   .fixed-width2 {
+
     width: 85%;
-    max-height: 28vh;
+
+    max-height: 100%;
+
+    margin: 0 auto;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
   }
 
   #questionImage {
+
     max-height: 100%;
+
     width: auto;
+
     object-fit: contain;
   }
 
-  /* =============================
-     RELOJ (ajuste móvil)
-     ============================= */
-
-  #reloj {
-    width: 20vh;
-    height: 20vh;
-    max-width: 120px;
-    max-height: 120px;
-  }
 }
