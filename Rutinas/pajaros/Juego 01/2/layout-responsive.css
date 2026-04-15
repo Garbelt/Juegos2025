@@ -132,7 +132,7 @@
 
 /* =========================================
    VISTA VERTICAL
-   Opciones arriba + Imagen abajo
+   Tabla principal vertical real
    ========================================= */
 
 @media screen and (max-width:1023px) and (orientation: portrait) {
@@ -140,7 +140,7 @@
   .container {
     height: 100dvh;
     width: 100vw;
-    overflow: hidden; /* CRÍTICO */
+    overflow: hidden;
   }
 
   .container table {
@@ -160,87 +160,83 @@
     height: 25vh;
   }
 
-  /* ZONA CENTRAL: ocupar lo restante REAL */
+  /* ZONA CENTRAL */
 
   .container table tr:nth-child(2) {
     height: calc(100dvh - 90px - 25vh);
   }
 
   /* =========================================
-     CAMBIO CLAVE:
-     apilar las celdas en vertical
+     TABLA PRINCIPAL VERTICAL
      ========================================= */
 
   .fila-principal {
 
-    display: flex;
+    display: table;
 
-    flex-direction: column;
+    width: 100%;
 
     height: 100%;
 
+    table-layout: fixed;
+
   }
 
-  /* las celdas ocupan todo el ancho */
+  .fila-principal td {
 
-  #options-cell,
-  #image-cell {
+    display: table-row;
 
     width: 100%;
+
+  }
+
+  /* =========================================
+     OPCIONES
+     ========================================= */
+
+  #options-cell {
+
+    height: auto;
 
     overflow: hidden;
 
   }
 
-  /* =========================================
-     OPCIONES (arriba)
-     ========================================= */
-
-  #options-cell {
-
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: column;
-
-    height: 100%;
-
-  }
-
   .options {
 
-    flex: 1;
+    max-height: 100%;
 
     overflow-y: auto;
 
-    min-height: 0; /* CRÍTICO REAL */
+    min-height: 0;
 
   }
 
   /* =========================================
-     IMAGEN (abajo)
+     IMAGEN
      ========================================= */
 
   #image-cell {
 
-    flex: 0 0 auto;
+    height: 30vh;
 
-    display: flex;
+    display: table-cell;
 
-    justify-content: center;
+    text-align: center;
 
-    align-items: center;
+    vertical-align: middle;
 
-    padding: 6px 0;
+    overflow: hidden;
 
   }
 
   .fixed-width2 {
 
-    max-height: 35vh;
+    max-height: 100%;
 
     width: auto;
+
+    margin: auto;
 
   }
 
