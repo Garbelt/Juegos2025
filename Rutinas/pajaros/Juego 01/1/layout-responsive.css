@@ -134,68 +134,61 @@
    VISTA VERTICAL
    ========================================= */
 
-@media screen and (max-width:1023px) and (orientation: portrait) {
+con esto alcanzaría? @media screen and (max-width:1023px) and (orientation: portrait) {
 
-  /* Layout vertical */
-
-  .fila-principal {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  .container {
+    height: 100dvh;
+    width: 100vw;
+    overflow: hidden; /* CRÍTICO */
   }
 
+  .container table {
+    height: 100%;
+    table-layout: fixed;
+  }
+
+  /* HEADER */
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
-  /* ORDEN VISUAL */
-
-  #options-cell {
-    order: 1;
-    width: 100%;
+  /* PANEL */
+  .fila-panel-vertical {
+    height: 25vh;
   }
 
+  /* ZONA CENTRAL: ocupar lo restante REAL */
+  .container table tr:nth-child(2) {
+    height: calc(100dvh - 90px - 25vh);
+  }
+
+  /* EVITA EXPANSIÓN INTERNA */
+  #options-cell,
   #image-cell {
-    order: 2;
-    width: 100%;
+    overflow: hidden;
+  }
+
+  /* CLAVE: zona interna controlada */
+  #options-cell {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    height: 100%;
   }
 
-  /* OCULTAR SI NO HAY IMAGEN */
-
-  #image-cell:has(#questionImage[style*="display: none"]) {
-    display: none;
+  .options {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0; /* CRÍTICO REAL */
   }
 
-  /* CONTENEDOR INTERNO */
-
-  .fixed-width {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* TAMAÑO IMAGEN */
-
+  /* IMAGEN CONTROLADA */
   .fixed-width2 {
-    width: 55%;
-    max-width: 260px;
     max-height: 35vh;
-    margin: 0 auto;
+    width: auto;
   }
 
-  /* RELOJ */
-
-  #reloj {
-    width: 22vh;
-    height: 22vh;
-    max-width: 140px;
-    max-height: 140px;
+  #questionImage {
+    max-height: 100%;
+    width: auto;
   }
-
 }
