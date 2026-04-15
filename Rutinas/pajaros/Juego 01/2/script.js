@@ -297,12 +297,14 @@ function fadeOutAndStopAudio(audio, duration = 2500) {
   }
 
 function handleOptionClick(event) {
+  if (!sistemaListo) return; // 🛑 evita doble activación
   if(questionAudioPlayer) questionAudioPlayer.pause();
   if (birdAudioPlayer) {fadeOutAndStopAudio(birdAudioPlayer);}
   clearInterval(intervaloTemporizador);
   audioTictac.pause();
   detenerTiempoAcumulado();
 
+  sistemaListo = false; // 🔴 Bloqueo total de interacción
   disableOptions(); // ahora también deshabilita título, imagen y botón parlante
   setEstadoBotonLector(false);
 
