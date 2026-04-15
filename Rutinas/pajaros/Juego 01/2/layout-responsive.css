@@ -132,15 +132,14 @@
 
 /* =========================================
    VISTA VERTICAL
-   Tabla principal vertical real
    ========================================= */
 
-@media screen and (max-width:1023px) and (orientation: portrait) {
+con esto alcanzaría? @media screen and (max-width:1023px) and (orientation: portrait) {
 
   .container {
     height: 100dvh;
     width: 100vw;
-    overflow: hidden;
+    overflow: hidden; /* CRÍTICO */
   }
 
   .container table {
@@ -149,103 +148,47 @@
   }
 
   /* HEADER */
-
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
   /* PANEL */
-
   .fila-panel-vertical {
     height: 25vh;
   }
 
-  /* ZONA CENTRAL */
-
+  /* ZONA CENTRAL: ocupar lo restante REAL */
   .container table tr:nth-child(2) {
     height: calc(100dvh - 90px - 25vh);
   }
 
-  /* =========================================
-     TABLA PRINCIPAL VERTICAL
-     ========================================= */
-
-  .fila-principal {
-
-    display: table;
-
-    width: 100%;
-
-    height: 100%;
-
-    table-layout: fixed;
-
-  }
-
-  .fila-principal td {
-
-    display: table-row;
-
-    width: 100%;
-
-  }
-
-  /* =========================================
-     OPCIONES
-     ========================================= */
-
-  #options-cell {
-
-    height: auto;
-
+  /* EVITA EXPANSIÓN INTERNA */
+  #options-cell,
+  #image-cell {
     overflow: hidden;
+  }
 
+  /* CLAVE: zona interna controlada */
+  #options-cell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .options {
-
-    max-height: 100%;
-
+    flex: 1;
     overflow-y: auto;
-
-    min-height: 0;
-
+    min-height: 0; /* CRÍTICO REAL */
   }
 
-  /* =========================================
-     IMAGEN
-     ========================================= */
-
-  #image-cell {
-
-    height: 30vh;
-
-    display: table-cell;
-
-    text-align: center;
-
-    vertical-align: middle;
-
-    overflow: hidden;
-
-  }
-
+  /* IMAGEN CONTROLADA */
   .fixed-width2 {
-
-    max-height: 100%;
-
+    max-height: 35vh;
     width: auto;
-
-    margin: auto;
-
   }
 
   #questionImage {
-
     max-height: 100%;
-
     width: auto;
-
   }
-
 }
