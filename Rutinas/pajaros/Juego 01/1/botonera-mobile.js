@@ -77,6 +77,12 @@ function actualizarBotonLectura() {
 /* ================= BOTÓN PRINCIPAL ================= */
 
 mainBtn.addEventListener("click", (e) => {
+  // 🚫 No abrir si el sistema no está listo
+  if (typeof sistemaListo !== "undefined" && !sistemaListo) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
   // 🚫 No abrir si el sistema está leyendo
   if (typeof leyendoAhora !== "undefined" && leyendoAhora) {
     e.preventDefault();
