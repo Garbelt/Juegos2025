@@ -138,6 +138,11 @@
 
   /* Layout vertical */
 
+  .container > table {
+    height: 100%;
+    table-layout: fixed;
+  }
+
   .fila-principal {
     display: flex;
     flex-direction: column;
