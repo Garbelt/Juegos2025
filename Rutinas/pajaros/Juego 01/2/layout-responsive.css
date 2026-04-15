@@ -201,8 +201,10 @@
   }
 
   .options li {
-    margin: 6px;
+    width: 90%;              /* ocupa 90% del ancho disponible */
+    margin: 6px auto;        /* centra el botón horizontalmente */
     padding: 8px;
+    box-sizing: border-box;  /* evita desbordes por padding */
   }
 
   /* IMAGEN */
