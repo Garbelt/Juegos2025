@@ -187,7 +187,54 @@
     max-width: 260px;
     max-height: 35vh;
     margin: 0 auto;
+  }@media screen and (max-width:1023px) and (orientation: portrait) {
+
+  .container {
+    height: 100dvh;
+    width: 100vw;
   }
+
+  .container table {
+    height: 100%;
+    table-layout: fixed;
+  }
+
+  /* HEADER FIJO */
+  .container table tr:nth-child(1) {
+    height: 90px;
+  }
+
+  /* ZONA CENTRAL */
+  .container table tr:nth-child(2) {
+    height: calc(100% - 90px - 25vh); /* ajusta según panel */
+    overflow: hidden;
+  }
+
+  /* PANEL */
+  .fila-panel-vertical {
+    height: 25vh;
+  }
+
+  /* IMPORTANTE: evitar expansión interna */
+  #options-cell {
+    overflow: hidden;
+  }
+
+  .options {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+
+  /* imagen contenida */
+  #image-cell {
+    max-height: 35vh;
+  }
+
+  .fixed-width2 {
+    max-height: 100%;
+    width: auto;
+  }
+
 
   /* RELOJ */
 
