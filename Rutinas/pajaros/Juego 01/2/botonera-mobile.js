@@ -1,4 +1,4 @@
-﻿/* ================= BOTONERA MÓVIL ================= */
+/* ================= BOTONERA MÓVIL ================= */
 
 const mobileControls = document.querySelector(".mobile-controls");
 const mainBtn = document.getElementById("mobile-main-btn");
@@ -77,7 +77,7 @@ function actualizarBotonLectura() {
 /* ================= BOTÓN PRINCIPAL ================= */
 
 mainBtn.addEventListener("click", (e) => {
-  // 🚫 No abrir antes de que el sistema esté listo
+  // 🚫 No abrir si el sistema no está listo
   if (typeof sistemaListo !== "undefined" && !sistemaListo) {
     e.preventDefault();
     e.stopPropagation();
