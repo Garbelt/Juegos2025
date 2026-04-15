@@ -139,9 +139,7 @@
   /* Layout vertical */
 
   .fila-principal {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    display: table-row;
   }
 
   .container table tr:nth-child(1) {
