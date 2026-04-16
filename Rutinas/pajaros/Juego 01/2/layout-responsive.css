@@ -134,7 +134,7 @@
    VISTA VERTICAL
    ========================================= */
 
-con esto alcanzaría? @media screen and (max-width:1023px) and (orientation: portrait) {
+@media screen and (max-width:1023px) and (orientation: portrait) {
 
   .container {
     height: 100dvh;
@@ -147,48 +147,73 @@ con esto alcanzaría? @media screen and (max-width:1023px) and (orientation: por
     table-layout: fixed;
   }
 
-  /* HEADER */
+  /* =========================================
+     MOSTRAR / OCULTAR FILAS
+     ========================================= */
+
+  .fila-principal {
+    display: none;
+  }
+
+  .fila-opciones-vertical,
+  .fila-imagen-vertical,
+  .fila-panel-vertical {
+    display: table-row;
+  }
+
+  /* =========================================
+     HEADER
+     ========================================= */
+
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
-  /* PANEL */
+  /* =========================================
+     PANEL
+     ========================================= */
+
   .fila-panel-vertical {
     height: 25vh;
   }
 
-  /* ZONA CENTRAL: ocupar lo restante REAL */
-  .container table tr:nth-child(2) {
-    height: calc(100dvh - 90px - 25vh);
+  /* =========================================
+     OPCIONES
+     ========================================= */
+
+  .fila-opciones-vertical {
+    height: auto;
   }
 
-  /* EVITA EXPANSIÓN INTERNA */
-  #options-cell,
-  #image-cell {
+  #options-cell-vertical {
     overflow: hidden;
-  }
-
-  /* CLAVE: zona interna controlada */
-  #options-cell {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
-  .options {
+  #options-vertical {
     flex: 1;
     overflow-y: auto;
-    min-height: 0; /* CRÍTICO REAL */
+    min-height: 0; /* CRÍTICO */
   }
 
-  /* IMAGEN CONTROLADA */
+  /* =========================================
+     IMAGEN
+     ========================================= */
+
+  .fila-imagen-vertical {
+    height: auto;
+  }
+
   .fixed-width2 {
     max-height: 35vh;
     width: auto;
   }
 
-  #questionImage {
+  #questionImage-vertical {
     max-height: 100%;
     width: auto;
   }
+
 }
