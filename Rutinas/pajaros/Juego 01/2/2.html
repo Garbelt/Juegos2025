@@ -214,33 +214,48 @@
         </th>
       </tr>
 
+<!-- ================= FILA PRINCIPAL ================= -->
+
 <tr class="fila-principal">
-<!-- Celda imagen (se oculta si no hay imagen) -->
-<td id="image-cell" class="fixed-width" style="display: none;">
-  <div class="fixed-width2" style="position: relative;">
-    <img id="questionImage" src="" alt="" style="width: 100%; height: auto; display: block;">
-     <button id="speaker-button" 
-        style="
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        display: none;
-        padding: 0;
-      "
-        title="Escuchar pista">
-      <img src="image/speaker-icon.png" alt="Escuchar pista" style="width: 24px; height: 24px;">
-    </button>
-  </div>
+
+<!-- IMAGEN HORIZONTAL -->
+
+<td id="image-cell" class="fixed-width" style="display:none;">
+
+<div class="fixed-width2" style="position: relative;">
+
+<img id="questionImage" src="" alt="">
+
+<button id="speaker-button"
+style="
+position:absolute;
+top:8px;
+right:8px;
+background:transparent;
+border:none;
+cursor:pointer;
+display:none;
+">
+
+<img src="image/speaker-icon.png" style="width:24px;">
+
+</button>
+
+</div>
+
 </td>
 
-        <!-- Celda opciones -->
-        <td id="options-cell">
-          <ul class="options" id="options"></ul>
-          <div class="found-message" id="message"></div>
-        </td>
+<!-- OPCIONES HORIZONTAL -->
+
+<td id="options-cell">
+
+<ul class="options" id="options"></ul>
+
+<div class="found-message" id="message"></div>
+
+</td>
+
+<!-- PANEL HORIZONTAL -->
 
             <td id="align-left-top" class="celda-panel" style="position: relative;">
 			<div id="panel">
@@ -271,7 +286,35 @@
             </td>
         </tr>
 
+<!-- ================= OPCIONES VERTICALES ================= -->
 
+<tr class="fila-opciones-vertical">
+
+<td colspan="3" id="options-cell-vertical">
+
+<ul class="options" id="options-vertical"></ul>
+
+<div class="found-message" id="message-vertical"></div>
+
+</td>
+
+</tr>
+
+<!-- ================= IMAGEN VERTICAL ================= -->
+
+<tr class="fila-imagen-vertical">
+
+<td colspan="3" id="image-cell-vertical">
+
+<div class="fixed-width2">
+
+<img id="questionImage-vertical" src="" alt="">
+
+</div>
+
+</td>
+
+</tr>
 
 
 		<tr class="fila-panel-vertical">
