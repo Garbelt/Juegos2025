@@ -134,7 +134,7 @@
    VISTA VERTICAL
    ========================================= */
 
-@media screen and (max-width:1023px) and (orientation: portrait) {
+con esto alcanzaría? @media screen and (max-width:1023px) and (orientation: portrait) {
 
   .container {
     height: 100dvh;
@@ -147,73 +147,48 @@
     table-layout: fixed;
   }
 
-  /* =========================================
-     MOSTRAR / OCULTAR FILAS
-     ========================================= */
-
-  .fila-principal {
-    display: none;
-  }
-
-  .fila-opciones-vertical,
-  .fila-imagen-vertical,
-  .fila-panel-vertical {
-    display: table-row;
-  }
-
-  /* =========================================
-     HEADER
-     ========================================= */
-
+  /* HEADER */
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
-  /* =========================================
-     PANEL
-     ========================================= */
-
+  /* PANEL */
   .fila-panel-vertical {
     height: 25vh;
   }
 
-  /* =========================================
-     OPCIONES
-     ========================================= */
-
-  .fila-opciones-vertical {
-    height: auto;
+  /* ZONA CENTRAL: ocupar lo restante REAL */
+  .container table tr:nth-child(2) {
+    height: calc(100dvh - 90px - 25vh);
   }
 
-  #options-cell-vertical {
+  /* EVITA EXPANSIÓN INTERNA */
+  #options-cell,
+  #image-cell {
     overflow: hidden;
+  }
+
+  /* CLAVE: zona interna controlada */
+  #options-cell {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
-  #options-vertical {
+  .options {
     flex: 1;
     overflow-y: auto;
-    min-height: 0; /* CRÍTICO */
+    min-height: 0; /* CRÍTICO REAL */
   }
 
-  /* =========================================
-     IMAGEN
-     ========================================= */
-
-  .fila-imagen-vertical {
-    height: auto;
-  }
-
+  /* IMAGEN CONTROLADA */
   .fixed-width2 {
     max-height: 35vh;
     width: auto;
   }
 
-  #questionImage-vertical {
+  #questionImage {
     max-height: 100%;
     width: auto;
   }
-
 }
