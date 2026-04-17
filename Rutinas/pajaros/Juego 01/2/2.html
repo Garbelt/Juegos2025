@@ -170,7 +170,6 @@
    opciones arriba, imagen debajo
    ========================================= */
 
-
 .fila-imagen-vertical{
   display:none;
 }
@@ -193,13 +192,29 @@
     display:table-cell;
     width:100%;
     text-align:center;
+    border:none !important;
   }
 
-  /* controlar tamaño de la imagen */
+  /* la fila principal ocupa el espacio disponible */
+
+  .fila-principal{
+    height:100%;
+  }
+
+  #options-cell{
+    height:100%;
+    vertical-align:top;
+    border:none !important;
+  }
+
+  /* controlar tamaño y apariencia de la imagen */
 
   #image-cell-vertical .fixed-width2{
     width:70%;
     margin:0 auto;
+
+    background:transparent;
+    border:none;
   }
 
 }
