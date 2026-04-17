@@ -170,43 +170,39 @@
    opciones arriba, imagen debajo
    ========================================= */
 
-@media screen and (max-width:1023px) and (orientation:portrait)
 
-.fila-principal {
-  display: block;
-  width: 100%;
+.fila-imagen-vertical{
+  display:none;
 }
 
-/* cada celda ocupa toda la fila */
+@media screen and (max-width:1023px) and (orientation:portrait){
 
-#options-cell,
-#image-cell {
-  display: block;
-  width: 100%;
+  /* ocultar imagen horizontal */
+
+  #image-cell{
+    display:none !important;
+  }
+
+  /* mostrar imagen vertical */
+
+  .fila-imagen-vertical{
+    display:table-row;
+  }
+
+  #image-cell-vertical{
+    display:table-cell;
+    width:100%;
+    text-align:center;
+  }
+
+  /* controlar tamaño de la imagen */
+
+  #image-cell-vertical .fixed-width2{
+    width:70%;
+    margin:0 auto;
+  }
+
 }
-
-/* orden vertical */
-
-#options-cell {
-  order: 1;
-}
-
-#image-cell {
-  order: 2;
-}
-
-/* evitar que la imagen domine el espacio */
-
-.fixed-width {
-  width: 100%;
-  padding: 10px;
-}
-
-.fixed-width2 {
-  width: 70%;
-  margin: 0 auto;
-}
-
   </style>
 </head>
 <body class="no-header-toggle">
@@ -312,7 +308,13 @@
             </td>
         </tr>
 
-
+<tr class="fila-imagen-vertical">
+  <td colspan="2" id="image-cell-vertical" style="display:none;">
+    <div class="fixed-width2" style="position: relative;">
+      <img id="questionImage-vertical" src="" alt="">
+    </div>
+  </td>
+</tr>
 
 
 		<tr class="fila-panel-vertical">
