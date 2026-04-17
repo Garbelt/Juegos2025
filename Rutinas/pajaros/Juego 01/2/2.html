@@ -174,10 +174,206 @@
   display:none;
 }
 
+/* =========================================
+   MÓVIL VERTICAL
+   ========================================= */
+
 @media screen and (max-width:1023px) and (orientation:portrait){
+
+  /* =========================================
+     CONTENEDOR
+     ========================================= */
+
+  body.game-started{
+    display:block !important;
+    height:100vh;
+  }
+
+  body.game-started .container{
+    height:100dvh;
+  }
+
+  .container{
+    width:100vw;
+    height:100dvh;
+    max-width:100vw;
+    margin:0;
+    border:none;
+  }
+
+  .container table{
+    width:100%;
+    height:100%;
+    aspect-ratio:auto !important;
+    table-layout:fixed;
+  }
+
+  /* =========================================
+     FILAS (reparto vertical)
+     ========================================= */
+
+  .container table tr:nth-child(1){
+    height:15%;
+  }
+
+  .container table tr:nth-child(2){
+    height:60%;
+  }
+
+  .container table tr:nth-child(3){
+    height:auto;
+  }
+
+  /* =========================================
+     TÍTULO
+     ========================================= */
+
+  .title-cell{
+    display:table-cell !important;
+    width:100%;
+    text-align:center;
+    vertical-align:middle;
+  }
+
+  body.header-hidden .fila-titulo{
+    display:none;
+  }
+
+  body.header-visible .fila-titulo{
+    display:table-row;
+  }
+
+  /* =========================================
+     OCULTAR COLUMNA PANEL HORIZONTAL
+     ========================================= */
+
+  .celda-panel{
+    display:none;
+  }
+
+  /* =========================================
+     FILA PRINCIPAL
+     ========================================= */
+
+  .fila-principal td{
+    border:none !important;
+  }
+
+  #align-left-top{
+    display:none;
+  }
+
+  /* =========================================
+     OCULTAR IMAGEN HORIZONTAL
+     ========================================= */
+
+  #image-cell{
+    display:none !important;
+  }
+
+  /* =========================================
+     OPCIONES
+     ========================================= */
+
+  #options-cell{
+    height:100%;
+    vertical-align:top;
+    border:none !important;
+  }
+
+  /* =========================================
+     IMAGEN VERTICAL
+     ========================================= */
 
   .fila-imagen-vertical{
     display:table-row;
+  }
+
+  #image-cell-vertical{
+    display:table-cell;
+    width:100%;
+    text-align:center;
+    border:none !important;
+  }
+
+  #image-cell-vertical .fixed-width2{
+    width:70%;
+    margin:0 auto;
+    background:transparent !important;
+    border:none !important;
+  }
+
+  #questionImage-vertical{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    display:block;
+  }
+
+  /* =========================================
+     PANEL VERTICAL
+     ========================================= */
+
+  .fila-panel-vertical{
+    display:table-row;
+  }
+
+  body.panel-hidden .fila-panel-vertical{
+    display:none;
+  }
+
+  .celda-panel-vertical{
+    background-color:#d0ecf9;
+    padding:10px;
+    width:100%;
+    font-size:clamp(14px,3.5vw,20px);
+    font-family:Arial, sans-serif;
+    color:#000;
+    line-height:1.4;
+    box-sizing:border-box;
+    overflow:hidden;
+    border-top:1px solid black;
+  }
+
+  #panel-vertical{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  /* =========================================
+     PANEL FULL
+     ========================================= */
+
+  body.panel-full #panel-vertical{
+    justify-content:center;
+    align-items:flex-start;
+  }
+
+  /* =========================================
+     PANEL MINI
+     ========================================= */
+
+  body.panel-mini #panel-vertical{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+
+    width:90%;
+    margin:0 auto;
+  }
+
+  body.panel-mini #panel-vertical .dato:first-child{
+    width:100%;
+    margin-bottom:4px;
+  }
+
+  body.panel-mini #panel-vertical .dato:not(:first-child){
+    display:flex;
+    margin-right:0;
   }
 
 }
