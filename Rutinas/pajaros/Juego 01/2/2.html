@@ -176,16 +176,28 @@
 
 @media screen and (max-width:1023px) and (orientation:portrait){
 
-  /* HEADER */
-  .container table tr:nth-child(1) {
-    height: 90px;
+  #align-left-top{
+    display:none;
   }
 
-  /* ocultar imagen horizontal */
-
+	/* ocultar imagen horizontal */
   #image-cell{
     display:none !important;
   }
+	
+  /* el título ocupa una sola columna */
+  .title-cell{
+    display:table-cell;
+    width:100%;
+  }
+
+
+  /* HEADER */
+.container table tr:nth-child(1) {
+  height: 90px;
+  padding: 10px 8px;
+  vertical-align: middle;
+}
 
   /* mostrar imagen vertical */
 
