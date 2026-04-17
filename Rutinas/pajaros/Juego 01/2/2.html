@@ -177,34 +177,6 @@
 @media screen and (max-width:1023px) and (orientation:portrait){
 
   /* =========================================
-     CONTENEDOR
-     ========================================= */
-
-  body.game-started{
-    display:block !important;
-    height:100vh;
-  }
-
-  body.game-started .container{
-    height:100dvh;
-  }
-
-  .container{
-    width:100vw;
-    height:100dvh;
-    max-width:100vw;
-    margin:0;
-    border:none;
-  }
-
-  .container table{
-    width:100%;
-    height:100%;
-    table-layout:fixed;
-    aspect-ratio:auto !important;
-  }
-
-  /* =========================================
      TITLE (FILA SUPERIOR)
      ========================================= */
 
@@ -224,25 +196,6 @@
     line-height:1.2;
   }
 
-  /* =========================================
-     OCULTAR PANEL HORIZONTAL
-     ========================================= */
-
-  .celda-panel{
-    display:none;
-  }
-
-  #align-left-top{
-    display:none;
-  }
-
-  /* =========================================
-     OCULTAR IMAGEN HORIZONTAL
-     ========================================= */
-
-  #image-cell{
-    display:none !important;
-  }
 
   /* =========================================
      FILA PRINCIPAL
@@ -291,85 +244,6 @@
     object-fit:contain;
     display:block;
   }
-
-  /* =========================================
-     PANEL VERTICAL
-     ========================================= */
-
-  .fila-panel-vertical{
-    display:table-row;
-  }
-
-  body.panel-hidden .fila-panel-vertical{
-    display:none;
-  }
-
-  .celda-panel-vertical{
-    background-color:#d0ecf9;
-    padding:10px;
-    width:100%;
-    font-size:clamp(14px,3.5vw,20px);
-    font-family:Arial, sans-serif;
-    color:#000;
-    line-height:1.4;
-    box-sizing:border-box;
-    overflow:hidden;
-    border-top:1px solid black;
-  }
-
-  #panel-vertical{
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-
-  /* =========================================
-     ALTURA DEL PANEL
-     ========================================= */
-
-  body.panel-full .celda-panel-vertical{
-    height:25vh;
-  }
-
-  body.panel-mini .celda-panel-vertical{
-    height:12vh;
-  }
-
-  /* =========================================
-     PANEL FULL
-     ========================================= */
-
-  body.panel-full #panel-vertical{
-    justify-content:center;
-    align-items:flex-start;
-  }
-
-  /* =========================================
-     PANEL MINI
-     ========================================= */
-
-  body.panel-mini #panel-vertical{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-between;
-
-    width:90%;
-    margin:0 auto;
-  }
-
-  body.panel-mini #panel-vertical .dato:first-child{
-    width:100%;
-    margin-bottom:4px;
-  }
-
-  body.panel-mini #panel-vertical .dato:not(:first-child){
-    display:flex;
-    margin-right:0;
-  }
-
 }
   </style>
 </head>
