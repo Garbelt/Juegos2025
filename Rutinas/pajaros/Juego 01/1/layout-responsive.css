@@ -136,6 +136,10 @@
 
 con esto alcanzaría? @media screen and (max-width:1023px) and (orientation: portrait) {
 
+  .celda-panel{
+    display:none;
+  }
+
   .container {
     height: 100dvh;
     width: 100vw;
