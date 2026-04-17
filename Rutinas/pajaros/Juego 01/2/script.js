@@ -562,6 +562,7 @@ if (currentQuestion.image) {
     questionImageVertical.src = '';
   }
 }
+  }
 
   questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
   questionImage.dataset.secondImage = currentQuestion.secondImage || '';
