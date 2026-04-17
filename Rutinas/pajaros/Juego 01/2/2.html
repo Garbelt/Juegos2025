@@ -165,6 +165,48 @@
     max-width: 300px;
 }
 
+/* =========================================
+   FILA PRINCIPAL EN VERTICAL
+   opciones arriba, imagen debajo
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:portrait)
+
+.fila-principal {
+  display: block;
+  width: 100%;
+}
+
+/* cada celda ocupa toda la fila */
+
+#options-cell,
+#image-cell {
+  display: block;
+  width: 100%;
+}
+
+/* orden vertical */
+
+#options-cell {
+  order: 1;
+}
+
+#image-cell {
+  order: 2;
+}
+
+/* evitar que la imagen domine el espacio */
+
+.fixed-width {
+  width: 100%;
+  padding: 10px;
+}
+
+.fixed-width2 {
+  width: 70%;
+  margin: 0 auto;
+}
+
   </style>
 </head>
 <body class="no-header-toggle">
