@@ -180,24 +180,20 @@
     display:none;
   }
 
-	/* ocultar imagen horizontal */
+  /* ocultar imagen horizontal */
+
   #image-cell{
     display:none !important;
   }
-	
-  /* el título ocupa una sola columna */
-  .title-cell{
-    display:table-cell;
-    width:100%;
-  }
-
 
   /* HEADER */
-.container table tr:nth-child(1) {
-  height: 90px;
-  padding: 10px 8px;
-  vertical-align: middle;
-}
+
+  .title-cell{
+    height:90px;
+    padding:10px 8px;
+    vertical-align:middle;
+    width:100%;
+  }
 
   /* mostrar imagen vertical */
 
@@ -212,24 +208,22 @@
     border:none !important;
   }
 
-  /* la fila principal ocupa el espacio disponible */
+  /* fila principal */
 
   .fila-principal{
-    height:100%;
+    height:auto;
   }
 
   #options-cell{
-    height:100%;
     vertical-align:top;
     border:none !important;
   }
 
-  /* controlar tamaño y apariencia de la imagen */
+  /* imagen */
 
   #image-cell-vertical .fixed-width2{
     width:70%;
     margin:0 auto;
-
     background:transparent;
     border:none;
   }
