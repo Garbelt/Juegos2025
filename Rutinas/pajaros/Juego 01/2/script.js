@@ -23,6 +23,7 @@ hablar(currentQuestion.question, {
   const optionsElement = document.getElementById('options');
   const messageElement = document.getElementById('message');
   const questionImage = document.getElementById('questionImage');
+  const questionImageVertical =  document.getElementById('questionImage-vertical');
   const imageCell = document.getElementById('image-cell');
   const timeAcumuladoElement = document.getElementById('timeAcumulado');
   const timeAcumuladoElementVertical = document.getElementById('timeAcumulado-vertical');
