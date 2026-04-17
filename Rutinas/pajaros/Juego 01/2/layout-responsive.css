@@ -139,7 +139,7 @@
   .container {
     height: 100dvh;
     width: 100vw;
-    overflow: hidden; /* CRÍTICO */
+    overflow: hidden;
   }
 
   .container table {
@@ -148,34 +148,39 @@
   }
 
   /* HEADER */
+
   .container table tr:nth-child(1) {
     height: 90px;
   }
 
   /* PANEL */
+
   .fila-panel-vertical {
     height: 25vh;
   }
 
-  /* ZONA CENTRAL: ocupar lo restante REAL */
+  /* ZONA CENTRAL */
+
   .container table tr:nth-child(2) {
     height: calc(100dvh - 90px - 25vh);
   }
 
-  /* =========================================
-     CLAVE ESTRUCTURAL:
-     convertir la fila principal en columna
-     ========================================= */
+  /* CLAVE: fila como columna */
 
   .fila-principal {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
   }
 
-  /* =========================================
-     OPCIONES PRIMERO
-     ========================================= */
+  /* CRÍTICO: eliminar ancho residual */
+
+  .fila-principal td {
+    width: 100% !important;
+  }
+
+  /* OPCIONES */
 
   #options-cell {
     order: 1;
@@ -183,18 +188,15 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    height: 100%;
   }
 
   .options {
     flex: 1;
     overflow-y: auto;
-    min-height: 0; /* CRÍTICO REAL */
+    min-height: 0;
   }
 
-  /* =========================================
-     IMAGEN DEBAJO DE LAS OPCIONES
-     ========================================= */
+  /* IMAGEN */
 
   #image-cell {
     order: 2;
