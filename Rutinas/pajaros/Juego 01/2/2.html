@@ -177,13 +177,11 @@
 @media screen and (max-width:1023px) and (orientation:portrait){
 
   /* ocultar imagen horizontal */
-
   #image-cell{
     display:none !important;
   }
 
   /* mostrar imagen vertical */
-
   .fila-imagen-vertical{
     display:table-row;
   }
@@ -195,10 +193,11 @@
     border:none !important;
   }
 
-  /* la fila principal ocupa el espacio disponible */
-
+  /* =================================================
+     LA CLAVE: la fila NO debe forzar altura fija
+     ================================================= */
   .fila-principal{
-    height:300px;
+    height:auto;
   }
 
   #options-cell{
@@ -207,15 +206,26 @@
     border:none !important;
   }
 
-  /* controlar tamaño y apariencia de la imagen */
+  /* =========================================
+     CONTENEDOR DE IMAGEN (reducido de forma real)
+     ========================================= */
+  #image-cell-vertical .fixed-width2{
+    width:20%;
+    aspect-ratio: 1 / 1;
+    margin:0 auto;
+    background:transparent;
+    border:none;
+  }
 
-#image-cell-vertical .fixed-width2{
-  width:20%;           /* ← MITAD DEL 40% */
-  aspect-ratio: 1 / 1;
-  margin:0 auto;
-  background:transparent;
-  border:none;
-}
+  /* =========================================
+     IMAGEN REAL (control efectivo del tamaño)
+     ========================================= */
+  #questionImage-vertical{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+  }
 
 }
   </style>
