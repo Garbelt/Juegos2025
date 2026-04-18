@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
   // Variables globales y elementos DOM
   const questionElement = document.getElementById('question');
 
@@ -25,7 +25,6 @@ hablar(currentQuestion.question, {
   const questionImage = document.getElementById('questionImage');
   const questionImageVertical =  document.getElementById('questionImage-vertical');
   const imageCell = document.getElementById('image-cell');
-
   const timeAcumuladoElement = document.getElementById('timeAcumulado');
   const timeAcumuladoElementVertical = document.getElementById('timeAcumulado-vertical');
   const puntajeElement = document.getElementById('puntaje');
@@ -696,74 +695,31 @@ setTimeout(() => {
 window.loadQuestion = loadQuestion;
 
 function iniciarInterfazPregunta() {
-
+  // Habilitar opciones
   enableOptions();
 
-  const speakerButton =
-    document.getElementById('speaker-button');
+  // Activar botón parlante
+  const speakerButton = document.getElementById('speaker-button');
+  speakerButton.style.pointerEvents = 'auto';
+  speakerButton.style.opacity = '1';
+  // Asignar función de reproducción si existe
+  speakerButton.onclick = speakerButton._playAudioFunc || null;
 
-  const speakerButtonVertical =
-    document.getElementById(
-      'speaker-button-vertical'
-    );
+  // Activar imagen y cursor
+  questionImage.style.pointerEvents = 'auto';
+  if (questionImageVertical) {questionImageVertical.style.pointerEvents = 'auto';}
+  questionElement.style.cursor = 'pointer';
 
-  /* activar botón horizontal */
-
-  if (speakerButton) {
-    speakerButton.style.pointerEvents =
-      'auto';
-
-    speakerButton.style.opacity =
-      '1';
-
-    speakerButton.onclick =
-      speakerButton._playAudioFunc || null;
-  }
-
-  /* activar botón vertical */
-
-  if (speakerButtonVertical) {
-
-    speakerButtonVertical.style.pointerEvents =
-      'auto';
-
-    speakerButtonVertical.style.opacity =
-      '1';
-
-    speakerButtonVertical.onclick =
-      speakerButton._playAudioFunc || null;
-
-  }
-
-  /* activar imagen */
-
-  questionImage.style.pointerEvents =
-    'auto';
-
-  if (questionImageVertical) {
-    questionImageVertical.style.pointerEvents =
-      'auto';
-  }
-
-  questionElement.style.cursor =
-    'pointer';
-
+  // 🔥 INICIAR RELOJ
   iniciarTemporizador();
 
-  const musicaPregunta =
-    document.getElementById(
-      'audio-musica-pregunta'
-    );
-
+  // 🔊 INICIAR MÚSICA DE LA PREGUNTA
+  const musicaPregunta = document.getElementById('audio-musica-pregunta');
   if (musicaPregunta) {
     musicaPregunta.volume = 1;
     musicaPregunta.currentTime = 0;
-
     musicaPregunta.play().catch(e =>
-      console.log(
-        'No se pudo reproducir música de pregunta:',
-        e
-      )
+      console.log('No se pudo reproducir música de pregunta:', e)
     );
   }
 }
@@ -807,4 +763,4 @@ if (questionImageVertical) {
     handleImageChangeClick
   );
 }
-});
+}); 
