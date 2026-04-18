@@ -25,6 +25,8 @@ hablar(currentQuestion.question, {
   const questionImage = document.getElementById('questionImage');
   const questionImageVertical =  document.getElementById('questionImage-vertical');
   const imageCell = document.getElementById('image-cell');
+  const speakerButton = document.getElementById('speaker-button');
+  const speakerButtonVertical = document.getElementById('speaker-button-vertical');
   const timeAcumuladoElement = document.getElementById('timeAcumulado');
   const timeAcumuladoElementVertical = document.getElementById('timeAcumulado-vertical');
   const puntajeElement = document.getElementById('puntaje');
