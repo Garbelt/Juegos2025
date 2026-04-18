@@ -544,22 +544,26 @@ speakerButton._playAudioFunc = () => {
     }
   } else {
 if (currentQuestion.image) {
+  /* horizontal */
   questionImage.style.display = 'block';
   imageCell.style.display = 'table-cell';
   questionImage.src = currentQuestion.image;
   questionImage.style.pointerEvents = 'none';
-  /* sincronizar imagen vertical */
+  /* vertical */
   if (questionImageVertical) {
     questionImageVertical.src = currentQuestion.image;
+    questionImageVertical.style.display = 'block';
     questionImageVertical.style.pointerEvents = 'none';
   }
 } else {
+  /* horizontal */
   questionImage.style.display = 'none';
   imageCell.style.display = 'none';
   questionImage.src = '';
-  /* limpiar imagen vertical */
+  /* vertical */
   if (questionImageVertical) {
     questionImageVertical.src = '';
+    questionImageVertical.style.display = 'none';
   }
 }
   }
