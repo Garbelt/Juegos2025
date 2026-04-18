@@ -310,11 +310,21 @@ function iniciarInterfazPregunta() {
     questionImage.onclick = null;
     questionImage.style.pointerEvents = 'none';
 
-    const speakerButton = document.getElementById('speaker-button');
-    speakerButton.style.display = 'none';
-    speakerButton.onclick = null;
-    speakerButton.style.pointerEvents = 'none';
-    speakerButton.style.opacity = '0.4';
+const speakerButton = document.getElementById('speaker-button');
+if (speakerButton) {
+  speakerButton.style.display = 'none';
+  speakerButton.onclick = null;
+  speakerButton.style.pointerEvents = 'none';
+  speakerButton.style.opacity = '0.4';
+}
+const speakerButtonVertical =
+  document.getElementById('speaker-button-vertical');
+if (speakerButtonVertical) {
+  speakerButtonVertical.style.display = 'none';
+  speakerButtonVertical.onclick = null;
+  speakerButtonVertical.style.pointerEvents = 'none';
+  speakerButtonVertical.style.opacity = '0.4';
+}
 
 if (currentQuestion.type === 'imageaudio') {
 
