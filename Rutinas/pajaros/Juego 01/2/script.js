@@ -384,21 +384,51 @@ function handleOptionClick(event) {
 
 function perderJuego() {
   disableOptions();
-  questionElement.style.pointerEvents = 'none';
-  questionElement.style.cursor = 'default';
-  questionImage.style.pointerEvents = 'none';
+  questionElement.style.pointerEvents =
+    'none';
+  questionElement.style.cursor =
+    'default';
+  questionImage.style.pointerEvents =
+    'none';
+
+  /* =========================
+     BOTÓN PARLANTE HORIZONTAL
+     ========================= */
   const speakerButton =
-    document.getElementById('speaker-button');
+    document.getElementById(
+      'speaker-button'
+    );
   if (speakerButton) {
-    speakerButton.style.pointerEvents = 'none';
-    speakerButton.style.opacity = '0.4';
+    speakerButton.style.pointerEvents =
+      'none';
+    speakerButton.style.opacity =
+      '0.4';
     speakerButton.onclick = null;
   }
+
+  /* =========================
+     BOTÓN PARLANTE VERTICAL
+     ========================= */
+  const speakerButtonVertical =
+    document.getElementById(
+      'speaker-button-vertical'
+    );
+  if (speakerButtonVertical) {
+    speakerButtonVertical.style.pointerEvents =
+      'none';
+    speakerButtonVertical.style.opacity =
+      '0.4';
+    speakerButtonVertical.onclick = null;
+  }
+
   // 🔴 NO se calcula bonus
   // 🔴 NO se modifica score
+
   const message =
     document.createElement("div");
+
   message.classList.add("found-message");
+
   message.innerHTML = `
     <div style="font-weight: bold; font-size: 32px;">
       LO SIENTO, PERDISTE
@@ -410,21 +440,32 @@ function perderJuego() {
       Puntaje final: ${score}
     </div>
   `;
+
   document.body.appendChild(message);
-  document.body.classList.add("disable-clicks");
+  document.body.classList.add(
+    "disable-clicks"
+  );
   message.style.display = "block";
   message.style.zIndex = "9999";
+
   fadeOutAudio(
-    document.getElementById('background-music'),
+    document.getElementById(
+      'background-music'
+    ),
     4000
   );
+
   const audioFin =
-    new Audio("sounds/finporintentos.mp3");
+    new Audio(
+      "sounds/finporintentos.mp3"
+    );
+
   audioFin.play();
   setTimeout(() => {
     endGame();
     almacenarRegistroConZ(score);
-    window.location.href = "out.html";
+    window.location.href =
+      "out.html";
   }, 7000);
 }
 
