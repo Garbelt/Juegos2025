@@ -517,7 +517,7 @@ if (questionImageVertical) {
     handleImageChangeClick
   );
 }
-}); 
+
 
 
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
