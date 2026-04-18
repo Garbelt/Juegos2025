@@ -326,14 +326,26 @@ if (speakerButtonVertical) {
   speakerButtonVertical.style.opacity = '0.4';
 }
 
-if (currentQuestion.type === 'imageaudio') {
+if (currentQuestion.image) {
+  questionImage.style.display = 'block';
+  imageCell.style.display = 'table-cell';
+  questionImage.src = currentQuestion.image;
 
-  if (currentQuestion.image) {
-    questionImage.style.display = 'block';
-    imageCell.style.display = 'table-cell';
-    questionImage.src = currentQuestion.image;
+  // =========================
+  // BOTÓN PARLANTE HORIZONTAL
+  // =========================
+  speakerButton.style.display = 'block';
 
-    speakerButton.style.display = 'block';
+  // =========================
+  // BOTÓN PARLANTE VERTICAL
+  // =========================
+  const speakerButtonVertical =
+    document.getElementById('speaker-button-vertical');
+
+  if (speakerButtonVertical) {
+    speakerButtonVertical.style.display = 'block';
+  }
+}
 
 speakerButton._playAudioFunc = () => {
   if (currentQuestion.birdAudio) {
