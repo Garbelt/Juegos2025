@@ -235,7 +235,7 @@ body.panel-mini .celda-panel{
   }
 
   .container table tr:nth-child(1){
-    height:15%;
+    height:90px;
   }
 
   .container table tr:nth-child(2){
