@@ -514,35 +514,69 @@ function loadQuestion() {
   speakerButton.style.pointerEvents = 'none';
   speakerButton.style.opacity = '0.4';
 
-  if (currentQuestion.type === 'imageaudio') {
-    if (currentQuestion.image) {
-      questionImage.style.display = 'block';
-      imageCell.style.display = 'table-cell';
-      questionImage.src = currentQuestion.image;
-      questionImage.style.cursor = 'default';
-
-      speakerButton.style.display = 'block';
-
-speakerButton._playAudioFunc = () => {
-  if (currentQuestion.birdAudio) {
-    // Si ya hay audio sonando, lo detenemos
-    if (birdAudioPlayer) {
-      birdAudioPlayer.pause();
-      birdAudioPlayer.currentTime = 0;
+if (currentQuestion.type === 'imageaudio') {
+  if (currentQuestion.image) {
+    /* =========================
+       IMAGEN HORIZONTAL
+       ========================= */
+    questionImage.style.display = 'block';
+    imageCell.style.display = 'table-cell';
+    questionImage.src = currentQuestion.image;
+    questionImage.style.cursor = 'default';
+    /* =========================
+       IMAGEN VERTICAL (sincronizada)
+       ========================= */
+    if (questionImageVertical) {
+      questionImageVertical.src =
+        currentQuestion.image;
+      questionImageVertical.style.display =
+        'block';
+      questionImageVertical.style.pointerEvents =
+        'none';
     }
-    birdAudioPlayer =
-      new Audio(currentQuestion.birdAudio);
-    birdAudioPlayer.volume = 1;
-    birdAudioPlayer.play().catch(e =>
-      console.log("No se pudo reproducir audio:", e)
-    );
-  }
-};
-    } else {
-      imageCell.style.display = 'none';
-      questionImage.style.display = 'none';
-    }
+    /* =========================
+       BOTÓN DE AUDIO
+       ========================= */
+    speakerButton.style.display = 'block';
+    speakerButton._playAudioFunc = () => {
+      if (currentQuestion.birdAudio) {
+        /* detener audio previo */
+        if (birdAudioPlayer) {
+          birdAudioPlayer.pause();
+          birdAudioPlayer.currentTime = 0;
+        }
+        birdAudioPlayer =
+          new Audio(currentQuestion.birdAudio);
+        birdAudioPlayer.volume = 1;
+        birdAudioPlayer.play().catch(e =>
+          console.log(
+            "No se pudo reproducir audio:",
+            e
+          )
+        );
+      }
+    };
   } else {
+    /* =========================
+       OCULTAR HORIZONTAL
+       ========================= */
+    imageCell.style.display = 'none';
+    questionImage.style.display = 'none';
+    questionImage.src = '';
+    /* =========================
+       OCULTAR VERTICAL
+       ========================= */
+    if (questionImageVertical) {
+      questionImageVertical.src = '';
+      questionImageVertical.style.display =
+        'none';
+    }
+    /* =========================
+       OCULTAR BOTÓN AUDIO
+       ========================= */
+    speakerButton.style.display = 'none';
+  }
+} else {
 if (currentQuestion.image) {
   /* horizontal */
   questionImage.style.display = 'block';
