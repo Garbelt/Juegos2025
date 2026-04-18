@@ -295,54 +295,58 @@ function iniciarInterfazPregunta() {
   }
 }
 
-function loadQuestion() {
-  sistemaListo = false;
+  function loadQuestion() {
+    sistemaListo = false; // 🔴 BLOQUEO INICIAL INMEDIATO
+    if (questionAudioPlayer) {questionAudioPlayer.pause();}
+    if (birdAudioPlayer) {birdAudioPlayer.currentTime = 0;}
 
-  if (questionAudioPlayer) questionAudioPlayer.pause();
-  if (birdAudioPlayer) {
-    birdAudioPlayer.currentTime = 0;
-  }
+    const currentQuestion = questions[currentQuestionIndex];
+    questionElement.textContent = currentQuestion.question;
+    optionsElement.innerHTML = '';
 
-  const currentQuestion = questions[currentQuestionIndex];
+    // Reset imagen y botón parlante
+    questionImage.style.display = 'none';
+    questionImage.src = '';
+    questionImage.onclick = null;
+    questionImage.style.pointerEvents = 'none';
 
-  questionElement.textContent = currentQuestion.question;
-  optionsElement.innerHTML = '';
-
-  // =========================
-  // RESET IMAGEN
-  // =========================
-  questionImage.style.display = 'none';
-  questionImage.src = '';
-  questionImage.onclick = null;
-  questionImage.style.pointerEvents = 'none';
-
-  // =========================
-  // RESET SPEAKER HORIZONTAL
-  // =========================
-  const speakerButton = document.getElementById('speaker-button');
-  if (speakerButton) {
+    const speakerButton = document.getElementById('speaker-button');
     speakerButton.style.display = 'none';
     speakerButton.onclick = null;
     speakerButton.style.pointerEvents = 'none';
     speakerButton.style.opacity = '0.4';
+
+if (currentQuestion.type === 'imageaudio') {
+
+  if (currentQuestion.image) {
+    questionImage.style.display = 'block';
+    imageCell.style.display = 'table-cell';
+    questionImage.src = currentQuestion.image;
+
+    speakerButton.style.display = 'block';
+
+speakerButton._playAudioFunc = () => {
+  if (currentQuestion.birdAudio) {
+    // Si ya hay audio sonando, lo detenemos
+    if (birdAudioPlayer) {
+      birdAudioPlayer.pause();
+      birdAudioPlayer.currentTime = 0;
+    }
+    birdAudioPlayer =
+      new Audio(currentQuestion.birdAudio);
+    birdAudioPlayer.volume = 1;
+    birdAudioPlayer.play().catch(e =>
+      console.log("No se pudo reproducir audio:", e)
+    );
+  }
+};
+
+    speakerButton.onclick =
+      speakerButton._playAudioFunc;
   }
 
-  // =========================
-  // RESET SPEAKER VERTICAL
-  // =========================
-  const speakerButtonVertical =
-    document.getElementById('speaker-button-vertical');
+} else {
 
-  if (speakerButtonVertical) {
-    speakerButtonVertical.style.display = 'none';
-    speakerButtonVertical.onclick = null;
-    speakerButtonVertical.style.pointerEvents = 'none';
-    speakerButtonVertical.style.opacity = '0.4';
-  }
-
-  // =========================
-  // IMAGEN
-  // =========================
   if (currentQuestion.image) {
     questionImage.style.display = 'block';
     imageCell.style.display = 'table-cell';
@@ -351,94 +355,46 @@ function loadQuestion() {
     imageCell.style.display = 'none';
   }
 
-  // =========================
-  // AUDIO BOTÓN
-  // =========================
-  speakerButton._playAudioFunc = () => {
-    if (!currentQuestion.birdAudio) return;
-
-    if (birdAudioPlayer) {
-      birdAudioPlayer.pause();
-      birdAudioPlayer.currentTime = 0;
-    }
-
-    birdAudioPlayer = new Audio(currentQuestion.birdAudio);
-    birdAudioPlayer.volume = 1;
-
-    birdAudioPlayer.play().catch(e =>
-      console.log("No se pudo reproducir audio:", e)
-    );
-  };
-
-  // =========================
-  // ACTIVACIÓN SPEAKER
-  // =========================
-  if (currentQuestion.type === "imageaudio") {
-    speakerButton.style.display = 'block';
-
-    if (speakerButtonVertical) {
-      speakerButtonVertical.style.display = 'block';
-    }
-
-    speakerButton.onclick = speakerButton._playAudioFunc;
-
-    if (speakerButtonVertical) {
-      speakerButtonVertical.onclick =
-        speakerButton._playAudioFunc;
-    }
-  }
-
-  // =========================
-  // DATASETS
-  // =========================
-  questionImage.dataset.birdAudio =
-    currentQuestion.birdAudio || '';
-
-  questionImage.dataset.secondImage =
-    currentQuestion.secondImage || '';
-
-  // =========================
-  // OPCIONES (ESTO DEBE IR DENTRO)
-  // =========================
-  shuffleArray(currentQuestion.options);
-
-  currentQuestion.options.forEach((option) => {
-    const li = document.createElement('li');
-    li.textContent = option.text;
-    li.dataset.correct = option.correct;
-    li.style.pointerEvents = 'none';
-
-    li.addEventListener('click', handleOptionClick);
-
-    li.addEventListener('mouseover', () => {
-      if (!audioPaused) {
-        hablar(option.text);
-      }
-    });
-
-    optionsElement.appendChild(li);
-  });
-
-  setTimeout(() => {
-    sistemaListo = true;
-  }, 350);
-
-  const estadoPrevio =
-    typeof lecturaActiva !== "undefined"
-      ? lecturaActiva
-      : true;
-
-  setEstadoBotonLector(false);
-  lecturaActiva = true;
-
-  const container = document.querySelector(".container");
-  if (container?.classList.contains("container-invisible")) {
-    container.classList.remove("container-invisible");
-  }
-
-  let lecturaTerminada = false;
 }
 
+    questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
+    questionImage.dataset.secondImage = currentQuestion.secondImage || '';
+
+    shuffleArray(currentQuestion.options);
+    currentQuestion.options.forEach((option) => {
+      const li = document.createElement('li');
+      li.textContent = option.text;
+      li.dataset.correct = option.correct;
+      li.style.pointerEvents = 'none';
+      li.addEventListener('click', handleOptionClick);
+      li.addEventListener('mouseover', () => {
+        if (!audioPaused) {
+          hablar(option.text);
+        }
+    });      
+      optionsElement.appendChild(li);
+    });
+
+     setTimeout(() => {
+          sistemaListo = true;
+     }, 350);
+
+const estadoPrevio =
+  typeof lecturaActiva !== "undefined"
+    ? lecturaActiva
+    : true;
+
+setEstadoBotonLector(false);
+lecturaActiva = true;
+
+const container = document.querySelector(".container");
+if (container) {
+  if (container.classList.contains("container-invisible")) {
+    container.classList.remove("container-invisible");
+  }
+}
+    
+let lecturaTerminada = false;
 function finalizarLectura() {
   if (lecturaTerminada) return;
   lecturaTerminada = true;
