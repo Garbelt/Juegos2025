@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const optionsElement = document.getElementById('options');
   const messageElement = document.getElementById('message');
   const questionImage = document.getElementById('questionImage');
+  const questionImageVertical = document.getElementById('questionImage-vertical');
   const imageCell = document.getElementById('image-cell');
 
   let questionAudioPlayer = null;
