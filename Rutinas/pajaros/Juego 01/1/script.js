@@ -365,6 +365,13 @@ speakerButton._playAudioFunc = () => {
 
     speakerButton.onclick =
       speakerButton._playAudioFunc;
+  const speakerButtonVertical =
+  document.getElementById('speaker-button-vertical');
+
+if (speakerButtonVertical) {
+  speakerButtonVertical.onclick =
+    speakerButton._playAudioFunc;
+}
   }
 
 } else {
