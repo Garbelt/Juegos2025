@@ -285,11 +285,32 @@ function iniciarInterfazPregunta() {
   enableOptions();
 
   // Activar botón parlante
-  const speakerButton = document.getElementById('speaker-button');
-  speakerButton.style.pointerEvents = 'auto';
-  speakerButton.style.opacity = '1';
-  // Asignar función de reproducción si existe
-  speakerButton.onclick = speakerButton._playAudioFunc || null;
+  /* =========================
+     BOTÓN PARLANTE HORIZONTAL
+     ========================= */
+  const speakerButton =
+    document.getElementById('speaker-button');
+  speakerButton.style.pointerEvents =
+    'auto';
+  speakerButton.style.opacity =
+    '1';
+  speakerButton.onclick =
+    speakerButton._playAudioFunc || null;
+  /* =========================
+     BOTÓN PARLANTE VERTICAL
+     ========================= */
+  const speakerButtonVertical =
+    document.getElementById(
+      'speaker-button-vertical'
+    );
+  if (speakerButtonVertical) {
+    speakerButtonVertical.style.pointerEvents =
+      'auto';
+    speakerButtonVertical.style.opacity =
+      '1';
+    speakerButtonVertical.onclick =
+      speakerButton._playAudioFunc || null;
+  }
 
   // Activar imagen y cursor
   questionImage.style.pointerEvents = 'auto';
