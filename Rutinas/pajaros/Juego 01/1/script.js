@@ -414,7 +414,6 @@ if (currentQuestion.type === 'imageaudio') {
   } else {
     imageCell.style.display = 'none';
   }
-}
 
     questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
     questionImage.dataset.secondImage = currentQuestion.secondImage || '';
