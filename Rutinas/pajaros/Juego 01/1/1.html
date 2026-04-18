@@ -412,30 +412,38 @@
   </th>
 </tr>
 <tr class="fila-principal">
-  <!-- Celda imagen (se oculta si no hay imagen) -->
-  <td id="image-cell" class="fixed-width" style="display: none;">
-    <div class="fixed-width2" style="position: relative;">
-      <img id="questionImage" src="" alt="" style="width: 100%; height: auto; display: block;">
-      <button id="speaker-button" 
-        style="
-          position: absolute;
-          top: 8px;
-          right: 8px;
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          display: none;
-          padding: 0;
-        "
+<!-- Celda imagen (se oculta si no hay imagen) -->
+<td id="image-cell" class="fixed-width" style="display: none;">
+  <div class="fixed-width2" style="position: relative;">
+    <img id="questionImage" src="" alt="" style="width: 100%; height: auto; display: block;">
+	  
+<button id="speaker-button"
+        class="speaker-button"
         title="Escuchar pista">
-        <img src="image/speaker-icon.png" alt="Escuchar pista" style="width: 24px; height: 24px;">
-      </button>
+  <img src="image/speaker-icon.png"
+       alt="Escuchar pista">
+</button>
+	  
+  </div>
+</td>
+	<!-- Celda opciones -->
+        <td id="options-cell">
+          <ul class="options" id="options"></ul>
+          <div class="found-message" id="message"></div>
+        </td>
+</tr>
+
+<tr class="fila-imagen-vertical">
+  <td colspan="2" id="image-cell-vertical">
+    <div class="fixed-width2" style="position: relative;">
+      <img id="questionImage-vertical" src="" alt="">
+<button id="speaker-button-vertical"
+        class="speaker-button"
+        title="Escuchar pista">
+  <img src="image/speaker-icon.png"
+       alt="Escuchar pista">
+</button>
     </div>
-  </td>
-  <!-- Celda opciones -->
-  <td id="options-cell" colspan="2">
-    <ul class="options" id="options"></ul>
-    <div class="found-message" id="message"></div>
   </td>
 </tr>
 
