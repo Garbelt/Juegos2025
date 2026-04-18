@@ -475,36 +475,82 @@ function showMessagexExito() {
   questionElement.style.pointerEvents = 'none';
   questionElement.style.cursor = 'default';
   questionImage.style.pointerEvents = 'none';
-  const speakerButton = document.getElementById('speaker-button');
-  speakerButton.style.pointerEvents = 'none';
-  speakerButton.style.opacity = '0.4';
-  speakerButton.onclick = null;
-
-  let bonus = Math.floor((score - tiempoTotalSegundos) / (errores + 1));
-  if (bonus < 0) bonus = 0;
+  /* =========================
+     BOTÓN PARLANTE HORIZONTAL
+     ========================= */
+  const speakerButton =
+    document.getElementById(
+      'speaker-button'
+    );
+  if (speakerButton) {
+    speakerButton.style.pointerEvents =
+      'none';
+    speakerButton.style.opacity =
+      '0.4';
+    speakerButton.onclick = null;
+  }
+  /* =========================
+     BOTÓN PARLANTE VERTICAL
+     ========================= */
+  const speakerButtonVertical =
+    document.getElementById(
+      'speaker-button-vertical'
+    );
+  if (speakerButtonVertical) {
+    speakerButtonVertical.style.pointerEvents =
+      'none';
+    speakerButtonVertical.style.opacity =
+      '0.4';
+    speakerButtonVertical.onclick = null;
+  }
+  let bonus =
+    Math.floor(
+      (score - tiempoTotalSegundos) /
+      (errores + 1)
+    );
+  if (bonus < 0)
+    bonus = 0;
   score += bonus;
-
-  const message = document.createElement("div");
-  message.classList.add("found-message");
+  const message =
+    document.createElement("div");
+  message.classList.add(
+    "found-message"
+  );
   message.innerHTML = `
-    <div style="font-weight: bold; font-size: 32px;">¡FELICITACIONES!</div>
-    <div style="font-size: 24px;">Has completado el juego.</div>
-    <div style="margin-top: 10px; font-size: 20px;">Puntaje final: ${score} (Bonus: ${bonus})</div>
+    <div style="font-weight: bold; font-size: 32px;">
+      ¡FELICITACIONES!
+    </div>
+    <div style="font-size: 24px;">
+      Has completado el juego.
+    </div>
+    <div style="margin-top: 10px; font-size: 20px;">
+      Puntaje final: ${score} (Bonus: ${bonus})
+    </div>
   `;
   document.body.appendChild(message);
-  document.body.classList.add("disable-clicks");
-  message.style.display = "block";
-  message.style.zIndex = "9999";
-
-  fadeOutAudio(document.getElementById('background-music'), 4000);
-
-  const audioFin = new Audio("sounds/finporcompletar.mp3");
+  document.body.classList.add(
+    "disable-clicks"
+  );
+  message.style.display =
+    "block";
+  message.style.zIndex =
+    "9999";
+  fadeOutAudio(
+    document.getElementById(
+      'background-music'
+    ),
+    4000
+  );
+  const audioFin =
+    new Audio(
+      "sounds/finporcompletar.mp3"
+    );
   audioFin.play();
-
   setTimeout(() => {
     endGame();
     almacenarRegistroConZ(score);
-    window.location.href = "out.html";
+    window.location.href =
+      "out.html";
   }, 7000);
 }
 
