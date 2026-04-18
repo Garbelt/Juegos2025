@@ -176,49 +176,13 @@
 
 @media screen and (max-width:1023px) and (orientation:portrait){
 
-  /* =========================================
-     TITLE (FILA SUPERIOR)
-     ========================================= */
+  /* ocultar imagen horizontal */
 
-  .title-cell{
-    height:90px;
-    min-height:90px;
-    padding:6px 8px;
-    vertical-align:top;
-    text-align:center;
+  #image-cell{
+    display:none !important;
   }
 
-  .question{
-    width:100%;
-    height:auto;
-    min-height:1.2em;
-    display:block;
-    line-height:1.2;
-  }
-
-
-  /* =========================================
-     FILA PRINCIPAL
-     ocupa el espacio restante
-     ========================================= */
-
-  .fila-principal{
-    height:auto;   /* CRÍTICO */
-  }
-
-  .fila-principal td{
-    border:none !important;
-  }
-
-  #options-cell{
-    height:100%;
-    vertical-align:top;
-    border:none !important;
-  }
-
-  /* =========================================
-     IMAGEN VERTICAL
-     ========================================= */
+  /* mostrar imagen vertical */
 
   .fila-imagen-vertical{
     display:table-row;
@@ -231,19 +195,28 @@
     border:none !important;
   }
 
+  /* la fila principal ocupa el espacio disponible */
+
+  .fila-principal{
+    height:100%;
+  }
+
+  #options-cell{
+    height:100%;
+    vertical-align:top;
+    border:none !important;
+  }
+
+  /* controlar tamaño y apariencia de la imagen */
+
   #image-cell-vertical .fixed-width2{
     width:70%;
     margin:0 auto;
+
     background:transparent;
     border:none;
   }
 
-  #questionImage-vertical{
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;
-    display:block;
-  }
 }
   </style>
 </head>
