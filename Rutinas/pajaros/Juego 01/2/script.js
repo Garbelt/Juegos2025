@@ -661,28 +661,30 @@ if (currentQuestion.type === 'imageaudio') {
       questionImageVertical.style.pointerEvents =
         'none';
     }
-    /* =========================
-       BOTÓN DE AUDIO
-       ========================= */
-    speakerButton.style.display = 'block';
-    speakerButton._playAudioFunc = () => {
-      if (currentQuestion.birdAudio) {
-        /* detener audio previo */
-        if (birdAudioPlayer) {
-          birdAudioPlayer.pause();
-          birdAudioPlayer.currentTime = 0;
-        }
-        birdAudioPlayer =
-          new Audio(currentQuestion.birdAudio);
-        birdAudioPlayer.volume = 1;
-        birdAudioPlayer.play().catch(e =>
-          console.log(
-            "No se pudo reproducir audio:",
-            e
-          )
-        );
-      }
-    };
+/* =========================
+   BOTÓN DE AUDIO
+   ========================= */
+speakerButton.style.display = 'block';
+if (speakerButtonVertical) {
+  speakerButtonVertical.style.display = 'block';
+}
+speakerButton._playAudioFunc = () => {
+  if (currentQuestion.birdAudio) {
+    if (birdAudioPlayer) {
+      birdAudioPlayer.pause();
+      birdAudioPlayer.currentTime = 0;
+    }
+    birdAudioPlayer =
+      new Audio(currentQuestion.birdAudio);
+    birdAudioPlayer.volume = 1;
+    birdAudioPlayer.play().catch(e =>
+      console.log(
+        "No se pudo reproducir audio:",
+        e
+      )
+    );
+  }
+};
   } else {
     /* =========================
        OCULTAR HORIZONTAL
