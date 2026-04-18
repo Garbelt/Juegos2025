@@ -372,36 +372,31 @@ if (currentQuestion.type === 'imageaudio') {
     speakerButton.style.display = 'block';
 
     const speakerButtonVertical =
-  document.getElementById(
-    'speaker-button-vertical'
-  );
-if (speakerButtonVertical) {
-  speakerButtonVertical.style.display =
-    'block';
-  speakerButtonVertical._playAudioFunc =
-    speakerButton._playAudioFunc;
-  speakerButtonVertical.onclick =
-    speakerButton._playAudioFunc;
-}
+      document.getElementById('speaker-button-vertical');
 
-speakerButton._playAudioFunc = () => {
-  if (currentQuestion.birdAudio) {
-    // Si ya hay audio sonando, lo detenemos
-    if (birdAudioPlayer) {
-      birdAudioPlayer.pause();
-      birdAudioPlayer.currentTime = 0;
+    if (speakerButtonVertical) {
+      speakerButtonVertical.style.display = 'block';
+      speakerButtonVertical._playAudioFunc =
+        speakerButton._playAudioFunc;
+      speakerButtonVertical.onclick =
+        speakerButton._playAudioFunc;
     }
-    birdAudioPlayer =
-      new Audio(currentQuestion.birdAudio);
-    birdAudioPlayer.volume = 1;
-    birdAudioPlayer.play().catch(e =>
-      console.log("No se pudo reproducir audio:", e)
-    );
-  }
-};
 
-    speakerButton.onclick =
-      speakerButton._playAudioFunc;
+    speakerButton._playAudioFunc = () => {
+      if (currentQuestion.birdAudio) {
+        if (birdAudioPlayer) {
+          birdAudioPlayer.pause();
+          birdAudioPlayer.currentTime = 0;
+        }
+        birdAudioPlayer = new Audio(currentQuestion.birdAudio);
+        birdAudioPlayer.volume = 1;
+        birdAudioPlayer.play().catch(e =>
+          console.log("No se pudo reproducir audio:", e)
+        );
+      }
+    };
+
+    speakerButton.onclick = speakerButton._playAudioFunc;
   }
 
 } else {
@@ -409,10 +404,12 @@ speakerButton._playAudioFunc = () => {
   if (currentQuestion.image) {
     questionImage.style.display = 'block';
     questionImage.src = currentQuestion.image;
+
     if (questionImageVertical) {
       questionImageVertical.style.display = 'block';
       questionImageVertical.src = currentQuestion.image;
     }
+
     imageCell.style.display = 'table-cell';
   } else {
     imageCell.style.display = 'none';
