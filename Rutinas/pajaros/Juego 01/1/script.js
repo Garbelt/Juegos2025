@@ -341,26 +341,12 @@ function iniciarInterfazPregunta() {
     questionImage.src = '';
     questionImage.onclick = null;
     questionImage.style.pointerEvents = 'none';
-    if (questionImageVertical) {
-      questionImageVertical.style.display = 'none';
-      questionImageVertical.src = '';
-      questionImageVertical.style.pointerEvents = 'none';
-    }
 
     const speakerButton = document.getElementById('speaker-button');
-const speakerButtonVertical =
-  document.getElementById(
-    'speaker-button-vertical'
-  );
-
-if (speakerButtonVertical) {
-  speakerButtonVertical.style.display =
-    'none';
-  speakerButtonVertical.onclick = null;
-  speakerButtonVertical.style.pointerEvents =
-    'none';
-  speakerButtonVertical.style.opacity = '0.4';
-}
+    speakerButton.style.display = 'none';
+    speakerButton.onclick = null;
+    speakerButton.style.pointerEvents = 'none';
+    speakerButton.style.opacity = '0.4';
 
 if (currentQuestion.type === 'imageaudio') {
 
@@ -371,49 +357,37 @@ if (currentQuestion.type === 'imageaudio') {
 
     speakerButton.style.display = 'block';
 
-    const speakerButtonVertical =
-      document.getElementById('speaker-button-vertical');
-
-    if (speakerButtonVertical) {
-      speakerButtonVertical.style.display = 'block';
-      speakerButtonVertical._playAudioFunc =
-        speakerButton._playAudioFunc;
-      speakerButtonVertical.onclick =
-        speakerButton._playAudioFunc;
+speakerButton._playAudioFunc = () => {
+  if (currentQuestion.birdAudio) {
+    // Si ya hay audio sonando, lo detenemos
+    if (birdAudioPlayer) {
+      birdAudioPlayer.pause();
+      birdAudioPlayer.currentTime = 0;
     }
+    birdAudioPlayer =
+      new Audio(currentQuestion.birdAudio);
+    birdAudioPlayer.volume = 1;
+    birdAudioPlayer.play().catch(e =>
+      console.log("No se pudo reproducir audio:", e)
+    );
+  }
+};
 
-    speakerButton._playAudioFunc = () => {
-      if (currentQuestion.birdAudio) {
-        if (birdAudioPlayer) {
-          birdAudioPlayer.pause();
-          birdAudioPlayer.currentTime = 0;
-        }
-        birdAudioPlayer = new Audio(currentQuestion.birdAudio);
-        birdAudioPlayer.volume = 1;
-        birdAudioPlayer.play().catch(e =>
-          console.log("No se pudo reproducir audio:", e)
-        );
-      }
-    };
-
-    speakerButton.onclick = speakerButton._playAudioFunc;
+    speakerButton.onclick =
+      speakerButton._playAudioFunc;
   }
 
 } else {
 
   if (currentQuestion.image) {
     questionImage.style.display = 'block';
-    questionImage.src = currentQuestion.image;
-
-    if (questionImageVertical) {
-      questionImageVertical.style.display = 'block';
-      questionImageVertical.src = currentQuestion.image;
-    }
-
     imageCell.style.display = 'table-cell';
+    questionImage.src = currentQuestion.image;
   } else {
     imageCell.style.display = 'none';
   }
+
+}
 
     questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
     questionImage.dataset.secondImage = currentQuestion.secondImage || '';
@@ -478,47 +452,19 @@ setTimeout(() => {
 
   window.loadQuestion = loadQuestion;
 
-function handleImageChangeClick() {
-  const currentQuestion =
-    questions[currentQuestionIndex];
-  if (currentQuestion.type !== 'imageChange')
-    return;
-  const secondImageSrc =
-    questionImage.dataset.secondImage;
-  if (!secondImageSrc)
-    return;
-  const originalImageSrc =
-    questionImage.src;
-  /* cambiar ambas */
-  questionImage.src =
-    secondImageSrc;
-  if (questionImageVertical) {
-    questionImageVertical.src =
-      secondImageSrc;
-  }
-  setTimeout(() => {
-    questionImage.src =
-      originalImageSrc;
-    if (questionImageVertical) {
-      questionImageVertical.src =
-        originalImageSrc;
+  questionImage.addEventListener('click', () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion.type === 'imageChange') {
+      const secondImageSrc = questionImage.dataset.secondImage;
+      if (secondImageSrc) {
+        const originalImageSrc = questionImage.src;
+        questionImage.src = secondImageSrc;
+        setTimeout(() => {
+          questionImage.src = originalImageSrc;
+        }, 3000);
+      }
     }
-  }, 3000);
-}
-
-// Listener para click en la imagen
-questionImage.addEventListener(
-  'click',
-  handleImageChangeClick
-);
-if (questionImageVertical) {
-  questionImageVertical.addEventListener(
-    'click',
-    handleImageChangeClick
-  );
-}
-
-
+  });
 
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
 const lectorBtn = document.getElementById("lectorButton");
@@ -543,5 +489,6 @@ if (lectorBtn) {
       }
     }
   });
+});
 }
 });
