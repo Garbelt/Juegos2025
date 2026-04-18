@@ -312,12 +312,19 @@ function loadQuestion() {
   optionsElement.innerHTML = '';
 
   // =========================
-  // RESET IMAGEN
+  // RESET IMAGEN (HORIZONTAL + VERTICAL)
   // =========================
   questionImage.style.display = 'none';
   questionImage.src = '';
   questionImage.onclick = null;
   questionImage.style.pointerEvents = 'none';
+
+  if (questionImageVertical) {
+    questionImageVertical.style.display = 'none';
+    questionImageVertical.src = '';
+    questionImageVertical.onclick = null;
+    questionImageVertical.style.pointerEvents = 'none';
+  }
 
   if (imageCell) {
     imageCell.style.display = 'none';
@@ -326,7 +333,8 @@ function loadQuestion() {
   // =========================
   // RESET SPEAKER
   // =========================
-  const speakerButton = document.getElementById('speaker-button');
+  const speakerButton =
+    document.getElementById('speaker-button');
 
   if (speakerButton) {
     speakerButton.style.display = 'none';
@@ -346,14 +354,23 @@ function loadQuestion() {
   }
 
   // =========================
-  // RENDER IMAGEN + SPEAKER AUDIO
+  // RENDER IMAGEN (HORIZONTAL + VERTICAL)
   // =========================
   if (currentQuestion.image) {
-    questionImage.style.display = 'block';
     if (imageCell) imageCell.style.display = 'table-cell';
+
+    questionImage.style.display = 'block';
     questionImage.src = currentQuestion.image;
+
+    if (questionImageVertical) {
+      questionImageVertical.style.display = 'block';
+      questionImageVertical.src = currentQuestion.image;
+    }
   }
 
+  // =========================
+  // SPEAKER AUDIO
+  // =========================
   if (currentQuestion.type === 'imageaudio') {
 
     if (speakerButton) {
