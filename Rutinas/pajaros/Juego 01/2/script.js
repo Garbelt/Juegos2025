@@ -277,6 +277,7 @@ function fadeOutAndStopAudio(audio, duration = 2500) {
 
   function manejarTiempoAgotado() {
     clearInterval(intervaloTemporizador);
+    if (birdAudioPlayer) {fadeOutAndStopAudio(birdAudioPlayer);}
     fadeOutAudio(document.getElementById('audio-musica-pregunta'), 2000);
     audioTictac.pause();
     detenerTiempoAcumulado();
