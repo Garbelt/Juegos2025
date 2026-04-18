@@ -348,10 +348,19 @@ function iniciarInterfazPregunta() {
     }
 
     const speakerButton = document.getElementById('speaker-button');
-    speakerButton.style.display = 'none';
-    speakerButton.onclick = null;
-    speakerButton.style.pointerEvents = 'none';
-    speakerButton.style.opacity = '0.4';
+const speakerButtonVertical =
+  document.getElementById(
+    'speaker-button-vertical'
+  );
+
+if (speakerButtonVertical) {
+  speakerButtonVertical.style.display =
+    'none';
+  speakerButtonVertical.onclick = null;
+  speakerButtonVertical.style.pointerEvents =
+    'none';
+  speakerButtonVertical.style.opacity = '0.4';
+}
 
 if (currentQuestion.type === 'imageaudio') {
 
@@ -361,6 +370,19 @@ if (currentQuestion.type === 'imageaudio') {
     questionImage.src = currentQuestion.image;
 
     speakerButton.style.display = 'block';
+
+    const speakerButtonVertical =
+  document.getElementById(
+    'speaker-button-vertical'
+  );
+if (speakerButtonVertical) {
+  speakerButtonVertical.style.display =
+    'block';
+  speakerButtonVertical._playAudioFunc =
+    speakerButton._playAudioFunc;
+  speakerButtonVertical.onclick =
+    speakerButton._playAudioFunc;
+}
 
 speakerButton._playAudioFunc = () => {
   if (currentQuestion.birdAudio) {
@@ -384,11 +406,17 @@ speakerButton._playAudioFunc = () => {
 
 } else {
 
-  if (currentQuestion.image) {
-    questionImage.style.display = 'block';
-    imageCell.style.display = 'table-cell';
-    questionImage.src = currentQuestion.image;
-  } else {
+if (currentQuestion.image) {
+  questionImage.style.display = 'block';
+  questionImage.src = currentQuestion.image;
+  if (questionImageVertical) {
+    questionImageVertical.style.display = 'block';
+    questionImageVertical.src = currentQuestion.image;
+  }
+  imageCell.style.display = 'table-cell';
+} else {
+  imageCell.style.display = 'none';
+} else {
     imageCell.style.display = 'none';
   }
 
