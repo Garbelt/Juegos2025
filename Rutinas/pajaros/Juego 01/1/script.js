@@ -135,6 +135,7 @@ function disableOptions() {
     speakerButtonVertical.onclick = null;
   }
 }
+   
 function setEstadoBotonLector(habilitado) {
     const boton = document.getElementById("lectorButton");
     const mobileBtn = document.getElementById("mobile-read-btn");
