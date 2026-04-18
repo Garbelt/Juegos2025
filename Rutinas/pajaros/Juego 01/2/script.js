@@ -604,6 +604,7 @@ if (currentQuestion.image) {
 
   questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
   questionImage.dataset.secondImage = currentQuestion.secondImage || '';
+  if (questionImageVertical) {questionImageVertical.dataset.secondImage = currentQuestion.secondImage || '';}
 
   shuffleArray(currentQuestion.options);
 
