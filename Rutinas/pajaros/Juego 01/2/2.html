@@ -139,6 +139,25 @@
     transition: opacity 0.2s ease;}
 .container-invisible {
     opacity: 0;}
+
+
+.speaker-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  display: none;
+  padding: 0;
+}
+
+.speaker-button img {
+  width: 24px;
+  height: 24px;
+}
 	  
 /* =========================================
    MODAL
@@ -294,24 +313,17 @@
 <td id="image-cell" class="fixed-width" style="display: none;">
   <div class="fixed-width2" style="position: relative;">
     <img id="questionImage" src="" alt="" style="width: 100%; height: auto; display: block;">
-     <button id="speaker-button" 
-        style="
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        display: none;
-        padding: 0;
-      "
+	  
+<button id="speaker-button"
+        class="speaker-button"
         title="Escuchar pista">
-      <img src="image/speaker-icon.png" alt="Escuchar pista" style="width: 24px; height: 24px;">
-    </button>
+  <img src="image/speaker-icon.png"
+       alt="Escuchar pista">
+</button>
+	  
   </div>
 </td>
-
-        <!-- Celda opciones -->
+	<!-- Celda opciones -->
         <td id="options-cell">
           <ul class="options" id="options"></ul>
           <div class="found-message" id="message"></div>
@@ -350,27 +362,16 @@
   <td colspan="2" id="image-cell-vertical">
     <div class="fixed-width2" style="position: relative;">
       <img id="questionImage-vertical" src="" alt="">
-      <button id="speaker-button-vertical"
-        style="
-          position: absolute;
-          top: 8px;
-          right: 8px;
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          display: none;
-          padding: 0;
-        "
+<button id="speaker-button-vertical"
+        class="speaker-button"
         title="Escuchar pista">
-        <img src="image/speaker-icon.png"
-             alt="Escuchar pista"
-             style="width: 24px; height: 24px;">
-      </button>
+  <img src="image/speaker-icon.png"
+       alt="Escuchar pista">
+</button>
+		
     </div>
   </td>
 </tr>
-
-
 		<tr class="fila-panel-vertical">
 		    <th colspan="2" class="celda-panel-vertical" style="position: relative;">
 			<div id="panel-vertical">
