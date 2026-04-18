@@ -706,6 +706,7 @@ function iniciarInterfazPregunta() {
 
   // Activar imagen y cursor
   questionImage.style.pointerEvents = 'auto';
+  if (questionImageVertical) {questionImageVertical.style.pointerEvents = 'auto';}
   questionElement.style.cursor = 'pointer';
 
   // 🔥 INICIAR RELOJ
