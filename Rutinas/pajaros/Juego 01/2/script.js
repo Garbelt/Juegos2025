@@ -724,18 +724,30 @@ function iniciarInterfazPregunta() {
 
 // Listener para click en la imagen
 questionImage.addEventListener('click', () => {
-  const currentQuestion = questions[currentQuestionIndex];
-
+  const currentQuestion =
+    questions[currentQuestionIndex];
   if (currentQuestion.type === 'imageChange') {
-    const secondImageSrc = questionImage.dataset.secondImage;
-
+    const secondImageSrc =
+      questionImage.dataset.secondImage;
     if (secondImageSrc) {
-      const originalImageSrc = questionImage.src;
-
-      questionImage.src = secondImageSrc;
-
+      const originalImageSrc =
+        questionImage.src;
+      /* =========================
+         CAMBIAR AMBAS IMÁGENES
+         ========================= */
+      questionImage.src =
+        secondImageSrc;
+      if (questionImageVertical) {
+        questionImageVertical.src =
+          secondImageSrc;
+      }
       setTimeout(() => {
-        questionImage.src = originalImageSrc;
+        questionImage.src =
+          originalImageSrc;
+        if (questionImageVertical) {
+          questionImageVertical.src =
+            originalImageSrc;
+        }
       }, 3000);
     }
   }
