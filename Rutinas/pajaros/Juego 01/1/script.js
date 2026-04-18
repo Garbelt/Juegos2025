@@ -406,20 +406,17 @@ speakerButton._playAudioFunc = () => {
 
 } else {
 
-if (currentQuestion.image) {
-  questionImage.style.display = 'block';
-  questionImage.src = currentQuestion.image;
-  if (questionImageVertical) {
-    questionImageVertical.style.display = 'block';
-    questionImageVertical.src = currentQuestion.image;
-  }
-  imageCell.style.display = 'table-cell';
-} else {
-  imageCell.style.display = 'none';
-} else {
+  if (currentQuestion.image) {
+    questionImage.style.display = 'block';
+    questionImage.src = currentQuestion.image;
+    if (questionImageVertical) {
+      questionImageVertical.style.display = 'block';
+      questionImageVertical.src = currentQuestion.image;
+    }
+    imageCell.style.display = 'table-cell';
+  } else {
     imageCell.style.display = 'none';
   }
-
 }
 
     questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
