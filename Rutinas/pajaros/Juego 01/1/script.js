@@ -297,11 +297,14 @@ function iniciarInterfazPregunta() {
 
 function loadQuestion() {
   sistemaListo = false;
+
   if (questionAudioPlayer) questionAudioPlayer.pause();
   if (birdAudioPlayer) {
     birdAudioPlayer.currentTime = 0;
   }
+
   const currentQuestion = questions[currentQuestionIndex];
+
   questionElement.textContent = currentQuestion.question;
   optionsElement.innerHTML = '';
 
@@ -329,6 +332,7 @@ function loadQuestion() {
   // =========================
   const speakerButtonVertical =
     document.getElementById('speaker-button-vertical');
+
   if (speakerButtonVertical) {
     speakerButtonVertical.style.display = 'none';
     speakerButtonVertical.onclick = null;
@@ -348,30 +352,36 @@ function loadQuestion() {
   }
 
   // =========================
-  // DEFINIR AUDIO BOTÓN
+  // AUDIO BOTÓN
   // =========================
   speakerButton._playAudioFunc = () => {
     if (!currentQuestion.birdAudio) return;
+
     if (birdAudioPlayer) {
       birdAudioPlayer.pause();
       birdAudioPlayer.currentTime = 0;
     }
+
     birdAudioPlayer = new Audio(currentQuestion.birdAudio);
     birdAudioPlayer.volume = 1;
+
     birdAudioPlayer.play().catch(e =>
       console.log("No se pudo reproducir audio:", e)
     );
   };
 
   // =========================
-  // ACTIVAR BOTÓN SI CORRESPONDE
+  // ACTIVACIÓN SPEAKER
   // =========================
   if (currentQuestion.type === "imageaudio") {
     speakerButton.style.display = 'block';
+
     if (speakerButtonVertical) {
       speakerButtonVertical.style.display = 'block';
     }
+
     speakerButton.onclick = speakerButton._playAudioFunc;
+
     if (speakerButtonVertical) {
       speakerButtonVertical.onclick =
         speakerButton._playAudioFunc;
@@ -381,44 +391,53 @@ function loadQuestion() {
   // =========================
   // DATASETS
   // =========================
-  questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
-  questionImage.dataset.secondImage = currentQuestion.secondImage || '';
-}
-    shuffleArray(currentQuestion.options);
-    currentQuestion.options.forEach((option) => {
-      const li = document.createElement('li');
-      li.textContent = option.text;
-      li.dataset.correct = option.correct;
-      li.style.pointerEvents = 'none';
-      li.addEventListener('click', handleOptionClick);
-      li.addEventListener('mouseover', () => {
-        if (!audioPaused) {
-          hablar(option.text);
-        }
-    });      
-      optionsElement.appendChild(li);
+  questionImage.dataset.birdAudio =
+    currentQuestion.birdAudio || '';
+
+  questionImage.dataset.secondImage =
+    currentQuestion.secondImage || '';
+
+  // =========================
+  // OPCIONES (ESTO DEBE IR DENTRO)
+  // =========================
+  shuffleArray(currentQuestion.options);
+
+  currentQuestion.options.forEach((option) => {
+    const li = document.createElement('li');
+    li.textContent = option.text;
+    li.dataset.correct = option.correct;
+    li.style.pointerEvents = 'none';
+
+    li.addEventListener('click', handleOptionClick);
+
+    li.addEventListener('mouseover', () => {
+      if (!audioPaused) {
+        hablar(option.text);
+      }
     });
 
-     setTimeout(() => {
-          sistemaListo = true;
-     }, 350);
+    optionsElement.appendChild(li);
+  });
 
-const estadoPrevio =
-  typeof lecturaActiva !== "undefined"
-    ? lecturaActiva
-    : true;
+  setTimeout(() => {
+    sistemaListo = true;
+  }, 350);
 
-setEstadoBotonLector(false);
-lecturaActiva = true;
+  const estadoPrevio =
+    typeof lecturaActiva !== "undefined"
+      ? lecturaActiva
+      : true;
 
-const container = document.querySelector(".container");
-if (container) {
-  if (container.classList.contains("container-invisible")) {
+  setEstadoBotonLector(false);
+  lecturaActiva = true;
+
+  const container = document.querySelector(".container");
+  if (container?.classList.contains("container-invisible")) {
     container.classList.remove("container-invisible");
   }
+
+  let lecturaTerminada = false;
 }
-    
-let lecturaTerminada = false;
 
 function finalizarLectura() {
   if (lecturaTerminada) return;
