@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const optionsElement = document.getElementById('options');
   const messageElement = document.getElementById('message');
   const questionImage = document.getElementById('questionImage');
-  const questionImageVertical =  document.getElementById('questionImage-vertical');
   const imageCell = document.getElementById('image-cell');
 
   let questionAudioPlayer = null;
@@ -106,36 +105,15 @@ function disableOptions() {
   questionElement.style.pointerEvents = 'none';
   questionElement.style.cursor = 'default';
   questionImage.style.pointerEvents = 'none';
-  /* =========================
-     BOTÓN PARLANTE HORIZONTAL
-     ========================= */
   const speakerButton =
-    document.getElementById(
-      'speaker-button'
-    );
+    document.getElementById('speaker-button');
   if (speakerButton) {
-    speakerButton.style.pointerEvents =
-      'none';
-    speakerButton.style.opacity =
-      '0.4';
+    speakerButton.style.pointerEvents = 'none';
+    speakerButton.style.opacity = '0.4';
     speakerButton.onclick = null;
   }
-  /* =========================
-     BOTÓN PARLANTE VERTICAL
-     ========================= */
-  const speakerButtonVertical =
-    document.getElementById(
-      'speaker-button-vertical'
-    );
-  if (speakerButtonVertical) {
-    speakerButtonVertical.style.pointerEvents =
-      'none';
-    speakerButtonVertical.style.opacity =
-      '0.4';
-    speakerButtonVertical.onclick = null;
-  }
 }
-   
+
 function setEstadoBotonLector(habilitado) {
     const boton = document.getElementById("lectorButton");
     const mobileBtn = document.getElementById("mobile-read-btn");
@@ -285,32 +263,11 @@ function iniciarInterfazPregunta() {
   enableOptions();
 
   // Activar botón parlante
-  /* =========================
-     BOTÓN PARLANTE HORIZONTAL
-     ========================= */
-  const speakerButton =
-    document.getElementById('speaker-button');
-  speakerButton.style.pointerEvents =
-    'auto';
-  speakerButton.style.opacity =
-    '1';
-  speakerButton.onclick =
-    speakerButton._playAudioFunc || null;
-  /* =========================
-     BOTÓN PARLANTE VERTICAL
-     ========================= */
-  const speakerButtonVertical =
-    document.getElementById(
-      'speaker-button-vertical'
-    );
-  if (speakerButtonVertical) {
-    speakerButtonVertical.style.pointerEvents =
-      'auto';
-    speakerButtonVertical.style.opacity =
-      '1';
-    speakerButtonVertical.onclick =
-      speakerButton._playAudioFunc || null;
-  }
+  const speakerButton = document.getElementById('speaker-button');
+  speakerButton.style.pointerEvents = 'auto';
+  speakerButton.style.opacity = '1';
+  // Asignar función de reproducción si existe
+  speakerButton.onclick = speakerButton._playAudioFunc || null;
 
   // Activar imagen y cursor
   questionImage.style.pointerEvents = 'auto';
