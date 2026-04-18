@@ -341,6 +341,11 @@ function iniciarInterfazPregunta() {
     questionImage.src = '';
     questionImage.onclick = null;
     questionImage.style.pointerEvents = 'none';
+    if (questionImageVertical) {
+      questionImageVertical.style.display = 'none';
+      questionImageVertical.src = '';
+      questionImageVertical.style.pointerEvents = 'none';
+    }
 
     const speakerButton = document.getElementById('speaker-button');
     speakerButton.style.display = 'none';
