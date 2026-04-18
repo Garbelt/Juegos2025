@@ -113,19 +113,44 @@ hablar(currentQuestion.question, {
   }
 
 function disableOptions() {
-  const options = optionsElement.querySelectorAll('li');
+  const options =
+    optionsElement.querySelectorAll('li');
   options.forEach(option => {
-      option.style.pointerEvents = 'none';
+    option.style.pointerEvents = 'none';
   });
-  questionElement.style.pointerEvents = 'none';
-  questionElement.style.cursor = 'default';
-  questionImage.style.pointerEvents = 'none';
+  questionElement.style.pointerEvents =
+    'none';
+  questionElement.style.cursor =
+    'default';
+  questionImage.style.pointerEvents =
+    'none';
+  /* =========================
+     BOTÓN PARLANTE HORIZONTAL
+     ========================= */
   const speakerButton =
-    document.getElementById('speaker-button');
+    document.getElementById(
+      'speaker-button'
+    );
   if (speakerButton) {
-    speakerButton.style.pointerEvents = 'none';
-    speakerButton.style.opacity = '0.4';
+    speakerButton.style.pointerEvents =
+      'none';
+    speakerButton.style.opacity =
+      '0.4';
     speakerButton.onclick = null;
+  }
+  /* =========================
+     BOTÓN PARLANTE VERTICAL
+     ========================= */
+  const speakerButtonVertical =
+    document.getElementById(
+      'speaker-button-vertical'
+    );
+  if (speakerButtonVertical) {
+    speakerButtonVertical.style.pointerEvents =
+      'none';
+    speakerButtonVertical.style.opacity =
+      '0.4';
+    speakerButtonVertical.onclick = null;
   }
 }
 
