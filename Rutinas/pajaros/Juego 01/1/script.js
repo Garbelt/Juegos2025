@@ -295,126 +295,174 @@ function iniciarInterfazPregunta() {
   }
 }
 
-  function loadQuestion() {
-    sistemaListo = false; // 🔴 BLOQUEO INICIAL INMEDIATO
-    if (questionAudioPlayer) {questionAudioPlayer.pause();}
-    if (birdAudioPlayer) {birdAudioPlayer.currentTime = 0;}
+function loadQuestion() {
+  sistemaListo = false;
 
-    const currentQuestion = questions[currentQuestionIndex];
-    questionElement.textContent = currentQuestion.question;
-    optionsElement.innerHTML = '';
+  if (questionAudioPlayer) {
+    questionAudioPlayer.pause();
+  }
 
-    // Reset imagen y botón parlante
-    questionImage.style.display = 'none';
-    questionImage.src = '';
-    questionImage.onclick = null;
-    questionImage.style.pointerEvents = 'none';
+  if (birdAudioPlayer) {
+    birdAudioPlayer.currentTime = 0;
+  }
 
-    const speakerButton = document.getElementById('speaker-button');
+  const currentQuestion = questions[currentQuestionIndex];
+
+  questionElement.textContent = currentQuestion.question;
+  optionsElement.innerHTML = '';
+
+  // =========================
+  // RESET IMAGEN
+  // =========================
+  questionImage.style.display = 'none';
+  questionImage.src = '';
+  questionImage.onclick = null;
+  questionImage.style.pointerEvents = 'none';
+
+  if (imageCell) {
+    imageCell.style.display = 'none';
+  }
+
+  // =========================
+  // RESET SPEAKER
+  // =========================
+  const speakerButton = document.getElementById('speaker-button');
+
+  if (speakerButton) {
     speakerButton.style.display = 'none';
     speakerButton.onclick = null;
     speakerButton.style.pointerEvents = 'none';
     speakerButton.style.opacity = '0.4';
+  }
 
-if (currentQuestion.type === 'imageaudio') {
+  const speakerButtonVertical =
+    document.getElementById('speaker-button-vertical');
 
+  if (speakerButtonVertical) {
+    speakerButtonVertical.style.display = 'none';
+    speakerButtonVertical.onclick = null;
+    speakerButtonVertical.style.pointerEvents = 'none';
+    speakerButtonVertical.style.opacity = '0.4';
+  }
+
+  // =========================
+  // RENDER IMAGEN + SPEAKER AUDIO
+  // =========================
   if (currentQuestion.image) {
     questionImage.style.display = 'block';
-    imageCell.style.display = 'table-cell';
+    if (imageCell) imageCell.style.display = 'table-cell';
     questionImage.src = currentQuestion.image;
+  }
 
-    speakerButton.style.display = 'block';
+  if (currentQuestion.type === 'imageaudio') {
 
-speakerButton._playAudioFunc = () => {
-  if (currentQuestion.birdAudio) {
-    // Si ya hay audio sonando, lo detenemos
-    if (birdAudioPlayer) {
-      birdAudioPlayer.pause();
-      birdAudioPlayer.currentTime = 0;
+    if (speakerButton) {
+      speakerButton.style.display = 'block';
     }
-    birdAudioPlayer =
-      new Audio(currentQuestion.birdAudio);
-    birdAudioPlayer.volume = 1;
-    birdAudioPlayer.play().catch(e =>
-      console.log("No se pudo reproducir audio:", e)
-    );
+
+    if (speakerButtonVertical) {
+      speakerButtonVertical.style.display = 'block';
+    }
+
+    speakerButton._playAudioFunc = () => {
+      if (!currentQuestion.birdAudio) return;
+
+      if (birdAudioPlayer) {
+        birdAudioPlayer.pause();
+        birdAudioPlayer.currentTime = 0;
+      }
+
+      birdAudioPlayer = new Audio(currentQuestion.birdAudio);
+      birdAudioPlayer.volume = 1;
+
+      birdAudioPlayer.play().catch(e =>
+        console.log("No se pudo reproducir audio:", e)
+      );
+    };
+
+    speakerButton.onclick = speakerButton._playAudioFunc;
+
+    if (speakerButtonVertical) {
+      speakerButtonVertical.onclick =
+        speakerButton._playAudioFunc;
+    }
   }
-};
 
-    speakerButton.onclick =
-      speakerButton._playAudioFunc;
-  }
+  // =========================
+  // DATASETS
+  // =========================
+  questionImage.dataset.birdAudio =
+    currentQuestion.birdAudio || '';
 
-} else {
+  questionImage.dataset.secondImage =
+    currentQuestion.secondImage || '';
 
-  if (currentQuestion.image) {
-    questionImage.style.display = 'block';
-    imageCell.style.display = 'table-cell';
-    questionImage.src = currentQuestion.image;
-  } else {
-    imageCell.style.display = 'none';
-  }
+  // =========================
+  // OPCIONES
+  // =========================
+  shuffleArray(currentQuestion.options);
 
-}
+  currentQuestion.options.forEach((option) => {
+    const li = document.createElement('li');
+    li.textContent = option.text;
+    li.dataset.correct = option.correct;
+    li.style.pointerEvents = 'none';
 
-    questionImage.dataset.birdAudio = currentQuestion.birdAudio || '';
-    questionImage.dataset.secondImage = currentQuestion.secondImage || '';
+    li.addEventListener('click', handleOptionClick);
 
-    shuffleArray(currentQuestion.options);
-    currentQuestion.options.forEach((option) => {
-      const li = document.createElement('li');
-      li.textContent = option.text;
-      li.dataset.correct = option.correct;
-      li.style.pointerEvents = 'none';
-      li.addEventListener('click', handleOptionClick);
-      li.addEventListener('mouseover', () => {
-        if (!audioPaused) {
-          hablar(option.text);
-        }
-    });      
-      optionsElement.appendChild(li);
+    li.addEventListener('mouseover', () => {
+      if (!audioPaused) {
+        hablar(option.text);
+      }
     });
 
-     setTimeout(() => {
-          sistemaListo = true;
-     }, 350);
+    optionsElement.appendChild(li);
+  });
 
-const estadoPrevio =
-  typeof lecturaActiva !== "undefined"
-    ? lecturaActiva
-    : true;
+  // =========================
+  // ACTIVACIÓN DEL SISTEMA
+  // =========================
+  setTimeout(() => {
+    sistemaListo = true;
+  }, 350);
 
-setEstadoBotonLector(false);
-lecturaActiva = true;
+  const estadoPrevio =
+    typeof lecturaActiva !== "undefined"
+      ? lecturaActiva
+      : true;
 
-const container = document.querySelector(".container");
-if (container) {
-  if (container.classList.contains("container-invisible")) {
+  setEstadoBotonLector(false);
+  lecturaActiva = true;
+
+  const container = document.querySelector(".container");
+
+  if (container?.classList.contains("container-invisible")) {
     container.classList.remove("container-invisible");
   }
-}
-    
-let lecturaTerminada = false;
-function finalizarLectura() {
-  if (lecturaTerminada) return;
-  lecturaTerminada = true;
-  lecturaActiva = estadoPrevio;
-  setEstadoBotonLector(true);
-  iniciarInterfazPregunta();
-}
 
-hablar(currentQuestion.question, {
-  bloquearBotones: true,
-  onEnd: finalizarLectura
-});
-// 🛟 Fallback crítico para móviles
-setTimeout(() => {
-  if (!lecturaTerminada) {
-    console.log("⚠️ Fallback: lectura no inició o no terminó");
-    finalizarLectura();
+  let lecturaTerminada = false;
+
+  function finalizarLectura() {
+    if (lecturaTerminada) return;
+
+    lecturaTerminada = true;
+    lecturaActiva = estadoPrevio;
+    setEstadoBotonLector(true);
+    iniciarInterfazPregunta();
   }
-}, 2500);
 
+  hablar(currentQuestion.question, {
+    bloquearBotones: true,
+    onEnd: finalizarLectura
+  });
+
+  // 🛟 fallback móvil
+  setTimeout(() => {
+    if (!lecturaTerminada) {
+      console.log("⚠️ Fallback lectura");
+      finalizarLectura();
+    }
+  }, 2500);
 } // ← cierre de loadQuestion
 
   window.loadQuestion = loadQuestion;
