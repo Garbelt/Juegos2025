@@ -317,11 +317,13 @@ function loadQuestion() {
   questionImage.style.display = 'none';
   questionImage.src = '';
   questionImage.onclick = null;
+  questionImage.style.pointerEvents = 'none';
 
   if (questionImageVertical) {
     questionImageVertical.style.display = 'none';
     questionImageVertical.src = '';
     questionImageVertical.onclick = null;
+    questionImageVertical.style.pointerEvents = 'none';
   }
 
   if (imageCell) {
@@ -365,32 +367,6 @@ function loadQuestion() {
       questionImageVertical.src = currentQuestion.image;
     }
   }
-
-// =========================
-// CLICK IMAGE CHANGE (SOLO imageChange)
-// =========================
-// limpiar listeners previos correctamente
-questionImage.removeEventListener('click', handleImageChangeClick);
-if (questionImageVertical) {
-  questionImageVertical.removeEventListener('click', handleImageChangeClick);
-}
-// reset onclick directo (evita doble binding residual)
-questionImage.onclick = null;
-if (questionImageVertical) {
-  questionImageVertical.onclick = null;
-}
-
-// activar SOLO si corresponde
-if (currentQuestion.type === 'imageChange') {
-  // NO es necesario dataset para lógica, pero puede quedarse como metadata
-  questionImage.dataset.secondImage =
-    currentQuestion.secondImage || '';
-  // mejor usar onclick (evita acumulación de listeners)
-  questionImage.onclick = handleImageChangeClick;
-  if (questionImageVertical) {
-    questionImageVertical.onclick = handleImageChangeClick;
-  }
-}
 
   // =========================
   // SPEAKER AUDIO
@@ -508,28 +484,23 @@ if (currentQuestion.type === 'imageChange') {
 
   window.loadQuestion = loadQuestion;
 
-function handleImageChangeClick() {
-  const currentQuestion = questions[currentQuestionIndex];
-  if (currentQuestion.type !== 'imageChange') return;
-  const secondImageSrc = currentQuestion.secondImage;
-  if (!secondImageSrc) return;
-  const originalImageSrc = currentQuestion.image;
-  // Cambiar ambas imágenes
-  questionImage.src = secondImageSrc;
-  if (questionImageVertical) {
-    questionImageVertical.src = secondImageSrc;
-  }
-  setTimeout(() => {
-    questionImage.src = originalImageSrc;
-    if (questionImageVertical) {
-      questionImageVertical.src = originalImageSrc;
+  questionImage.addEventListener('click', () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion.type === 'imageChange') {
+      const secondImageSrc = questionImage.dataset.secondImage;
+      if (secondImageSrc) {
+        const originalImageSrc = questionImage.src;
+        questionImage.src = secondImageSrc;
+        setTimeout(() => {
+          questionImage.src = originalImageSrc;
+        }, 3000);
+      }
     }
-  }, 3000);
-}
-
+  });
 
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
 const lectorBtn = document.getElementById("lectorButton");
+
 if (lectorBtn) {
  lectorBtn.addEventListener("click", () => {
   // esperar a que lector.js actualice lecturaActiva
