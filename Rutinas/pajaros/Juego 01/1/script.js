@@ -425,14 +425,18 @@ function loadQuestion() {
     }
   }
 
-  // =========================
-  // DATASETS
-  // =========================
-  questionImage.dataset.birdAudio =
-    currentQuestion.birdAudio || '';
-
-  questionImage.dataset.secondImage =
-    currentQuestion.secondImage || '';
+// =========================
+// DATASETS
+// =========================
+  
+questionImage.dataset.birdAudio =
+  currentQuestion.birdAudio || '';
+questionImage.dataset.secondImage =
+  currentQuestion.secondImage || '';
+questionImage.onclick = null;
+if (questionImageVertical) {
+  questionImageVertical.onclick = null;
+}
 
   // =========================
   // OPCIONES
