@@ -369,17 +369,20 @@ function loadQuestion() {
   }
 
 // =========================
-// CLICK IMAGE CHANGE (SOLO SI TYPE = imageChange)
+// CLICK IMAGE CHANGE (SOLO imageChange)
 // =========================
-// primero limpiar SIEMPRE para evitar duplicados
-
+// limpiar listeners previos correctamente
+questionImage.removeEventListener('click', handleImageChangeClick);
+if (questionImageVertical) {
+  questionImageVertical.removeEventListener('click', handleImageChangeClick);
+}
+// reset onclick directo (bien, pero no suficiente por sí solo)
 questionImage.onclick = null;
 if (questionImageVertical) {
   questionImageVertical.onclick = null;
 }
 // activar solo si corresponde
 if (currentQuestion.type === 'imageChange') {
-  // asignar dataset (ya lo estás haciendo, pero es correcto aquí)
   questionImage.dataset.secondImage =
     currentQuestion.secondImage || '';
   questionImage.addEventListener('click', handleImageChangeClick);
