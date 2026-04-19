@@ -100,29 +100,39 @@ questionElement.addEventListener("click", () => {
 
 function disableOptions() {
   const options = optionsElement.querySelectorAll('li');
+
   options.forEach(option => {
-      option.style.pointerEvents = 'none';
+    option.style.pointerEvents = 'none';
   });
+
   questionElement.style.pointerEvents = 'none';
   questionElement.style.cursor = 'default';
+
+  // Bloquear imagen horizontal
   questionImage.style.pointerEvents = 'none';
-const speakerButton =
-  document.getElementById('speaker-button');
 
-if (speakerButton) {
-  speakerButton.style.pointerEvents = 'none';
-  speakerButton.style.opacity = '0.4';
-  speakerButton.onclick = null;
-}
+  // Bloquear imagen vertical
+  if (questionImageVertical) {
+    questionImageVertical.style.pointerEvents = 'none';
+  }
 
-const speakerButtonVertical =
-  document.getElementById('speaker-button-vertical');
+  const speakerButton =
+    document.getElementById('speaker-button');
 
-if (speakerButtonVertical) {
-  speakerButtonVertical.style.pointerEvents = 'none';
-  speakerButtonVertical.style.opacity = '0.4';
-  speakerButtonVertical.onclick = null;
-}
+  if (speakerButton) {
+    speakerButton.style.pointerEvents = 'none';
+    speakerButton.style.opacity = '0.4';
+    speakerButton.onclick = null;
+  }
+
+  const speakerButtonVertical =
+    document.getElementById('speaker-button-vertical');
+
+  if (speakerButtonVertical) {
+    speakerButtonVertical.style.pointerEvents = 'none';
+    speakerButtonVertical.style.opacity = '0.4';
+    speakerButtonVertical.onclick = null;
+  }
 }
 
 function setEstadoBotonLector(habilitado) {
