@@ -317,13 +317,11 @@ function loadQuestion() {
   questionImage.style.display = 'none';
   questionImage.src = '';
   questionImage.onclick = null;
-  questionImage.style.pointerEvents = 'none';
 
   if (questionImageVertical) {
     questionImageVertical.style.display = 'none';
     questionImageVertical.src = '';
     questionImageVertical.onclick = null;
-    questionImageVertical.style.pointerEvents = 'none';
   }
 
   if (imageCell) {
