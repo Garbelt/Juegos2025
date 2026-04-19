@@ -277,20 +277,29 @@ function iniciarInterfazPregunta() {
   const speakerButton = document.getElementById('speaker-button');
   speakerButton.style.pointerEvents = 'auto';
   speakerButton.style.opacity = '1';
-  // Asignar función de reproducción si existe
   speakerButton.onclick = speakerButton._playAudioFunc || null;
 
   // Activar imagen y cursor
   questionImage.style.pointerEvents = 'auto';
+
+  if (questionImageVertical) {
+    questionImageVertical.style.pointerEvents = 'auto';
+  }
+
   questionElement.style.cursor = 'pointer';
 
   // 🔊 INICIAR MÚSICA DE LA PREGUNTA
-  const musicaPregunta = document.getElementById('audio-musica-pregunta');
+  const musicaPregunta =
+    document.getElementById('audio-musica-pregunta');
+
   if (musicaPregunta) {
     musicaPregunta.volume = 1;
     musicaPregunta.currentTime = 0;
     musicaPregunta.play().catch(e =>
-      console.log('No se pudo reproducir música de pregunta:', e)
+      console.log(
+        'No se pudo reproducir música de pregunta:',
+        e
+      )
     );
   }
 }
