@@ -210,13 +210,8 @@
     display:table-cell;
     width:100%;
     text-align:center;
-
-    /* CLAVE: centrado vertical real */
     vertical-align:middle;
-
-    /* separación visual respecto al panel */
     padding-bottom:10px;
-
     border:none !important;
   }
 
@@ -234,17 +229,33 @@
   }
 
   /* =========================================
-     CONTENEDOR IMAGEN
+     CONTENEDOR IMAGEN (BASE)
      ========================================= */
   #image-cell-vertical .fixed-width2{
-    width:40%;
+    width:40%;              /* valor base */
     aspect-ratio: 1 / 1;
-
-    /* pequeño margen inferior de seguridad */
     margin:0 auto 15px auto;
-
     background:transparent;
     border:none;
+
+    /* recomendable */
+    transition: width 0.2s ease;
+  }
+
+  /* =========================================
+     TAMAÑO SEGÚN ESTADO DEL PANEL
+     ========================================= */
+
+  body.panel-full #image-cell-vertical .fixed-width2{
+    width:40%;
+  }
+
+  body.panel-mini #image-cell-vertical .fixed-width2{
+    width:55%;
+  }
+
+  body.panel-hidden #image-cell-vertical .fixed-width2{
+    width:75%;
   }
 
   /* =========================================
@@ -254,7 +265,7 @@
     width:100%;
     height:100%;
     object-fit:contain;
-    display:none; /* por defecto oculto */
+    display:none;
   }
 }
 
