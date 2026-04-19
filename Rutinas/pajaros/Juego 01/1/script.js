@@ -484,18 +484,45 @@ function loadQuestion() {
 
   window.loadQuestion = loadQuestion;
 
-  questionImage.addEventListener('click', () => {
-    const currentQuestion = questions[currentQuestionIndex];
-    if (currentQuestion.type === 'imageChange') {
-      const secondImageSrc = questionImage.dataset.secondImage;
-      if (secondImageSrc) {
-        const originalImageSrc = questionImage.src;
-        questionImage.src = secondImageSrc;
-        setTimeout(() => {
-          questionImage.src = originalImageSrc;
-        }, 3000);
-      }
+function handleImageChangeClick() {
+  const currentQuestion =
+    questions[currentQuestionIndex];
+  if (currentQuestion.type !== 'imageChange')
+    return;
+  const secondImageSrc =
+    questionImage.dataset.secondImage;
+  if (!secondImageSrc)
+    return;
+  const originalImageSrc =
+    questionImage.src;
+  /* cambiar ambas */
+  questionImage.src =
+    secondImageSrc;
+  if (questionImageVertical) {
+    questionImageVertical.src =
+      secondImageSrc;
+  }
+  setTimeout(() => {
+    questionImage.src =
+      originalImageSrc;
+    if (questionImageVertical) {
+      questionImageVertical.src =
+        originalImageSrc;
     }
+  }, 3000);
+}
+
+// Listener para click en la imagen
+questionImage.addEventListener(
+  'click',
+  handleImageChangeClick
+);
+if (questionImageVertical) {
+  questionImageVertical.addEventListener(
+    'click',
+    handleImageChangeClick
+  );
+}
   });
 
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
