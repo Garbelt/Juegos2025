@@ -368,6 +368,29 @@ function loadQuestion() {
     }
   }
 
+// =========================
+// CLICK IMAGE CHANGE (SOLO SI TYPE = imageChange)
+// =========================
+// primero limpiar SIEMPRE para evitar duplicados
+
+questionImage.onclick = null;
+if (questionImageVertical) {
+  questionImageVertical.onclick = null;
+}
+// activar solo si corresponde
+if (currentQuestion.type === 'imageChange') {
+  // asignar dataset (ya lo estás haciendo, pero es correcto aquí)
+  questionImage.dataset.secondImage =
+    currentQuestion.secondImage || '';
+  questionImage.addEventListener('click', handleImageChangeClick);
+  if (questionImageVertical) {
+    questionImageVertical.addEventListener(
+      'click',
+      handleImageChangeClick
+    );
+  }
+}
+
   // =========================
   // SPEAKER AUDIO
   // =========================
