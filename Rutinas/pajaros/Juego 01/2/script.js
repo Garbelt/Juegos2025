@@ -124,6 +124,9 @@ function disableOptions() {
     'default';
   questionImage.style.pointerEvents =
     'none';
+  if (questionImageVertical) {
+  questionImageVertical.style.pointerEvents = 'none';
+}
   /* =========================
      BOTÓN PARLANTE HORIZONTAL
      ========================= */
