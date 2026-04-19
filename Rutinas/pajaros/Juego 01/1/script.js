@@ -376,21 +376,21 @@ questionImage.removeEventListener('click', handleImageChangeClick);
 if (questionImageVertical) {
   questionImageVertical.removeEventListener('click', handleImageChangeClick);
 }
-// reset onclick directo (bien, pero no suficiente por sí solo)
+// reset onclick directo (evita doble binding residual)
 questionImage.onclick = null;
 if (questionImageVertical) {
   questionImageVertical.onclick = null;
 }
-// activar solo si corresponde
+
+// activar SOLO si corresponde
 if (currentQuestion.type === 'imageChange') {
+  // NO es necesario dataset para lógica, pero puede quedarse como metadata
   questionImage.dataset.secondImage =
     currentQuestion.secondImage || '';
-  questionImage.addEventListener('click', handleImageChangeClick);
+  // mejor usar onclick (evita acumulación de listeners)
+  questionImage.onclick = handleImageChangeClick;
   if (questionImageVertical) {
-    questionImageVertical.addEventListener(
-      'click',
-      handleImageChangeClick
-    );
+    questionImageVertical.onclick = handleImageChangeClick;
   }
 }
 
@@ -513,9 +513,9 @@ if (currentQuestion.type === 'imageChange') {
 function handleImageChangeClick() {
   const currentQuestion = questions[currentQuestionIndex];
   if (currentQuestion.type !== 'imageChange') return;
-  const secondImageSrc = questionImage.dataset.secondImage;
+  const secondImageSrc = currentQuestion.secondImage;
   if (!secondImageSrc) return;
-  const originalImageSrc = questionImage.src;
+  const originalImageSrc = currentQuestion.image;
   // Cambiar ambas imágenes
   questionImage.src = secondImageSrc;
   if (questionImageVertical) {
@@ -529,9 +529,9 @@ function handleImageChangeClick() {
   }, 3000);
 }
 
+
 // 🔊 Si se cancela la lectura, reactivar la interfaz del juego
 const lectorBtn = document.getElementById("lectorButton");
-
 if (lectorBtn) {
  lectorBtn.addEventListener("click", () => {
   // esperar a que lector.js actualice lecturaActiva
