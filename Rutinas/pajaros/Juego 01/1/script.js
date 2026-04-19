@@ -484,6 +484,25 @@ function loadQuestion() {
 
   window.loadQuestion = loadQuestion;
 
+function handleImageChangeClick() {
+  const currentQuestion = questions[currentQuestionIndex];
+  if (currentQuestion.type !== 'imageChange') return;
+  const secondImageSrc = questionImage.dataset.secondImage;
+  if (!secondImageSrc) return;
+  const originalImageSrc = questionImage.src;
+  // Cambiar ambas imágenes
+  questionImage.src = secondImageSrc;
+  if (questionImageVertical) {
+    questionImageVertical.src = secondImageSrc;
+  }
+  setTimeout(() => {
+    questionImage.src = originalImageSrc;
+    if (questionImageVertical) {
+      questionImageVertical.src = originalImageSrc;
+    }
+  }, 3000);
+}
+  
   questionImage.addEventListener('click', () => {
     const currentQuestion = questions[currentQuestionIndex];
     if (currentQuestion.type === 'imageChange') {
