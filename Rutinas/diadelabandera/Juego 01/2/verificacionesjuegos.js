@@ -8,7 +8,7 @@ window.addEventListener("load", async () => {
     startButton.classList.add("disable-clicks");
 
     const juegoCode = "MBELG_rmpc01";
-    const rutinaCode = "DDLB";
+    const rutinaCode = "BNDR_trivia";
 
     // Guardamos lo que había en localStorage
     const correoLS = localStorage.getItem('correo');
