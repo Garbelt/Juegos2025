@@ -184,7 +184,7 @@ hablar(currentQuestion.question, {
         "audio": "audio/EN BUENOS AIRES.mp3"
       },
       {
-        "text": "EN SANTA FE",
+        "text": "EN MENDOZA",
         "correct": false,
         "audio": "audio/EN SANTA FE.mp3"
       },
