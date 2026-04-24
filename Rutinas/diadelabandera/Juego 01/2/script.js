@@ -26,12 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     startButton.addEventListener("click", () => {
         startButtonContainer.style.display = "none";
+        // NO iniciar juego aquí
+    });
+
+    function startGame() {
         container.style.display = "block";
         audio.play();
-
         startTimer();
         createPuzzle();
-    });
+    }
 
     function startTimer() {
         time = timeLimit;
