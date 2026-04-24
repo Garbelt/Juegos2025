@@ -7,7 +7,7 @@ window.addEventListener("load", async () => {
     const startButton = document.getElementById("start-button");
     startButton.classList.add("disable-clicks");
 
-    const juegoCode = "MBELG_rmpc02";
+    const juegoCode = "MBELG_rmpc01";
     const rutinaCode = "DDLBNDR_01";
 
     // Guardamos lo que había en localStorage
