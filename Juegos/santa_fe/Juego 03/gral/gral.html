@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inicio</title>
+
+<link rel="stylesheet" href="adaptadores.css" />
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    .container {
+        display: none; /* Ocultar la sopa de letras al inicio */
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        border: none;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+
+    #start-button-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    #start-button {
+        padding: 10px 20px;
+        font-size: clamp(12px, 2vw, 18px);
+        cursor: pointer;
+        border: 1px solid #444;
+        background-color: #f0f0f0;
+        border-radius: 6px;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+    #start-button:hover:not(:disabled) {
+        background-color: #ddd;
+        transform: scale(1.05);
+    }
+
+    .disable-clicks {
+        pointer-events: none;
+    }
+
+  .fade-text {
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeInOut 3s ease-in-out forwards;
+    text-align: center;
+    margin: auto;
+  }
+
+  #fadeContainer {
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    aspect-ratio: 7 / 4;
+    border: none;
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    30% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="start-button-container">
+  <button id="start-button">COMENZAR EL JUEGO</button>
+</div>
+
+<div class="container" id="fadeContainer">
+  <table>
+    <tr>
+      <td id="align-center-center">
+        <div class="fade-text" id="fadeText">OPS... AÚN NO HAY NADA POR AQUÍ!</div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<audio id="introAudio" src="ops.mp3"></audio>
+
+<script>
+const startButton = document.getElementById('start-button');
+const fadeContainer = document.getElementById('fadeContainer');
+const fadeText = document.getElementById('fadeText');
+const audio = document.getElementById('introAudio');
+
+let navigated = false;
+
+function goBackSafely() {
+  if (navigated) return;
+  navigated = true;
+  history.back();
+}
+
+startButton.addEventListener('click', () => {
+  startButton.style.display = 'none';
+  fadeContainer.style.display = 'flex';
+
+  audio.currentTime = 0;
+  audio.play().catch(err => console.warn('Error al reproducir el audio:', err));
+
+  // Retraso 1 s antes de que aparezca el texto
+  setTimeout(() => {
+    fadeText.style.opacity = 1;
+
+    // Esperar a que termine la animación del texto antes de volver
+    setTimeout(goBackSafely, 4500); // 1 s de retraso + 3,5 s de animación
+  }, 1000);
+});
+</script>
+
+</body>
+</html>
