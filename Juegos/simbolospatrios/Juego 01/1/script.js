@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("start-button");
     const startButtonContainer = document.getElementById("start-button-container");
