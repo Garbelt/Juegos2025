@@ -76,7 +76,7 @@ hablar(currentQuestion.question, {
     "image": "image/imagen01.jpg"
   },
   {
-    "question": "¿POR QUÉ EL 20 DE JUNIO SE CELEBRÁ EL DÍA DE LA BANDERA?",
+    "question": "¿POR QUÉ EL 20 DE JUNIO SE CELEBRA EL DÍA DE LA BANDERA?",
     "type": "simple",
     "options": [
       {
@@ -231,7 +231,7 @@ hablar(currentQuestion.question, {
     "birdAudio": "audio/06AudioImage.mp3"
   },
   {
-    "question": "EN QUÉ AÑO FALLECIÓ MANUEL BELGRANO",
+    "question": "¿EN QUÉ AÑO FALLECIÓ MANUEL BELGRANO?",
     "type": "simple",
     "options": [
       {
