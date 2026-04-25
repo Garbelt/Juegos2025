@@ -1,4 +1,4 @@
-﻿
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("start-button");
@@ -25,14 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let selectedPiece = null;
 
-    startButton.addEventListener("click", () => {
-        startButtonContainer.style.display = "none";
-        container.style.display = "block";
-        audio.play();
+function startGame() {
+    console.log("GAME STARTED");
+    container.style.display = "block";
+    createPuzzle();
+    startTimer();
+    audio.currentTime = 0;
+    audio.play();
+}
 
-        startTimer();
-        createPuzzle();
-    });
+window.startGame = startGame;
 
     function startTimer() {
         time = timeLimit;
@@ -82,6 +84,17 @@ function updateClockDisplay() {
         return pieces;
     }
 
+function getRandomImage() {
+    const totalImages = 1; // 👈 CAMBIAR según la cantidad real de imágenes
+    // Número aleatorio entre 1 y totalImages
+    const randomNumber = Math.floor(Math.random() * totalImages) + 1;
+    // Formato con 2 dígitos: 01, 02, 03...
+    const formattedNumber = String(randomNumber).padStart(2, "0");
+    const imagePath = `Image/RompeCa${formattedNumber}.jpg`;
+    console.log("Imagen seleccionada:", imagePath);
+    return imagePath;
+}
+
     function createPuzzle() {
         const puzzleContainer = document.getElementById("puzzle");
         if (!puzzleContainer) {
@@ -90,7 +103,7 @@ function updateClockDisplay() {
         }
 
         puzzleContainer.innerHTML = ""; // Clear any existing pieces
-        const imageSrc = "Image/RompeCa.jpg"; // Reemplaza con la ruta de tu imagen
+        const imageSrc = getRandomImage();
         const pieces = splitImage(imageSrc);
 
         // Colocar las piezas en el orden correcto inicialmente
