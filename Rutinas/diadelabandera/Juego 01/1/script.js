@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "birdAudio": "audio/06AudioImage.mp3"
   },
   {
-    "question": "EN QUÉ AÑO FALLECIÓ MANUEL BELGRANO",
+  "question": "¿EN QUÉ AÑO FALLECIÓ MANUEL BELGRANO?",
     "type": "simple",
     "options": [
       {
