@@ -85,7 +85,7 @@ function updateClockDisplay() {
     }
 
 function getRandomImage() {
-    const totalImages = 3; // 👈 CAMBIAR según la cantidad real de imágenes
+    const totalImages = 4; // 👈 CAMBIAR según la cantidad real de imágenes
     // Número aleatorio entre 1 y totalImages
     const randomNumber = Math.floor(Math.random() * totalImages) + 1;
     // Formato con 2 dígitos: 01, 02, 03...
