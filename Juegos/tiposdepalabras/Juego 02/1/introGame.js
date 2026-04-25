@@ -114,9 +114,8 @@ document.getElementById("continuar-btn").addEventListener("click", () => {
 
     const musica = document.getElementById("background-music");
     if (musica) musica.play();
-
-    showNextInstrument();
+    
     hablar("Comienza el juego");
-
     startGame();
+    showNextInstrument();
 });
