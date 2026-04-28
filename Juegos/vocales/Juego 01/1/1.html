@@ -174,28 +174,30 @@
         background-repeat:no-repeat;
         background-position:center;
     }
-    /* =========================================
-       PREVIEW RESPONSIVO
-       ========================================= */
-    #preview-image{
-        width: 100%;
-        height: 100%;
-        top: 0;
-        transform: none;
-        left: 0;
-        right: 0;
-    }
-    #preview-image img{
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
 }
 
 /* ================= PORTRAIT ================= */
 @media screen and (max-width:1023px) and (orientation:portrait){
 /* 🔹 panel full + título visible */
 body.panel-full:not(.header-hidden) #puzzle{
+        height:360px;
+    	width:360px;
+        max-height:364px;
+    	max-width:364px;
+        min-height:356px;
+    	min-width:356px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-full:not(.header-hidden) #preview-image{
+        height:360px;
+    	width:360px;
+        max-height:364px;
+    	max-width:364px;
+        min-height:356px;
+    	min-width:356px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-full:not(.header-hidden) #preview-image img{
         height:360px;
     	width:360px;
         max-height:364px;
@@ -215,9 +217,45 @@ body.panel-full.header-hidden #puzzle{
     	min-width:360px;
         aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
+body.panel-full.header-hidden #preview-image{
+        height:364px;
+    	width:364px;
+        max-height:368px;
+    	max-width:368px;
+        min-height:360px;
+    	min-width:360px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-full.header-hidden #preview-image img{
+        height:364px;
+    	width:364px;
+        max-height:368px;
+    	max-width:368px;
+        min-height:360px;
+    	min-width:360px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
 
 /* 🔹 panel mini + título visible */
 body.panel-mini:not(.header-hidden) #puzzle{
+        height:364px;
+    	width:364px;
+        max-height:368px;
+    	max-width:368px;
+        min-height:360px;
+    	min-width:360px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-mini:not(.header-hidden) #preview-image{
+        height:364px;
+    	width:364px;
+        max-height:368px;
+    	max-width:368px;
+        min-height:360px;
+    	min-width:360px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-mini:not(.header-hidden) #preview-image img{
         height:364px;
     	width:364px;
         max-height:368px;
@@ -237,6 +275,24 @@ body.panel-mini.header-hidden #puzzle{
     	min-width:364px;
         aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
+body.panel-mini.header-hidden #preview-image{
+        height:368px;
+    	width:368px;
+        max-height:372px;
+    	max-width:372px;
+        min-height:364px;
+    	min-width:364px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-mini.header-hidden #preview-image img{
+        height:368px;
+    	width:368px;
+        max-height:372px;
+    	max-width:372px;
+        min-height:364px;
+    	min-width:364px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
 
 /* 🔹 panel oculto + título visible */
 body.panel-hidden:not(.header-hidden) #puzzle{
@@ -248,9 +304,45 @@ body.panel-hidden:not(.header-hidden) #puzzle{
     	min-width:368px;
         aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
+body.panel-hidden:not(.header-hidden) #preview-image{
+        height:372px;
+    	width:372px;
+        max-height:376px;
+    	max-width:376px;
+        min-height:368px;
+    	min-width:368px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-hidden:not(.header-hidden) #preview-image img{
+        height:372px;
+    	width:372px;
+        max-height:376px;
+    	max-width:376px;
+        min-height:368px;
+    	min-width:368px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
 
 /* 🔹 panel oculto + título oculto */
 body.panel-hidden.header-hidden #puzzle{
+        height:380px;
+    	width:380px;
+        max-height:384px;
+    	max-width:384px;
+        min-height:376px;
+    	min-width:376px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-hidden.header-hidden #preview-image{
+        height:380px;
+    	width:380px;
+        max-height:384px;
+    	max-width:384px;
+        min-height:376px;
+    	min-width:376px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-hidden.header-hidden #preview-image img{
         height:380px;
     	width:380px;
         max-height:384px;
@@ -273,6 +365,24 @@ body:not(.header-hidden) #puzzle{
     	min-width:304px;
         aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
+body:not(.header-hidden) #preview-image{
+        height:308px;
+    	width:308px;
+        max-height:312px;
+    	max-width:312px;
+        min-height:304px;
+    	min-width:304px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body:not(.header-hidden) #preview-image img{
+        height:308px;
+    	width:308px;
+        max-height:312px;
+    	max-width:312px;
+        min-height:304px;
+    	min-width:304px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
 
 /* 🔹 título oculto + panel full */
 body.panel-full.header-hidden #puzzle{
@@ -284,9 +394,36 @@ body.panel-full.header-hidden #puzzle{
     	min-width:320px;
         aspect-ratio: 1 / 1; /* siempre cuadrado */
 }
+body.panel-full.header-hidden #preview-image{
+        height:324px;
+    	width:324px;
+        max-height:328px;
+    	max-width:328px;
+        min-height:320px;
+    	min-width:320px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-full.header-hidden #preview-image img{
+        height:324px;
+    	width:324px;
+        max-height:328px;
+    	max-width:328px;
+        min-height:320px;
+    	min-width:320px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
 
 /* 🔹 título oculto + panel mini */
-body.panel-mini.header-hidden #puzzle{
+body.panel-mini.header-hidden #preview-image{
+        height:348px;
+    	width:348px;
+        max-height:356px;
+    	max-width:356px;
+        min-height:340px;
+    	min-width:340px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-mini.header-hidden #preview-image img{
         height:348px;
     	width:348px;
         max-height:356px;
@@ -298,6 +435,24 @@ body.panel-mini.header-hidden #puzzle{
 
 /* 🔹 título oculto + panel oculto */
 body.panel-hidden.header-hidden #puzzle{
+        height:372px;
+    	width:372px;
+        max-height:376px;
+    	max-width:376px;
+        min-height:368px;
+    	min-width:368px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-hidden.header-hidden #preview-image{
+        height:372px;
+    	width:372px;
+        max-height:376px;
+    	max-width:376px;
+        min-height:368px;
+    	min-width:368px;
+        aspect-ratio: 1 / 1; /* siempre cuadrado */
+}
+body.panel-hidden.header-hidden #preview-image img{
         height:372px;
     	width:372px;
         max-height:376px;
