@@ -164,7 +164,7 @@
         saturate(0);
 }
 
-
+		
 /* ================= MOBILE BASE ================= */
 @media screen and (max-width:1023px){
     .piece{
@@ -173,6 +173,22 @@
         background-size: 300% 300%;
         background-repeat:no-repeat;
         background-position:center;
+    }
+    /* =========================================
+       PREVIEW RESPONSIVO
+       ========================================= */
+    #preview-image{
+        width: 100%;
+        height: 100%;
+        top: 0;
+        transform: none;
+        left: 0;
+        right: 0;
+    }
+    #preview-image img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 }
 
