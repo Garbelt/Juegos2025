@@ -15,6 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const titulo = document.getElementById("titulo-instruccion");
   const cuadrantes = document.querySelectorAll(".quadrant");
 
+    /* -------------------------------
+     LECTOR: leer indicación al hacer clic
+  -------------------------------- */
+  const zonaIndicacion = document.getElementById("zona-indicacion");
+  if (zonaIndicacion) {
+    zonaIndicacion.addEventListener("click", () => {
+      const texto = document.getElementById("indicacion").textContent;
+      if (texto && texto.trim() !== "") {
+        hablar("SEÑALAR " + texto);
+      }
+    });
+  }
+
   let score = 0;
   let time = 90;
   let attempts = 5;
