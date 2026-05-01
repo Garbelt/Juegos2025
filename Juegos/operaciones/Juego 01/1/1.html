@@ -113,25 +113,25 @@
 
 .keyboard{
   display: grid;
-  grid-template-columns: repeat(3, 60px);
-  gap: 8px;
+  grid-template-columns: repeat(3, 50px); /* antes 60px */
+  gap: 6px; /* opcional, más compacto */
   justify-content: center;
-}
-
-.key-borrar{
-  grid-column: span 2;
 }
 
 /* botones */
 .keyboard button{
-  width: 60px;
-  height: 60px;
-  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 16px; /* opcional */
   border-radius: 8px;
   border: 1px solid #444;
   background: #fff;
   cursor: pointer;
   transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.key-borrar{
+  grid-column: span 2;
 }
 
 .keyboard button:hover{
