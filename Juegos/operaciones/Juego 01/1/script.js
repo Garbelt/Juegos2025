@@ -193,30 +193,36 @@ function girar() {
     reel2.style.transition = `transform ${totalMov2 * 0.05}s ease-out`;
     reel2.style.transform = `translateY(-${totalMov2 * 100}px)`;
 
-    setTimeout(() => {
-        if (endGameExecuted) return;
+setTimeout(() => {
 
-        num1 = numeros[destino1];
-        num2 = numeros[destino2];
-        resultadoCorrecto = num1 * num2;
-
-        reel1.style.transition = "none";
-        reel2.style.transition = "none";
-
-        reel1.style.transform = `translateY(-${destino1 * 100}px)`;
-        reel2.style.transform = `translateY(-${destino2 * 100}px)`;
-
+    // 🔴 SI EL JUEGO TERMINÓ → limpiar y salir
+    if (endGameExecuted) {
         giroEnCurso = false;
-        esperandoRespuesta = true;
+        esperandoRespuesta = false;
+        return;
+    }
 
-        container.classList.remove("disable-clicks");
+    num1 = numeros[destino1];
+    num2 = numeros[destino2];
+    resultadoCorrecto = num1 * num2;
 
-        input.disabled = false;
-        input.focus();
-        corregirBtn.disabled = true;
-        input.placeholder = `${num1} × ${num2}`;
+    reel1.style.transition = "none";
+    reel2.style.transition = "none";
 
-    }, Math.max(totalMov1, totalMov2) * 50 + 100);
+    reel1.style.transform = `translateY(-${destino1 * 100}px)`;
+    reel2.style.transform = `translateY(-${destino2 * 100}px)`;
+
+    giroEnCurso = false;
+    esperandoRespuesta = true;
+
+    container.classList.remove("disable-clicks");
+
+    input.disabled = false;
+    input.focus();
+    corregirBtn.disabled = true;
+    input.placeholder = `${num1} × ${num2}`;
+
+}, Math.max(totalMov1, totalMov2) * 50 + 100);
 }
 
 // =============================
