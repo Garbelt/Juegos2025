@@ -1,4 +1,4 @@
-﻿// =============================
+// =============================
 // 🔹 ESTADO INICIAL
 // =============================
 document.body.classList.remove("game-started");
@@ -27,9 +27,21 @@ const reel2 = document.getElementById("reel2");
 const girarBtn = document.getElementById("girar-btn");
 const corregirBtn = document.getElementById("corregir-btn");
 const input = document.getElementById("respuesta");
-input.setAttribute("readonly", true);
 const container = document.querySelector(".container");
 
+function esMobile() {
+  return window.innerWidth <= 1023;
+}
+
+function configurarInput() {
+  if (esMobile()) {
+    input.setAttribute("readonly", true);
+    input.setAttribute("inputmode", "none");
+  } else {
+    input.removeAttribute("readonly");
+    input.setAttribute("inputmode", "numeric");
+  }
+}
 
 function posicionInicial() {
     const destino1 = Math.floor(Math.random() * numeros.length);
@@ -237,11 +249,7 @@ function validarRespuesta() {
     girarBtn.disabled = false;
 }
 
-input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        validarRespuesta();
-    }
-});
+
 
 // =============================
 // 🔹 TIMER
@@ -420,10 +428,31 @@ corregirBtn.addEventListener("click", validarRespuesta);
 window.addEventListener("load", function() {
     const actualUsername = localStorage.getItem("ActualUs");
     document.getElementById("actualUsername").textContent = actualUsername;
+    configurarInput();
 });
+
+window.addEventListener("resize", configurarInput);
 
 input.addEventListener("input", function() {
     if (!esperandoRespuesta) return;
     const valor = parseInt(input.value);
     corregirBtn.disabled = isNaN(valor);
+});
+
+
+input.addEventListener("keydown", function(e) {
+    console.log(e.key, e.code);
+    const teclasPermitidas = [
+        "Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"
+    ];
+    if (teclasPermitidas.includes(e.key)) return;
+    if (e.key === "Enter") {
+        validarRespuesta();
+        return;
+    }
+    // 🔥 ESTA ES LA CLAVE
+    if (!isNaN(e.key)) {
+        return;
+    }
+    e.preventDefault();
 });
