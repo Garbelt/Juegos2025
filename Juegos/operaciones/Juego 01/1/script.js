@@ -290,18 +290,25 @@ function updateScoreDisplay(score) {
 function endGame() {
     if (!endGameExecuted) {
         endGameExecuted = true;
-
         clearInterval(timerInterval);
-
+        // 🔴 BLOQUEO TOTAL
+        clicksEnabled = false;
+        esperandoRespuesta = false;
+        giroEnCurso = false;
+        // 🔴 UI BLOQUEADA
+        input.disabled = true;
+        input.value = "";
+        input.placeholder = "";
+        corregirBtn.disabled = true;
+        girarBtn.disabled = true;
+        container.classList.add("disable-clicks");
+        // 🔢 PUNTAJE
         if (errors < 5 && totalTimeInSeconds > 0) {
             score += (5 - errors) * totalTimeInSeconds;
         }
-
         updateScoreDisplay(score);
         saveGameScore();
-
         showMessage('Fin del Juego', 'fin');
-
         setTimeout(() => showMessageWithDelay(), 3000);
     }
 }
