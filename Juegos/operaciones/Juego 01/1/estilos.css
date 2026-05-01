@@ -46,7 +46,7 @@ body {
         aspect-ratio: 7 / 4;
     }
     th, td {
-        border: 1px solid black;
+        border: none;
     }
     #align-left-top {
         text-align: left; /* Alineación horizontal izquierda */
