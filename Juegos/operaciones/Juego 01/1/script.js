@@ -194,6 +194,7 @@ function girar() {
     reel2.style.transform = `translateY(-${totalMov2 * 100}px)`;
 
     setTimeout(() => {
+        if (endGameExecuted) return;
 
         num1 = numeros[destino1];
         num2 = numeros[destino2];
