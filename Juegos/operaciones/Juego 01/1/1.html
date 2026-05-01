@@ -117,14 +117,14 @@
 
 .keyboard{
   display: grid;
-  grid-template-columns: repeat(3, 45px); /* antes 60px */
+  grid-template-columns: repeat(3, 1fr); /* 🔥 clave */
   gap: 6px; /* opcional, más compacto */
   justify-content: center;
 }
 
 /* botones */
 .keyboard button{
-  width: 45px;
+  width: 100%;   /* ocupa TODA la celda del grid */
   height: 45px;
   font-size: 15px; /* opcional */
   border-radius: 8px;
