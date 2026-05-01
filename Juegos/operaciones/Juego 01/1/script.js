@@ -165,12 +165,17 @@ function inicializarReel(reel) {
 function girar() {
     if (!clicksEnabled || giroEnCurso || endGameExecuted) return;
 
+    // 🔥 limpiar timeout anterior si existiera
+    if (giroTimeout) {
+        clearTimeout(giroTimeout);
+        giroTimeout = null;
+    }
+
     giroEnCurso = true;
     esperandoRespuesta = false;
 
     girarBtn.disabled = true;
     input.disabled = true;
-
     corregirBtn.disabled = true;
     input.placeholder = "";
 
@@ -194,36 +199,33 @@ function girar() {
     reel2.style.transition = `transform ${totalMov2 * 0.05}s ease-out`;
     reel2.style.transform = `translateY(-${totalMov2 * 100}px)`;
 
-setTimeout(() => {
+    const delay = Math.max(totalMov1, totalMov2) * 50 + 100;
 
-    // 🔴 SI EL JUEGO TERMINÓ → limpiar y salir
-    if (endGameExecuted) {
+    giroTimeout = setTimeout(() => {
+
+        if (endGameExecuted) return;
+
+        num1 = numeros[destino1];
+        num2 = numeros[destino2];
+        resultadoCorrecto = num1 * num2;
+
+        reel1.style.transition = "none";
+        reel2.style.transition = "none";
+
+        reel1.style.transform = `translateY(-${destino1 * 100}px)`;
+        reel2.style.transform = `translateY(-${destino2 * 100}px)`;
+
         giroEnCurso = false;
-        esperandoRespuesta = false;
-        return;
-    }
+        esperandoRespuesta = true;
 
-    num1 = numeros[destino1];
-    num2 = numeros[destino2];
-    resultadoCorrecto = num1 * num2;
+        container.classList.remove("disable-clicks");
 
-    reel1.style.transition = "none";
-    reel2.style.transition = "none";
+        input.disabled = false;
+        input.focus();
+        corregirBtn.disabled = true;
+        input.placeholder = `${num1} × ${num2}`;
 
-    reel1.style.transform = `translateY(-${destino1 * 100}px)`;
-    reel2.style.transform = `translateY(-${destino2 * 100}px)`;
-
-    giroEnCurso = false;
-    esperandoRespuesta = true;
-
-    container.classList.remove("disable-clicks");
-
-    input.disabled = false;
-    input.focus();
-    corregirBtn.disabled = true;
-    input.placeholder = `${num1} × ${num2}`;
-
-}, Math.max(totalMov1, totalMov2) * 50 + 100);
+    }, delay);
 }
 
 // =============================
