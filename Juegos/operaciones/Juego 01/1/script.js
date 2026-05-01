@@ -232,7 +232,8 @@ function girar() {
 // 🔹 VALIDACIÓN INPUT
 // =============================
 function validarRespuesta() {
-    if (!esperandoRespuesta) return;
+    if (!esperandoRespuesta || endGameExecuted) return;
+  
     const valor = parseInt(input.value);
     if (valor === resultadoCorrecto) {
         showMessage('CORRECTO', 'correct');
