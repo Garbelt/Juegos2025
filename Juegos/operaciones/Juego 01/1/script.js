@@ -111,6 +111,7 @@ function crearTeclado(containerId) {
             btn.textContent = valor;
             btn.addEventListener("click", () => {
                 if (!esperandoRespuesta) return;
+                if (!esperandoRespuesta || endGameExecuted) return;
                 if (input.value.length >= 3) return;
                 input.value += valor;
                 corregirBtn.disabled = input.value === "";
@@ -351,8 +352,7 @@ function showMessage(text, type) {
     setTimeout(() => {
         messageElement.style.display = "none";
 
-        if (!endGameExecuted) clicksEnabled = true;
-
+        if (!endGameExecuted) {clicksEnabled = true;}
     }, duration);
 }
 
