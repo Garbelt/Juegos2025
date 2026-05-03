@@ -84,7 +84,7 @@ function crearTeclado(containerId) {
             [9,0,"borrar",""]
         ];
     } else {
-        // 📱 HORIZONTAL (como ya lo tenías)
+        // 📱 HORIZONTAL
         teclas = [
             [1,2,3],
             [4,5,6],
@@ -92,13 +92,17 @@ function crearTeclado(containerId) {
             [0,"borrar",""]
         ];
     }
+    // 🔹 contenedor visual (marco)
+    const wrapper = document.createElement("div");
+    wrapper.className = "keyboard-wrapper";
+    // 🔹 teclado
     const keyboard = document.createElement("div");
     keyboard.className = "keyboard";
     // 🔥 columnas dinámicas
     keyboard.style.gridTemplateColumns = `repeat(${teclas[0].length}, 45px)`;
     teclas.forEach(fila => {
         fila.forEach((valor) => {
-            // espacio vacío
+            // 🔹 espacio vacío
             if (valor === "") {
                 const btn = document.createElement("button");
                 btn.style.visibility = "hidden";
@@ -106,7 +110,7 @@ function crearTeclado(containerId) {
                 keyboard.appendChild(btn);
                 return;
             }
-            // borrar
+            // 🔹 borrar
             if (valor === "borrar") {
                 const btn = document.createElement("button");
                 btn.textContent = "←";
@@ -119,7 +123,7 @@ function crearTeclado(containerId) {
                 keyboard.appendChild(btn);
                 return;
             }
-            // números
+            // 🔹 números
             const btn = document.createElement("button");
             btn.textContent = valor;
             btn.addEventListener("click", () => {
@@ -132,7 +136,9 @@ function crearTeclado(containerId) {
             keyboard.appendChild(btn);
         });
     });
-    container.appendChild(keyboard);
+    // 🔥 ensamblado final
+    wrapper.appendChild(keyboard);
+    container.appendChild(wrapper);
 }
 
 window.addEventListener("resize", () => {
