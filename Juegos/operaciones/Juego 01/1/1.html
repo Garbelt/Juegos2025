@@ -126,12 +126,20 @@
 .keyboard button{
   width: 45px;
   height: 45px;
-  font-size: 15px; /* opcional */
+  font-size: 16px;
+  font-weight: bold;
   border-radius: 8px;
-  border: 1px solid #444;
-  background: #fff;
+  border: 1px solid #1e5bb8;
+  background: #2c7be5; /* azul */
+  color: white;
   cursor: pointer;
   transition: transform 0.1s ease, background-color 0.2s ease;
+}
+.keyboard button:hover{
+  background-color: #1e5bb8;
+}
+.keyboard button:active{
+  transform: scale(0.95);
 }
 
 .key-borrar{
@@ -140,14 +148,6 @@
 
 #keyboard-cell{
   border: none !important;
-}
-
-.keyboard button:hover{
-  background-color: #e0e0e0;
-}
-
-.keyboard button:active{
-  transform: scale(0.95);
 }
 
 /* 🔢 el 0 centrado abajo */
