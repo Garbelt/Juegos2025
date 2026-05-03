@@ -73,18 +73,32 @@ function crearTeclado(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = "";
-    const teclas = [
-        [1,2,3],
-        [4,5,6],
-        [7,8,9],
-        [0,"borrar","borrar"] // 🔥 vuelve el 0
-    ];
+    // 🔥 detectar orientación
+    const esVertical = window.innerHeight > window.innerWidth;
+    let teclas;
+    if (esVertical) {
+        // 📱 VERTICAL
+        teclas = [
+            [1,2,3,4],
+            [5,6,7,8],
+            [9,0,"borrar",""]
+        ];
+    } else {
+        // 📱 HORIZONTAL (como ya lo tenías)
+        teclas = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+            [0,"borrar",""]
+        ];
+    }
     const keyboard = document.createElement("div");
     keyboard.className = "keyboard";
+    // 🔥 columnas dinámicas
+    keyboard.style.gridTemplateColumns = `repeat(${teclas[0].length}, 45px)`;
     teclas.forEach(fila => {
-        fila.forEach((valor, index) => {
-
-            // 🔹 espacio vacío
+        fila.forEach((valor) => {
+            // espacio vacío
             if (valor === "") {
                 const btn = document.createElement("button");
                 btn.style.visibility = "hidden";
@@ -92,28 +106,26 @@ function crearTeclado(containerId) {
                 keyboard.appendChild(btn);
                 return;
             }
-            // 🔹 botón borrar (solo una vez)
+            // borrar
             if (valor === "borrar") {
-                if (index === 1) {
-                    const btn = document.createElement("button");
-                    btn.textContent = "←";
-                    btn.classList.add("key-borrar");
-                    btn.addEventListener("click", () => {
-                        if (!esperandoRespuesta) return;
-                        input.value = input.value.slice(0, -1);
-                        corregirBtn.disabled = input.value === "";
-                    });
-                    keyboard.appendChild(btn);
-                }
+                const btn = document.createElement("button");
+                btn.textContent = "←";
+                btn.classList.add("key-borrar");
+                btn.addEventListener("click", () => {
+                    if (!esperandoRespuesta) return;
+                    input.value = input.value.slice(0, -1);
+                    corregirBtn.disabled = input.value === "";
+                });
+                keyboard.appendChild(btn);
                 return;
             }
-            // 🔹 números
+            // números
             const btn = document.createElement("button");
             btn.textContent = valor;
             btn.addEventListener("click", () => {
-                if (!esperandoRespuesta) return;
                 if (!esperandoRespuesta || endGameExecuted) return;
                 if (input.value.length >= 3) return;
+
                 input.value += valor;
                 corregirBtn.disabled = input.value === "";
             });
@@ -122,6 +134,11 @@ function crearTeclado(containerId) {
     });
     container.appendChild(keyboard);
 }
+
+window.addEventListener("resize", () => {
+    crearTeclado("keyboard-cell");
+    crearTeclado("keyboard-vertical");
+});
 
 // =============================
 // 🔹 START GAME
