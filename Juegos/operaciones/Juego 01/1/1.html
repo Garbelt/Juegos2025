@@ -184,14 +184,15 @@
     vertical-align: middle;
   }
 
-#keyboard-cell {
-  border-left: none;
-}
+  /* columna 1 (juego) */
+  .container table tr:nth-child(2) td:nth-child(1){
+    border-right: none;
+  }
 
-#keyboard-cell + td,
-td:has(+ #keyboard-cell) {
-  border-right: none;
-}
+  /* columna 2 (teclado) */
+  .container table tr:nth-child(2) td:nth-child(2){
+    border-left: none;
+  }
 
 }
 
@@ -216,6 +217,16 @@ td:has(+ #keyboard-cell) {
   #keyboard-vertical{
     text-align: center;
     padding: 10px 0;
+  }
+
+	  /* fila 2, columna 1 */
+  .container table tr:nth-child(2) td:nth-child(1){
+    border-bottom: none;
+  }
+
+  /* fila 3, columna 1 */
+  .container table tr:nth-child(3) td:nth-child(1){
+    border-top: none;
   }
 
 }
