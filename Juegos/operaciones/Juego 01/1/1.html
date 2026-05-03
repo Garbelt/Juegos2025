@@ -184,6 +184,15 @@
     vertical-align: middle;
   }
 
+#keyboard-cell {
+  border-left: none;
+}
+
+#keyboard-cell + td,
+td:has(+ #keyboard-cell) {
+  border-right: none;
+}
+
 }
 
 
