@@ -85,6 +85,109 @@ max-width:300px;
       background-color: yellow;
     }
 
+/* =========================================
+   AJUSTES MÓVIL - SOPA DE VOCALES
+   ========================================= */
+
+@media screen and (max-width:1023px){
+
+  #contenedor-juego{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  #puzzle{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  #puzzle-container{
+    width:auto;
+    height:auto;
+    border:1px solid #ccc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    overflow:hidden;
+  }
+}
+
+
+/* =========================================
+   MÓVIL HORIZONTAL
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:landscape){
+
+  /* tamaño seguro para 12x12 */
+  .cell{
+    width:clamp(18px,4.8vh,30px);
+    height:clamp(18px,4.8vh,30px);
+    line-height:clamp(18px,4.8vh,30px);
+    font-size:clamp(11px,2.4vh,16px);
+  }
+
+  /* panel mini */
+  body.panel-mini .cell{
+    width:clamp(18px,5.2vh,32px);
+    height:clamp(18px,5.2vh,32px);
+    line-height:clamp(18px,5.2vh,32px);
+    font-size:clamp(11px,2.5vh,17px);
+  }
+
+  /* panel oculto */
+  body.panel-hidden .cell{
+    width:clamp(18px,5.8vh,35px);
+    height:clamp(18px,5.8vh,35px);
+    line-height:clamp(18px,5.8vh,35px);
+    font-size:clamp(12px,2.8vh,18px);
+  }
+}
+
+
+/* =========================================
+   MÓVIL VERTICAL
+   ========================================= */
+
+@media screen and (max-width:1023px) and (orientation:portrait){
+
+  /* base segura para 12x12 */
+  .cell{
+    width:clamp(18px,5.5vw,30px);
+    height:clamp(18px,5.5vw,30px);
+    line-height:clamp(18px,5.5vw,30px);
+    font-size:clamp(11px,2.7vw,16px);
+  }
+
+  /* panel full */
+  body.panel-full .cell{
+    width:clamp(18px,5.8vw,31px);
+    height:clamp(18px,5.8vw,31px);
+    line-height:clamp(18px,5.8vw,31px);
+    font-size:clamp(11px,2.8vw,17px);
+  }
+
+  /* panel mini */
+  body.panel-mini .cell{
+    width:clamp(18px,6.3vw,34px);
+    height:clamp(18px,6.3vw,34px);
+    line-height:clamp(18px,6.3vw,34px);
+    font-size:clamp(12px,3vw,18px);
+  }
+
+  /* panel oculto */
+  body.panel-hidden .cell{
+    width:clamp(18px,6.8vw,36px);
+    height:clamp(18px,6.8vw,36px);
+    line-height:clamp(18px,6.8vw,36px);
+    font-size:clamp(12px,3.2vw,19px);
+  }
+}
+
 
   </style>
 </head>
