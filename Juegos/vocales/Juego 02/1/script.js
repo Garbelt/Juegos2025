@@ -412,6 +412,10 @@ function showMessagexExito() {
 
     document.getElementById("corregir-btn").addEventListener("click", corregir);
 
+    document.getElementById("corregir-btn-mobile").addEventListener("click", () => {
+        document.getElementById("corregir-btn").click();
+    });
+
     document.addEventListener("click", function (event) {
       const cell = event.target;
       if (!cell.classList.contains("cell") || cell.classList.contains("locked")) return;
