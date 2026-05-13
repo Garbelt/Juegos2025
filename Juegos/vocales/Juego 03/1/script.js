@@ -163,6 +163,13 @@
       document.getElementById("puntaje").textContent = `${score}`;
       document.getElementById("puntaje-vertical").textContent = score;
 
+
+        console.log("puntaje-vertical:", pv);
+
+if (pv) {
+    pv.textContent = score;
+}
+
       if (contieneTodas && cantidadCorrecta && INCORSEL.length === 0) {
         // Nivel completado
         avanzarNivel();
