@@ -41,12 +41,16 @@ max-width:300px;
     margin-right: auto;
   }
 
-#level-image {
-  margin: 10px auto;      /* Centra horizontalmente */
-  width: 150px;            /* Ancho fijo */
-  height: 150px;           /* Alto fijo */
-  object-fit: contain;    /* Mantiene proporción */
-  display: block;         /* Necesario para que margin auto funcione */
+#level-image{
+display:block;
+margin-top: 20px;
+margin-left: auto;
+margin-right: auto;
+width:80%;         /* ocupa parte del panel */
+aspect-ratio:1/1; /* mantiene cuadrada */
+height:auto;
+object-fit:contain;
+max-width:150px;   /* escritorio */
 }
 
 /* =========================================
