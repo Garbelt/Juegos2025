@@ -161,6 +161,7 @@
       });
       score += nuevosAciertos * 10;
       document.getElementById("puntaje").textContent = `${score}`;
+      document.getElementById("puntaje-vertical").textContent = score;
 
       if (contieneTodas && cantidadCorrecta && INCORSEL.length === 0) {
         // Nivel completado
@@ -275,6 +276,7 @@ function resetGameForNextLevel() {
 
   // Actualizar puntaje e info del nivel
   document.getElementById("puntaje").textContent = `${score}`;
+  document.getElementById("puntaje-vertical").textContent = score;
   actualizarInfoNivel();
 }
 
