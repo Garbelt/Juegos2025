@@ -97,43 +97,33 @@ max-width:150px;   /* escritorio */
 /* =========================================
    MÓVILES
    ========================================= */
+/* =========================================
+   MÓVILES
+   ========================================= */
 @media screen and (max-width:1023px){
 
-/* ocultar botón normal */
+/* ocultar botón del panel */
 #corregir-btn{
 display:none;
 }
 
 /* mostrar botón móvil */
 #corregir-btn-mobile{
-display:flex;
-align-items:center;
-justify-content:center;
-
-position:absolute;
-right:8px;
-bottom:8px;
-z-index:50;
-
-width:52px;
-height:52px;
-
+display:block;
+position:fixed;
+z-index:950;
+right:12px;
+bottom:12px;
+padding:8px 14px;
 border:none;
-border-radius:50%;
-
-font-size:24px;
+border-radius:10px;
+font-size:14px;
 font-weight:bold;
 cursor:pointer;
-
 background:#4fa3d1;
 color:white;
-
-box-shadow:0 3px 8px rgba(0,0,0,0.28);
-}
-
-/* importante: referencia para absolute */
-#contenedor-juego{
-position:relative;
+box-shadow:0 2px 8px rgba(0,0,0,0.25);
+opacity:0.96;
 }
 }
 	  
