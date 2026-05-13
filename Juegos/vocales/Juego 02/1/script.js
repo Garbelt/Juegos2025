@@ -100,8 +100,12 @@
     function updateTimerDisplay(totalSeconds) {
       const minutes = Math.floor(totalSeconds / 60);
       const seconds = totalSeconds % 60;
-      const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-      document.getElementById("reloj").textContent = `${formattedTime}`;
+      const formattedTime =
+        `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      // escritorio
+      document.getElementById("reloj").textContent = formattedTime;
+      // móvil vertical
+      document.getElementById("reloj-vertical").textContent = formattedTime;
     }
 
     function disableClicks() {
