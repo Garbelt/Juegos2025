@@ -7,7 +7,7 @@ window.addEventListener("load", async () => {
     const startButton = document.getElementById("start-button");
     startButton.classList.add("disable-clicks");
 
-    const juegoCode = "SOUND_sdl";
+    const juegoCode = "VCLS_sdl1";
     const rutinaCode = "";
 
     // Guardamos lo que había en localStorage
