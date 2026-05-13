@@ -276,6 +276,8 @@ function resetGameForNextLevel() {
 
   // Actualizar puntaje e info del nivel
   document.getElementById("puntaje").textContent = `${score}`;
+  document.getElementById("puntaje-vertical").textContent = score;
+    
   actualizarInfoNivel();
 }
 
