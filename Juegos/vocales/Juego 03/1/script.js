@@ -372,7 +372,7 @@ function showMessagexExito() {
         usuario: localStorage.getItem("ActualUs"),
         puntaje: score,
         juegonumero: incrementGameNumber(),
-        game: "AEI_sdl",
+        game: "VCLS_sdl2",
         rutina: localStorage.getItem("rutina")
       };
 
