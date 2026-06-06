@@ -1,0 +1,490 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sopa de Letras</title>
+<link rel="stylesheet" href="mensajesdiferente2.css">
+<link rel="stylesheet" href="botoneria.css">
+<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="adaptadores.css">
+<link rel="stylesheet" href="pre-game.css">
+<style>
+
+/* =========================================
+   CONTENEDOR DEL JUEGO
+   ========================================= */
+#contenedor-juego{
+width:100%;
+text-align:center;
+}
+
+/* =========================================
+   ZONA DEL PUZZLE
+   ========================================= */
+#zona-puzzle{
+width:100%;
+}
+
+/* =========================================
+   REFERENCIA
+   ========================================= */
+.titulo-referencias{
+background:rgba(0,0,0,0.45);
+color:white;
+padding:6px 12px;
+border-radius:6px;
+font-size:clamp(16px,2.2vw,24px);
+font-weight:600;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+white-space:nowrap;
+margin-top:6px;
+margin-bottom:6px;
+line-height:1;
+width:85%;
+margin-left:auto;
+margin-right:auto;
+min-height:34px;
+}
+
+/* =========================================
+   LISTA DE PALABRAS
+   ========================================= */
+#lista-palabras{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+line-height:1;
+}
+
+#lista-palabras ul{
+list-style:none;
+padding:0;
+margin:0;
+
+display:inline-flex;
+align-items:center;
+}
+
+#lista-palabras ul li{
+font-weight:900;
+line-height:1;
+display:inline-flex;
+align-items:center;
+
+/* compensación tipográfica del bold */
+position:relative;
+top:-0.5px;
+white-space:nowrap;
+
+}
+
+/* =========================================
+   EFECTO DE LECTURA DE PALABRA (texto)
+   ========================================= */
+.palabra-base{
+padding:2px 6px;
+border-radius:4px;
+background-color:transparent;
+transition:background-color 0.2s ease;
+}
+
+.resaltado-lectura{
+background-color:#ffe066;
+color:black;
+}
+
+/* =========================================
+   GRILLA BASE
+   ========================================= */
+.cell{
+width:clamp(22px,6vw,30px);
+height:clamp(22px,6vw,30px);
+border:1px solid #ccc;
+display:inline-block;
+text-align:center;
+line-height:clamp(22px,6vw,30px);
+font-size:clamp(12px,3vw,16px);
+box-sizing:border-box;
+}
+
+#puzzle{
+display:inline-block;
+max-width:100%;
+}
+
+.row{
+display:flex;
+}
+
+.found{
+background-color:yellow;
+}
+
+/* =========================================
+   TD DEL JUEGO
+   ========================================= */
+#align-center-center{
+text-align:center;
+vertical-align:middle;
+}
+
+/* =========================================
+   MODAL
+   ========================================= */
+.modal{
+display:none;
+}
+
+.modal-content{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background-color:#8ec6e6;
+color:black;
+padding:20px;
+border:2px solid #333;
+border-radius:10px;
+font-size:24px;
+z-index:9999;
+text-align:center;
+width:80%;
+max-width:300px;
+}
+
+/* =========================================
+   MOVIL
+   ========================================= */
+@media screen and (max-width:1023px){
+#contenedor-juego{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100%;
+width:100%;
+}
+
+#zona-puzzle{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+}
+
+#puzzle{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+width:100%;
+}
+
+.titulo-referencias{
+margin-top:auto;
+margin-bottom:clamp(10px, 2.5vh, 24px);
+}
+}
+
+/* =========================================
+   MOVIL HORIZONTAL
+   ========================================= */
+@media screen and (max-width:1023px) and (orientation:landscape){
+body{
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+/* Tamaño base */
+body:not(.header-hidden) .cell{
+width:clamp(19px,5.2vh,30px);
+height:clamp(19px,5.2vh,30px);
+line-height:clamp(19px,5.2vh,30px);
+font-size:clamp(11px,2.6vh,16px);
+}
+/* Panel full */
+body.panel-full.header-hidden .cell{
+width:clamp(19px,5.6vh,32px);
+height:clamp(19px,5.6vh,32px);
+line-height:clamp(19px,5.6vh,32px);
+font-size:clamp(11px,2.8vh,17px);
+}
+/* Panel mini */
+body.panel-mini.header-hidden .cell{
+width:clamp(19px,6.0vh,34px);
+height:clamp(19px,6.0vh,34px);
+line-height:clamp(19px,6.0vh,34px);
+font-size:clamp(12px,3.0vh,18px);
+}
+/* Panel oculto */
+body.panel-hidden.header-hidden .cell{
+width:clamp(20px,6.5vh,36px);
+height:clamp(20px,6.5vh,36px);
+line-height:clamp(20px,6.5vh,36px);
+font-size:clamp(12px,3.2vh,19px);
+}
+}
+
+/* =========================================
+   MOVIL VERTICAL
+   ========================================= */
+@media screen and (max-width:1023px) and (orientation:portrait){
+body.panel-full:not(.header-hidden) .cell{
+width:clamp(20px,6vw,32px);
+height:clamp(20px,6vw,32px);
+line-height:clamp(20px,6vw,32px);
+font-size:clamp(12px,3vw,17px);
+}
+body.panel-full.header-hidden .cell{
+width:clamp(20px,6.5vw,34px);
+height:clamp(20px,6.5vw,34px);
+line-height:clamp(20px,6.5vw,34px);
+font-size:clamp(12px,3.2vw,18px);
+}
+body.panel-mini .cell{
+width:clamp(20px,7vw,36px);
+height:clamp(20px,7vw,36px);
+line-height:clamp(20px,7vw,36px);
+font-size:clamp(12px,3.4vw,19px);
+}
+body.panel-hidden .cell{
+width:clamp(20px,7.5vw,38px);
+height:clamp(20px,7.5vw,38px);
+line-height:clamp(20px,7.5vw,38px);
+font-size:clamp(13px,3.6vw,20px);
+}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ================= PANTALLA PREVIA ================= -->
+<div id="pre-game-screen" style="display: none;">
+    <div id="pre-game-container">
+        <h1 id="game-title" class="pre-game-title">Clasificación de Instrumentos</h1>
+        <p id="game-description" class="pre-game-description">
+            Aprende a clasificar los instrumentos según su tipo. Selecciona correctamente para ganar puntos.
+        </p>
+
+        <div id="pre-game-buttons">
+            <button id="ver-video-btn">Ver Video Explicativo</button>
+            <button id="read-screen">Leer Descripción</button>
+        </div>
+
+        <button id="continuar-btn" class="btn-continue">Continuar</button>
+    </div>
+
+    <!-- Modal de video -->
+	<div id="video-modal" class="modal">
+ 	   <div class="modal-content">
+    	    <span id="close-video" style="cursor:pointer;">Cerrar X</span>
+
+   	     <video id="pre-game-video" width="100%" controls>
+    	        <source src="videos/explicacion.mp4" type="video/mp4">
+    	        Tu navegador no soporta el video.
+  	      </video>
+
+ 	   </div>
+	</div>
+</div>
+
+<!-- ================= BOTON INICIAR ================= -->
+<div id="start-button-container">
+    <button id="start-button" class="disable-clicks">COMENZAR EL JUEGO</button>
+</div>
+
+
+
+<!-- ================= CONTENIDO DEL JUEGO ================= -->
+<div class="container" style="display:none;">
+    <table>
+        <tr class="fila-titulo">
+ 		   <th colspan="2" class="title-cell" style="text-align: center;">
+    		    <span class="titulo-principal">SOPA DE LETRAS</span><br>
+      		  <span class="titulo-secundario">Características del Sonido</span>
+  		  </th>
+        </tr>
+
+        <tr>
+<td id="align-center-center">
+
+<div id="contenedor-juego">
+
+    <div id="zona-puzzle">
+        <div id="puzzle"></div>
+    </div>
+
+    <div class="titulo-referencias" id="referencia-palabra">
+        PALABRA A ENCONTRAR:
+        <div id="lista-palabras">
+            <ul>
+                <li id="palabras" class="palabra-base"></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</td>
+
+            <td id="align-left-top" class="celda-panel" style="position: relative;">
+			<div id="panel">
+			    <div>
+
+			        <div class="dato">
+			            <span class="icono">👤</span>
+			            <span id="actualUsername"></span>
+			        </div>
+  			        <div class="dato">
+			            <span class="icono">⏱</span>
+ 			            <span class="texto">Tiempo:</span>
+			            <span id="reloj">02:00</span>
+  			        </div>
+			        <div class="dato">
+			            <span class="icono">⭐</span>
+			            <span class="texto">Puntaje:</span>
+			            <span id="puntaje">0</span>
+    			        </div>
+                            </div>
+
+                <button id="lectorButton">Cancelar Lectura</button>
+            </td>
+        </tr>
+
+		<tr class="fila-panel-vertical">
+		    <th colspan="2" class="celda-panel-vertical" style="position: relative;">
+			<div id="panel-vertical">
+
+ 			   <div class="dato">
+ 			       <span class="icono">👤</span>
+  			      <span id="actualUsername-vertical"></span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">⭐</span>
+			        <span class="texto">Puntaje:</span>
+   			     <span id="puntaje-vertical">0</span>
+			    </div>
+
+			    <div class="dato">
+			        <span class="icono">⏱</span>
+			        <span class="texto">Tiempo:</span>
+			        <span id="reloj-vertical">02:00</span>
+			    </div>
+				
+			</div>
+            </th>
+        </tr>
+
+    </table>
+</div>
+
+<audio id="background-music" loop>
+    <source src="sound/Carefree.mp3" type="audio/mpeg">
+    Tu navegador no soporta la reproducción de audio.
+</audio>
+
+<div id="message" style="display:none;"></div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyBVZaysx9d6u6P13DYINPtcinpf79Sgx4U",
+    authDomain: "juego001-469b6.firebaseapp.com",
+    databaseURL: "https://juego001-469b6-default-rtdb.firebaseio.com",
+    projectId: "juego001-469b6",
+    storageBucket: "juego001-469b6.appspot.com",
+    messagingSenderId: "528847999661",
+    appId: "1:528847999661:web:6085a104fe64262a042c24"
+};
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Scripts -->
+<script src="lector.js"></script>
+<script src="introGame.js"></script>
+<script src="verificacionesjuegos.js"></script>
+<script src="script.js"></script>
+
+<script>
+window.addEventListener("load", () => {
+    const actualUsername = localStorage.getItem("ActualUs");
+    if (actualUsername) {
+        document.getElementById("actualUsername").textContent = actualUsername;
+		document.getElementById("actualUsername-vertical").textContent = actualUsername;
+    }
+});
+	
+// ===== PANTALLA PREVIA =====
+document.getElementById("read-screen").addEventListener("click", () => {
+    leerElemento("game-title");
+    leerElemento("game-description");
+});
+
+document.getElementById("ver-video-btn").addEventListener("click", () => {
+    const videoModal = document.getElementById("video-modal");
+    const video = document.getElementById("pre-game-video");
+    if(video.src){
+        videoModal.style.display = "block";
+        video.play();
+    }
+});
+
+document.getElementById("close-video").addEventListener("click", () => {
+    const videoModal = document.getElementById("video-modal");
+    const video = document.getElementById("pre-game-video");
+    video.pause();
+    video.currentTime = 0;
+    videoModal.style.display = "none";
+});
+
+document.getElementById("continuar-btn").addEventListener("click", () => {
+    document.getElementById("pre-game-screen").style.display = "none";
+    document.querySelector(".container").style.display = "block";
+    document.getElementById("background-music").play();
+    startGame();
+});
+</script>
+
+<!-- ================= BOTONERA MÓVIL ================= -->
+<div class="mobile-controls">
+
+  <button id="mobile-main-btn"
+          class="fab-main"
+          aria-label="Mostrar opciones del juego">
+    <span aria-hidden="true">☰</span>
+  </button>
+
+  <div class="fab-options">
+
+    <button id="mobile-read-btn">
+      <span aria-hidden="true">🔊</span>
+    </button>
+
+    <button id="mobile-toggle-header-btn">
+      <span aria-hidden="true">🧾</span>
+    </button>
+
+    <button id="mobile-panel-btn">
+      <span aria-hidden="true">📊</span>
+    </button>
+
+  </div>
+</div>
+
+<script src="botonera-mobile.js"></script>
+
+</body>
+</html>
