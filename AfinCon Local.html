@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<link rel="manifest" href="/Juegos2025/manifest.json">
+<meta name="theme-color" content="#2b2b2b">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AFINCON - MODO LOCAL</title>
+
+<link rel="stylesheet" href="stylesindex.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div style="text-align:center;">
+  <h2 style="margin-bottom:0;">MODO LOCAL</h2>
+
+  <p style="
+    margin-top:0;
+    margin-bottom:20px;
+    font-size:11px;
+    color:#666;
+  ">
+    TRABAJAS SIN CONEXIÓN
+  </p>
+</div>
+
+  <label for="username">
+    Nombre:
+  </label>
+
+  <input
+    type="text"
+    id="username"
+    placeholder="Escribe tu nombre"
+    required
+    autocomplete="off"
+  >
+
+  <button id="enterButton" class="primary-button">
+    <span id="btnText">INGRESAR</span>
+  </button>
+
+</div>
+
+<script>
+
+/* ==============================
+   SEGURIDAD
+================================ */
+
+function generarClave() {
+  return Math.floor(1000 + Math.random() * 9000).toString();
+}
+
+function prepararLogin() {
+  const entrarA = generarClave();
+  localStorage.setItem("entrarA", entrarA);
+  localStorage.setItem("entrarB", "NO");
+}
+
+function confirmarLogin() {
+  const entrarA = localStorage.getItem("entrarA");
+
+  if (entrarA) {
+    localStorage.setItem("entrarB", entrarA);
+  }
+}
+
+window.addEventListener("load", prepararLogin);
+
+/* ==============================
+   INGRESO MODO LOCAL
+================================ */
+
+function ingresarModoLocal() {
+
+  const username = document
+    .getElementById("username")
+    .value
+    .trim();
+
+  if (!username) {
+    alert("Por favor, ingresa tu nombre.");
+    return;
+  }
+
+  confirmarLogin();
+
+  localStorage.setItem("modo", "local");
+  localStorage.setItem("modolocal", "SI");
+
+  localStorage.setItem("uid", "LOCAL");
+  localStorage.setItem("correo", "LOCAL");
+
+  localStorage.setItem("ActualUs", username);
+  localStorage.setItem("nombreApellido", username);
+
+  localStorage.setItem("tipoEscuela", "");
+  localStorage.setItem("curso", "LOCAL");
+
+  window.location.href = "Menu/juegos.html";
+}
+
+/* ==============================
+   EVENTOS
+================================ */
+
+document.getElementById("enterButton")
+  .addEventListener("click", ingresarModoLocal);
+
+document.getElementById("username")
+  .addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+      ingresarModoLocal();
+    }
+
+  });
+
+document.getElementById("username").focus();
+
+</script>
+
+</body>
+</html>
